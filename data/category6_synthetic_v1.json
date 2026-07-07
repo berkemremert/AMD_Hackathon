@@ -1,0 +1,1202 @@
+[
+    {
+        "task_id": "cat6_syn_001",
+        "category": "code_debugging",
+        "prompt": "Fix the Python syntax error: `if x = 5: print(x)`",
+        "reference_answer": "if x == 5: print(x)",
+        "answer_aliases": [
+            "Use == for comparison instead of ="
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_001"
+    },
+    {
+        "task_id": "cat6_syn_002",
+        "category": "code_debugging",
+        "prompt": "Fix the missing syntax in this Python definition: `def greet(name) return name`",
+        "reference_answer": "def greet(name): return name",
+        "answer_aliases": [
+            "Missing colon after parameters"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_002"
+    },
+    {
+        "task_id": "cat6_syn_003",
+        "category": "code_debugging",
+        "prompt": "Fix this Python 3 print statement: `print 'Hello World'`",
+        "reference_answer": "print('Hello World')",
+        "answer_aliases": [
+            "Add parentheses around the print argument"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_003"
+    },
+    {
+        "task_id": "cat6_syn_004",
+        "category": "code_debugging",
+        "prompt": "Fix the Python type error: `msg = 'Age: ' + 25`",
+        "reference_answer": "msg = 'Age: ' + str(25)",
+        "answer_aliases": [
+            "f'Age: {25}'"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_004"
+    },
+    {
+        "task_id": "cat6_syn_005",
+        "category": "code_debugging",
+        "prompt": "Fix the Python mutable default argument: `def add(x, lst=[]): lst.append(x); return lst`",
+        "reference_answer": "def add(x, lst=None): lst = lst or []; lst.append(x); return lst",
+        "answer_aliases": [
+            "Set lst to None and initialize inside the function"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_005"
+    },
+    {
+        "task_id": "cat6_syn_006",
+        "category": "code_debugging",
+        "prompt": "Fix the Python index error: `arr = [1, 2, 3]; val = arr[3]`",
+        "reference_answer": "arr = [1, 2, 3]; val = arr[2]",
+        "answer_aliases": [
+            "Indices are 0-based, max index is 2"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_006"
+    },
+    {
+        "task_id": "cat6_syn_007",
+        "category": "code_debugging",
+        "prompt": "Fix the unclosed bracket in Python: `my_list = [1, 2, 3`",
+        "reference_answer": "my_list = [1, 2, 3]",
+        "answer_aliases": [
+            "Add the closing square bracket ]"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_007"
+    },
+    {
+        "task_id": "cat6_syn_008",
+        "category": "code_debugging",
+        "prompt": "Fix the missing argument in this Python class method: `class A: def hello(): print('hi')`",
+        "reference_answer": "class A: def hello(self): print('hi')",
+        "answer_aliases": [
+            "Add 'self' as the first parameter"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_008"
+    },
+    {
+        "task_id": "cat6_syn_009",
+        "category": "code_debugging",
+        "prompt": "Fix the Python length check error: `length = len(100)`",
+        "reference_answer": "length = len(str(100))",
+        "answer_aliases": [
+            "Integers have no len(), convert to string first"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_009"
+    },
+    {
+        "task_id": "cat6_syn_010",
+        "category": "code_debugging",
+        "prompt": "Fix the Python set addition error: `s = {1, 2}; s.append(3)`",
+        "reference_answer": "s = {1, 2}; s.add(3)",
+        "answer_aliases": [
+            "Sets use .add() instead of .append()"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_010"
+    },
+    {
+        "task_id": "cat6_syn_011",
+        "category": "code_debugging",
+        "prompt": "Fix the JavaScript assignment error: `const x = 5; x = 10;`",
+        "reference_answer": "let x = 5; x = 10;",
+        "answer_aliases": [
+            "Change const to let"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_011"
+    },
+    {
+        "task_id": "cat6_syn_012",
+        "category": "code_debugging",
+        "prompt": "Fix the JS arrow function return: `const getTwo = () => { 2; }`",
+        "reference_answer": "const getTwo = () => { return 2; }",
+        "answer_aliases": [
+            "const getTwo = () => 2;"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_012"
+    },
+    {
+        "task_id": "cat6_syn_013",
+        "category": "code_debugging",
+        "prompt": "Fix the JS object access error: `let obj = {a: 1}; console.log(obj.b.c);`",
+        "reference_answer": "let obj = {a: 1}; console.log(obj.b?.c);",
+        "answer_aliases": [
+            "Use optional chaining obj.b?.c"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_013"
+    },
+    {
+        "task_id": "cat6_syn_014",
+        "category": "code_debugging",
+        "prompt": "Fix the JS timeout execution bug: `setTimeout(console.log('hi'), 1000);`",
+        "reference_answer": "setTimeout(() => console.log('hi'), 1000);",
+        "answer_aliases": [
+            "Wrap the console.log in a function callback"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_014"
+    },
+    {
+        "task_id": "cat6_syn_015",
+        "category": "code_debugging",
+        "prompt": "Fix the JS class instantiation: `class Car {}; let myCar = Car();`",
+        "reference_answer": "class Car {}; let myCar = new Car();",
+        "answer_aliases": [
+            "Add the 'new' keyword"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_015"
+    },
+    {
+        "task_id": "cat6_syn_016",
+        "category": "code_debugging",
+        "prompt": "Fix the JS map return bug: `[1, 2].map(x => { x * 2 })`",
+        "reference_answer": "[1, 2].map(x => x * 2)",
+        "answer_aliases": [
+            "Add 'return' inside braces or remove braces"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_016"
+    },
+    {
+        "task_id": "cat6_syn_017",
+        "category": "code_debugging",
+        "prompt": "Fix the JS scope issue that prints 3 three times: `for(var i=0; i<3; i++) setTimeout(()=>console.log(i), 10);`",
+        "reference_answer": "for(let i=0; i<3; i++) setTimeout(()=>console.log(i), 10);",
+        "answer_aliases": [
+            "Change var to let to block-scope the variable"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_017"
+    },
+    {
+        "task_id": "cat6_syn_018",
+        "category": "code_debugging",
+        "prompt": "Fix the JS float math issue: `if (0.1 + 0.2 === 0.3) return true;`",
+        "reference_answer": "if (Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON) return true;",
+        "answer_aliases": [
+            "Compare using Number.EPSILON due to float precision"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "syn_018"
+    },
+    {
+        "task_id": "cat6_syn_019",
+        "category": "code_debugging",
+        "prompt": "Fix the JS equality bug: `if (value = null) { console.log('Null'); }`",
+        "reference_answer": "if (value === null) { console.log('Null'); }",
+        "answer_aliases": [
+            "Use === for comparison instead of ="
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_019"
+    },
+    {
+        "task_id": "cat6_syn_020",
+        "category": "code_debugging",
+        "prompt": "Fix the JS array copy bug: `let a = [1]; let b = a; b.push(2);` so 'a' remains [1].",
+        "reference_answer": "let a = [1]; let b = [...a]; b.push(2);",
+        "answer_aliases": [
+            "let b = a.slice();"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_020"
+    },
+    {
+        "task_id": "cat6_syn_021",
+        "category": "code_debugging",
+        "prompt": "Fix the Python iteration bug: `for item in my_list: my_list.remove(item)`",
+        "reference_answer": "for item in my_list[:]: my_list.remove(item)",
+        "answer_aliases": [
+            "Iterate over a copy of the list using slice [:]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_021"
+    },
+    {
+        "task_id": "cat6_syn_022",
+        "category": "code_debugging",
+        "prompt": "Fix the Python file leak: `f = open('data.txt'); data = f.read()`",
+        "reference_answer": "with open('data.txt') as f: data = f.read()",
+        "answer_aliases": [
+            "f.close() must be called, or use 'with' context manager"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_022"
+    },
+    {
+        "task_id": "cat6_syn_023",
+        "category": "code_debugging",
+        "prompt": "Fix the Python dictionary key error: `d = {[1, 2]: 'value'}`",
+        "reference_answer": "d = {(1, 2): 'value'}",
+        "answer_aliases": [
+            "Lists are unhashable, use a tuple for the key"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_023"
+    },
+    {
+        "task_id": "cat6_syn_024",
+        "category": "code_debugging",
+        "prompt": "Fix the Python conversion error: `val = int('10.5')`",
+        "reference_answer": "val = float('10.5')",
+        "answer_aliases": [
+            "int() cannot parse floats, use float() instead"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_024"
+    },
+    {
+        "task_id": "cat6_syn_025",
+        "category": "code_debugging",
+        "prompt": "Fix the Python catch-all anti-pattern: `try: 1/0 except: pass`",
+        "reference_answer": "try: 1/0 except ZeroDivisionError: pass",
+        "answer_aliases": [
+            "Specify the exact exception type"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_025"
+    },
+    {
+        "task_id": "cat6_syn_026",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL syntax error: `SELECT * FROM users WHERE name = \"John\"`",
+        "reference_answer": "SELECT * FROM users WHERE name = 'John'",
+        "answer_aliases": [
+            "Use single quotes for string literals in SQL"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_026"
+    },
+    {
+        "task_id": "cat6_syn_027",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL GROUP BY error: `SELECT department, role, COUNT(*) FROM employees GROUP BY department`",
+        "reference_answer": "SELECT department, role, COUNT(*) FROM employees GROUP BY department, role",
+        "answer_aliases": [
+            "Role must be included in the GROUP BY clause"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_027"
+    },
+    {
+        "task_id": "cat6_syn_028",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL insert syntax: `INSERT INTO table (id) VALUES 1`",
+        "reference_answer": "INSERT INTO table (id) VALUES (1)",
+        "answer_aliases": [
+            "Values must be wrapped in parentheses"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_028"
+    },
+    {
+        "task_id": "cat6_syn_029",
+        "category": "code_debugging",
+        "prompt": "Fix the Python boolean capitalization: `is_active = true`",
+        "reference_answer": "is_active = True",
+        "answer_aliases": [
+            "Booleans must be capitalized in Python"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_029"
+    },
+    {
+        "task_id": "cat6_syn_030",
+        "category": "code_debugging",
+        "prompt": "Fix the Python self-assignment in init: `def __init__(self, x): x = x`",
+        "reference_answer": "def __init__(self, x): self.x = x",
+        "answer_aliases": [
+            "Assign to self.x instead of local x"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_030"
+    },
+    {
+        "task_id": "cat6_syn_031",
+        "category": "code_debugging",
+        "prompt": "Fix the Python split error: `chars = 'abc'.split('')`",
+        "reference_answer": "chars = list('abc')",
+        "answer_aliases": [
+            "split('') raises ValueError, use list() for strings"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_031"
+    },
+    {
+        "task_id": "cat6_syn_032",
+        "category": "code_debugging",
+        "prompt": "Fix the JS array iteration bug: `let arr = [1]; for (let i in arr) console.log(arr[i] + 1); // Output is '01'`",
+        "reference_answer": "let arr = [1]; for (let i of arr) console.log(i + 1);",
+        "answer_aliases": [
+            "Use 'for...of' instead of 'for...in' for array values"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_032"
+    },
+    {
+        "task_id": "cat6_syn_033",
+        "category": "code_debugging",
+        "prompt": "Fix the Python dictionary get error: `val = my_dict['missing_key']` to avoid KeyError.",
+        "reference_answer": "val = my_dict.get('missing_key')",
+        "answer_aliases": [
+            "Use .get() to return None if key is missing"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_033"
+    },
+    {
+        "task_id": "cat6_syn_034",
+        "category": "code_debugging",
+        "prompt": "Fix the JS boolean logic: `if (str == '')` to also catch null/undefined.",
+        "reference_answer": "if (!str)",
+        "answer_aliases": [
+            "Use falsy check `if (!str)`"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_034"
+    },
+    {
+        "task_id": "cat6_syn_035",
+        "category": "code_debugging",
+        "prompt": "Fix the Python string replacement bug: `s = 'hello'; s.replace('h', 'j')` where s remains 'hello'.",
+        "reference_answer": "s = 'hello'; s = s.replace('h', 'j')",
+        "answer_aliases": [
+            "Strings are immutable, you must reassign the result"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_035"
+    },
+    {
+        "task_id": "cat6_syn_036",
+        "category": "code_debugging",
+        "prompt": "Fix the JS sort bug: `[10, 2, 1].sort()` results in [1, 10, 2].",
+        "reference_answer": "[10, 2, 1].sort((a, b) => a - b)",
+        "answer_aliases": [
+            "Pass a numerical comparison function to sort()"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_036"
+    },
+    {
+        "task_id": "cat6_syn_037",
+        "category": "code_debugging",
+        "prompt": "Fix the Python global scope error: `count = 0; def inc(): count += 1`",
+        "reference_answer": "count = 0; def inc(): global count; count += 1",
+        "answer_aliases": [
+            "Declare 'global count' before modifying it"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_037"
+    },
+    {
+        "task_id": "cat6_syn_038",
+        "category": "code_debugging",
+        "prompt": "Fix the JS async error: `async function f() { return await Promise.resolve(1); }; let x = f();` where x is a Promise, not 1.",
+        "reference_answer": "async function f() { return await Promise.resolve(1); }; f().then(x => ...);",
+        "answer_aliases": [
+            "Await the function call `let x = await f();`"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_038"
+    },
+    {
+        "task_id": "cat6_syn_039",
+        "category": "code_debugging",
+        "prompt": "Fix the Python tuple initialization: `single_tuple = (1)`",
+        "reference_answer": "single_tuple = (1,)",
+        "answer_aliases": [
+            "Add a comma to make it a tuple, otherwise it's just an int"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_039"
+    },
+    {
+        "task_id": "cat6_syn_040",
+        "category": "code_debugging",
+        "prompt": "Fix the Python loop error: `for i in range(1, 5, -1): print(i)` (prints nothing).",
+        "reference_answer": "for i in range(5, 1, -1): print(i)",
+        "answer_aliases": [
+            "Start must be greater than stop for negative step"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_040"
+    },
+    {
+        "task_id": "cat6_syn_041",
+        "category": "code_debugging",
+        "prompt": "Fix the JS promise bug: `new Promise((res, rej) => res(1)).then(x => x).catch(e => 2).then(console.log)` outputting undefined if not caught.",
+        "reference_answer": "new Promise((res, rej) => res(1)).then(x => x).then(console.log)",
+        "answer_aliases": [
+            "Nothing to fix structurally, output is 1, but catch doesn't return anything to next then if no error."
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "syn_041"
+    },
+    {
+        "task_id": "cat6_syn_042",
+        "category": "code_debugging",
+        "prompt": "Fix the Python dict merge: `merged = dict1 + dict2`",
+        "reference_answer": "merged = {**dict1, **dict2}",
+        "answer_aliases": [
+            "merged = dict1 | dict2"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_042"
+    },
+    {
+        "task_id": "cat6_syn_043",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL null check: `SELECT * FROM data WHERE value = NULL`",
+        "reference_answer": "SELECT * FROM data WHERE value IS NULL",
+        "answer_aliases": [
+            "Use IS NULL instead of = NULL"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_043"
+    },
+    {
+        "task_id": "cat6_syn_044",
+        "category": "code_debugging",
+        "prompt": "Fix the JS destructuring error: `let { a, b } = { x: 1, y: 2 };` where a is undefined.",
+        "reference_answer": "let { x: a, y: b } = { x: 1, y: 2 };",
+        "answer_aliases": [
+            "let { x, y } = { x: 1, y: 2 };"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_044"
+    },
+    {
+        "task_id": "cat6_syn_045",
+        "category": "code_debugging",
+        "prompt": "Fix the Python regex error: `re.match('+', '123')` triggering a deprecation warning for invalid escape sequence.",
+        "reference_answer": "re.match(r'\\d+', '123')",
+        "answer_aliases": [
+            "Use a raw string `r'\\d+'` for regex"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_045"
+    },
+    {
+        "task_id": "cat6_syn_046",
+        "category": "code_debugging",
+        "prompt": "Fix the Python division bug: `result = 5 / 2` returning float when integer division is needed.",
+        "reference_answer": "result = 5 // 2",
+        "answer_aliases": [
+            "Use // for floor/integer division"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_046"
+    },
+    {
+        "task_id": "cat6_syn_047",
+        "category": "code_debugging",
+        "prompt": "Fix the Python map evaluation: `m = map(int, ['1']); len(m)` raises TypeError.",
+        "reference_answer": "m = list(map(int, ['1'])); len(m)",
+        "answer_aliases": [
+            "Map returns an iterator, convert to list first"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_047"
+    },
+    {
+        "task_id": "cat6_syn_048",
+        "category": "code_debugging",
+        "prompt": "Fix the JS JSON parse error: `JSON.parse(\"{'a': 1}\")`",
+        "reference_answer": "JSON.parse('{\"a\": 1}')",
+        "answer_aliases": [
+            "JSON requires double quotes for keys"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_048"
+    },
+    {
+        "task_id": "cat6_syn_049",
+        "category": "code_debugging",
+        "prompt": "Fix the JS class inheritance: `class Dog extends Animal { constructor() { this.bark = true; } }` throws ReferenceError.",
+        "reference_answer": "class Dog extends Animal { constructor() { super(); this.bark = true; } }",
+        "answer_aliases": [
+            "Must call super() in derived class constructor"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_049"
+    },
+    {
+        "task_id": "cat6_syn_050",
+        "category": "code_debugging",
+        "prompt": "Fix the Python lambda loop binding: `funcs = [lambda: i for i in range(3)]` where all return 2.",
+        "reference_answer": "funcs = [lambda i=i: i for i in range(3)]",
+        "answer_aliases": [
+            "Bind the variable using a default argument i=i"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "syn_050"
+    },
+    {
+        "task_id": "cat6_syn_051",
+        "category": "code_debugging",
+        "prompt": "Fix the Python list append method return: `new_lst = [1, 2].append(3)` where new_lst is None.",
+        "reference_answer": "lst = [1, 2]; lst.append(3); new_lst = lst",
+        "answer_aliases": [
+            "Append modifies in place and returns None."
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_051"
+    },
+    {
+        "task_id": "cat6_syn_052",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL update missing condition: `UPDATE users SET status = 'active'`",
+        "reference_answer": "UPDATE users SET status = 'active' WHERE id = 1;",
+        "answer_aliases": [
+            "Add a WHERE clause to prevent updating all rows"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_052"
+    },
+    {
+        "task_id": "cat6_syn_053",
+        "category": "code_debugging",
+        "prompt": "Fix the JS event listener binding: `el.addEventListener('click', this.handleClick)` where `this` is undefined inside handleClick.",
+        "reference_answer": "el.addEventListener('click', this.handleClick.bind(this))",
+        "answer_aliases": [
+            "Use .bind(this) or an arrow function"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_053"
+    },
+    {
+        "task_id": "cat6_syn_054",
+        "category": "code_debugging",
+        "prompt": "Fix the Python dict comprehension syntax: `d = {k, v for k, v in [('a', 1)]}`",
+        "reference_answer": "d = {k: v for k, v in [('a', 1)]}",
+        "answer_aliases": [
+            "Use a colon `:` between key and value"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_054"
+    },
+    {
+        "task_id": "cat6_syn_055",
+        "category": "code_debugging",
+        "prompt": "Fix the JS strict mode error: `x = 10; console.log(x);` inside a module.",
+        "reference_answer": "let x = 10; console.log(x);",
+        "answer_aliases": [
+            "Declare the variable with let, const, or var"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_055"
+    },
+    {
+        "task_id": "cat6_syn_056",
+        "category": "code_debugging",
+        "prompt": "Fix the Python exception variable bug: `except Exception, e:` in Python 3.",
+        "reference_answer": "except Exception as e:",
+        "answer_aliases": [
+            "Use 'as' instead of a comma in Python 3"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_056"
+    },
+    {
+        "task_id": "cat6_syn_057",
+        "category": "code_debugging",
+        "prompt": "Fix the Python logic: `if type(x) == type(list):`",
+        "reference_answer": "if isinstance(x, list):",
+        "answer_aliases": [
+            "Use isinstance() for type checking"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_057"
+    },
+    {
+        "task_id": "cat6_syn_058",
+        "category": "code_debugging",
+        "prompt": "Fix the Python import bug: `from math import *; def log(): pass` overwriting math.log.",
+        "reference_answer": "import math; def log(): pass",
+        "answer_aliases": [
+            "Avoid wildcard imports to prevent namespace pollution"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_058"
+    },
+    {
+        "task_id": "cat6_syn_059",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL syntax: `SELECT TOP 10 * FROM users` for PostgreSQL.",
+        "reference_answer": "SELECT * FROM users LIMIT 10",
+        "answer_aliases": [
+            "Use LIMIT instead of TOP in Postgres/MySQL"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_059"
+    },
+    {
+        "task_id": "cat6_syn_060",
+        "category": "code_debugging",
+        "prompt": "Fix the JS regex declaration: `let re = /hello/'g;`",
+        "reference_answer": "let re = /hello/g;",
+        "answer_aliases": [
+            "Remove the quote before the global flag"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_060"
+    },
+    {
+        "task_id": "cat6_syn_061",
+        "category": "code_debugging",
+        "prompt": "Fix the JS array method error: `let x = arr.push(1);` where x is expected to be the array.",
+        "reference_answer": "arr.push(1); let x = arr;",
+        "answer_aliases": [
+            "push() returns the new length, not the array"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_061"
+    },
+    {
+        "task_id": "cat6_syn_062",
+        "category": "code_debugging",
+        "prompt": "Fix the Python file write mode: `with open('log.txt', 'r') as f: f.write('data')`",
+        "reference_answer": "with open('log.txt', 'w') as f: f.write('data')",
+        "answer_aliases": [
+            "Change mode 'r' to 'w' or 'a'"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_062"
+    },
+    {
+        "task_id": "cat6_syn_063",
+        "category": "code_debugging",
+        "prompt": "Fix the Python chained comparison bug: `if 1 < x < 5 and x == 10:` which is always false.",
+        "reference_answer": "if 1 < x < 15 and x == 10:",
+        "answer_aliases": [
+            "Adjust the range so the condition can logically be met."
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_063"
+    },
+    {
+        "task_id": "cat6_syn_064",
+        "category": "code_debugging",
+        "prompt": "Fix the JS NaN comparison: `if (value === NaN)`",
+        "reference_answer": "if (Number.isNaN(value))",
+        "answer_aliases": [
+            "NaN is not equal to itself, use Number.isNaN()"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_064"
+    },
+    {
+        "task_id": "cat6_syn_065",
+        "category": "code_debugging",
+        "prompt": "Fix the Python print newline: `print('Hello', end='') print('World')` syntax error.",
+        "reference_answer": "print('Hello', end=''); print('World')",
+        "answer_aliases": [
+            "Add a semicolon or put on a new line"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_065"
+    },
+    {
+        "task_id": "cat6_syn_066",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL logic error: `SELECT * FROM users WHERE age > 10 OR age < 20` returning everyone.",
+        "reference_answer": "SELECT * FROM users WHERE age > 10 AND age < 20",
+        "answer_aliases": [
+            "Use AND instead of OR to bound the range"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_066"
+    },
+    {
+        "task_id": "cat6_syn_067",
+        "category": "code_debugging",
+        "prompt": "Fix the Python list comprehension filter: `[x for x in data if x = 2]`",
+        "reference_answer": "[x for x in data if x == 2]",
+        "answer_aliases": [
+            "Use == for equality check in comprehensions"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_067"
+    },
+    {
+        "task_id": "cat6_syn_068",
+        "category": "code_debugging",
+        "prompt": "Fix the JS module import: `import fs from 'fs';` in commonJS environment.",
+        "reference_answer": "const fs = require('fs');",
+        "answer_aliases": [
+            "Use require() in commonJS instead of ES6 import"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_068"
+    },
+    {
+        "task_id": "cat6_syn_069",
+        "category": "code_debugging",
+        "prompt": "Fix the Python tuple concat: `t = (1, 2) + 3`",
+        "reference_answer": "t = (1, 2) + (3,)",
+        "answer_aliases": [
+            "Can only concatenate tuple to tuple"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_069"
+    },
+    {
+        "task_id": "cat6_syn_070",
+        "category": "code_debugging",
+        "prompt": "Fix the Python deepcopy bug: `import copy; b = copy.copy(nested_list)` where inner lists still mutate.",
+        "reference_answer": "import copy; b = copy.deepcopy(nested_list)",
+        "answer_aliases": [
+            "Use deepcopy instead of shallow copy"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_070"
+    },
+    {
+        "task_id": "cat6_syn_071",
+        "category": "code_debugging",
+        "prompt": "Fix the JS object key variable: `let k = 'name'; let obj = { k: 'John' };` where key becomes 'k'.",
+        "reference_answer": "let k = 'name'; let obj = { [k]: 'John' };",
+        "answer_aliases": [
+            "Wrap the key variable in square brackets"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_071"
+    },
+    {
+        "task_id": "cat6_syn_072",
+        "category": "code_debugging",
+        "prompt": "Fix the Python super() bug in Python 2 syntax: `super().__init__()`",
+        "reference_answer": "super(ClassName, self).__init__()",
+        "answer_aliases": [
+            "Provide class name and self to super in Python 2"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "syn_072"
+    },
+    {
+        "task_id": "cat6_syn_073",
+        "category": "code_debugging",
+        "prompt": "Fix the Python assert tuple bug: `assert (x == 1, 'x must be 1')` which always evaluates to True.",
+        "reference_answer": "assert x == 1, 'x must be 1'",
+        "answer_aliases": [
+            "Remove parentheses around assert arguments"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_073"
+    },
+    {
+        "task_id": "cat6_syn_074",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL count bug: `SELECT COUNT(column_with_nulls) FROM table` not counting rows with nulls.",
+        "reference_answer": "SELECT COUNT(*) FROM table",
+        "answer_aliases": [
+            "Use COUNT(*) to count all rows regardless of nulls"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_074"
+    },
+    {
+        "task_id": "cat6_syn_075",
+        "category": "code_debugging",
+        "prompt": "Fix the JS array deletion: `delete arr[1];` leaving an undefined hole.",
+        "reference_answer": "arr.splice(1, 1);",
+        "answer_aliases": [
+            "Use splice() to remove element and reindex array"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_075"
+    },
+    {
+        "task_id": "cat6_syn_076",
+        "category": "code_debugging",
+        "prompt": "Fix the Python string to bytes bug: `b = bytes('string')`",
+        "reference_answer": "b = bytes('string', 'utf-8')",
+        "answer_aliases": [
+            "Provide encoding when converting string to bytes"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_076"
+    },
+    {
+        "task_id": "cat6_syn_077",
+        "category": "code_debugging",
+        "prompt": "Fix the JS undefined check: `if (typeof x == undefined)`",
+        "reference_answer": "if (typeof x === 'undefined')",
+        "answer_aliases": [
+            "typeof returns a string, so compare to 'undefined'"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_077"
+    },
+    {
+        "task_id": "cat6_syn_078",
+        "category": "code_debugging",
+        "prompt": "Fix the Python set intersection: `s = set1 && set2`",
+        "reference_answer": "s = set1 & set2",
+        "answer_aliases": [
+            "Use & for set intersection, not &&"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_078"
+    },
+    {
+        "task_id": "cat6_syn_079",
+        "category": "code_debugging",
+        "prompt": "Fix the Python path concatenation: `path = dir + '/' + file` causing cross-platform issues.",
+        "reference_answer": "import os; path = os.path.join(dir, file)",
+        "answer_aliases": [
+            "Use os.path.join or pathlib"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_079"
+    },
+    {
+        "task_id": "cat6_syn_080",
+        "category": "code_debugging",
+        "prompt": "Fix the JS date mutation bug: `let d2 = d1; d2.setDate(d2.getDate() + 1);` changing d1 as well.",
+        "reference_answer": "let d2 = new Date(d1); d2.setDate(d2.getDate() + 1);",
+        "answer_aliases": [
+            "Clone the date object `new Date(d1)` before mutating"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_080"
+    },
+    {
+        "task_id": "cat6_syn_081",
+        "category": "code_debugging",
+        "prompt": "Fix the Python kwargs syntax: `def func(**kwargs, arg1):`",
+        "reference_answer": "def func(arg1, **kwargs):",
+        "answer_aliases": [
+            "**kwargs must be the last parameter"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_081"
+    },
+    {
+        "task_id": "cat6_syn_082",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL distinct count: `SELECT DISTINCT COUNT(id) FROM users`",
+        "reference_answer": "SELECT COUNT(DISTINCT id) FROM users",
+        "answer_aliases": [
+            "DISTINCT goes inside the COUNT function"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_082"
+    },
+    {
+        "task_id": "cat6_syn_083",
+        "category": "code_debugging",
+        "prompt": "Fix the Python list sorting: `lst = sorted(lst.sort())`",
+        "reference_answer": "lst.sort()",
+        "answer_aliases": [
+            "lst.sort() returns None, just use lst.sort() or lst = sorted(lst)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_083"
+    },
+    {
+        "task_id": "cat6_syn_084",
+        "category": "code_debugging",
+        "prompt": "Fix the JS map parse issue: `['1', '2'].map(parseInt)` returning [1, NaN].",
+        "reference_answer": "['1', '2'].map(x => parseInt(x))",
+        "answer_aliases": [
+            "parseInt takes an index as second argument, wrap in arrow function"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "syn_084"
+    },
+    {
+        "task_id": "cat6_syn_085",
+        "category": "code_debugging",
+        "prompt": "Fix the Python dictionary missing key fallback: `val = d['key'] if d['key'] else 'default'` throwing KeyError.",
+        "reference_answer": "val = d.get('key', 'default')",
+        "answer_aliases": [
+            "Use .get() with a default value"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_085"
+    },
+    {
+        "task_id": "cat6_syn_086",
+        "category": "code_debugging",
+        "prompt": "Fix the Python bare except: `try: run() except: handle()` catching SystemExit.",
+        "reference_answer": "try: run() except Exception: handle()",
+        "answer_aliases": [
+            "Catch Exception instead of using a bare except"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_086"
+    },
+    {
+        "task_id": "cat6_syn_087",
+        "category": "code_debugging",
+        "prompt": "Fix the Python variable scope error in list comp: `funcs = [lambda: i for i in range(3)]` where calling funcs[0]() returns 2.",
+        "reference_answer": "funcs = [lambda i=i: i for i in range(3)]",
+        "answer_aliases": [
+            "Capture the variable dynamically using default kwargs"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "syn_087"
+    },
+    {
+        "task_id": "cat6_syn_088",
+        "category": "code_debugging",
+        "prompt": "Fix the JS unhandled promise rejection syntax: `try { Promise.reject('Err') } catch(e) {}`",
+        "reference_answer": "Promise.reject('Err').catch(e => {})",
+        "answer_aliases": [
+            "Try/catch doesn't work on unawaited promises, use .catch()"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_088"
+    },
+    {
+        "task_id": "cat6_syn_089",
+        "category": "code_debugging",
+        "prompt": "Fix the Python staticmethod decorator usage: `class A: @staticmethod def func(self): pass`",
+        "reference_answer": "class A: @staticmethod def func(): pass",
+        "answer_aliases": [
+            "Static methods do not take 'self' as a parameter"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_089"
+    },
+    {
+        "task_id": "cat6_syn_090",
+        "category": "code_debugging",
+        "prompt": "Fix the JS arrow function object return: `const getObj = () => { id: 1 }` returning undefined.",
+        "reference_answer": "const getObj = () => ({ id: 1 })",
+        "answer_aliases": [
+            "Wrap the object literal in parentheses"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_090"
+    },
+    {
+        "task_id": "cat6_syn_091",
+        "category": "code_debugging",
+        "prompt": "Fix the Python equality type error: `if id == '10':` where id is an integer.",
+        "reference_answer": "if str(id) == '10':",
+        "answer_aliases": [
+            "if id == 10:"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_091"
+    },
+    {
+        "task_id": "cat6_syn_092",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL update query logic: `UPDATE data SET value = 1 AND status = 'done'`",
+        "reference_answer": "UPDATE data SET value = 1, status = 'done'",
+        "answer_aliases": [
+            "Use commas to separate column updates, not AND"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_092"
+    },
+    {
+        "task_id": "cat6_syn_093",
+        "category": "code_debugging",
+        "prompt": "Fix the JS block scope issue: `if (true) { var x = 1; } console.log(x);` leaking x.",
+        "reference_answer": "if (true) { let x = 1; }",
+        "answer_aliases": [
+            "Use let or const to prevent hoisting outside the block"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_093"
+    },
+    {
+        "task_id": "cat6_syn_094",
+        "category": "code_debugging",
+        "prompt": "Fix the Python generator bug: `g = (x for x in [1, 2]); len(g)`",
+        "reference_answer": "g = [x for x in [1, 2]]; len(g)",
+        "answer_aliases": [
+            "Generators don't have a len(), convert to list"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_094"
+    },
+    {
+        "task_id": "cat6_syn_095",
+        "category": "code_debugging",
+        "prompt": "Fix the JS optional chaining assignment error: `obj?.prop = 1;`",
+        "reference_answer": "if (obj) obj.prop = 1;",
+        "answer_aliases": [
+            "Cannot assign to an optional chain"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_095"
+    },
+    {
+        "task_id": "cat6_syn_096",
+        "category": "code_debugging",
+        "prompt": "Fix the Python mutable default arg: `def f(a=time.time()):` where a is only evaluated once.",
+        "reference_answer": "def f(a=None): a = a or time.time()",
+        "answer_aliases": [
+            "Evaluate time.time() inside the function body"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "syn_096"
+    },
+    {
+        "task_id": "cat6_syn_097",
+        "category": "code_debugging",
+        "prompt": "Fix the JS double equality logic bug: `if ([] == false)` evaluating to true unexpectedly.",
+        "reference_answer": "if ([] === false)",
+        "answer_aliases": [
+            "Use strict equality === to avoid type coercion"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_097"
+    },
+    {
+        "task_id": "cat6_syn_098",
+        "category": "code_debugging",
+        "prompt": "Fix the Python string formatting syntax: `print('My name is {}'.format(name, age))`",
+        "reference_answer": "print('My name is {} and age is {}'.format(name, age))",
+        "answer_aliases": [
+            "Ensure the number of {} matches the format arguments"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_098"
+    },
+    {
+        "task_id": "cat6_syn_099",
+        "category": "code_debugging",
+        "prompt": "Fix the Python file read pointer bug: `f.read(); data = f.read()` where data is empty.",
+        "reference_answer": "f.read(); f.seek(0); data = f.read()",
+        "answer_aliases": [
+            "Reset the file pointer using f.seek(0) before reading again"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "syn_099"
+    },
+    {
+        "task_id": "cat6_syn_100",
+        "category": "code_debugging",
+        "prompt": "Fix the SQL logical ordering error: `SELECT * FROM users ORDER BY age WHERE age > 10`",
+        "reference_answer": "SELECT * FROM users WHERE age > 10 ORDER BY age",
+        "answer_aliases": [
+            "WHERE clause must come before ORDER BY"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "syn_100"
+    }
+]

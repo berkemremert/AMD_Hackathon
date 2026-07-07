@@ -1,0 +1,1264 @@
+[
+    {
+        "task_id": "cat2_synthetic_001",
+        "category": "mathematical_reasoning",
+        "prompt": "If a jacket costs $80 and is on sale for 25% off, what is the final price?",
+        "reference_answer": "The discount is 25% of $80, which is $20. Subtracting this from the original price gives $80 - $20 = $60.",
+        "answer_aliases": [
+            "$60",
+            "60",
+            "60 dollars"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_001"
+    },
+    {
+        "task_id": "cat2_synthetic_002",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 15% of 300?",
+        "reference_answer": "15% of 100 is 15, so 15% of 300 is 15 * 3 = 45.",
+        "answer_aliases": [
+            "45"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_002"
+    },
+    {
+        "task_id": "cat2_synthetic_003",
+        "category": "mathematical_reasoning",
+        "prompt": "A meal costs $45. If you leave a 20% tip, what is the total cost?",
+        "reference_answer": "The tip is 20% of $45, which is $9. The total cost is $45 + $9 = $54.",
+        "answer_aliases": [
+            "$54",
+            "54"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_003"
+    },
+    {
+        "task_id": "cat2_synthetic_004",
+        "category": "mathematical_reasoning",
+        "prompt": "If a population of 2000 increases by 10%, what is the new population?",
+        "reference_answer": "10% of 2000 is 200. The new population is 2000 + 200 = 2200.",
+        "answer_aliases": [
+            "2200",
+            "2,200"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_004"
+    },
+    {
+        "task_id": "cat2_synthetic_005",
+        "category": "mathematical_reasoning",
+        "prompt": "An item priced at $120 is subject to an 8% sales tax. What is the total price?",
+        "reference_answer": "The tax is 8% of $120, which is $9.60. The total price is $120 + $9.60 = $129.60.",
+        "answer_aliases": [
+            "$129.60",
+            "129.60"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_005"
+    },
+    {
+        "task_id": "cat2_synthetic_006",
+        "category": "mathematical_reasoning",
+        "prompt": "What percent of 400 is 100?",
+        "reference_answer": "100 divided by 400 is 0.25, which is 25%.",
+        "answer_aliases": [
+            "25%",
+            "25 percent"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_006"
+    },
+    {
+        "task_id": "cat2_synthetic_007",
+        "category": "mathematical_reasoning",
+        "prompt": "A car loses 20% of its $25,000 value in the first year. What is it worth after one year?",
+        "reference_answer": "20% of $25,000 is $5,000. The remaining value is $25,000 - $5,000 = $20,000.",
+        "answer_aliases": [
+            "$20,000",
+            "20000"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_007"
+    },
+    {
+        "task_id": "cat2_synthetic_008",
+        "category": "mathematical_reasoning",
+        "prompt": "If 30% of a number is 60, what is the number?",
+        "reference_answer": "Let x be the number. 0.30x = 60. x = 60 / 0.30 = 200.",
+        "answer_aliases": [
+            "200"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_008"
+    },
+    {
+        "task_id": "cat2_synthetic_009",
+        "category": "mathematical_reasoning",
+        "prompt": "Increase 50 by 150%. What is the result?",
+        "reference_answer": "150% of 50 is 75. 50 + 75 = 125.",
+        "answer_aliases": [
+            "125"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_009"
+    },
+    {
+        "task_id": "cat2_synthetic_010",
+        "category": "mathematical_reasoning",
+        "prompt": "An item is discounted from $200 to $160. What is the discount percentage?",
+        "reference_answer": "The discount is $40. $40 divided by $200 is 0.20, which is a 20% discount.",
+        "answer_aliases": [
+            "20%",
+            "20 percent"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_010"
+    },
+    {
+        "task_id": "cat2_synthetic_011",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate the expression: 10 + 4 * 5.",
+        "reference_answer": "Following the order of operations, multiply first: 4 * 5 = 20. Then add 10: 10 + 20 = 30.",
+        "answer_aliases": [
+            "30"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_011"
+    },
+    {
+        "task_id": "cat2_synthetic_012",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate: (15 - 5) * 4 / 2.",
+        "reference_answer": "First evaluate parentheses: 15 - 5 = 10. Then multiply: 10 * 4 = 40. Then divide: 40 / 2 = 20.",
+        "answer_aliases": [
+            "20"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_012"
+    },
+    {
+        "task_id": "cat2_synthetic_013",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the square of 6 added to the square root of 64?",
+        "reference_answer": "The square of 6 is 36. The square root of 64 is 8. 36 + 8 = 44.",
+        "answer_aliases": [
+            "44"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_013"
+    },
+    {
+        "task_id": "cat2_synthetic_014",
+        "category": "mathematical_reasoning",
+        "prompt": "Solve for x: 3x - 7 = 14.",
+        "reference_answer": "Add 7 to both sides: 3x = 21. Divide by 3: x = 7.",
+        "answer_aliases": [
+            "7",
+            "x=7",
+            "x = 7"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_014"
+    },
+    {
+        "task_id": "cat2_synthetic_015",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 3/4 of 120?",
+        "reference_answer": "Divide 120 by 4 to get 30, then multiply by 3 to get 90.",
+        "answer_aliases": [
+            "90"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_015"
+    },
+    {
+        "task_id": "cat2_synthetic_016",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate: 5 cubed minus 25.",
+        "reference_answer": "5 cubed is 5 * 5 * 5 = 125. 125 - 25 = 100.",
+        "answer_aliases": [
+            "100"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_016"
+    },
+    {
+        "task_id": "cat2_synthetic_017",
+        "category": "mathematical_reasoning",
+        "prompt": "Convert 5/8 to a decimal.",
+        "reference_answer": "5 divided by 8 is 0.625.",
+        "answer_aliases": [
+            "0.625",
+            ".625"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_017"
+    },
+    {
+        "task_id": "cat2_synthetic_018",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 20% of the sum of 40 and 60?",
+        "reference_answer": "The sum of 40 and 60 is 100. 20% of 100 is 20.",
+        "answer_aliases": [
+            "20"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_018"
+    },
+    {
+        "task_id": "cat2_synthetic_019",
+        "category": "mathematical_reasoning",
+        "prompt": "Subtract 30% of 200 from 100.",
+        "reference_answer": "30% of 200 is 60. 100 - 60 = 40.",
+        "answer_aliases": [
+            "40"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_019"
+    },
+    {
+        "task_id": "cat2_synthetic_020",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate: (50 / 2) + (3 * 7).",
+        "reference_answer": "50 / 2 = 25. 3 * 7 = 21. 25 + 21 = 46.",
+        "answer_aliases": [
+            "46"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_020"
+    },
+    {
+        "task_id": "cat2_synthetic_021",
+        "category": "mathematical_reasoning",
+        "prompt": "If 4 apples cost $3, how much do 12 apples cost?",
+        "reference_answer": "12 apples is 3 sets of 4 apples. 3 sets * $3/set = $9.",
+        "answer_aliases": [
+            "$9",
+            "9"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_021"
+    },
+    {
+        "task_id": "cat2_synthetic_022",
+        "category": "mathematical_reasoning",
+        "prompt": "A train travels at 60 mph for 3.5 hours. How far does it travel?",
+        "reference_answer": "Distance = speed * time. 60 mph * 3.5 hours = 210 miles.",
+        "answer_aliases": [
+            "210 miles",
+            "210"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_022"
+    },
+    {
+        "task_id": "cat2_synthetic_023",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the area of a rectangular garden that is 12 feet long and 8 feet wide?",
+        "reference_answer": "Area = length * width. 12 * 8 = 96 square feet.",
+        "answer_aliases": [
+            "96 square feet",
+            "96 sq ft",
+            "96"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_023"
+    },
+    {
+        "task_id": "cat2_synthetic_024",
+        "category": "mathematical_reasoning",
+        "prompt": "If it takes 3 workers 6 days to build a wall, how long will it take 6 workers working at the same pace?",
+        "reference_answer": "Doubling the number of workers halves the time required. 6 days / 2 = 3 days.",
+        "answer_aliases": [
+            "3 days",
+            "3"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_024"
+    },
+    {
+        "task_id": "cat2_synthetic_025",
+        "category": "mathematical_reasoning",
+        "prompt": "A recipe requires 2 cups of flour for 4 servings. How much flour is needed for 10 servings?",
+        "reference_answer": "The recipe requires 0.5 cups of flour per serving (2/4). For 10 servings: 10 * 0.5 = 5 cups.",
+        "answer_aliases": [
+            "5 cups",
+            "5"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_025"
+    },
+    {
+        "task_id": "cat2_synthetic_026",
+        "category": "mathematical_reasoning",
+        "prompt": "A car uses 4 gallons of gas to travel 100 miles. How many gallons are needed for 250 miles?",
+        "reference_answer": "The car gets 25 miles per gallon (100 / 4). 250 miles / 25 mpg = 10 gallons.",
+        "answer_aliases": [
+            "10 gallons",
+            "10"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_026"
+    },
+    {
+        "task_id": "cat2_synthetic_027",
+        "category": "mathematical_reasoning",
+        "prompt": "Jane is three times as old as Tom. In 5 years, she will be twice as old as Tom. How old is Tom now?",
+        "reference_answer": "Let T be Tom's age and J be Jane's age. J = 3T. In 5 years: J + 5 = 2(T + 5). Substitute 3T for J: 3T + 5 = 2T + 10. Subtract 2T from both sides: T + 5 = 10. T = 5.",
+        "answer_aliases": [
+            "5",
+            "5 years old"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_027"
+    },
+    {
+        "task_id": "cat2_synthetic_028",
+        "category": "mathematical_reasoning",
+        "prompt": "Find the average of 14, 22, and 30.",
+        "reference_answer": "Sum the numbers: 14 + 22 + 30 = 66. Divide by the count (3): 66 / 3 = 22.",
+        "answer_aliases": [
+            "22"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_028"
+    },
+    {
+        "task_id": "cat2_synthetic_029",
+        "category": "mathematical_reasoning",
+        "prompt": "A runner completes a 10 km race in 50 minutes. What is their pace in minutes per kilometer?",
+        "reference_answer": "Pace = time / distance. 50 minutes / 10 km = 5 minutes per km.",
+        "answer_aliases": [
+            "5 min/km",
+            "5"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_029"
+    },
+    {
+        "task_id": "cat2_synthetic_030",
+        "category": "mathematical_reasoning",
+        "prompt": "A jar contains 12 red marbles, 8 blue marbles, and 5 green marbles. What is the probability of drawing a blue marble?",
+        "reference_answer": "Total marbles = 12 + 8 + 5 = 25. Blue marbles = 8. Probability = 8/25.",
+        "answer_aliases": [
+            "8/25",
+            "0.32",
+            "32%"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_030"
+    },
+    {
+        "task_id": "cat2_synthetic_031",
+        "category": "mathematical_reasoning",
+        "prompt": "A startup's monthly revenue is $10,000 and doubles every month. What will the revenue be in month 4?",
+        "reference_answer": "Month 1: $10,000. Month 2: $20,000. Month 3: $40,000. Month 4: $80,000.",
+        "answer_aliases": [
+            "$80,000",
+            "80000"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_031"
+    },
+    {
+        "task_id": "cat2_synthetic_032",
+        "category": "mathematical_reasoning",
+        "prompt": "If a city's population of 100,000 grows at exactly 5% per year, what is the population after 2 years?",
+        "reference_answer": "Year 1: 100,000 * 1.05 = 105,000. Year 2: 105,000 * 1.05 = 110,250.",
+        "answer_aliases": [
+            "110,250",
+            "110250"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_032"
+    },
+    {
+        "task_id": "cat2_synthetic_033",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the next number in the sequence: 2, 6, 18, 54, ...?",
+        "reference_answer": "Each term is multiplied by 3. 54 * 3 = 162.",
+        "answer_aliases": [
+            "162"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_033"
+    },
+    {
+        "task_id": "cat2_synthetic_034",
+        "category": "mathematical_reasoning",
+        "prompt": "If you invest $500 at a 4% simple annual interest rate, how much total money will you have after 3 years?",
+        "reference_answer": "Interest = Principal * Rate * Time. $500 * 0.04 * 3 = $60. Total = $500 + $60 = $560.",
+        "answer_aliases": [
+            "$560",
+            "560"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_034"
+    },
+    {
+        "task_id": "cat2_synthetic_035",
+        "category": "mathematical_reasoning",
+        "prompt": "A company produces 50 units per day. If they increase production by 10 units a day every week, how many units will they produce per day during week 3?",
+        "reference_answer": "Week 1: 50. Week 2: 60. Week 3: 70 units per day.",
+        "answer_aliases": [
+            "70"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_035"
+    },
+    {
+        "task_id": "cat2_synthetic_036",
+        "category": "mathematical_reasoning",
+        "prompt": "An app has 1,000 users. If the user base grows by 20% each month, how many users will it have after two months?",
+        "reference_answer": "Month 1: 1,000 * 1.20 = 1,200. Month 2: 1,200 * 1.20 = 1,440.",
+        "answer_aliases": [
+            "1,440",
+            "1440"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_036"
+    },
+    {
+        "task_id": "cat2_synthetic_037",
+        "category": "mathematical_reasoning",
+        "prompt": "If a stock price drops by 50% and then increases by 100%, what is the net percentage change from the original price?",
+        "reference_answer": "Let the original price be $100. Drop 50% to $50. Increase $50 by 100% to $100. Net change is 0%.",
+        "answer_aliases": [
+            "0%",
+            "0 percent",
+            "no change"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_037"
+    },
+    {
+        "task_id": "cat2_synthetic_038",
+        "category": "mathematical_reasoning",
+        "prompt": "Projecting linear growth: Sales are 150 units in January and 180 units in February. If this linear trend continues, what will sales be in May?",
+        "reference_answer": "Growth is 30 units/month. March: 210. April: 240. May: 270.",
+        "answer_aliases": [
+            "270"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_038"
+    },
+    {
+        "task_id": "cat2_synthetic_039",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the next number in the arithmetic sequence: 14, 21, 28, 35, ...?",
+        "reference_answer": "The common difference is +7. 35 + 7 = 42.",
+        "answer_aliases": [
+            "42"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_039"
+    },
+    {
+        "task_id": "cat2_synthetic_040",
+        "category": "mathematical_reasoning",
+        "prompt": "A video gets 500 views on day 1. If views drop by half each subsequent day, how many views does it get on day 4?",
+        "reference_answer": "Day 1: 500. Day 2: 250. Day 3: 125. Day 4: 62.5.",
+        "answer_aliases": [
+            "62.5"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_040"
+    },
+    {
+        "task_id": "cat2_synthetic_041",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate: (12 + 18) / (2 * 3).",
+        "reference_answer": "12 + 18 = 30. 2 * 3 = 6. 30 / 6 = 5.",
+        "answer_aliases": [
+            "5"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_041"
+    },
+    {
+        "task_id": "cat2_synthetic_042",
+        "category": "mathematical_reasoning",
+        "prompt": "If a shirt costs $40 and pants cost $60, what is the total cost if you buy 2 shirts and 1 pair of pants?",
+        "reference_answer": "2 shirts = $80. 1 pants = $60. $80 + $60 = $140.",
+        "answer_aliases": [
+            "$140",
+            "140"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_042"
+    },
+    {
+        "task_id": "cat2_synthetic_043",
+        "category": "mathematical_reasoning",
+        "prompt": "A tank holds 500 gallons. A pump fills it at 20 gallons per minute. How many minutes to fill it from empty?",
+        "reference_answer": "500 gallons / 20 gallons/minute = 25 minutes.",
+        "answer_aliases": [
+            "25 minutes",
+            "25"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_043"
+    },
+    {
+        "task_id": "cat2_synthetic_044",
+        "category": "mathematical_reasoning",
+        "prompt": "Find 40% of 250.",
+        "reference_answer": "10% of 250 is 25. 40% is 4 * 25 = 100.",
+        "answer_aliases": [
+            "100"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_044"
+    },
+    {
+        "task_id": "cat2_synthetic_045",
+        "category": "mathematical_reasoning",
+        "prompt": "A laptop originally $800 is marked down 15%. What is the new price?",
+        "reference_answer": "15% of $800 is $120. $800 - $120 = $680.",
+        "answer_aliases": [
+            "$680",
+            "680"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_045"
+    },
+    {
+        "task_id": "cat2_synthetic_046",
+        "category": "mathematical_reasoning",
+        "prompt": "Solve for y: 5y + 10 = 35.",
+        "reference_answer": "Subtract 10: 5y = 25. Divide by 5: y = 5.",
+        "answer_aliases": [
+            "5",
+            "y=5"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_046"
+    },
+    {
+        "task_id": "cat2_synthetic_047",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the perimeter of a rectangle with length 15 and width 5?",
+        "reference_answer": "Perimeter = 2 * (length + width) = 2 * (15 + 5) = 2 * 20 = 40.",
+        "answer_aliases": [
+            "40"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_047"
+    },
+    {
+        "task_id": "cat2_synthetic_048",
+        "category": "mathematical_reasoning",
+        "prompt": "Half of a number is 18. What is 25% of that number?",
+        "reference_answer": "The number is 36. 25% (or one quarter) of 36 is 9.",
+        "answer_aliases": [
+            "9"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_048"
+    },
+    {
+        "task_id": "cat2_synthetic_049",
+        "category": "mathematical_reasoning",
+        "prompt": "A factory makes 120 widgets per hour. How many widgets will it make in an 8-hour shift?",
+        "reference_answer": "120 * 8 = 960 widgets.",
+        "answer_aliases": [
+            "960"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_049"
+    },
+    {
+        "task_id": "cat2_synthetic_050",
+        "category": "mathematical_reasoning",
+        "prompt": "If you drive at 70 mph, how long will it take to travel 315 miles?",
+        "reference_answer": "Time = Distance / Speed = 315 / 70 = 4.5 hours.",
+        "answer_aliases": [
+            "4.5 hours",
+            "4.5"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_050"
+    },
+    {
+        "task_id": "cat2_synthetic_051",
+        "category": "mathematical_reasoning",
+        "prompt": "Increase $200 by 5% and then decrease the result by 5%.",
+        "reference_answer": "Increase by 5%: $200 * 1.05 = $210. Decrease by 5%: $210 * 0.95 = $199.50.",
+        "answer_aliases": [
+            "$199.50",
+            "199.5",
+            "199.50"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_051"
+    },
+    {
+        "task_id": "cat2_synthetic_052",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 2^4 plus 3^2?",
+        "reference_answer": "2^4 is 16. 3^2 is 9. 16 + 9 = 25.",
+        "answer_aliases": [
+            "25"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_052"
+    },
+    {
+        "task_id": "cat2_synthetic_053",
+        "category": "mathematical_reasoning",
+        "prompt": "A sequence begins 5, 10, 20, 40. What is the 6th term?",
+        "reference_answer": "The sequence doubles each term. 5th term is 80. 6th term is 160.",
+        "answer_aliases": [
+            "160"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_053"
+    },
+    {
+        "task_id": "cat2_synthetic_054",
+        "category": "mathematical_reasoning",
+        "prompt": "You have $50 and spend $15 on lunch, then find $5. How much do you have?",
+        "reference_answer": "$50 - $15 = $35. $35 + $5 = $40.",
+        "answer_aliases": [
+            "$40",
+            "40"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_054"
+    },
+    {
+        "task_id": "cat2_synthetic_055",
+        "category": "mathematical_reasoning",
+        "prompt": "A 50-pound bag of dog food lasts 20 days. How many pounds are eaten per day?",
+        "reference_answer": "50 pounds / 20 days = 2.5 pounds per day.",
+        "answer_aliases": [
+            "2.5",
+            "2.5 pounds"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_055"
+    },
+    {
+        "task_id": "cat2_synthetic_056",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate 100 / (10 - 5) * 2.",
+        "reference_answer": "100 / 5 * 2 = 20 * 2 = 40.",
+        "answer_aliases": [
+            "40"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_056"
+    },
+    {
+        "task_id": "cat2_synthetic_057",
+        "category": "mathematical_reasoning",
+        "prompt": "In a class of 30 students, 40% are boys. How many girls are there?",
+        "reference_answer": "60% must be girls. 60% of 30 is 0.6 * 30 = 18.",
+        "answer_aliases": [
+            "18"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_057"
+    },
+    {
+        "task_id": "cat2_synthetic_058",
+        "category": "mathematical_reasoning",
+        "prompt": "A company projects its expenses will increase by $500 each month. If expenses are $2,000 in January, what will they be in June?",
+        "reference_answer": "June is 5 months after January. $2,000 + (5 * $500) = $2,000 + $2,500 = $4,500.",
+        "answer_aliases": [
+            "$4,500",
+            "4500"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_058"
+    },
+    {
+        "task_id": "cat2_synthetic_059",
+        "category": "mathematical_reasoning",
+        "prompt": "If x/4 = 12, what is x - 8?",
+        "reference_answer": "x = 4 * 12 = 48. x - 8 = 48 - 8 = 40.",
+        "answer_aliases": [
+            "40"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_059"
+    },
+    {
+        "task_id": "cat2_synthetic_060",
+        "category": "mathematical_reasoning",
+        "prompt": "Find the area of a triangle with base 14 and height 10.",
+        "reference_answer": "Area = (base * height) / 2. (14 * 10) / 2 = 140 / 2 = 70.",
+        "answer_aliases": [
+            "70"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_060"
+    },
+    {
+        "task_id": "cat2_synthetic_061",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 120% of 50?",
+        "reference_answer": "1.20 * 50 = 60.",
+        "answer_aliases": [
+            "60"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_061"
+    },
+    {
+        "task_id": "cat2_synthetic_062",
+        "category": "mathematical_reasoning",
+        "prompt": "A product costs $15 to make and sells for $25. What is the profit margin percentage based on the sale price?",
+        "reference_answer": "Profit is $10. Profit margin is $10 / $25 = 0.40 or 40%.",
+        "answer_aliases": [
+            "40%",
+            "40 percent"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_062"
+    },
+    {
+        "task_id": "cat2_synthetic_063",
+        "category": "mathematical_reasoning",
+        "prompt": "A tree grows 1.5 feet per year. If it is currently 8 feet tall, how tall will it be in 4 years?",
+        "reference_answer": "Growth over 4 years is 4 * 1.5 = 6 feet. 8 + 6 = 14 feet.",
+        "answer_aliases": [
+            "14 feet",
+            "14"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_063"
+    },
+    {
+        "task_id": "cat2_synthetic_064",
+        "category": "mathematical_reasoning",
+        "prompt": "Solve: 7 * 6 - 4 * 3.",
+        "reference_answer": "42 - 12 = 30.",
+        "answer_aliases": [
+            "30"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_064"
+    },
+    {
+        "task_id": "cat2_synthetic_065",
+        "category": "mathematical_reasoning",
+        "prompt": "A bucket has a leak of 2 liters per hour. If it holds 30 liters, how long until it is completely empty?",
+        "reference_answer": "30 / 2 = 15 hours.",
+        "answer_aliases": [
+            "15 hours",
+            "15"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_065"
+    },
+    {
+        "task_id": "cat2_synthetic_066",
+        "category": "mathematical_reasoning",
+        "prompt": "Project a 10% annual decrease on an initial value of 500 for two years.",
+        "reference_answer": "Year 1: 500 * 0.9 = 450. Year 2: 450 * 0.9 = 405.",
+        "answer_aliases": [
+            "405"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_066"
+    },
+    {
+        "task_id": "cat2_synthetic_067",
+        "category": "mathematical_reasoning",
+        "prompt": "Convert 3/5 to a percentage.",
+        "reference_answer": "3 divided by 5 is 0.60, which is 60%.",
+        "answer_aliases": [
+            "60%",
+            "60 percent"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_067"
+    },
+    {
+        "task_id": "cat2_synthetic_068",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the sum of the first 5 positive integers?",
+        "reference_answer": "1 + 2 + 3 + 4 + 5 = 15.",
+        "answer_aliases": [
+            "15"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_068"
+    },
+    {
+        "task_id": "cat2_synthetic_069",
+        "category": "mathematical_reasoning",
+        "prompt": "A baker uses 3 eggs for every 2 cups of flour. How many eggs are needed for 6 cups of flour?",
+        "reference_answer": "6 cups is 3 sets of 2 cups. 3 sets * 3 eggs/set = 9 eggs.",
+        "answer_aliases": [
+            "9 eggs",
+            "9"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_069"
+    },
+    {
+        "task_id": "cat2_synthetic_070",
+        "category": "mathematical_reasoning",
+        "prompt": "If a shirt originally costs $50 and is discounted by $10, what is the discount percentage?",
+        "reference_answer": "$10 / $50 = 0.20, or 20%.",
+        "answer_aliases": [
+            "20%",
+            "20 percent"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_070"
+    },
+    {
+        "task_id": "cat2_synthetic_071",
+        "category": "mathematical_reasoning",
+        "prompt": "Multiply 400 by 0.05.",
+        "reference_answer": "400 * 0.05 = 20.",
+        "answer_aliases": [
+            "20"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_071"
+    },
+    {
+        "task_id": "cat2_synthetic_072",
+        "category": "mathematical_reasoning",
+        "prompt": "A pipe can fill a pool in 4 hours, and another can fill it in 6 hours. What fraction of the pool fills in 1 hour if both are used?",
+        "reference_answer": "Pipe 1 fills 1/4 per hour. Pipe 2 fills 1/6 per hour. 1/4 + 1/6 = 3/12 + 2/12 = 5/12.",
+        "answer_aliases": [
+            "5/12"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_072"
+    },
+    {
+        "task_id": "cat2_synthetic_073",
+        "category": "mathematical_reasoning",
+        "prompt": "An employee earns $20 per hour for a 40-hour week, and time-and-a-half for any overtime. If they work 45 hours, what is their pay?",
+        "reference_answer": "Regular pay: 40 * $20 = $800. Overtime pay: 5 * ($20 * 1.5) = 5 * $30 = $150. Total = $800 + $150 = $950.",
+        "answer_aliases": [
+            "$950",
+            "950"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_073"
+    },
+    {
+        "task_id": "cat2_synthetic_074",
+        "category": "mathematical_reasoning",
+        "prompt": "Solve: (8 + 2) ^ 2 - 50.",
+        "reference_answer": "10 ^ 2 - 50 = 100 - 50 = 50.",
+        "answer_aliases": [
+            "50"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_074"
+    },
+    {
+        "task_id": "cat2_synthetic_075",
+        "category": "mathematical_reasoning",
+        "prompt": "If a town's water supply drops from 100,000 gallons to 75,000 gallons, what is the percentage decrease?",
+        "reference_answer": "The drop is 25,000 gallons. 25,000 / 100,000 = 0.25 = 25%.",
+        "answer_aliases": [
+            "25%",
+            "25 percent"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_075"
+    },
+    {
+        "task_id": "cat2_synthetic_076",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the square root of 144 divided by 3?",
+        "reference_answer": "The square root of 144 is 12. 12 / 3 = 4.",
+        "answer_aliases": [
+            "4"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_076"
+    },
+    {
+        "task_id": "cat2_synthetic_077",
+        "category": "mathematical_reasoning",
+        "prompt": "A sequence is generated by adding 4 to the previous term. If the first term is 3, what is the 5th term?",
+        "reference_answer": "3, 7, 11, 15, 19. The 5th term is 19.",
+        "answer_aliases": [
+            "19"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_077"
+    },
+    {
+        "task_id": "cat2_synthetic_078",
+        "category": "mathematical_reasoning",
+        "prompt": "Calculate 30% of 40% of 1000.",
+        "reference_answer": "40% of 1000 is 400. 30% of 400 is 120.",
+        "answer_aliases": [
+            "120"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_078"
+    },
+    {
+        "task_id": "cat2_synthetic_079",
+        "category": "mathematical_reasoning",
+        "prompt": "A store sells 5 apples for $4. How much will 20 apples cost?",
+        "reference_answer": "20 apples is 4 sets of 5 apples. 4 * $4 = $16.",
+        "answer_aliases": [
+            "$16",
+            "16"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_079"
+    },
+    {
+        "task_id": "cat2_synthetic_080",
+        "category": "mathematical_reasoning",
+        "prompt": "If a car travels at a constant speed of 55 mph, how far will it travel in 4 hours?",
+        "reference_answer": "55 mph * 4 hours = 220 miles.",
+        "answer_aliases": [
+            "220",
+            "220 miles"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_080"
+    },
+    {
+        "task_id": "cat2_synthetic_081",
+        "category": "mathematical_reasoning",
+        "prompt": "A book has 300 pages. If you read 20 pages a day, how many days will it take to finish?",
+        "reference_answer": "300 / 20 = 15 days.",
+        "answer_aliases": [
+            "15 days",
+            "15"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_081"
+    },
+    {
+        "task_id": "cat2_synthetic_082",
+        "category": "mathematical_reasoning",
+        "prompt": "If you invest $1,000 at 5% interest compounded annually, what is the balance after 2 years?",
+        "reference_answer": "Year 1: $1,000 * 1.05 = $1,050. Year 2: $1,050 * 1.05 = $1,102.50.",
+        "answer_aliases": [
+            "$1,102.50",
+            "1102.50",
+            "1102.5"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_082"
+    },
+    {
+        "task_id": "cat2_synthetic_083",
+        "category": "mathematical_reasoning",
+        "prompt": "Find 25% of 160, then add 10.",
+        "reference_answer": "25% of 160 is 40. 40 + 10 = 50.",
+        "answer_aliases": [
+            "50"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_083"
+    },
+    {
+        "task_id": "cat2_synthetic_084",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the result of 1/2 + 1/3?",
+        "reference_answer": "Find a common denominator of 6. 3/6 + 2/6 = 5/6.",
+        "answer_aliases": [
+            "5/6"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_084"
+    },
+    {
+        "task_id": "cat2_synthetic_085",
+        "category": "mathematical_reasoning",
+        "prompt": "A room is 10 feet by 15 feet. What is the area in square yards?",
+        "reference_answer": "Area in square feet is 150. Since 1 square yard = 9 square feet, 150 / 9 = 16.66... or 16 and 2/3 square yards.",
+        "answer_aliases": [
+            "16.67",
+            "16 2/3",
+            "50/3"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_085"
+    },
+    {
+        "task_id": "cat2_synthetic_086",
+        "category": "mathematical_reasoning",
+        "prompt": "If a plane's altitude increases from 10,000 ft to 30,000 ft, what is the percentage increase?",
+        "reference_answer": "The increase is 20,000 ft. 20,000 / 10,000 = 2, which is 200%.",
+        "answer_aliases": [
+            "200%",
+            "200 percent"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_086"
+    },
+    {
+        "task_id": "cat2_synthetic_087",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate: 50 - (3 * (4 + 2)).",
+        "reference_answer": "4 + 2 = 6. 3 * 6 = 18. 50 - 18 = 32.",
+        "answer_aliases": [
+            "32"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_087"
+    },
+    {
+        "task_id": "cat2_synthetic_088",
+        "category": "mathematical_reasoning",
+        "prompt": "A train leaves at 2:00 PM traveling 50 mph. Another leaves at 3:00 PM traveling 75 mph in the same direction. How many hours after 3:00 PM will the second train catch the first?",
+        "reference_answer": "At 3:00 PM, train 1 is 50 miles ahead. Train 2 closes the gap at 25 mph (75 - 50). 50 miles / 25 mph = 2 hours.",
+        "answer_aliases": [
+            "2 hours",
+            "2"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_088"
+    },
+    {
+        "task_id": "cat2_synthetic_089",
+        "category": "mathematical_reasoning",
+        "prompt": "Projecting sales: If current sales are $5,000 and grow by $500 linearly each quarter, what will sales be in the 4th quarter from now?",
+        "reference_answer": "4 quarters * $500/quarter = $2,000. $5,000 + $2,000 = $7,000.",
+        "answer_aliases": [
+            "$7,000",
+            "7000"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_089"
+    },
+    {
+        "task_id": "cat2_synthetic_090",
+        "category": "mathematical_reasoning",
+        "prompt": "Calculate the perimeter of a regular hexagon with a side length of 7 cm.",
+        "reference_answer": "A hexagon has 6 sides. 6 * 7 = 42 cm.",
+        "answer_aliases": [
+            "42 cm",
+            "42"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_090"
+    },
+    {
+        "task_id": "cat2_synthetic_091",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 5% of 10% of 2000?",
+        "reference_answer": "10% of 2000 is 200. 5% of 200 is 10.",
+        "answer_aliases": [
+            "10"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_091"
+    },
+    {
+        "task_id": "cat2_synthetic_092",
+        "category": "mathematical_reasoning",
+        "prompt": "Solve for a: 2a + 4a = 36.",
+        "reference_answer": "Combine terms: 6a = 36. Divide by 6: a = 6.",
+        "answer_aliases": [
+            "6",
+            "a=6"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_092"
+    },
+    {
+        "task_id": "cat2_synthetic_093",
+        "category": "mathematical_reasoning",
+        "prompt": "If a computer can download 5 megabytes per second, how long will a 1-gigabyte (1000 megabytes) file take?",
+        "reference_answer": "1000 MB / 5 MB/sec = 200 seconds.",
+        "answer_aliases": [
+            "200 seconds",
+            "200"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_093"
+    },
+    {
+        "task_id": "cat2_synthetic_094",
+        "category": "mathematical_reasoning",
+        "prompt": "A sequence is 100, 50, 25... What is the 4th term?",
+        "reference_answer": "Divide by 2 each time. 25 / 2 = 12.5.",
+        "answer_aliases": [
+            "12.5"
+        ],
+        "difficulty": "easy",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_094"
+    },
+    {
+        "task_id": "cat2_synthetic_095",
+        "category": "mathematical_reasoning",
+        "prompt": "A 15% discount on an item saves you $30. What was the original price?",
+        "reference_answer": "Let P be the price. 0.15 * P = 30. P = 30 / 0.15 = 200.",
+        "answer_aliases": [
+            "$200",
+            "200"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_095"
+    },
+    {
+        "task_id": "cat2_synthetic_096",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate: 4 * (10 - 2^3) + 5.",
+        "reference_answer": "2^3 is 8. 10 - 8 = 2. 4 * 2 = 8. 8 + 5 = 13.",
+        "answer_aliases": [
+            "13"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_096"
+    },
+    {
+        "task_id": "cat2_synthetic_097",
+        "category": "mathematical_reasoning",
+        "prompt": "A recipe calls for 3/4 cup of sugar. If you make half the recipe, how much sugar do you need?",
+        "reference_answer": "Half of 3/4 is (1/2) * (3/4) = 3/8 cup.",
+        "answer_aliases": [
+            "3/8",
+            "3/8 cup"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_097"
+    },
+    {
+        "task_id": "cat2_synthetic_098",
+        "category": "mathematical_reasoning",
+        "prompt": "If 5 machines make 5 widgets in 5 minutes, how long will it take 100 machines to make 100 widgets?",
+        "reference_answer": "The rate is 1 machine makes 1 widget in 5 minutes. So 100 machines will make 100 widgets in the same 5 minutes.",
+        "answer_aliases": [
+            "5 minutes",
+            "5"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_098"
+    },
+    {
+        "task_id": "cat2_synthetic_099",
+        "category": "mathematical_reasoning",
+        "prompt": "Decrease 120 by 25%.",
+        "reference_answer": "25% of 120 is 30. 120 - 30 = 90.",
+        "answer_aliases": [
+            "90"
+        ],
+        "difficulty": "medium",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_099"
+    },
+    {
+        "task_id": "cat2_synthetic_100",
+        "category": "mathematical_reasoning",
+        "prompt": "Project population growth: Current is 500. Increases by 20% year one, and 10% year two. Final population?",
+        "reference_answer": "Year 1: 500 * 1.2 = 600. Year 2: 600 * 1.1 = 660.",
+        "answer_aliases": [
+            "660"
+        ],
+        "difficulty": "hard",
+        "source": "fireworks_synthetic",
+        "source_id": "synthetic_math_100"
+    }
+]

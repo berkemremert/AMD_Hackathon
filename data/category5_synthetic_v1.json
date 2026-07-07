@@ -1,0 +1,1202 @@
+[
+    {
+        "task_id": "cat5_synthetic_001",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Tim Cook announced the new product at the Apple campus in Cupertino on September 12.'",
+        "reference_answer": "person: Tim Cook; org: Apple; location: Cupertino; date: September 12",
+        "answer_aliases": [
+            "Tim Cook (person), Apple (org), Cupertino (location), September 12 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_001"
+    },
+    {
+        "task_id": "cat5_synthetic_002",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Elon Musk founded SpaceX in California in 2002.'",
+        "reference_answer": "person: Elon Musk; org: SpaceX; location: California; date: 2002",
+        "answer_aliases": [
+            "Elon Musk (person), SpaceX (org), California (location), 2002 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_002"
+    },
+    {
+        "task_id": "cat5_synthetic_003",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Marie Curie worked in Paris during the 1890s.'",
+        "reference_answer": "person: Marie Curie; location: Paris; date: the 1890s",
+        "answer_aliases": [
+            "Marie Curie (person), Paris (location), 1890s (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_003"
+    },
+    {
+        "task_id": "cat5_synthetic_004",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Microsoft acquired GitHub in San Francisco back in October 2018.'",
+        "reference_answer": "org: Microsoft, GitHub; location: San Francisco; date: October 2018",
+        "answer_aliases": [
+            "Microsoft (org), GitHub (org), San Francisco (location), October 2018 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_004"
+    },
+    {
+        "task_id": "cat5_synthetic_005",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'On July 20, 1969, Neil Armstrong walked on the moon for NASA.'",
+        "reference_answer": "date: July 20, 1969; person: Neil Armstrong; org: NASA",
+        "answer_aliases": [
+            "July 20, 1969 (date), Neil Armstrong (person), NASA (org)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_005"
+    },
+    {
+        "task_id": "cat5_synthetic_006",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Sundar Pichai will speak at the Google I/O event in Mountain View tomorrow.'",
+        "reference_answer": "person: Sundar Pichai; org: Google; location: Mountain View; date: tomorrow",
+        "answer_aliases": [
+            "Sundar Pichai (person), Google (org), Mountain View (location), tomorrow (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_006"
+    },
+    {
+        "task_id": "cat5_synthetic_007",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Abraham Lincoln delivered his famous address at Gettysburg in November 1863.'",
+        "reference_answer": "person: Abraham Lincoln; location: Gettysburg; date: November 1863",
+        "answer_aliases": [
+            "Abraham Lincoln (person), Gettysburg (location), November 1863 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_007"
+    },
+    {
+        "task_id": "cat5_synthetic_008",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Amazon plans to open a new headquarters in Arlington next year.'",
+        "reference_answer": "org: Amazon; location: Arlington; date: next year",
+        "answer_aliases": [
+            "Amazon (org), Arlington (location), next year (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_008"
+    },
+    {
+        "task_id": "cat5_synthetic_009",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Jeff Bezos stepped down as CEO of Amazon in July 2021.'",
+        "reference_answer": "person: Jeff Bezos; org: Amazon; date: July 2021",
+        "answer_aliases": [
+            "Jeff Bezos (person), Amazon (org), July 2021 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_009"
+    },
+    {
+        "task_id": "cat5_synthetic_010",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The United Nations held a summit in New York on Monday.'",
+        "reference_answer": "org: United Nations; location: New York; date: Monday",
+        "answer_aliases": [
+            "United Nations (org), New York (location), Monday (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_010"
+    },
+    {
+        "task_id": "cat5_synthetic_011",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Satya Nadella traveled to London for the Microsoft summit in 2019.'",
+        "reference_answer": "person: Satya Nadella; location: London; org: Microsoft; date: 2019",
+        "answer_aliases": [
+            "Satya Nadella (person), London (location), Microsoft (org), 2019 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_011"
+    },
+    {
+        "task_id": "cat5_synthetic_012",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Albert Einstein published his theory while working in Bern in 1905.'",
+        "reference_answer": "person: Albert Einstein; location: Bern; date: 1905",
+        "answer_aliases": [
+            "Albert Einstein (person), Bern (location), 1905 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_012"
+    },
+    {
+        "task_id": "cat5_synthetic_013",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Mark Zuckerberg launched Facebook at Harvard in February 2004.'",
+        "reference_answer": "person: Mark Zuckerberg; org: Facebook, Harvard; date: February 2004",
+        "answer_aliases": [
+            "Mark Zuckerberg (person), Facebook (org), Harvard (org/location), February 2004 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_013"
+    },
+    {
+        "task_id": "cat5_synthetic_014",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Last Friday, Lisa Su announced AMD's new chips in Taipei.'",
+        "reference_answer": "date: Last Friday; person: Lisa Su; org: AMD; location: Taipei",
+        "answer_aliases": [
+            "Last Friday (date), Lisa Su (person), AMD (org), Taipei (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_014"
+    },
+    {
+        "task_id": "cat5_synthetic_015",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The World Health Organization declared a pandemic in Geneva during March 2020.'",
+        "reference_answer": "org: World Health Organization; location: Geneva; date: March 2020",
+        "answer_aliases": [
+            "World Health Organization (org), Geneva (location), March 2020 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_015"
+    },
+    {
+        "task_id": "cat5_synthetic_016",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Serena Williams won her final match at the US Open in New York in 2022.'",
+        "reference_answer": "person: Serena Williams; org: US Open; location: New York; date: 2022",
+        "answer_aliases": [
+            "Serena Williams (person), US Open (org), New York (location), 2022 (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_016"
+    },
+    {
+        "task_id": "cat5_synthetic_017",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Charles Darwin departed from Plymouth aboard the HMS Beagle in 1831.'",
+        "reference_answer": "person: Charles Darwin; location: Plymouth; org: HMS Beagle; date: 1831",
+        "answer_aliases": [
+            "Charles Darwin (person), Plymouth (location), HMS Beagle (org), 1831 (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_017"
+    },
+    {
+        "task_id": "cat5_synthetic_018",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'IBM moved its offices to Armonk in the 1960s.'",
+        "reference_answer": "org: IBM; location: Armonk; date: the 1960s",
+        "answer_aliases": [
+            "IBM (org), Armonk (location), 1960s (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_018"
+    },
+    {
+        "task_id": "cat5_synthetic_019",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Nelson Mandela was elected president of South Africa in 1994.'",
+        "reference_answer": "person: Nelson Mandela; location: South Africa; date: 1994",
+        "answer_aliases": [
+            "Nelson Mandela (person), South Africa (location), 1994 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_019"
+    },
+    {
+        "task_id": "cat5_synthetic_020",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Yesterday, Jane Doe submitted her resignation to Oracle in Austin.'",
+        "reference_answer": "date: Yesterday; person: Jane Doe; org: Oracle; location: Austin",
+        "answer_aliases": [
+            "Yesterday (date), Jane Doe (person), Oracle (org), Austin (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_020"
+    },
+    {
+        "task_id": "cat5_synthetic_021",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Sam Altman founded OpenAI in San Francisco in December 2015.'",
+        "reference_answer": "person: Sam Altman; org: OpenAI; location: San Francisco; date: December 2015",
+        "answer_aliases": [
+            "Sam Altman (person), OpenAI (org), San Francisco (location), December 2015 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_021"
+    },
+    {
+        "task_id": "cat5_synthetic_022",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 1989, Tim Berners-Lee invented the World Wide Web at CERN in Switzerland.'",
+        "reference_answer": "date: 1989; person: Tim Berners-Lee; org: CERN; location: Switzerland",
+        "answer_aliases": [
+            "1989 (date), Tim Berners-Lee (person), CERN (org), Switzerland (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_022"
+    },
+    {
+        "task_id": "cat5_synthetic_023",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Jensen Huang started NVIDIA in California during 1993.'",
+        "reference_answer": "person: Jensen Huang; org: NVIDIA; location: California; date: 1993",
+        "answer_aliases": [
+            "Jensen Huang (person), NVIDIA (org), California (location), 1993 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_023"
+    },
+    {
+        "task_id": "cat5_synthetic_024",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'NASA plans to send astronauts to Mars by the 2030s.'",
+        "reference_answer": "org: NASA; location: Mars; date: the 2030s",
+        "answer_aliases": [
+            "NASA (org), Mars (location), 2030s (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_024"
+    },
+    {
+        "task_id": "cat5_synthetic_025",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Walt Disney opened his first theme park in Anaheim on July 17, 1955.'",
+        "reference_answer": "person: Walt Disney; location: Anaheim; date: July 17, 1955",
+        "answer_aliases": [
+            "Walt Disney (person), Anaheim (location), July 17, 1955 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_025"
+    },
+    {
+        "task_id": "cat5_synthetic_026",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Steve Jobs introduced the first iPad in San Francisco in January 2010.'",
+        "reference_answer": "person: Steve Jobs; location: San Francisco; date: January 2010",
+        "answer_aliases": [
+            "Steve Jobs (person), San Francisco (location), January 2010 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_026"
+    },
+    {
+        "task_id": "cat5_synthetic_027",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Next week, Intel will host a developer conference in Oregon.'",
+        "reference_answer": "date: Next week; org: Intel; location: Oregon",
+        "answer_aliases": [
+            "Next week (date), Intel (org), Oregon (location)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_027"
+    },
+    {
+        "task_id": "cat5_synthetic_028",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 1876, Alexander Graham Bell received the patent for the telephone in Boston.'",
+        "reference_answer": "date: 1876; person: Alexander Graham Bell; location: Boston",
+        "answer_aliases": [
+            "1876 (date), Alexander Graham Bell (person), Boston (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_028"
+    },
+    {
+        "task_id": "cat5_synthetic_029",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The Supreme Court issued its ruling in Washington D.C. yesterday.'",
+        "reference_answer": "org: Supreme Court; location: Washington D.C.; date: yesterday",
+        "answer_aliases": [
+            "Supreme Court (org), Washington D.C. (location), yesterday (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_029"
+    },
+    {
+        "task_id": "cat5_synthetic_030",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Rosa Parks refused to give up her seat in Montgomery on December 1, 1955.'",
+        "reference_answer": "person: Rosa Parks; location: Montgomery; date: December 1, 1955",
+        "answer_aliases": [
+            "Rosa Parks (person), Montgomery (location), December 1, 1955 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_030"
+    },
+    {
+        "task_id": "cat5_synthetic_031",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Tesla shifted its headquarters to Texas late last year.'",
+        "reference_answer": "org: Tesla; location: Texas; date: late last year",
+        "answer_aliases": [
+            "Tesla (org), Texas (location), last year (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_031"
+    },
+    {
+        "task_id": "cat5_synthetic_032",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Arthur Conan Doyle published the first Sherlock Holmes story in London in 1887.'",
+        "reference_answer": "person: Arthur Conan Doyle; location: London; date: 1887",
+        "answer_aliases": [
+            "Arthur Conan Doyle (person), London (location), 1887 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_032"
+    },
+    {
+        "task_id": "cat5_synthetic_033",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'On August 28, 1963, Martin Luther King Jr. spoke at the Lincoln Memorial in Washington.'",
+        "reference_answer": "date: August 28, 1963; person: Martin Luther King Jr.; location: Lincoln Memorial, Washington",
+        "answer_aliases": [
+            "August 28, 1963 (date), Martin Luther King Jr. (person), Lincoln Memorial (location), Washington (location)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_033"
+    },
+    {
+        "task_id": "cat5_synthetic_034",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Samsung will release the new Galaxy phone in Seoul this October.'",
+        "reference_answer": "org: Samsung; location: Seoul; date: this October",
+        "answer_aliases": [
+            "Samsung (org), Seoul (location), October (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_034"
+    },
+    {
+        "task_id": "cat5_synthetic_035",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Winston Churchill addressed Parliament in London during May 1940.'",
+        "reference_answer": "person: Winston Churchill; org: Parliament; location: London; date: May 1940",
+        "answer_aliases": [
+            "Winston Churchill (person), Parliament (org), London (location), May 1940 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_035"
+    },
+    {
+        "task_id": "cat5_synthetic_036",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Next month, Bob Iger will return to Los Angeles to lead Disney.'",
+        "reference_answer": "date: Next month; person: Bob Iger; location: Los Angeles; org: Disney",
+        "answer_aliases": [
+            "Next month (date), Bob Iger (person), Los Angeles (location), Disney (org)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_036"
+    },
+    {
+        "task_id": "cat5_synthetic_037",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The European Union ratified the treaty in Brussels in 1992.'",
+        "reference_answer": "org: European Union; location: Brussels; date: 1992",
+        "answer_aliases": [
+            "European Union (org), Brussels (location), 1992 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_037"
+    },
+    {
+        "task_id": "cat5_synthetic_038",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Ada Lovelace wrote the first algorithm for Charles Babbage's machine in England in 1843.'",
+        "reference_answer": "person: Ada Lovelace, Charles Babbage; location: England; date: 1843",
+        "answer_aliases": [
+            "Ada Lovelace (person), Charles Babbage (person), England (location), 1843 (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_038"
+    },
+    {
+        "task_id": "cat5_synthetic_039",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Nike opened a new flagship store in Paris last weekend.'",
+        "reference_answer": "org: Nike; location: Paris; date: last weekend",
+        "answer_aliases": [
+            "Nike (org), Paris (location), last weekend (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_039"
+    },
+    {
+        "task_id": "cat5_synthetic_040",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'George Washington was sworn in at Federal Hall in New York on April 30, 1789.'",
+        "reference_answer": "person: George Washington; location: Federal Hall, New York; date: April 30, 1789",
+        "answer_aliases": [
+            "George Washington (person), Federal Hall (location), New York (location), April 30, 1789 (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_040"
+    },
+    {
+        "task_id": "cat5_synthetic_041",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Ursula von der Leyen delivered a speech for the European Commission in Strasbourg on Tuesday.'",
+        "reference_answer": "person: Ursula von der Leyen; org: European Commission; location: Strasbourg; date: Tuesday",
+        "answer_aliases": [
+            "Ursula von der Leyen (person), European Commission (org), Strasbourg (location), Tuesday (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_041"
+    },
+    {
+        "task_id": "cat5_synthetic_042",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'PepsiCo reported its Q3 earnings in Purchase, New York yesterday.'",
+        "reference_answer": "org: PepsiCo; location: Purchase, New York; date: yesterday",
+        "answer_aliases": [
+            "PepsiCo (org), Purchase (location), New York (location), yesterday (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_042"
+    },
+    {
+        "task_id": "cat5_synthetic_043",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'On Thursday, Tiger Woods won the Masters Tournament in Augusta.'",
+        "reference_answer": "date: Thursday; person: Tiger Woods; org: Masters Tournament; location: Augusta",
+        "answer_aliases": [
+            "Thursday (date), Tiger Woods (person), Masters Tournament (org), Augusta (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_043"
+    },
+    {
+        "task_id": "cat5_synthetic_044",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The Red Cross deployed volunteers to Florida in September 2017.'",
+        "reference_answer": "org: Red Cross; location: Florida; date: September 2017",
+        "answer_aliases": [
+            "Red Cross (org), Florida (location), September 2017 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_044"
+    },
+    {
+        "task_id": "cat5_synthetic_045",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Stephen Hawking passed away in Cambridge on March 14, 2018.'",
+        "reference_answer": "person: Stephen Hawking; location: Cambridge; date: March 14, 2018",
+        "answer_aliases": [
+            "Stephen Hawking (person), Cambridge (location), March 14, 2018 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_045"
+    },
+    {
+        "task_id": "cat5_synthetic_046",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 2008, Barack Obama was elected in Chicago.'",
+        "reference_answer": "date: 2008; person: Barack Obama; location: Chicago",
+        "answer_aliases": [
+            "2008 (date), Barack Obama (person), Chicago (location)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_046"
+    },
+    {
+        "task_id": "cat5_synthetic_047",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Goldman Sachs held its annual meeting in Wall Street last week.'",
+        "reference_answer": "org: Goldman Sachs; location: Wall Street; date: last week",
+        "answer_aliases": [
+            "Goldman Sachs (org), Wall Street (location), last week (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_047"
+    },
+    {
+        "task_id": "cat5_synthetic_048",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Frida Kahlo painted her self-portrait in Mexico City during 1940.'",
+        "reference_answer": "person: Frida Kahlo; location: Mexico City; date: 1940",
+        "answer_aliases": [
+            "Frida Kahlo (person), Mexico City (location), 1940 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_048"
+    },
+    {
+        "task_id": "cat5_synthetic_049",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The FBI arrested the suspect in Boston on Friday morning.'",
+        "reference_answer": "org: FBI; location: Boston; date: Friday morning",
+        "answer_aliases": [
+            "FBI (org), Boston (location), Friday morning (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_049"
+    },
+    {
+        "task_id": "cat5_synthetic_050",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Tom Cruise filmed the stunt in Dubai in 2011 for Paramount Pictures.'",
+        "reference_answer": "person: Tom Cruise; location: Dubai; date: 2011; org: Paramount Pictures",
+        "answer_aliases": [
+            "Tom Cruise (person), Dubai (location), 2011 (date), Paramount Pictures (org)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_050"
+    },
+    {
+        "task_id": "cat5_synthetic_051",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 2012, Marissa Mayer became CEO of Yahoo in Sunnyvale.'",
+        "reference_answer": "date: 2012; person: Marissa Mayer; org: Yahoo; location: Sunnyvale",
+        "answer_aliases": [
+            "2012 (date), Marissa Mayer (person), Yahoo (org), Sunnyvale (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_051"
+    },
+    {
+        "task_id": "cat5_synthetic_052",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Galileo Galilei observed the moons of Jupiter from Padua in 1610.'",
+        "reference_answer": "person: Galileo Galilei; location: Jupiter, Padua; date: 1610",
+        "answer_aliases": [
+            "Galileo Galilei (person), Padua (location), Jupiter (location), 1610 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_052"
+    },
+    {
+        "task_id": "cat5_synthetic_053",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Twitter relocated its main servers to Atlanta last December.'",
+        "reference_answer": "org: Twitter; location: Atlanta; date: last December",
+        "answer_aliases": [
+            "Twitter (org), Atlanta (location), December (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_053"
+    },
+    {
+        "task_id": "cat5_synthetic_054",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Vincent van Gogh painted Starry Night in Saint-Rémy-de-Provence in 1889.'",
+        "reference_answer": "person: Vincent van Gogh; location: Saint-Rémy-de-Provence; date: 1889",
+        "answer_aliases": [
+            "Vincent van Gogh (person), Saint-Rémy-de-Provence (location), 1889 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_054"
+    },
+    {
+        "task_id": "cat5_synthetic_055",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'On September 11, 2001, terrorists attacked the World Trade Center in New York.'",
+        "reference_answer": "date: September 11, 2001; org: World Trade Center; location: New York",
+        "answer_aliases": [
+            "September 11, 2001 (date), World Trade Center (org), New York (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_055"
+    },
+    {
+        "task_id": "cat5_synthetic_056",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Sony unveiled the PlayStation 5 in Tokyo on June 11, 2020.'",
+        "reference_answer": "org: Sony; location: Tokyo; date: June 11, 2020",
+        "answer_aliases": [
+            "Sony (org), Tokyo (location), June 11, 2020 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_056"
+    },
+    {
+        "task_id": "cat5_synthetic_057",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Warren Buffett bought the stock through Berkshire Hathaway in Omaha last year.'",
+        "reference_answer": "person: Warren Buffett; org: Berkshire Hathaway; location: Omaha; date: last year",
+        "answer_aliases": [
+            "Warren Buffett (person), Berkshire Hathaway (org), Omaha (location), last year (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_057"
+    },
+    {
+        "task_id": "cat5_synthetic_058",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The WHO held an emergency meeting in Geneva on Tuesday.'",
+        "reference_answer": "org: WHO; location: Geneva; date: Tuesday",
+        "answer_aliases": [
+            "WHO (org), Geneva (location), Tuesday (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_058"
+    },
+    {
+        "task_id": "cat5_synthetic_059",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Leonardo da Vinci completed the Mona Lisa in Florence around 1506.'",
+        "reference_answer": "person: Leonardo da Vinci; location: Florence; date: 1506",
+        "answer_aliases": [
+            "Leonardo da Vinci (person), Florence (location), 1506 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_059"
+    },
+    {
+        "task_id": "cat5_synthetic_060",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Netflix is expanding its studio in Albuquerque in 2024.'",
+        "reference_answer": "org: Netflix; location: Albuquerque; date: 2024",
+        "answer_aliases": [
+            "Netflix (org), Albuquerque (location), 2024 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_060"
+    },
+    {
+        "task_id": "cat5_synthetic_061",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 1964, the Beatles arrived at JFK Airport in New York.'",
+        "reference_answer": "date: 1964; org: the Beatles, JFK Airport; location: New York",
+        "answer_aliases": [
+            "1964 (date), Beatles (org), JFK Airport (location/org), New York (location)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_061"
+    },
+    {
+        "task_id": "cat5_synthetic_062",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Simone Biles won gold for Team USA in Tokyo in August 2021.'",
+        "reference_answer": "person: Simone Biles; org: Team USA; location: Tokyo; date: August 2021",
+        "answer_aliases": [
+            "Simone Biles (person), Team USA (org), Tokyo (location), August 2021 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_062"
+    },
+    {
+        "task_id": "cat5_synthetic_063",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Jane Austen published Pride and Prejudice in London in 1813.'",
+        "reference_answer": "person: Jane Austen; location: London; date: 1813",
+        "answer_aliases": [
+            "Jane Austen (person), London (location), 1813 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_063"
+    },
+    {
+        "task_id": "cat5_synthetic_064",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Alphabet announced its Q4 revenue in California last week.'",
+        "reference_answer": "org: Alphabet; location: California; date: last week",
+        "answer_aliases": [
+            "Alphabet (org), California (location), last week (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_064"
+    },
+    {
+        "task_id": "cat5_synthetic_065",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Martin Scorsese filmed the movie in Boston during 2005 for Warner Bros.'",
+        "reference_answer": "person: Martin Scorsese; location: Boston; date: 2005; org: Warner Bros.",
+        "answer_aliases": [
+            "Martin Scorsese (person), Boston (location), 2005 (date), Warner Bros. (org)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_065"
+    },
+    {
+        "task_id": "cat5_synthetic_066",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The FDA approved the drug in Washington on Wednesday.'",
+        "reference_answer": "org: FDA; location: Washington; date: Wednesday",
+        "answer_aliases": [
+            "FDA (org), Washington (location), Wednesday (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_066"
+    },
+    {
+        "task_id": "cat5_synthetic_067",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Michael Jordan played for the Chicago Bulls in the 1990s.'",
+        "reference_answer": "person: Michael Jordan; org: Chicago Bulls; date: the 1990s",
+        "answer_aliases": [
+            "Michael Jordan (person), Chicago Bulls (org), 1990s (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_067"
+    },
+    {
+        "task_id": "cat5_synthetic_068",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'John F. Kennedy was assassinated in Dallas on November 22, 1963.'",
+        "reference_answer": "person: John F. Kennedy; location: Dallas; date: November 22, 1963",
+        "answer_aliases": [
+            "John F. Kennedy (person), Dallas (location), November 22, 1963 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_068"
+    },
+    {
+        "task_id": "cat5_synthetic_069",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'SpaceX launched the Falcon Heavy from Florida in February 2018.'",
+        "reference_answer": "org: SpaceX; location: Florida; date: February 2018",
+        "answer_aliases": [
+            "SpaceX (org), Florida (location), February 2018 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_069"
+    },
+    {
+        "task_id": "cat5_synthetic_070",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Richard Branson flew to space aboard Virgin Galactic over New Mexico in July 2021.'",
+        "reference_answer": "person: Richard Branson; org: Virgin Galactic; location: New Mexico; date: July 2021",
+        "answer_aliases": [
+            "Richard Branson (person), Virgin Galactic (org), New Mexico (location), July 2021 (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_070"
+    },
+    {
+        "task_id": "cat5_synthetic_071",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'J.K. Rowling wrote the novel in Edinburgh during the 1990s.'",
+        "reference_answer": "person: J.K. Rowling; location: Edinburgh; date: the 1990s",
+        "answer_aliases": [
+            "J.K. Rowling (person), Edinburgh (location), 1990s (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_071"
+    },
+    {
+        "task_id": "cat5_synthetic_072",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Spotify was founded by Daniel Ek in Stockholm in 2006.'",
+        "reference_answer": "org: Spotify; person: Daniel Ek; location: Stockholm; date: 2006",
+        "answer_aliases": [
+            "Spotify (org), Daniel Ek (person), Stockholm (location), 2006 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_072"
+    },
+    {
+        "task_id": "cat5_synthetic_073",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 1945, Harry Truman signed the charter in San Francisco for the United Nations.'",
+        "reference_answer": "date: 1945; person: Harry Truman; location: San Francisco; org: United Nations",
+        "answer_aliases": [
+            "1945 (date), Harry Truman (person), San Francisco (location), United Nations (org)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_073"
+    },
+    {
+        "task_id": "cat5_synthetic_074",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Boeing moved its headquarters to Arlington in 2022.'",
+        "reference_answer": "org: Boeing; location: Arlington; date: 2022",
+        "answer_aliases": [
+            "Boeing (org), Arlington (location), 2022 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_074"
+    },
+    {
+        "task_id": "cat5_synthetic_075",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'On Monday, Tom Brady announced his retirement in Florida.'",
+        "reference_answer": "date: Monday; person: Tom Brady; location: Florida",
+        "answer_aliases": [
+            "Monday (date), Tom Brady (person), Florida (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_075"
+    },
+    {
+        "task_id": "cat5_synthetic_076",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The EPA issued new regulations in Washington last month.'",
+        "reference_answer": "org: EPA; location: Washington; date: last month",
+        "answer_aliases": [
+            "EPA (org), Washington (location), last month (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_076"
+    },
+    {
+        "task_id": "cat5_synthetic_077",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Malala Yousafzai received the Nobel Peace Prize in Oslo in 2014.'",
+        "reference_answer": "person: Malala Yousafzai; org: Nobel Peace Prize; location: Oslo; date: 2014",
+        "answer_aliases": [
+            "Malala Yousafzai (person), Nobel Peace Prize (org), Oslo (location), 2014 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_077"
+    },
+    {
+        "task_id": "cat5_synthetic_078",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Airbnb was created by Brian Chesky in San Francisco during 2008.'",
+        "reference_answer": "org: Airbnb; person: Brian Chesky; location: San Francisco; date: 2008",
+        "answer_aliases": [
+            "Airbnb (org), Brian Chesky (person), San Francisco (location), 2008 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_078"
+    },
+    {
+        "task_id": "cat5_synthetic_079",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Last Friday, the World Bank held a summit in Paris.'",
+        "reference_answer": "date: Last Friday; org: World Bank; location: Paris",
+        "answer_aliases": [
+            "Last Friday (date), World Bank (org), Paris (location)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_079"
+    },
+    {
+        "task_id": "cat5_synthetic_080",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Pablo Picasso finished Guernica in Paris in June 1937.'",
+        "reference_answer": "person: Pablo Picasso; location: Paris; date: June 1937",
+        "answer_aliases": [
+            "Pablo Picasso (person), Paris (location), June 1937 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_080"
+    },
+    {
+        "task_id": "cat5_synthetic_081",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Uber tested self-driving cars in Pittsburgh in 2016.'",
+        "reference_answer": "org: Uber; location: Pittsburgh; date: 2016",
+        "answer_aliases": [
+            "Uber (org), Pittsburgh (location), 2016 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_081"
+    },
+    {
+        "task_id": "cat5_synthetic_082",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Thomas Edison tested the lightbulb at Menlo Park in 1879.'",
+        "reference_answer": "person: Thomas Edison; location: Menlo Park; date: 1879",
+        "answer_aliases": [
+            "Thomas Edison (person), Menlo Park (location), 1879 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_082"
+    },
+    {
+        "task_id": "cat5_synthetic_083",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 2023, Taylor Swift performed her Eras Tour across America.'",
+        "reference_answer": "date: 2023; person: Taylor Swift; location: America",
+        "answer_aliases": [
+            "2023 (date), Taylor Swift (person), America (location)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_083"
+    },
+    {
+        "task_id": "cat5_synthetic_084",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Pfizer shipped the vaccine from Michigan on Sunday.'",
+        "reference_answer": "org: Pfizer; location: Michigan; date: Sunday",
+        "answer_aliases": [
+            "Pfizer (org), Michigan (location), Sunday (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_084"
+    },
+    {
+        "task_id": "cat5_synthetic_085",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Angela Merkel served as Chancellor of Germany until 2021.'",
+        "reference_answer": "person: Angela Merkel; location: Germany; date: 2021",
+        "answer_aliases": [
+            "Angela Merkel (person), Germany (location), until 2021 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_085"
+    },
+    {
+        "task_id": "cat5_synthetic_086",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'During the 1920s, F. Scott Fitzgerald wrote in Paris for Scribner.'",
+        "reference_answer": "date: the 1920s; person: F. Scott Fitzgerald; location: Paris; org: Scribner",
+        "answer_aliases": [
+            "1920s (date), F. Scott Fitzgerald (person), Paris (location), Scribner (org)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_086"
+    },
+    {
+        "task_id": "cat5_synthetic_087",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Toyota announced a new factory in Kentucky last month.'",
+        "reference_answer": "org: Toyota; location: Kentucky; date: last month",
+        "answer_aliases": [
+            "Toyota (org), Kentucky (location), last month (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_087"
+    },
+    {
+        "task_id": "cat5_synthetic_088",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Orville Wright flew the first airplane at Kitty Hawk in 1903.'",
+        "reference_answer": "person: Orville Wright; location: Kitty Hawk; date: 1903",
+        "answer_aliases": [
+            "Orville Wright (person), Kitty Hawk (location), 1903 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_088"
+    },
+    {
+        "task_id": "cat5_synthetic_089",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Bill Gates visited the foundation's office in Seattle yesterday.'",
+        "reference_answer": "person: Bill Gates; location: Seattle; date: yesterday",
+        "answer_aliases": [
+            "Bill Gates (person), Seattle (location), yesterday (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_089"
+    },
+    {
+        "task_id": "cat5_synthetic_090",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'The CIA gathered intel in Berlin during the Cold War in 1961.'",
+        "reference_answer": "org: CIA; location: Berlin; date: 1961",
+        "answer_aliases": [
+            "CIA (org), Berlin (location), 1961 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_090"
+    },
+    {
+        "task_id": "cat5_synthetic_091",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Christopher Nolan directed the movie for Universal in Los Angeles last year.'",
+        "reference_answer": "person: Christopher Nolan; org: Universal; location: Los Angeles; date: last year",
+        "answer_aliases": [
+            "Christopher Nolan (person), Universal (org), Los Angeles (location), last year (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_091"
+    },
+    {
+        "task_id": "cat5_synthetic_092",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 2001, Jimmy Wales co-founded Wikipedia in Florida.'",
+        "reference_answer": "date: 2001; person: Jimmy Wales; org: Wikipedia; location: Florida",
+        "answer_aliases": [
+            "2001 (date), Jimmy Wales (person), Wikipedia (org), Florida (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_092"
+    },
+    {
+        "task_id": "cat5_synthetic_093",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Meryl Streep won an Academy Award in Hollywood on Sunday.'",
+        "reference_answer": "person: Meryl Streep; org: Academy Award; location: Hollywood; date: Sunday",
+        "answer_aliases": [
+            "Meryl Streep (person), Academy Award (org), Hollywood (location), Sunday (date)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_093"
+    },
+    {
+        "task_id": "cat5_synthetic_094",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Dell expanded its operations in Ireland during 1990.'",
+        "reference_answer": "org: Dell; location: Ireland; date: 1990",
+        "answer_aliases": [
+            "Dell (org), Ireland (location), 1990 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_094"
+    },
+    {
+        "task_id": "cat5_synthetic_095",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'On Friday, Joe Biden signed the bill at the White House in Washington.'",
+        "reference_answer": "date: Friday; person: Joe Biden; location: White House, Washington",
+        "answer_aliases": [
+            "Friday (date), Joe Biden (person), White House (location/org), Washington (location)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_095"
+    },
+    {
+        "task_id": "cat5_synthetic_096",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Sony Music signed the artist in London in 1985.'",
+        "reference_answer": "org: Sony Music; location: London; date: 1985",
+        "answer_aliases": [
+            "Sony Music (org), London (location), 1985 (date)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_096"
+    },
+    {
+        "task_id": "cat5_synthetic_097",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'In 2020, Kamala Harris was elected Vice President in America.'",
+        "reference_answer": "date: 2020; person: Kamala Harris; location: America",
+        "answer_aliases": [
+            "2020 (date), Kamala Harris (person), America (location)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_097"
+    },
+    {
+        "task_id": "cat5_synthetic_098",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'FEMA provided disaster relief to Texas in September.'",
+        "reference_answer": "org: FEMA; location: Texas; date: September",
+        "answer_aliases": [
+            "FEMA (org), Texas (location), September (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_098"
+    },
+    {
+        "task_id": "cat5_synthetic_099",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Jack Dorsey founded Block in San Francisco during 2009.'",
+        "reference_answer": "person: Jack Dorsey; org: Block; location: San Francisco; date: 2009",
+        "answer_aliases": [
+            "Jack Dorsey (person), Block (org), San Francisco (location), 2009 (date)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_099"
+    },
+    {
+        "task_id": "cat5_synthetic_100",
+        "category": "named_entity_recognition",
+        "prompt": "Extract and label the entities (person, org, location, date) from this text: 'Last year, NASA partnered with SpaceX to launch a satellite from Florida.'",
+        "reference_answer": "date: Last year; org: NASA, SpaceX; location: Florida",
+        "answer_aliases": [
+            "Last year (date), NASA (org), SpaceX (org), Florida (location)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_ner_100"
+    }
+]

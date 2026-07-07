@@ -1,0 +1,1203 @@
+[
+    {
+        "task_id": "cat8_synthetic_001",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_even(n)` that returns True if a number is even, and False otherwise.",
+        "reference_answer": "def is_even(n):\n    return n % 2 == 0",
+        "answer_aliases": [
+            "def is_even(n):\n    if n % 2 == 0:\n        return True\n    return False",
+            "is_even = lambda n: n % 2 == 0"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_001"
+    },
+    {
+        "task_id": "cat8_synthetic_002",
+        "category": "code_generation",
+        "prompt": "Write a Python function `reverse_string(s)` that takes a string and returns it reversed.",
+        "reference_answer": "def reverse_string(s):\n    return s[::-1]",
+        "answer_aliases": [
+            "def reverse_string(s):\n    return ''.join(reversed(s))"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_002"
+    },
+    {
+        "task_id": "cat8_synthetic_003",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_max(lst)` that returns the largest number in a list. Return None if empty.",
+        "reference_answer": "def find_max(lst):\n    return max(lst) if lst else None",
+        "answer_aliases": [
+            "def find_max(lst):\n    if not lst:\n        return None\n    maximum = lst[0]\n    for num in lst:\n        if num > maximum:\n            maximum = num\n    return maximum"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_003"
+    },
+    {
+        "task_id": "cat8_synthetic_004",
+        "category": "code_generation",
+        "prompt": "Write a Python function `cel_to_fah(c)` that converts Celsius to Fahrenheit.",
+        "reference_answer": "def cel_to_fah(c):\n    return (c * 9/5) + 32",
+        "answer_aliases": [
+            "def cel_to_fah(c):\n    return c * 1.8 + 32"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_004"
+    },
+    {
+        "task_id": "cat8_synthetic_005",
+        "category": "code_generation",
+        "prompt": "Write a Python function `factorial(n)` that returns the factorial of a non-negative integer n recursively.",
+        "reference_answer": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)",
+        "answer_aliases": [
+            "def factorial(n):\n    return 1 if n == 0 else n * factorial(n - 1)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_005"
+    },
+    {
+        "task_id": "cat8_synthetic_006",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_palindrome(s)` that returns True if a given string is a palindrome (ignoring casing).",
+        "reference_answer": "def is_palindrome(s):\n    clean_s = s.lower()\n    return clean_s == clean_s[::-1]",
+        "answer_aliases": [
+            "def is_palindrome(s):\n    s = s.lower()\n    return s == ''.join(reversed(s))"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_006"
+    },
+    {
+        "task_id": "cat8_synthetic_007",
+        "category": "code_generation",
+        "prompt": "Write a Python function `count_vowels(s)` that counts the number of vowels (a, e, i, o, u) in a string.",
+        "reference_answer": "def count_vowels(s):\n    return sum(1 for char in s.lower() if char in 'aeiou')",
+        "answer_aliases": [
+            "def count_vowels(s):\n    count = 0\n    for char in s.lower():\n        if char in 'aeiou':\n            count += 1\n    return count"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_007"
+    },
+    {
+        "task_id": "cat8_synthetic_008",
+        "category": "code_generation",
+        "prompt": "Write a Python function `merge_dicts(d1, d2)` that merges two dictionaries. If a key exists in both, use the value from d2.",
+        "reference_answer": "def merge_dicts(d1, d2):\n    res = d1.copy()\n    res.update(d2)\n    return res",
+        "answer_aliases": [
+            "def merge_dicts(d1, d2):\n    return {**d1, **d2}"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_008"
+    },
+    {
+        "task_id": "cat8_synthetic_009",
+        "category": "code_generation",
+        "prompt": "Write a Python function `fizz_buzz(n)` that returns 'Fizz' if n is divisible by 3, 'Buzz' if divisible by 5, 'FizzBuzz' if both, and the number as a string otherwise.",
+        "reference_answer": "def fizz_buzz(n):\n    if n % 3 == 0 and n % 5 == 0:\n        return 'FizzBuzz'\n    elif n % 3 == 0:\n        return 'Fizz'\n    elif n % 5 == 0:\n        return 'Buzz'\n    return str(n)",
+        "answer_aliases": [
+            "def fizz_buzz(n):\n    res = ''\n    if n % 3 == 0: res += 'Fizz'\n    if n % 5 == 0: res += 'Buzz'\n    return res if res else str(n)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_009"
+    },
+    {
+        "task_id": "cat8_synthetic_010",
+        "category": "code_generation",
+        "prompt": "Write a Python function `unique_elements(lst)` that filters a list and returns unique values in their original order.",
+        "reference_answer": "def unique_elements(lst):\n    seen = set()\n    return [x for x in lst if not (x in seen or seen.add(x))]",
+        "answer_aliases": [
+            "def unique_elements(lst):\n    res = []\n    for item in lst:\n        if item not in res:\n            res.append(item)\n    return res"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_010"
+    },
+    {
+        "task_id": "cat8_synthetic_011",
+        "category": "code_generation",
+        "prompt": "Write a Python function `word_count(text)` that returns a dictionary mapping words to their frequencies in a string.",
+        "reference_answer": "def word_count(text):\n    words = text.split()\n    return {w: words.count(w) for w in set(words)}",
+        "answer_aliases": [
+            "def word_count(text):\n    counts = {}\n    for word in text.split():\n        counts[word] = counts.get(word, 0) + 1\n    return counts"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_011"
+    },
+    {
+        "task_id": "cat8_synthetic_012",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sum_digits(n)` that calculates the sum of individual digits of a positive integer.",
+        "reference_answer": "def sum_digits(n):\n    return sum(int(digit) for digit in str(n))",
+        "answer_aliases": [
+            "def sum_digits(n):\n    s = 0\n    for c in str(n):\n        s += int(c)\n    return s"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_012"
+    },
+    {
+        "task_id": "cat8_synthetic_013",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_prime(n)` that returns True if n is prime, and False otherwise.",
+        "reference_answer": "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True",
+        "answer_aliases": [
+            "def is_prime(n):\n    if n <= 1: return False\n    return all(n % i != 0 for i in range(2, int(n**0.5) + 1))"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_013"
+    },
+    {
+        "task_id": "cat8_synthetic_014",
+        "category": "code_generation",
+        "prompt": "Write a Python function `fibonacci(n)` that returns a list containing the first n Fibonacci numbers.",
+        "reference_answer": "def fibonacci(n):\n    if n <= 0: return []\n    if n == 1: return [0]\n    seq = [0, 1]\n    while len(seq) < n:\n        seq.append(seq[-1] + seq[-2])\n    return seq",
+        "answer_aliases": [
+            "def fibonacci(n):\n    res = []\n    a, b = 0, 1\n    for _ in range(n):\n        res.append(a)\n        a, b = b, a + b\n    return res"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_014"
+    },
+    {
+        "task_id": "cat8_synthetic_015",
+        "category": "code_generation",
+        "prompt": "Write a Python function `linear_search(lst, target)` that returns the first index of target, or -1 if missing.",
+        "reference_answer": "def linear_search(lst, target):\n    return lst.index(target) if target in lst else -1",
+        "answer_aliases": [
+            "def linear_search(lst, target):\n    for i in range(len(lst)):\n        if lst[i] == target:\n            return i\n    return -1"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_015"
+    },
+    {
+        "task_id": "cat8_synthetic_016",
+        "category": "code_generation",
+        "prompt": "Write a Python function `gcd(a, b)` that calculates the Greatest Common Divisor of two integers using the Euclidean algorithm.",
+        "reference_answer": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a",
+        "answer_aliases": [
+            "def gcd(a, b):\n    if b == 0: return a\n    return gcd(b, a % b)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_016"
+    },
+    {
+        "task_id": "cat8_synthetic_017",
+        "category": "code_generation",
+        "prompt": "Write a Python function `filter_long_words(words, n)` that takes a list of strings and returns entries strictly longer than length n.",
+        "reference_answer": "def filter_long_words(words, n):\n    return [w for w in words if len(w) > n]",
+        "answer_aliases": [
+            "def filter_long_words(words, n):\n    res = []\n    for w in words:\n        if len(w) > n:\n            res.append(w)\n    return res"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_017"
+    },
+    {
+        "task_id": "cat8_synthetic_018",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_leap_year(year)` that checks if a calendar year behaves as a leap year.",
+        "reference_answer": "def is_leap_year(year):\n    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)",
+        "answer_aliases": [
+            "def is_leap_year(year):\n    if year % 400 == 0:\n        return True\n    if year % 100 == 0:\n        return False\n    return year % 4 == 0"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_018"
+    },
+    {
+        "task_id": "cat8_synthetic_019",
+        "category": "code_generation",
+        "prompt": "Write a Python function `flatten_list(nested_list)` that flattens a shallow list of lists into a single linear list tier.",
+        "reference_answer": "def flatten_list(nested_list):\n    return [item for sublist in nested_list for item in sublist]",
+        "answer_aliases": [
+            "def flatten_list(nested_list):\n    res = []\n    for sub in nested_list:\n        res.extend(sub)\n    return res"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_019"
+    },
+    {
+        "task_id": "cat8_synthetic_020",
+        "category": "code_generation",
+        "prompt": "Write a Python function `capitalize_words(s)` that converts the initial letter of every word in a sentence string to capital casing.",
+        "reference_answer": "def capitalize_words(s):\n    return ' '.join(word.capitalize() for word in s.split(' '))",
+        "answer_aliases": [
+            "def capitalize_words(s):\n    return s.title()"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_020"
+    },
+    {
+        "task_id": "cat8_synthetic_021",
+        "category": "code_generation",
+        "prompt": "Write a Python function `anagram_check(s1, s2)` that asserts if two input strings correspond to anagram mutations.",
+        "reference_answer": "def anagram_check(s1, s2):\n    return sorted(s1.lower().replace(' ', '')) == sorted(s2.lower().replace(' ', ''))",
+        "answer_aliases": [
+            "def anagram_check(s1, s2):\n    return sorted(s1) == sorted(s2)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_021"
+    },
+    {
+        "task_id": "cat8_synthetic_022",
+        "category": "code_generation",
+        "prompt": "Write a Python function `binary_search(sorted_list, target)` that implements an optimized log-time indexing sequence for target entries.",
+        "reference_answer": "def binary_search(sorted_list, target):\n    low, high = 0, len(sorted_list) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if sorted_list[mid] == target:\n            return mid\n        elif sorted_list[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1",
+        "answer_aliases": [
+            "def binary_search(arr, val):\n    try:\n        return arr.index(val)\n    except ValueError:\n        return -1"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_022"
+    },
+    {
+        "task_id": "cat8_synthetic_023",
+        "category": "code_generation",
+        "prompt": "Write a Python function `remove_vowels(s)` that completely drops vowels from an input string argument.",
+        "reference_answer": "def remove_vowels(s):\n    return ''.join(c for c in s if c.lower() not in 'aeiou')",
+        "answer_aliases": [
+            "def remove_vowels(s):\n    for v in 'aeiouAEIOU':\n        s = s.replace(v, '')\n    return s"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_023"
+    },
+    {
+        "task_id": "cat8_synthetic_024",
+        "category": "code_generation",
+        "prompt": "Write a Python function `list_average(lst)` that extracts standard arithmetic means. Return 0 if data array parameters map empty.",
+        "reference_answer": "def list_average(lst):\n    return sum(lst) / len(lst) if lst else 0",
+        "answer_aliases": [
+            "def list_average(lst):\n    if len(lst) == 0: return 0\n    return sum(lst)/len(lst)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_024"
+    },
+    {
+        "task_id": "cat8_synthetic_025",
+        "category": "code_generation",
+        "prompt": "Write a Python function `celsius_to_kelvin(c)` to shift thermodynamic scalar structures.",
+        "reference_answer": "def celsius_to_kelvin(c):\n    return c + 273.15",
+        "answer_aliases": [
+            "def celsius_to_kelvin(c):\n    return c + 273"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_025"
+    },
+    {
+        "task_id": "cat8_synthetic_026",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_square(n)` checking if numerical expressions parse cleanly to quadratic products.",
+        "reference_answer": "def is_square(n):\n    if n < 0: return False\n    return int(n**0.5)**2 == n",
+        "answer_aliases": [
+            "def is_square(n):\n    return n >= 0 and (n**0.5).is_integer()"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_026"
+    },
+    {
+        "task_id": "cat8_synthetic_027",
+        "category": "code_generation",
+        "prompt": "Write a Python function `truncate_string(s, length)` appending standard trailing punctuation sequences ('...') if parameters clip structures.",
+        "reference_answer": "def truncate_string(s, length):\n    return s[:length] + '...' if len(s) > length else s",
+        "answer_aliases": [
+            "def truncate_string(s, length):\n    if len(s) <= length: return s\n    return s[:length] + '...'"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_027"
+    },
+    {
+        "task_id": "cat8_synthetic_028",
+        "category": "code_generation",
+        "prompt": "Write a Python function `lcm(a, b)` returning the lowest common multiple variations of two input digits.",
+        "reference_answer": "def lcm(a, b):\n    import math\n    return abs(a * b) // math.gcd(a, b) if a and b else 0",
+        "answer_aliases": [
+            "def lcm(a, b):\n    if a == 0 or b == 0: return 0\n    max_num = max(a, b)\n    while True:\n        if max_num % a == 0 and max_num % b == 0:\n            return max_num\n        max_num += 1"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_028"
+    },
+    {
+        "task_id": "cat8_synthetic_029",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_digits(s)` grouping all underlying numeric characters into continuous layout structures.",
+        "reference_answer": "def find_digits(s):\n    return ''.join(c for c in s if c.isdigit())",
+        "answer_aliases": [
+            "def find_digits(s):\n    import re\n    return ''.join(re.findall(r'\\d', s))"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_029"
+    },
+    {
+        "task_id": "cat8_synthetic_030",
+        "category": "code_generation",
+        "prompt": "Write a Python function `dictionary_invert(d)` switching key definitions with tracking entry arrays cleanly.",
+        "reference_answer": "def dictionary_invert(d):\n    return {v: k for k, v in d.items()}",
+        "answer_aliases": [
+            "def dictionary_invert(d):\n    res = {}\n    for k, v in d.items():\n        res[v] = k\n    return res"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_030"
+    },
+    {
+        "task_id": "cat8_synthetic_031",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_perfect_number(n)` calculating standard arithmetic parameter bounds values.",
+        "reference_answer": "def is_perfect_number(n):\n    if n <= 1: return False\n    return sum(i for i in range(1, n) if n % i == 0) == n",
+        "answer_aliases": [
+            "def is_perfect_number(n):\n    if n < 2: return False\n    divs = [1]\n    for i in range(2, int(n**0.5)+1):\n        if n % i == 0:\n            divs.append(i)\n            if i != n // i: divs.append(n // i)\n    return sum(divs) == n"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_031"
+    },
+    {
+        "task_id": "cat8_synthetic_032",
+        "category": "code_generation",
+        "prompt": "Write a Python function `matrix_transpose(m)` evaluating internal array structural directions cleanly.",
+        "reference_answer": "def matrix_transpose(m):\n    return [list(x) for x in zip(*m)]",
+        "answer_aliases": [
+            "def matrix_transpose(m):\n    return [[m[j][i] for j in range(len(m))] for i in range(len(m[0]))]"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_032"
+    },
+    {
+        "task_id": "cat8_synthetic_033",
+        "category": "code_generation",
+        "prompt": "Write a Python function `filter_even_keys(d)` parsing specific map collection blocks down safely.",
+        "reference_answer": "def filter_even_keys(d):\n    return {k: v for k, v in d.items() if k % 2 == 0}",
+        "answer_aliases": [
+            "def filter_even_keys(d):\n    res = {}\n    for k, v in d.items():\n        if k % 2 == 0:\n            res[k] = v\n    return res"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_033"
+    },
+    {
+        "task_id": "cat8_synthetic_034",
+        "category": "code_generation",
+        "prompt": "Write a Python function `compute_power(base, exp)` extracting numeric product outputs tracking arithmetic scale patterns.",
+        "reference_answer": "def compute_power(base, exp):\n    return base ** exp",
+        "answer_aliases": [
+            "def compute_power(base, exp):\n    import math\n    return math.pow(base, exp)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_034"
+    },
+    {
+        "task_id": "cat8_synthetic_035",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_common_elements(l1, l2)` yielding mutual records matching input collection criteria.",
+        "reference_answer": "def find_common_elements(l1, l2):\n    return list(set(l1) & set(l2))",
+        "answer_aliases": [
+            "def find_common_elements(l1, l2):\n    return [x for x in l1 if x in l2]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_035"
+    },
+    {
+        "task_id": "cat8_synthetic_036",
+        "category": "code_generation",
+        "prompt": "Write a Python function `remove_spaces(s)` executing character filtering processes accurately.",
+        "reference_answer": "def remove_spaces(s):\n    return s.replace(' ', '')",
+        "answer_aliases": [
+            "def remove_spaces(s):\n    return ''.join(s.split())"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_036"
+    },
+    {
+        "task_id": "cat8_synthetic_037",
+        "category": "code_generation",
+        "prompt": "Write a Python function `check_substring(s, sub)` mapping containment properties sequentially.",
+        "reference_answer": "def check_substring(s, sub):\n    return sub in s",
+        "answer_aliases": [
+            "def check_substring(s, sub):\n    return s.find(sub) != -1"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_037"
+    },
+    {
+        "task_id": "cat8_synthetic_038",
+        "category": "code_generation",
+        "prompt": "Write a Python function `hex_to_rgb(hex_str)` formatting graphic structural metrics safely.",
+        "reference_answer": "def hex_to_rgb(hex_str):\n    hex_str = hex_str.lstrip('#')\n    return tuple(int(hex_str[i:i+2], 16) for i in (0, 2, 4))",
+        "answer_aliases": [
+            "def hex_to_rgb(h):\n      h = h.replace('#','')\n      return int(h[0:2],16), int(h[2:4],16), int(h[4:6],16)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_038"
+    },
+    {
+        "task_id": "cat8_synthetic_039",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sort_by_length(lst)` filtering text values on positional metric profiles cleanly.",
+        "reference_answer": "def sort_by_length(lst):\n    return sorted(lst, key=len)",
+        "answer_aliases": [
+            "def sort_by_length(lst):\n    lst.sort(key=len)\n    return lst"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_039"
+    },
+    {
+        "task_id": "cat8_synthetic_040",
+        "category": "code_generation",
+        "prompt": "Write a Python function `calculate_bmi(weight, height)` modeling physical tracking evaluations accurately.",
+        "reference_answer": "def calculate_bmi(weight, height):\n    return weight / (height ** 2)",
+        "answer_aliases": [
+            "def calculate_bmi(w, h):\n    return w / (h * h)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_040"
+    },
+    {
+        "task_id": "cat8_synthetic_041",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_armstrong(n)` validating identity alignment metrics on base powers.",
+        "reference_answer": "def is_armstrong(n):\n    s = str(n)\n    p = len(s)\n    return sum(int(c) ** p for c in s) == n",
+        "answer_aliases": [
+            "def is_armstrong(n):\n    return sum(int(x)**len(str(n)) for x in str(n)) == n"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_041"
+    },
+    {
+        "task_id": "cat8_synthetic_042",
+        "category": "code_generation",
+        "prompt": "Write a Python function `seconds_to_hours(s)` mapping simple scalar metrics across structural domains.",
+        "reference_answer": "def seconds_to_hours(s):\n    return s / 3600",
+        "answer_aliases": [
+            "def seconds_to_hours(seconds):\n    return seconds // 3600"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_042"
+    },
+    {
+        "task_id": "cat8_synthetic_043",
+        "category": "code_generation",
+        "prompt": "Write a Python function `get_file_extension(filename)` verifying trailing filename structural components.",
+        "reference_answer": "def get_file_extension(filename):\n    import os\n    return os.path.splitext(filename)[1]",
+        "answer_aliases": [
+            "def get_file_extension(filename):\n    return filename.split('.')[-1] if '.' in filename else ''"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_043"
+    },
+    {
+        "task_id": "cat8_synthetic_044",
+        "category": "code_generation",
+        "prompt": "Write a Python function `nth_root(val, r)` outputting complex numerical fractions accurately.",
+        "reference_answer": "def nth_root(val, r):\n    return val ** (1 / r)",
+        "answer_aliases": [
+            "def nth_root(n, r):\n    return pow(n, 1/r)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_044"
+    },
+    {
+        "task_id": "cat8_synthetic_045",
+        "category": "code_generation",
+        "prompt": "Write a Python function `list_difference(l1, l2)` generating relative set exclusions sequentially.",
+        "reference_answer": "def list_difference(l1, l2):\n    return [x for x in l1 if x not in l2]",
+        "answer_aliases": [
+            "def list_difference(l1, l2):\n    return list(set(l1) - set(l2))"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_045"
+    },
+    {
+        "task_id": "cat8_synthetic_046",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_anagram(w1, w2)` managing text equivalence structural tracks.",
+        "reference_answer": "def is_anagram(w1, w2):\n    return sorted(w1) == sorted(w2)",
+        "answer_aliases": [
+            "def is_anagram(a, b):\n    return sorted(a.lower()) == sorted(b.lower())"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_046"
+    },
+    {
+        "task_id": "cat8_synthetic_047",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sum_multiples(limit)` adding all metrics divisible cleanly by 3 or 5 within bounds limits.",
+        "reference_answer": "def sum_multiples(limit):\n    return sum(x for x in range(limit) if x % 3 == 0 or x % 5 == 0)",
+        "answer_aliases": [
+            "def sum_multiples(limit):\n    total = 0\n    for i in range(limit):\n        if i % 3 == 0 or i % 5 == 0:\n            total += i\n    return total"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_047"
+    },
+    {
+        "task_id": "cat8_synthetic_048",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_middle(lst)` sorting or slicing down structural arrays for core position components.",
+        "reference_answer": "def find_middle(lst):\n    if not lst: return None\n    return lst[len(lst) // 2]",
+        "answer_aliases": [
+            "def find_middle(l):\n    return l[int(len(l)/2)]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_048"
+    },
+    {
+        "task_id": "cat8_synthetic_049",
+        "category": "code_generation",
+        "prompt": "Write a Python function `all_equal(lst)` tracking equivalence indicators uniformly across inputs.",
+        "reference_answer": "def all_equal(lst):\n    return len(set(lst)) <= 1",
+        "answer_aliases": [
+            "def all_equal(lst):\n    return lst.count(lst[0]) == len(lst) if lst else True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_049"
+    },
+    {
+        "task_id": "cat8_synthetic_050",
+        "category": "code_generation",
+        "prompt": "Write a Python function `pascal_triangle(n)` outputting binomial validation layout rows sequentially.",
+        "reference_answer": "def pascal_triangle(n):\n    row = [1]\n    for _ in range(n):\n        row = [x + y for x, y in zip([0]+row, row+[0])]\n    return row",
+        "answer_aliases": [
+            "def pascal_triangle(n):\n    from math import comb\n    return [comb(n, i) for i in range(n + 1)]"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_050"
+    },
+    {
+        "task_id": "cat8_synthetic_051",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_perfect_square(n)` evaluating simple algebraic compliance assertions.",
+        "reference_answer": "def is_perfect_square(n):\n    return n >= 0 and int(n**0.5)**2 == n",
+        "answer_aliases": [
+            "def is_perfect_square(n):\n    import math\n    if n < 0: return False\n    root = math.isqrt(n)\n    return root * root == n"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_051"
+    },
+    {
+        "task_id": "cat8_synthetic_052",
+        "category": "code_generation",
+        "prompt": "Write a Python function `string_to_bool(s)` decoding text data down to truth primitives securely.",
+        "reference_answer": "def string_to_bool(s):\n    return s.lower() in ['true', '1', 'yes', 't']",
+        "answer_aliases": [
+            "def string_to_bool(s):\n    return s.lower() == 'true'"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_052"
+    },
+    {
+        "task_id": "cat8_synthetic_053",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sum_even_numbers(lst)` slicing or grouping records along math divisibility parameters.",
+        "reference_answer": "def sum_even_numbers(lst):\n    return sum(x for x in lst if x % 2 == 0)",
+        "answer_aliases": [
+            "def sum_even_numbers(lst):\n    s = 0\n    for x in lst:\n        if x % 2 == 0: s += x\n    return s"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_053"
+    },
+    {
+        "task_id": "cat8_synthetic_054",
+        "category": "code_generation",
+        "prompt": "Write a Python function `remove_duplicates_ordered(lst)` completing deterministic sequence cleanup tasks safely.",
+        "reference_answer": "def remove_duplicates_ordered(lst):\n    return list(dict.fromkeys(lst))",
+        "answer_aliases": [
+            "def remove_duplicates_ordered(lst):\n    seen = set()\n    return [x for x in lst if not (x in seen or seen.add(x))]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_054"
+    },
+    {
+        "task_id": "cat8_synthetic_055",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sort_dict_by_value(d)` restructuring map profiles via value weightings sequentially.",
+        "reference_answer": "def sort_dict_by_value(d):\n    return dict(sorted(d.items(), key=lambda item: item[1]))",
+        "answer_aliases": [
+            "def sort_dict_by_value(d):\n    return {k: v for k, v in sorted(d.items(), key=lambda item: item[1])}"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_055"
+    },
+    {
+        "task_id": "cat8_synthetic_056",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_common_chars(s1, s2)` tracking lexical intersections cleanly.",
+        "reference_answer": "def find_common_chars(s1, s2):\n    return ''.join(set(s1) & set(s2))",
+        "answer_aliases": [
+            "def find_common_chars(s1, s2):\n    return ''.join([c for c in set(s1) if c in s2])"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_056"
+    },
+    {
+        "task_id": "cat8_synthetic_057",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_vowel(char)` tracking basic lookup definitions safely.",
+        "reference_answer": "def is_vowel(char):\n    return char.lower() in 'aeiou' and len(char) == 1",
+        "answer_aliases": [
+            "def is_vowel(c):\n    return c in 'aeiouAEIOU'"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_057"
+    },
+    {
+        "task_id": "cat8_synthetic_058",
+        "category": "code_generation",
+        "prompt": "Write a Python function `geometric_mean(lst)` returning compounding exponential products safely.",
+        "reference_answer": "def geometric_mean(lst):\n    import math\n    return math.prod(lst) ** (1 / len(lst)) if lst else 0",
+        "answer_aliases": [
+            "def geometric_mean(lst):\n    if not lst: return 0\n    total = 1\n    for x in lst: total *= x\n    return total ** (1/len(lst))"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_058"
+    },
+    {
+        "task_id": "cat8_synthetic_059",
+        "category": "code_generation",
+        "prompt": "Write a Python function `count_consonants(s)` running specialized verification processes iteratively.",
+        "reference_answer": "def count_consonants(s):\n    return sum(1 for c in s.lower() if c.isalpha() and c not in 'aeiou')",
+        "answer_aliases": [
+            "def count_consonants(s):\n    count = 0\n    for c in s.lower():\n        if c.isalpha() and c not in 'aeiou': count += 1\n    return count"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_059"
+    },
+    {
+        "task_id": "cat8_synthetic_060",
+        "category": "code_generation",
+        "prompt": "Write a Python function `merge_lists_to_dict(keys, values)` packaging paired metrics into map entities.",
+        "reference_answer": "def merge_lists_to_dict(keys, values):\n    return dict(zip(keys, values))",
+        "answer_aliases": [
+            "def merge_lists_to_dict(keys, values):\n    return {keys[i]: values[i] for i in range(min(len(keys), len(values)))}"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_060"
+    },
+    {
+        "task_id": "cat8_synthetic_061",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_longest_word(sentence)` evaluating substring metrics along length parameters.",
+        "reference_answer": "def find_longest_word(sentence):\n    words = sentence.split()\n    return max(words, key=len) if words else ''",
+        "answer_aliases": [
+            "def find_longest_word(s):\n    if not s: return ''\n    return sorted(s.split(), key=len)[-1]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_061"
+    },
+    {
+        "task_id": "cat8_synthetic_062",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_abundant_number(n)` tracing algebraic sum boundaries.",
+        "reference_answer": "def is_abundant_number(n):\n    if n <= 1: return False\n    return sum(i for i in range(1, n) if n % i == 0) > n",
+        "answer_aliases": [
+            "def is_abundant_number(n):\n    divs = [i for i in range(1, n) if n % i == 0]\n    return sum(divs) > n"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_062"
+    },
+    {
+        "task_id": "cat8_synthetic_063",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sum_of_squares(lst)` mapping quadratic transformations and adding up array lines.",
+        "reference_answer": "def sum_of_squares(lst):\n    return sum(x ** 2 for x in lst)",
+        "answer_aliases": [
+            "def sum_of_squares(lst):\n    s = 0\n    for x in lst: s += x*x\n    return s"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_063"
+    },
+    {
+        "task_id": "cat8_synthetic_064",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_valid_email_simple(s)` verifying explicit parsing markers structural locations.",
+        "reference_answer": "def is_valid_email_simple(s):\n    return '@' in s and '.' in s.split('@')[-1]",
+        "answer_aliases": [
+            "def is_valid_email_simple(s):\n    if s.count('@') != 1: return False\n    return '.' in s.split('@')[1]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_064"
+    },
+    {
+        "task_id": "cat8_synthetic_065",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_power_of_two(n)` leveraging binary or math evaluations directly.",
+        "reference_answer": "def is_power_of_two(n):\n    return n > 0 and (n & (n - 1)) == 0",
+        "answer_aliases": [
+            "def is_power_of_two(n):\n    if n <= 0: return False\n    while n % 2 == 0:\n        n //= 2\n    return n == 1"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_065"
+    },
+    {
+        "task_id": "cat8_synthetic_066",
+        "category": "code_generation",
+        "prompt": "Write a Python function `title_case(s)` correcting casing formats cleanly.",
+        "reference_answer": "def title_case(s):\n    return s.title()",
+        "answer_aliases": [
+            "def title_case(s):\n    return ' '.join(w.capitalize() for w in s.split())"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_066"
+    },
+    {
+        "task_id": "cat8_synthetic_067",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_factors(n)` returning complete array blocks of clean divisors.",
+        "reference_answer": "def find_factors(n):\n    return [i for i in range(1, n + 1) if n % i == 0]",
+        "answer_aliases": [
+            "def find_factors(n):\n    res = []\n    for i in range(1, n+1):\n        if n % i == 0: res.append(i)\n    return res"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_067"
+    },
+    {
+        "task_id": "cat8_synthetic_068",
+        "category": "code_generation",
+        "prompt": "Write a Python function `multiply_list_elements(lst, factor)` performing scale updates on standard sequences.",
+        "reference_answer": "def multiply_list_elements(lst, factor):\n    return [x * factor for x in lst]",
+        "answer_aliases": [
+            "def multiply_list_elements(lst, factor):\n    return list(map(lambda x: x*factor, lst))"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_068"
+    },
+    {
+        "task_id": "cat8_synthetic_069",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_perfect_cube(n)` evaluating structural integer powers accurately.",
+        "reference_answer": "def is_perfect_cube(n):\n    return round(n ** (1/3)) ** 3 == n",
+        "answer_aliases": [
+            "def is_perfect_cube(n):\n    val = abs(n) ** (1/3)\n    return round(val) ** 3 == abs(n)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_069"
+    },
+    {
+        "task_id": "cat8_synthetic_070",
+        "category": "code_generation",
+        "prompt": "Write a Python function `count_words_containing_char(words, char)` checking occurrences sequentially.",
+        "reference_answer": "def count_words_containing_char(words, char):\n    return sum(1 for w in words if char in w)",
+        "answer_aliases": [
+            "def count_words_containing_char(words, char):\n    return len([w for w in words if char in w])"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_070"
+    },
+    {
+        "task_id": "cat8_synthetic_071",
+        "category": "code_generation",
+        "prompt": "Write a Python function `days_between_dates(d1, d2)` modeling time delta differences reliably.",
+        "reference_answer": "def days_between_dates(d1, d2):\n    from datetime import datetime\n    return abs((datetime.strptime(d1, '%Y-%m-%d') - datetime.strptime(d2, '%Y-%m-%d')).days)",
+        "answer_aliases": [
+            "def days_between_dates(d1, d2):\n    from datetime import date\n    return abs((d1 - d2).days)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_071"
+    },
+    {
+        "task_id": "cat8_synthetic_072",
+        "category": "code_generation",
+        "prompt": "Write a Python function `convert_to_binary(n)` converting numerical systems to string pathways.",
+        "reference_answer": "def convert_to_binary(n):\n    return bin(n)[2:]",
+        "answer_aliases": [
+            "def convert_to_binary(n):\n    return '{0:b}'.format(n)"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_072"
+    },
+    {
+        "task_id": "cat8_synthetic_073",
+        "category": "code_generation",
+        "prompt": "Write a Python function `get_diagonal(matrix)` isolating array properties matching trajectory dimensions.",
+        "reference_answer": "def get_diagonal(matrix):\n    return [matrix[i][i] for i in range(len(matrix))]",
+        "answer_aliases": [
+            "def get_diagonal(m):\n    return [m[i][i] for i in range(min(len(m), len(m[0])))]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_073"
+    },
+    {
+        "task_id": "cat8_synthetic_074",
+        "category": "code_generation",
+        "prompt": "Write a Python function `remove_punctuation(s)` scrubbing special markers out entirely.",
+        "reference_answer": "def remove_punctuation(s):\n    import string\n    return s.translate(str.maketrans('', '', string.punctuation))",
+        "answer_aliases": [
+            "def remove_punctuation(s):\n    import re\n    return re.sub(r'[^\\w\\s]', '', s)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_074"
+    },
+    {
+        "task_id": "cat8_synthetic_075",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_common_keys(d1, d2)` returning map intersections seamlessly.",
+        "reference_answer": "def find_common_keys(d1, d2):\n    return list(d1.keys() & d2.keys())",
+        "answer_aliases": [
+            "def find_common_keys(d1, d2):\n    return [k for k in d1 if k in d2]"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_075"
+    },
+    {
+        "task_id": "cat8_synthetic_076",
+        "category": "code_generation",
+        "prompt": "Write a Python function `bubble_sort(lst)` organizing arrays iteratively.",
+        "reference_answer": "def bubble_sort(lst):\n    n = len(lst)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if lst[j] > lst[j+1]:\n                lst[j], lst[j+1] = lst[j+1], lst[j]\n    return lst",
+        "answer_aliases": [
+            "def bubble_sort(lst):\n    return sorted(lst)"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_076"
+    },
+    {
+        "task_id": "cat8_synthetic_077",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_all_uppercase(s)` running compliance confirmations on casing layouts.",
+        "reference_answer": "def is_all_uppercase(s):\n    return s.isupper()",
+        "answer_aliases": [
+            "def is_all_uppercase(s):\n    return s == s.upper()"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_077"
+    },
+    {
+        "task_id": "cat8_synthetic_078",
+        "category": "code_generation",
+        "prompt": "Write a Python function `count_digits_in_number(n)` calculating simple metrics length.",
+        "reference_answer": "def count_digits_in_number(n):\n    return len(str(abs(n)))",
+        "answer_aliases": [
+            "def count_digits_in_number(n):\n    import math\n    if n == 0: return 1\n    return int(math.log10(abs(n))) + 1"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_078"
+    },
+    {
+        "task_id": "cat8_synthetic_079",
+        "category": "code_generation",
+        "prompt": "Write a Python function `merge_sorted_lists(l1, l2)` blending pre-sorted entries sequentially down cleanly.",
+        "reference_answer": "def merge_sorted_lists(l1, l2):\n    return sorted(l1 + l2)",
+        "answer_aliases": [
+            "def merge_sorted_lists(l1, l2):\n    import heapq\n    return list(heapq.merge(l1, l2))"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_079"
+    },
+    {
+        "task_id": "cat8_synthetic_080",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sum_of_divisors(n)` computing structural boundaries cleanly.",
+        "reference_answer": "def sum_of_divisors(n):\n    return sum(i for i in range(1, n + 1) if n % i == 0)",
+        "answer_aliases": [
+            "def sum_of_divisors(n):\n    if n == 0: return 0\n    return sum([i for i in range(1, n+1) if n % i == 0])"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_080"
+    },
+    {
+        "task_id": "cat8_synthetic_081",
+        "category": "code_generation",
+        "prompt": "Write a Python function `replace_spaces_with_underscores(s)` formatting token paths dynamically.",
+        "reference_answer": "def replace_spaces_with_underscores(s):\n    return s.replace(' ', '_')",
+        "answer_aliases": [
+            "def replace_spaces_with_underscores(s):\n    return '_'.join(s.split(' '))"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_081"
+    },
+    {
+        "task_id": "cat8_synthetic_082",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_common_keys_and_values(d1, d2)` confirming total map tier equivalence structures.",
+        "reference_answer": "def find_common_keys_and_values(d1, d2):\n    return {k: v for k, v in d1.items() if d2.get(k) == v}",
+        "answer_aliases": [
+            "def find_common_keys_and_values(d1, d2):\n    return dict(d1.items() & d2.items())"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_082"
+    },
+    {
+        "task_id": "cat8_synthetic_083",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_index_of_max(lst)` extracting positional indicators for peak entry values.",
+        "reference_answer": "def find_index_of_max(lst):\n    return lst.index(max(lst)) if lst else -1",
+        "answer_aliases": [
+            "def find_index_of_max(lst):\n    if not lst: return -1\n    return max(range(len(lst)), key=lst.__getitem__)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_083"
+    },
+    {
+        "task_id": "cat8_synthetic_084",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_valid_ip_simple(s)` verifying explicit parsing layout boundaries on periods.",
+        "reference_answer": "def is_valid_ip_simple(s):\n    parts = s.split('.')\n    return len(parts) == 4 and all(p.isdigit() and 0 <= int(p) <= 255 for p in parts)",
+        "answer_aliases": [
+            "def is_valid_ip_simple(s):\n    try: parts = [int(x) for x in s.split('.')]; return len(parts) == 4 and all(0<=x<=255 for x in parts)\n    except: return False"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_084"
+    },
+    {
+        "task_id": "cat8_synthetic_085",
+        "category": "code_generation",
+        "prompt": "Write a Python function `repeat_string(s, count)` executing simple text structural duplication.",
+        "reference_answer": "def repeat_string(s, count):\n    return s * count",
+        "answer_aliases": [
+            "def repeat_string(s, count):\n    res = ''\n    for _ in range(count): res += s\n    return res"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_085"
+    },
+    {
+        "task_id": "cat8_synthetic_086",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_all_lowercase(s)` evaluating structural consistency constraints.",
+        "reference_answer": "def is_all_lowercase(s):\n    return s.islower()",
+        "answer_aliases": [
+            "def is_all_lowercase(s):\n    return s == s.lower()"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_086"
+    },
+    {
+        "task_id": "cat8_synthetic_087",
+        "category": "code_generation",
+        "prompt": "Write a Python function `calculate_average_word_length(sentence)` parsing sentences accurately.",
+        "reference_answer": "def calculate_average_word_length(sentence):\n    words = sentence.split()\n    return sum(len(w) for w in words) / len(words) if words else 0",
+        "answer_aliases": [
+            "def calculate_average_word_length(s):\n    if not s.split(): return 0\n    return len(s.replace(' ','')) / len(s.split())"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_087"
+    },
+    {
+        "task_id": "cat8_synthetic_088",
+        "category": "code_generation",
+        "prompt": "Write a Python function `remove_negatives(lst)` checking and stripping out lower math bounds entries.",
+        "reference_answer": "def remove_negatives(lst):\n    return [x for x in lst if x >= 0]",
+        "answer_aliases": [
+            "def remove_negatives(lst):\n    return list(filter(lambda x: x >= 0, lst))"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_088"
+    },
+    {
+        "task_id": "cat8_synthetic_089",
+        "category": "code_generation",
+        "prompt": "Write a Python function `convert_to_ascii_list(s)` generating structural sequence values out of text inputs.",
+        "reference_answer": "def convert_to_ascii_list(s):\n    return [ord(c) for c in s]",
+        "answer_aliases": [
+            "def convert_to_ascii_list(s):\n    return list(map(ord, s))"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_089"
+    },
+    {
+        "task_id": "cat8_synthetic_090",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_common_elements_three(l1, l2, l3)` executing intersection logic layers simultaneously.",
+        "reference_answer": "def find_common_elements_three(l1, l2, l3):\n    return list(set(l1) & set(l2) & set(l3))",
+        "answer_aliases": [
+            "def find_common_elements_three(l1, l2, l3):\n    return [x for x in l1 if x in l2 and x in l3]"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_090"
+    },
+    {
+        "task_id": "cat8_synthetic_091",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sort_by_last_char(lst)` rearranging text sequences dynamically on structural tail variables.",
+        "reference_answer": "def sort_by_last_char(lst):\n    return sorted(lst, key=lambda x: x[-1] if x else '')",
+        "answer_aliases": [
+            "def sort_by_last_char(lst):\n    lst.sort(key=lambda x: x[-1])\n    return lst"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_091"
+    },
+    {
+        "task_id": "cat8_synthetic_092",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_harshad_number(n)` testing modular mathematical division traits directly.",
+        "reference_answer": "def is_harshad_number(n):\n    if n <= 0: return False\n    return n % sum(int(c) for c in str(n)) == 0",
+        "answer_aliases": [
+            "def is_harshad_number(n):\n    s = sum([int(x) for x in str(n)])\n    return n % s == 0 if n > 0 else False"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_092"
+    },
+    {
+        "task_id": "cat8_synthetic_093",
+        "category": "code_generation",
+        "prompt": "Write a Python function `remove_empty_strings(lst)` filtering structural string segments reliably.",
+        "reference_answer": "def remove_empty_strings(lst):\n    return [s for s in lst if s != '']",
+        "answer_aliases": [
+            "def remove_empty_strings(lst):\n    return list(filter(None, lst))"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_093"
+    },
+    {
+        "task_id": "cat8_synthetic_094",
+        "category": "code_generation",
+        "prompt": "Write a Python function `count_occurrences_in_dict(d, target_val)` checking map targets comprehensively.",
+        "reference_answer": "def count_occurrences_in_dict(d, target_val):\n    return list(d.values()).count(target_val)",
+        "answer_aliases": [
+            "def count_occurrences_in_dict(d, target_val):\n    return sum(1 for v in d.values() if v == target_val)"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_094"
+    },
+    {
+        "task_id": "cat8_synthetic_095",
+        "category": "code_generation",
+        "prompt": "Write a Python function `find_first_non_repeated_char(s)` implementing linear text validation strategies sequentially.",
+        "reference_answer": "def find_first_non_repeated_char(s):\n    for c in s:\n        if s.count(c) == 1:\n            return c\n    return None",
+        "answer_aliases": [
+            "def find_first_non_repeated_char(s):\n    import collections\n    counts = collections.Counter(s)\n    for c in s:\n        if counts[c] == 1: return c\n    return None"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_095"
+    },
+    {
+        "task_id": "cat8_synthetic_096",
+        "category": "code_generation",
+        "prompt": "Write a Python function `sum_cubes_to_n(n)` executing mathematical accumulations over boundaries safely.",
+        "reference_answer": "def sum_cubes_to_n(n):\n    return sum(i ** 3 for i in range(1, n + 1))",
+        "answer_aliases": [
+            "def sum_cubes_to_n(n):\n    return ((n * (n + 1)) // 2) ** 2"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_096"
+    },
+    {
+        "task_id": "cat8_synthetic_097",
+        "category": "code_generation",
+        "prompt": "Write a Python function `get_even_indices_elements(lst)` tracking structural target slices directly.",
+        "reference_answer": "def get_even_indices_elements(lst):\n    return lst[::2]",
+        "answer_aliases": [
+            "def get_even_indices_elements(lst):\n    return [lst[i] for i in range(len(lst)) if i % 2 == 0]"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_097"
+    },
+    {
+        "task_id": "cat8_synthetic_098",
+        "category": "code_generation",
+        "prompt": "Write a Python function `convert_dict_keys_to_string(d)` updating key mappings iteratively.",
+        "reference_answer": "def convert_dict_keys_to_string(d):\n    return {str(k): v for k, v in d.items()}",
+        "answer_aliases": [
+            "def convert_dict_keys_to_string(d):\n    res = {}\n    for k,v in d.items(): res[str(k)] = v\n    return res"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_098"
+    },
+    {
+        "task_id": "cat8_synthetic_099",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_smith_number(n)` verifying intricate structural prime factoring matches dynamically.",
+        "reference_answer": "def is_smith_number(n):\n    def sum_digits(x):\n        return sum(int(c) for c in str(x))\n    orig_sum = sum_digits(n)\n    factors_sum = 0\n    temp = n\n    d = 2\n    while d * d <= temp:\n        while temp % d == 0:\n            factors_sum += sum_digits(d)\n            temp //= d\n        d += 1\n    if temp > 1 and temp != n:\n        factors_sum += sum_digits(temp)\n    return factors_sum == orig_sum if factors_sum > 0 else False",
+        "answer_aliases": [
+            "def is_smith_number(n):\n    pass"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_099"
+    },
+    {
+        "task_id": "cat8_synthetic_100",
+        "category": "code_generation",
+        "prompt": "Write a Python function `is_sorted_ascending(lst)` enforcing sequence direction array tracking assertions safely.",
+        "reference_answer": "def is_sorted_ascending(lst):\n    return lst == sorted(lst)",
+        "answer_aliases": [
+            "def is_sorted_ascending(lst):\n    return all(lst[i] <= lst[i+1] for i in range(len(lst)-1))"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_code_100"
+    }
+]

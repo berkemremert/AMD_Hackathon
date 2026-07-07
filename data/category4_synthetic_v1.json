@@ -1,0 +1,1285 @@
+[
+    {
+        "task_id": "cat2_synthetic_001",
+        "category": "mathematical_reasoning",
+        "prompt": "If a shirt costs $40 and is discounted by 25%, what is the final price?",
+        "reference_answer": "$30",
+        "answer_aliases": [
+            "30",
+            "thirty dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_001"
+    },
+    {
+        "task_id": "cat2_synthetic_002",
+        "category": "mathematical_reasoning",
+        "prompt": "A laptop originally priced at $1200 is on sale for 15% off. What is the sale price?",
+        "reference_answer": "$1020",
+        "answer_aliases": [
+            "1020",
+            "one thousand twenty dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_002"
+    },
+    {
+        "task_id": "cat2_synthetic_003",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 40% of 250?",
+        "reference_answer": "100",
+        "answer_aliases": [
+            "one hundred"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_003"
+    },
+    {
+        "task_id": "cat2_synthetic_004",
+        "category": "mathematical_reasoning",
+        "prompt": "A meal costs $50. If you leave a 20% tip, what is the total cost?",
+        "reference_answer": "$60",
+        "answer_aliases": [
+            "60",
+            "sixty dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_004"
+    },
+    {
+        "task_id": "cat2_synthetic_005",
+        "category": "mathematical_reasoning",
+        "prompt": "If a population of 500 grows by 10% in one year, what is the new population?",
+        "reference_answer": "550",
+        "answer_aliases": [
+            "five hundred fifty"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_005"
+    },
+    {
+        "task_id": "cat2_synthetic_006",
+        "category": "mathematical_reasoning",
+        "prompt": "A store marks up a $20 item by 50%. What is the selling price?",
+        "reference_answer": "$30",
+        "answer_aliases": [
+            "30",
+            "thirty dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_006"
+    },
+    {
+        "task_id": "cat2_synthetic_007",
+        "category": "mathematical_reasoning",
+        "prompt": "If an item's price drops from $100 to $80, what is the percentage decrease?",
+        "reference_answer": "20%",
+        "answer_aliases": [
+            "20 percent",
+            "twenty percent"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_007"
+    },
+    {
+        "task_id": "cat2_synthetic_008",
+        "category": "mathematical_reasoning",
+        "prompt": "Calculate an 8% sales tax on a $150 purchase.",
+        "reference_answer": "$12",
+        "answer_aliases": [
+            "12",
+            "twelve dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_008"
+    },
+    {
+        "task_id": "cat2_synthetic_009",
+        "category": "mathematical_reasoning",
+        "prompt": "An investment of $2000 earns 5% simple interest per year. How much interest is earned after 3 years?",
+        "reference_answer": "$300",
+        "answer_aliases": [
+            "300",
+            "three hundred dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_009"
+    },
+    {
+        "task_id": "cat2_synthetic_010",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the total amount in an account after 2 years if $1000 is invested at 10% interest compounded annually?",
+        "reference_answer": "$1210",
+        "answer_aliases": [
+            "1210",
+            "one thousand two hundred ten dollars"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_010"
+    },
+    {
+        "task_id": "cat2_synthetic_011",
+        "category": "mathematical_reasoning",
+        "prompt": "If a train travels 120 miles in 2 hours, what is its average speed in miles per hour?",
+        "reference_answer": "60 mph",
+        "answer_aliases": [
+            "60",
+            "sixty mph",
+            "60 miles per hour"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_011"
+    },
+    {
+        "task_id": "cat2_synthetic_012",
+        "category": "mathematical_reasoning",
+        "prompt": "A car travels at 50 mph. How long will it take to travel 175 miles?",
+        "reference_answer": "3.5 hours",
+        "answer_aliases": [
+            "3.5",
+            "three and a half hours",
+            "210 minutes"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_012"
+    },
+    {
+        "task_id": "cat2_synthetic_013",
+        "category": "mathematical_reasoning",
+        "prompt": "Alice can paint a room in 4 hours. Bob can paint it in 6 hours. How long does it take them working together?",
+        "reference_answer": "2.4 hours",
+        "answer_aliases": [
+            "2.4",
+            "2 hours and 24 minutes",
+            "12/5 hours"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_013"
+    },
+    {
+        "task_id": "cat2_synthetic_014",
+        "category": "mathematical_reasoning",
+        "prompt": "A recipe calls for 2 cups of flour for every 3 cups of sugar. If you use 6 cups of flour, how much sugar do you need?",
+        "reference_answer": "9 cups",
+        "answer_aliases": [
+            "9",
+            "nine cups"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_014"
+    },
+    {
+        "task_id": "cat2_synthetic_015",
+        "category": "mathematical_reasoning",
+        "prompt": "A map has a scale of 1 inch = 50 miles. If two cities are 4.5 inches apart on the map, what is the actual distance?",
+        "reference_answer": "225 miles",
+        "answer_aliases": [
+            "225",
+            "two hundred twenty-five miles"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_015"
+    },
+    {
+        "task_id": "cat2_synthetic_016",
+        "category": "mathematical_reasoning",
+        "prompt": "John is twice as old as his brother. In 5 years, the sum of their ages will be 34. How old is his brother now?",
+        "reference_answer": "8",
+        "answer_aliases": [
+            "8 years old",
+            "eight"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_016"
+    },
+    {
+        "task_id": "cat2_synthetic_017",
+        "category": "mathematical_reasoning",
+        "prompt": "If 3 apples cost $1.50, how much do 10 apples cost?",
+        "reference_answer": "$5.00",
+        "answer_aliases": [
+            "5",
+            "$5",
+            "five dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_017"
+    },
+    {
+        "task_id": "cat2_synthetic_018",
+        "category": "mathematical_reasoning",
+        "prompt": "You buy a shirt for $15, pants for $25, and shoes for $40. You have a $10 off coupon. What is your total?",
+        "reference_answer": "$70",
+        "answer_aliases": [
+            "70",
+            "seventy dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_018"
+    },
+    {
+        "task_id": "cat2_synthetic_019",
+        "category": "mathematical_reasoning",
+        "prompt": "A company projects its $50,000 monthly revenue will increase by 2% each month. What is the projected revenue for the second month?",
+        "reference_answer": "$51,000",
+        "answer_aliases": [
+            "51000",
+            "fifty-one thousand dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_019"
+    },
+    {
+        "task_id": "cat2_synthetic_020",
+        "category": "mathematical_reasoning",
+        "prompt": "You split a $120 bill evenly among 4 friends. How much does each person pay?",
+        "reference_answer": "$30",
+        "answer_aliases": [
+            "30",
+            "thirty dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_020"
+    },
+    {
+        "task_id": "cat2_synthetic_021",
+        "category": "mathematical_reasoning",
+        "prompt": "A water tank is 1/4 full. After adding 15 gallons, it is 5/8 full. What is the total capacity of the tank?",
+        "reference_answer": "40 gallons",
+        "answer_aliases": [
+            "40",
+            "forty gallons"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_021"
+    },
+    {
+        "task_id": "cat2_synthetic_022",
+        "category": "mathematical_reasoning",
+        "prompt": "If x + y = 10 and x - y = 4, what is the value of x?",
+        "reference_answer": "7",
+        "answer_aliases": [
+            "seven"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_022"
+    },
+    {
+        "task_id": "cat2_synthetic_023",
+        "category": "mathematical_reasoning",
+        "prompt": "A baker makes 48 cookies. He sells 3/4 of them. How many cookies does he have left?",
+        "reference_answer": "12",
+        "answer_aliases": [
+            "12 cookies",
+            "twelve"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_023"
+    },
+    {
+        "task_id": "cat2_synthetic_024",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the perimeter of a rectangle with a length of 12 cm and a width of 5 cm?",
+        "reference_answer": "34 cm",
+        "answer_aliases": [
+            "34",
+            "thirty-four centimeters"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_024"
+    },
+    {
+        "task_id": "cat2_synthetic_025",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the area of a triangle with a base of 10 units and a height of 8 units?",
+        "reference_answer": "40 square units",
+        "answer_aliases": [
+            "40",
+            "forty square units"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_025"
+    },
+    {
+        "task_id": "cat2_synthetic_026",
+        "category": "mathematical_reasoning",
+        "prompt": "A factory produces 500 widgets a day. If production drops by 12% on Tuesday, how many widgets are produced?",
+        "reference_answer": "440",
+        "answer_aliases": [
+            "440 widgets",
+            "four hundred forty"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_026"
+    },
+    {
+        "task_id": "cat2_synthetic_027",
+        "category": "mathematical_reasoning",
+        "prompt": "Calculate the average of these numbers: 10, 15, 20, 25, 30.",
+        "reference_answer": "20",
+        "answer_aliases": [
+            "twenty"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_027"
+    },
+    {
+        "task_id": "cat2_synthetic_028",
+        "category": "mathematical_reasoning",
+        "prompt": "A car depreciates by 10% each year. If it is bought for $20,000, what is its value after 2 years?",
+        "reference_answer": "$16,200",
+        "answer_aliases": [
+            "16200",
+            "sixteen thousand two hundred dollars"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_028"
+    },
+    {
+        "task_id": "cat2_synthetic_029",
+        "category": "mathematical_reasoning",
+        "prompt": "If a worker earns $15 per hour and works 40 hours a week, what is their gross pay for 4 weeks?",
+        "reference_answer": "$2,400",
+        "answer_aliases": [
+            "2400",
+            "two thousand four hundred dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_029"
+    },
+    {
+        "task_id": "cat2_synthetic_030",
+        "category": "mathematical_reasoning",
+        "prompt": "The ratio of boys to girls in a class is 3:2. If there are 15 boys, how many girls are there?",
+        "reference_answer": "10",
+        "answer_aliases": [
+            "10 girls",
+            "ten"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_030"
+    },
+    {
+        "task_id": "cat2_synthetic_031",
+        "category": "mathematical_reasoning",
+        "prompt": "A machine fills 120 bottles in 5 minutes. How many bottles does it fill in an hour?",
+        "reference_answer": "1440",
+        "answer_aliases": [
+            "1,440",
+            "one thousand four hundred forty"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_031"
+    },
+    {
+        "task_id": "cat2_synthetic_032",
+        "category": "mathematical_reasoning",
+        "prompt": "If 5 workers take 8 days to build a wall, how long will it take 4 workers assuming they work at the same rate?",
+        "reference_answer": "10 days",
+        "answer_aliases": [
+            "10",
+            "ten days"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_032"
+    },
+    {
+        "task_id": "cat2_synthetic_033",
+        "category": "mathematical_reasoning",
+        "prompt": "Find 15% of 60.",
+        "reference_answer": "9",
+        "answer_aliases": [
+            "nine"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_033"
+    },
+    {
+        "task_id": "cat2_synthetic_034",
+        "category": "mathematical_reasoning",
+        "prompt": "You read 30 pages in 45 minutes. At this rate, how many pages will you read in 3 hours?",
+        "reference_answer": "120",
+        "answer_aliases": [
+            "120 pages",
+            "one hundred twenty"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_034"
+    },
+    {
+        "task_id": "cat2_synthetic_035",
+        "category": "mathematical_reasoning",
+        "prompt": "Solve for x: 3x - 7 = 14.",
+        "reference_answer": "7",
+        "answer_aliases": [
+            "seven"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_035"
+    },
+    {
+        "task_id": "cat2_synthetic_036",
+        "category": "mathematical_reasoning",
+        "prompt": "A garden is 15 meters long and 10 meters wide. A 1-meter wide path is built inside around its border. What is the area of the path?",
+        "reference_answer": "46 square meters",
+        "answer_aliases": [
+            "46",
+            "forty-six square meters"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_036"
+    },
+    {
+        "task_id": "cat2_synthetic_037",
+        "category": "mathematical_reasoning",
+        "prompt": "If 2/5 of a number is 20, what is the number?",
+        "reference_answer": "50",
+        "answer_aliases": [
+            "fifty"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_037"
+    },
+    {
+        "task_id": "cat2_synthetic_038",
+        "category": "mathematical_reasoning",
+        "prompt": "You buy 4 notebooks at $2.50 each and 3 pens at $1.25 each. You pay with a $20 bill. How much change do you receive?",
+        "reference_answer": "$6.25",
+        "answer_aliases": [
+            "6.25",
+            "six dollars and twenty-five cents"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_038"
+    },
+    {
+        "task_id": "cat2_synthetic_039",
+        "category": "mathematical_reasoning",
+        "prompt": "A plane flies 600 miles against a headwind in 4 hours. It flies the same distance back with the tailwind in 3 hours. What is the speed of the plane in still air?",
+        "reference_answer": "175 mph",
+        "answer_aliases": [
+            "175",
+            "one hundred seventy-five mph"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_039"
+    },
+    {
+        "task_id": "cat2_synthetic_040",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the greatest common divisor of 36 and 48?",
+        "reference_answer": "12",
+        "answer_aliases": [
+            "twelve"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_040"
+    },
+    {
+        "task_id": "cat2_synthetic_041",
+        "category": "mathematical_reasoning",
+        "prompt": "A tank can be filled by pipe A in 10 minutes and by pipe B in 15 minutes. How long will it take to fill the tank if both pipes are open?",
+        "reference_answer": "6 minutes",
+        "answer_aliases": [
+            "6",
+            "six minutes"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_041"
+    },
+    {
+        "task_id": "cat2_synthetic_042",
+        "category": "mathematical_reasoning",
+        "prompt": "If a square has an area of 81 square inches, what is its perimeter?",
+        "reference_answer": "36 inches",
+        "answer_aliases": [
+            "36",
+            "thirty-six inches"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_042"
+    },
+    {
+        "task_id": "cat2_synthetic_043",
+        "category": "mathematical_reasoning",
+        "prompt": "The price of gas increases from $3.00 to $3.60. What is the percentage increase?",
+        "reference_answer": "20%",
+        "answer_aliases": [
+            "20",
+            "twenty percent"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_043"
+    },
+    {
+        "task_id": "cat2_synthetic_044",
+        "category": "mathematical_reasoning",
+        "prompt": "If a 15% discount saves you $12, what was the original price?",
+        "reference_answer": "$80",
+        "answer_aliases": [
+            "80",
+            "eighty dollars"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_044"
+    },
+    {
+        "task_id": "cat2_synthetic_045",
+        "category": "mathematical_reasoning",
+        "prompt": "Convert 72 miles per hour to feet per second. (1 mile = 5280 feet)",
+        "reference_answer": "105.6 feet per second",
+        "answer_aliases": [
+            "105.6",
+            "105.6 fps"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_045"
+    },
+    {
+        "task_id": "cat2_synthetic_046",
+        "category": "mathematical_reasoning",
+        "prompt": "Tom is 4 years older than Jerry. Five years ago, Tom was twice as old as Jerry. How old is Tom now?",
+        "reference_answer": "13",
+        "answer_aliases": [
+            "13 years old",
+            "thirteen"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_046"
+    },
+    {
+        "task_id": "cat2_synthetic_047",
+        "category": "mathematical_reasoning",
+        "prompt": "If 7x - 3 = 18, solve for x.",
+        "reference_answer": "3",
+        "answer_aliases": [
+            "three"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_047"
+    },
+    {
+        "task_id": "cat2_synthetic_048",
+        "category": "mathematical_reasoning",
+        "prompt": "A train 100 meters long is traveling at 90 km/hr. How long will it take to cross a pole?",
+        "reference_answer": "4 seconds",
+        "answer_aliases": [
+            "4",
+            "four seconds"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_048"
+    },
+    {
+        "task_id": "cat2_synthetic_049",
+        "category": "mathematical_reasoning",
+        "prompt": "A mixture of 40 liters of milk and water contains 10% water. How much water must be added to make it 20% water?",
+        "reference_answer": "5 liters",
+        "answer_aliases": [
+            "5",
+            "five liters"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_049"
+    },
+    {
+        "task_id": "cat2_synthetic_050",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the sum of the interior angles of a hexagon?",
+        "reference_answer": "720 degrees",
+        "answer_aliases": [
+            "720",
+            "seven hundred twenty degrees"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_050"
+    },
+    {
+        "task_id": "cat2_synthetic_051",
+        "category": "mathematical_reasoning",
+        "prompt": "If a dozen eggs cost $3.60, how much do 5 eggs cost?",
+        "reference_answer": "$1.50",
+        "answer_aliases": [
+            "1.50",
+            "one dollar and fifty cents"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_051"
+    },
+    {
+        "task_id": "cat2_synthetic_052",
+        "category": "mathematical_reasoning",
+        "prompt": "A student scores 75, 80, 85, and 90 on four tests. What must they score on the fifth test to average 84?",
+        "reference_answer": "90",
+        "answer_aliases": [
+            "ninety"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_052"
+    },
+    {
+        "task_id": "cat2_synthetic_053",
+        "category": "mathematical_reasoning",
+        "prompt": "If the radius of a circle is doubled, by what factor does its area increase?",
+        "reference_answer": "4",
+        "answer_aliases": [
+            "four",
+            "4 times"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_053"
+    },
+    {
+        "task_id": "cat2_synthetic_054",
+        "category": "mathematical_reasoning",
+        "prompt": "The sum of three consecutive integers is 45. What is the largest integer?",
+        "reference_answer": "16",
+        "answer_aliases": [
+            "sixteen"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_054"
+    },
+    {
+        "task_id": "cat2_synthetic_055",
+        "category": "mathematical_reasoning",
+        "prompt": "A company produces 200 items for a total cost of $500. What is the cost per item?",
+        "reference_answer": "$2.50",
+        "answer_aliases": [
+            "2.5",
+            "2.50",
+            "two dollars and fifty cents"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_055"
+    },
+    {
+        "task_id": "cat2_synthetic_056",
+        "category": "mathematical_reasoning",
+        "prompt": "You invest $500 in a stock that drops 20% in the first year, then rises 25% in the second year. What is your final amount?",
+        "reference_answer": "$500",
+        "answer_aliases": [
+            "500",
+            "five hundred dollars"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_056"
+    },
+    {
+        "task_id": "cat2_synthetic_057",
+        "category": "mathematical_reasoning",
+        "prompt": "How many seconds are in 2.5 hours?",
+        "reference_answer": "9000",
+        "answer_aliases": [
+            "9000 seconds",
+            "nine thousand seconds"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_057"
+    },
+    {
+        "task_id": "cat2_synthetic_058",
+        "category": "mathematical_reasoning",
+        "prompt": "If 3y + 9 = 24, what is the value of y?",
+        "reference_answer": "5",
+        "answer_aliases": [
+            "five"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_058"
+    },
+    {
+        "task_id": "cat2_synthetic_059",
+        "category": "mathematical_reasoning",
+        "prompt": "A TV is $600 plus 5% tax. How much is the final bill?",
+        "reference_answer": "$630",
+        "answer_aliases": [
+            "630",
+            "six hundred thirty dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_059"
+    },
+    {
+        "task_id": "cat2_synthetic_060",
+        "category": "mathematical_reasoning",
+        "prompt": "Sarah is currently 12 years old, and her father is 36. In how many years will her father be twice as old as Sarah?",
+        "reference_answer": "12",
+        "answer_aliases": [
+            "12 years",
+            "twelve"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_060"
+    },
+    {
+        "task_id": "cat2_synthetic_061",
+        "category": "mathematical_reasoning",
+        "prompt": "The probability of drawing a red card from a standard deck is 1/2. If you replace the card each time, what is the probability of drawing a red card 3 times in a row?",
+        "reference_answer": "1/8",
+        "answer_aliases": [
+            "12.5%",
+            "0.125",
+            "one eighth"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_061"
+    },
+    {
+        "task_id": "cat2_synthetic_062",
+        "category": "mathematical_reasoning",
+        "prompt": "Find the hypotenuse of a right triangle with legs of 6 cm and 8 cm.",
+        "reference_answer": "10 cm",
+        "answer_aliases": [
+            "10",
+            "ten centimeters"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_062"
+    },
+    {
+        "task_id": "cat2_synthetic_063",
+        "category": "mathematical_reasoning",
+        "prompt": "A bicycle wheel has a radius of 14 inches. What is its circumference? (Use pi = 22/7)",
+        "reference_answer": "88 inches",
+        "answer_aliases": [
+            "88",
+            "eighty-eight inches"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_063"
+    },
+    {
+        "task_id": "cat2_synthetic_064",
+        "category": "mathematical_reasoning",
+        "prompt": "If a pool loses 2 gallons of water an hour due to a leak, how many gallons will it lose in 3 days?",
+        "reference_answer": "144 gallons",
+        "answer_aliases": [
+            "144",
+            "one hundred forty-four"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_064"
+    },
+    {
+        "task_id": "cat2_synthetic_065",
+        "category": "mathematical_reasoning",
+        "prompt": "Evaluate the expression: 4 + 5 * 2 - 3.",
+        "reference_answer": "11",
+        "answer_aliases": [
+            "eleven"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_065"
+    },
+    {
+        "task_id": "cat2_synthetic_066",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 150% of 80?",
+        "reference_answer": "120",
+        "answer_aliases": [
+            "one hundred twenty"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_066"
+    },
+    {
+        "task_id": "cat2_synthetic_067",
+        "category": "mathematical_reasoning",
+        "prompt": "A company projects 5% growth in users per quarter. If they have 10,000 users now, how many will they have after 2 quarters? (Round to nearest whole number)",
+        "reference_answer": "11,025",
+        "answer_aliases": [
+            "11025",
+            "eleven thousand twenty-five"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_067"
+    },
+    {
+        "task_id": "cat2_synthetic_068",
+        "category": "mathematical_reasoning",
+        "prompt": "Two angles of a triangle measure 45 degrees and 60 degrees. What is the measure of the third angle?",
+        "reference_answer": "75 degrees",
+        "answer_aliases": [
+            "75",
+            "seventy-five degrees"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_068"
+    },
+    {
+        "task_id": "cat2_synthetic_069",
+        "category": "mathematical_reasoning",
+        "prompt": "A rectangular box is 5 cm long, 4 cm wide, and 3 cm high. What is its volume?",
+        "reference_answer": "60 cubic cm",
+        "answer_aliases": [
+            "60",
+            "sixty cubic centimeters"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_069"
+    },
+    {
+        "task_id": "cat2_synthetic_070",
+        "category": "mathematical_reasoning",
+        "prompt": "If you buy 3 apples for $1.00, how many apples can you buy for $5.00?",
+        "reference_answer": "15 apples",
+        "answer_aliases": [
+            "15",
+            "fifteen"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_070"
+    },
+    {
+        "task_id": "cat2_synthetic_071",
+        "category": "mathematical_reasoning",
+        "prompt": "If 8 men can harvest a field in 6 days, how many men are needed to harvest the field in 4 days?",
+        "reference_answer": "12 men",
+        "answer_aliases": [
+            "12",
+            "twelve"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_071"
+    },
+    {
+        "task_id": "cat2_synthetic_072",
+        "category": "mathematical_reasoning",
+        "prompt": "A shirt is originally $50. It goes on sale for 20% off, and then an additional 10% off the sale price. What is the final price?",
+        "reference_answer": "$36",
+        "answer_aliases": [
+            "36",
+            "thirty-six dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_072"
+    },
+    {
+        "task_id": "cat2_synthetic_073",
+        "category": "mathematical_reasoning",
+        "prompt": "A train travels at 80 km/h. How many kilometers will it travel in 45 minutes?",
+        "reference_answer": "60 km",
+        "answer_aliases": [
+            "60",
+            "sixty kilometers"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_073"
+    },
+    {
+        "task_id": "cat2_synthetic_074",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the least common multiple of 4, 6, and 8?",
+        "reference_answer": "24",
+        "answer_aliases": [
+            "twenty-four"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_074"
+    },
+    {
+        "task_id": "cat2_synthetic_075",
+        "category": "mathematical_reasoning",
+        "prompt": "If a rectangle has a perimeter of 40 and its length is 3 times its width, what is the width?",
+        "reference_answer": "5",
+        "answer_aliases": [
+            "five"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_075"
+    },
+    {
+        "task_id": "cat2_synthetic_076",
+        "category": "mathematical_reasoning",
+        "prompt": "A car uses 5 gallons of gas to travel 120 miles. How many gallons will it need to travel 300 miles?",
+        "reference_answer": "12.5 gallons",
+        "answer_aliases": [
+            "12.5",
+            "twelve and a half"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_076"
+    },
+    {
+        "task_id": "cat2_synthetic_077",
+        "category": "mathematical_reasoning",
+        "prompt": "What is 3/4 of 1/2 of 16?",
+        "reference_answer": "6",
+        "answer_aliases": [
+            "six"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_077"
+    },
+    {
+        "task_id": "cat2_synthetic_078",
+        "category": "mathematical_reasoning",
+        "prompt": "A phone battery loses 10% charge per hour while streaming. If it starts at 100%, what is the charge after 3 hours of streaming?",
+        "reference_answer": "70%",
+        "answer_aliases": [
+            "70",
+            "seventy percent"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_078"
+    },
+    {
+        "task_id": "cat2_synthetic_079",
+        "category": "mathematical_reasoning",
+        "prompt": "At a 40% discount, a pair of shoes costs $48. What was the original price?",
+        "reference_answer": "$80",
+        "answer_aliases": [
+            "80",
+            "eighty dollars"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_079"
+    },
+    {
+        "task_id": "cat2_synthetic_080",
+        "category": "mathematical_reasoning",
+        "prompt": "If a project is 30% complete and 12 days have passed, how many more days will it take to finish the remaining 70% at the same rate?",
+        "reference_answer": "28 days",
+        "answer_aliases": [
+            "28",
+            "twenty-eight days"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_080"
+    },
+    {
+        "task_id": "cat2_synthetic_081",
+        "category": "mathematical_reasoning",
+        "prompt": "If x/4 = 7, what is x?",
+        "reference_answer": "28",
+        "answer_aliases": [
+            "twenty-eight"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_081"
+    },
+    {
+        "task_id": "cat2_synthetic_082",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the square root of 144 plus the square root of 25?",
+        "reference_answer": "17",
+        "answer_aliases": [
+            "seventeen"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_082"
+    },
+    {
+        "task_id": "cat2_synthetic_083",
+        "category": "mathematical_reasoning",
+        "prompt": "A baker buys flour in 5 kg bags. If he needs 18 kg of flour, how many bags must he buy?",
+        "reference_answer": "4",
+        "answer_aliases": [
+            "4 bags",
+            "four"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_083"
+    },
+    {
+        "task_id": "cat2_synthetic_084",
+        "category": "mathematical_reasoning",
+        "prompt": "What is the difference between 30% of 200 and 20% of 300?",
+        "reference_answer": "0",
+        "answer_aliases": [
+            "zero"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_084"
+    },
+    {
+        "task_id": "cat2_synthetic_085",
+        "category": "mathematical_reasoning",
+        "prompt": "A runner finishes a 5 km race in 25 minutes. What is their pace in minutes per kilometer?",
+        "reference_answer": "5 minutes per km",
+        "answer_aliases": [
+            "5",
+            "five"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_085"
+    },
+    {
+        "task_id": "cat2_synthetic_086",
+        "category": "mathematical_reasoning",
+        "prompt": "You borrow $1000 at 5% simple interest per year. If you repay it after 6 months, how much interest do you pay?",
+        "reference_answer": "$25",
+        "answer_aliases": [
+            "25",
+            "twenty-five dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_086"
+    },
+    {
+        "task_id": "cat2_synthetic_087",
+        "category": "mathematical_reasoning",
+        "prompt": "A tank contains 500 liters of water. 15% evaporates over a week. How many liters remain?",
+        "reference_answer": "425 liters",
+        "answer_aliases": [
+            "425",
+            "four hundred twenty-five"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_087"
+    },
+    {
+        "task_id": "cat2_synthetic_088",
+        "category": "mathematical_reasoning",
+        "prompt": "A clock shows 3:15. What is the angle between the hour and minute hands?",
+        "reference_answer": "7.5 degrees",
+        "answer_aliases": [
+            "7.5",
+            "seven point five degrees"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_088"
+    },
+    {
+        "task_id": "cat2_synthetic_089",
+        "category": "mathematical_reasoning",
+        "prompt": "You buy a $5 coffee every weekday. How much do you spend in 4 weeks?",
+        "reference_answer": "$100",
+        "answer_aliases": [
+            "100",
+            "one hundred dollars"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_089"
+    },
+    {
+        "task_id": "cat2_synthetic_090",
+        "category": "mathematical_reasoning",
+        "prompt": "A team wins 12 games, loses 6, and ties 2. What percentage of their games did they win?",
+        "reference_answer": "60%",
+        "answer_aliases": [
+            "60",
+            "sixty percent"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_090"
+    },
+    {
+        "task_id": "cat2_synthetic_091",
+        "category": "mathematical_reasoning",
+        "prompt": "If a square's side length is tripled, by what factor does its perimeter increase?",
+        "reference_answer": "3",
+        "answer_aliases": [
+            "three",
+            "3 times"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_091"
+    },
+    {
+        "task_id": "cat2_synthetic_092",
+        "category": "mathematical_reasoning",
+        "prompt": "A toy costs $8 wholesale and is sold for $14. What is the profit margin percentage based on the cost?",
+        "reference_answer": "75%",
+        "answer_aliases": [
+            "75",
+            "seventy-five percent"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_092"
+    },
+    {
+        "task_id": "cat2_synthetic_093",
+        "category": "mathematical_reasoning",
+        "prompt": "If 5 apples and 4 bananas cost $4.50, and 1 apple costs $0.50, how much does 1 banana cost?",
+        "reference_answer": "$0.50",
+        "answer_aliases": [
+            "50 cents",
+            "0.5"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_093"
+    },
+    {
+        "task_id": "cat2_synthetic_094",
+        "category": "mathematical_reasoning",
+        "prompt": "In a class of 30, 18 students are girls. What is the ratio of boys to girls in simplest form?",
+        "reference_answer": "2:3",
+        "answer_aliases": [
+            "2 to 3"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_094"
+    },
+    {
+        "task_id": "cat2_synthetic_095",
+        "category": "mathematical_reasoning",
+        "prompt": "A plant grows 2 cm a day. How long will it take to grow from 10 cm to 34 cm?",
+        "reference_answer": "12 days",
+        "answer_aliases": [
+            "12",
+            "twelve days"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_095"
+    },
+    {
+        "task_id": "cat2_synthetic_096",
+        "category": "mathematical_reasoning",
+        "prompt": "Find the median of the following set: 3, 7, 11, 15, 19, 23.",
+        "reference_answer": "13",
+        "answer_aliases": [
+            "thirteen"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_096"
+    },
+    {
+        "task_id": "cat2_synthetic_097",
+        "category": "mathematical_reasoning",
+        "prompt": "If x = 4 and y = -2, evaluate 3x^2 + 2y.",
+        "reference_answer": "44",
+        "answer_aliases": [
+            "forty-four"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_097"
+    },
+    {
+        "task_id": "cat2_synthetic_098",
+        "category": "mathematical_reasoning",
+        "prompt": "A company reduces its staff of 120 by 15%. How many employees are left?",
+        "reference_answer": "102",
+        "answer_aliases": [
+            "102 employees",
+            "one hundred two"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_098"
+    },
+    {
+        "task_id": "cat2_synthetic_099",
+        "category": "mathematical_reasoning",
+        "prompt": "A boat travels 15 miles downstream in 1 hour and takes 1.5 hours to travel back upstream. What is the speed of the current?",
+        "reference_answer": "2.5 mph",
+        "answer_aliases": [
+            "2.5",
+            "two and a half mph"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_099"
+    },
+    {
+        "task_id": "cat2_synthetic_100",
+        "category": "mathematical_reasoning",
+        "prompt": "You are making a 20% down payment on a $250,000 house. How much is your loan amount?",
+        "reference_answer": "$200,000",
+        "answer_aliases": [
+            "200000",
+            "two hundred thousand dollars"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_100"
+    }
+]

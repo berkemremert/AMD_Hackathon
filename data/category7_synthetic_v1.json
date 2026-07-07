@@ -1,0 +1,1279 @@
+[
+    {
+        "task_id": "cat7_synthetic_001",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Alice is taller than Bob. Bob is taller than Charlie. Who is the tallest?",
+        "reference_answer": "Alice is the tallest.",
+        "answer_aliases": [
+            "Alice"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_001"
+    },
+    {
+        "task_id": "cat7_synthetic_002",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Alice is taller than Bob. Bob is taller than Charlie. Who is the shortest?",
+        "reference_answer": "Charlie is the shortest.",
+        "answer_aliases": [
+            "Charlie"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_002"
+    },
+    {
+        "task_id": "cat7_synthetic_003",
+        "category": "logical_deductive_reasoning",
+        "prompt": "David is older than Eve. Eve is older than Frank. Is David older than Frank?",
+        "reference_answer": "Yes, David is older than Frank.",
+        "answer_aliases": [
+            "Yes"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_003"
+    },
+    {
+        "task_id": "cat7_synthetic_004",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Car X is faster than Car Y. Car Z is faster than Car X. Which car is the slowest?",
+        "reference_answer": "Car Y is the slowest.",
+        "answer_aliases": [
+            "Car Y",
+            "Y"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_004"
+    },
+    {
+        "task_id": "cat7_synthetic_005",
+        "category": "logical_deductive_reasoning",
+        "prompt": "X is heavier than Y. Y is heavier than Z. Z is heavier than W. Who is the heaviest?",
+        "reference_answer": "X is the heaviest.",
+        "answer_aliases": [
+            "X"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_005"
+    },
+    {
+        "task_id": "cat7_synthetic_006",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If Monday is before Tuesday, and Tuesday is before Wednesday, what day comes immediately after Monday?",
+        "reference_answer": "Tuesday.",
+        "answer_aliases": [
+            "Tuesday"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_006"
+    },
+    {
+        "task_id": "cat7_synthetic_007",
+        "category": "logical_deductive_reasoning",
+        "prompt": "All blips are blops. All blops are blurps. Are all blips blurps?",
+        "reference_answer": "Yes, all blips are blurps.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_007"
+    },
+    {
+        "task_id": "cat7_synthetic_008",
+        "category": "logical_deductive_reasoning",
+        "prompt": "No cats are dogs. All dogs are mammals. Can we logically conclude that no cats are mammals?",
+        "reference_answer": "No, we cannot conclude that.",
+        "answer_aliases": [
+            "No",
+            "False"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_008"
+    },
+    {
+        "task_id": "cat7_synthetic_009",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If it rains, the ground gets wet. The ground is wet. Did it necessarily rain?",
+        "reference_answer": "No, the ground could be wet for another reason.",
+        "answer_aliases": [
+            "No"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_009"
+    },
+    {
+        "task_id": "cat7_synthetic_010",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If A implies B, and B implies C. Does A imply C?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_010"
+    },
+    {
+        "task_id": "cat7_synthetic_011",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Team A beat Team B. Team C lost to Team B. Who won the game between Team A and Team C if transitivity holds?",
+        "reference_answer": "Team A.",
+        "answer_aliases": [
+            "Team A",
+            "A"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_011"
+    },
+    {
+        "task_id": "cat7_synthetic_012",
+        "category": "logical_deductive_reasoning",
+        "prompt": "You have three boxes: Red, Blue, and Green. The prize is not in the Green box. The prize is not in the Blue box. Where is the prize?",
+        "reference_answer": "The prize is in the Red box.",
+        "answer_aliases": [
+            "Red box",
+            "Red"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_012"
+    },
+    {
+        "task_id": "cat7_synthetic_013",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Four friends sit in a row. Anna is next to Ben. Ben is next to Chris. Dana is on the far right. Who is on the far left?",
+        "reference_answer": "Anna.",
+        "answer_aliases": [
+            "Anna"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_013"
+    },
+    {
+        "task_id": "cat7_synthetic_014",
+        "category": "logical_deductive_reasoning",
+        "prompt": "I am looking at a picture of someone. My father has no brothers or sisters. The person in the picture's father is my father's son. Who is in the picture?",
+        "reference_answer": "The speaker's child (son or daughter).",
+        "answer_aliases": [
+            "My son",
+            "My child",
+            "Their son",
+            "Their child"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_014"
+    },
+    {
+        "task_id": "cat7_synthetic_015",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If some A are B, and all B are C, are some A definitely C?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_015"
+    },
+    {
+        "task_id": "cat7_synthetic_016",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If every zarg is a borg, and no borgs are kals, can a zarg be a kal?",
+        "reference_answer": "No.",
+        "answer_aliases": [
+            "No",
+            "False"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_016"
+    },
+    {
+        "task_id": "cat7_synthetic_017",
+        "category": "logical_deductive_reasoning",
+        "prompt": "John runs faster than Paul. George runs slower than Paul. Ringo runs faster than John. Who is the slowest?",
+        "reference_answer": "George.",
+        "answer_aliases": [
+            "George"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_017"
+    },
+    {
+        "task_id": "cat7_synthetic_018",
+        "category": "logical_deductive_reasoning",
+        "prompt": "There are three keys: Silver, Gold, and Iron. The Iron key does not open Door 1. The Gold key opens Door 3. Which key opens Door 2 if each opens exactly one door?",
+        "reference_answer": "The Iron key.",
+        "answer_aliases": [
+            "Iron key",
+            "Iron"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_018"
+    },
+    {
+        "task_id": "cat7_synthetic_019",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Room A is north of Room B. Room B is north of Room C. Is Room C south of Room A?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_019"
+    },
+    {
+        "task_id": "cat7_synthetic_020",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Task 1 must be done before Task 2. Task 3 must be done after Task 2. Which task is done first?",
+        "reference_answer": "Task 1.",
+        "answer_aliases": [
+            "Task 1",
+            "1"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_020"
+    },
+    {
+        "task_id": "cat7_synthetic_021",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Task 1 must be done before Task 2. Task 3 must be done after Task 2. Which task is done last?",
+        "reference_answer": "Task 3.",
+        "answer_aliases": [
+            "Task 3",
+            "3"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_021"
+    },
+    {
+        "task_id": "cat7_synthetic_022",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A is next to B. B is next to C. C is next to D. If A is on the far left, who is on the far right?",
+        "reference_answer": "D.",
+        "answer_aliases": [
+            "D"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_022"
+    },
+    {
+        "task_id": "cat7_synthetic_023",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If you are in a race and you pass the person in second place, what place are you in?",
+        "reference_answer": "Second place.",
+        "answer_aliases": [
+            "Second place",
+            "Second",
+            "2nd"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_023"
+    },
+    {
+        "task_id": "cat7_synthetic_024",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If you pass the person in last place in a race, what place are you in?",
+        "reference_answer": "This is logically impossible; you cannot pass the person in last place.",
+        "answer_aliases": [
+            "Impossible",
+            "You can't"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_024"
+    },
+    {
+        "task_id": "cat7_synthetic_025",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Person A always lies. Person B always tells the truth. Person A says, 'Person B is a liar.' Is Person A telling the truth?",
+        "reference_answer": "No, Person A always lies.",
+        "answer_aliases": [
+            "No"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_025"
+    },
+    {
+        "task_id": "cat7_synthetic_026",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?",
+        "reference_answer": "$0.05",
+        "answer_aliases": [
+            "5 cents",
+            "0.05"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_026"
+    },
+    {
+        "task_id": "cat7_synthetic_027",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Three people (X, Y, Z) wear three hats (Red, Blue, Green). X does not wear Red. Y wears Green. What color does Z wear?",
+        "reference_answer": "Red.",
+        "answer_aliases": [
+            "Red"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_027"
+    },
+    {
+        "task_id": "cat7_synthetic_028",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Three people (X, Y, Z) wear three hats (Red, Blue, Green). X does not wear Red. Y wears Green. What color does X wear?",
+        "reference_answer": "Blue.",
+        "answer_aliases": [
+            "Blue"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_028"
+    },
+    {
+        "task_id": "cat7_synthetic_029",
+        "category": "logical_deductive_reasoning",
+        "prompt": "In a drawer, there are 10 black socks and 10 white socks. You are blindfolded. What is the minimum number of socks you must pull out to guarantee a matching pair?",
+        "reference_answer": "3 socks.",
+        "answer_aliases": [
+            "3",
+            "Three"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_029"
+    },
+    {
+        "task_id": "cat7_synthetic_030",
+        "category": "logical_deductive_reasoning",
+        "prompt": "All squares are rectangles. All rectangles are polygons. Are all squares polygons?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_030"
+    },
+    {
+        "task_id": "cat7_synthetic_031",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A happens before B. C happens before A. D happens after B. What is the correct chronological order of these events?",
+        "reference_answer": "C, A, B, D.",
+        "answer_aliases": [
+            "C A B D",
+            "C,A,B,D"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_031"
+    },
+    {
+        "task_id": "cat7_synthetic_032",
+        "category": "logical_deductive_reasoning",
+        "prompt": "The red house is next to the blue house. The green house is to the left of the red house. The blue house is on the far right. What is the order of houses from left to right?",
+        "reference_answer": "Green, Red, Blue.",
+        "answer_aliases": [
+            "Green Red Blue",
+            "Green, Red, Blue"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_032"
+    },
+    {
+        "task_id": "cat7_synthetic_033",
+        "category": "logical_deductive_reasoning",
+        "prompt": "P > Q. R < Q. S > P. Sort P, Q, R, S from largest to smallest.",
+        "reference_answer": "S, P, Q, R.",
+        "answer_aliases": [
+            "S P Q R",
+            "S, P, Q, R",
+            "S>P>Q>R"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_033"
+    },
+    {
+        "task_id": "cat7_synthetic_034",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If it is snowing, then it is cold. It is not cold. Is it snowing?",
+        "reference_answer": "No, it is not snowing.",
+        "answer_aliases": [
+            "No",
+            "False"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_034"
+    },
+    {
+        "task_id": "cat7_synthetic_035",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If it is snowing, then it is cold. It is cold. Is it definitely snowing?",
+        "reference_answer": "No, it could be cold without snowing.",
+        "answer_aliases": [
+            "No",
+            "False"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_035"
+    },
+    {
+        "task_id": "cat7_synthetic_036",
+        "category": "logical_deductive_reasoning",
+        "prompt": "M is the brother of N. N is the sister of O. O is the father of P. How is M related to P?",
+        "reference_answer": "M is P's uncle.",
+        "answer_aliases": [
+            "Uncle"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_036"
+    },
+    {
+        "task_id": "cat7_synthetic_037",
+        "category": "logical_deductive_reasoning",
+        "prompt": "City A is east of City B. City C is west of City B. Which city is the furthest east?",
+        "reference_answer": "City A.",
+        "answer_aliases": [
+            "City A",
+            "A"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_037"
+    },
+    {
+        "task_id": "cat7_synthetic_038",
+        "category": "logical_deductive_reasoning",
+        "prompt": "No A are B. Some C are A. Therefore, some C are not B. Is this conclusion logically valid?",
+        "reference_answer": "Yes, it is valid.",
+        "answer_aliases": [
+            "Yes",
+            "True",
+            "Valid"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_038"
+    },
+    {
+        "task_id": "cat7_synthetic_039",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A recipe requires flour before sugar, and butter after sugar. Which ingredient is added first?",
+        "reference_answer": "Flour.",
+        "answer_aliases": [
+            "Flour"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_039"
+    },
+    {
+        "task_id": "cat7_synthetic_040",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Tom is taller than Jerry but shorter than Spike. Tyke is shorter than Jerry. Who is the tallest?",
+        "reference_answer": "Spike.",
+        "answer_aliases": [
+            "Spike"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_040"
+    },
+    {
+        "task_id": "cat7_synthetic_041",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A train leaves at 3:00 PM. The journey takes 2 hours. It is delayed by 1 hour. What time does it arrive?",
+        "reference_answer": "6:00 PM.",
+        "answer_aliases": [
+            "6:00 PM",
+            "6 PM",
+            "18:00"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_041"
+    },
+    {
+        "task_id": "cat7_synthetic_042",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Only green objects are permitted. Object X is a permitted object. What color is Object X?",
+        "reference_answer": "Green.",
+        "answer_aliases": [
+            "Green"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_042"
+    },
+    {
+        "task_id": "cat7_synthetic_043",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If X = Y, and Y = Z, and Z = 5. What is X?",
+        "reference_answer": "5.",
+        "answer_aliases": [
+            "5",
+            "Five"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_043"
+    },
+    {
+        "task_id": "cat7_synthetic_044",
+        "category": "logical_deductive_reasoning",
+        "prompt": "You are facing North. You turn 90 degrees clockwise, then 180 degrees counter-clockwise. What direction are you facing?",
+        "reference_answer": "West.",
+        "answer_aliases": [
+            "West"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_044"
+    },
+    {
+        "task_id": "cat7_synthetic_045",
+        "category": "logical_deductive_reasoning",
+        "prompt": "The book is on the table. The table is in the kitchen. Is the book in the kitchen?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_045"
+    },
+    {
+        "task_id": "cat7_synthetic_046",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Box A is inside Box B. Box B is inside Box C. Which box is the largest?",
+        "reference_answer": "Box C.",
+        "answer_aliases": [
+            "Box C",
+            "C"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_046"
+    },
+    {
+        "task_id": "cat7_synthetic_047",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If all birds can fly, and a penguin is a bird, does deductive logic conclude a penguin can fly?",
+        "reference_answer": "Yes, based strictly on those premises.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_047"
+    },
+    {
+        "task_id": "cat7_synthetic_048",
+        "category": "logical_deductive_reasoning",
+        "prompt": "In a race, Dan finished before Ed but after Frank. Greg finished before Frank. Who finished second?",
+        "reference_answer": "Frank.",
+        "answer_aliases": [
+            "Frank"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_048"
+    },
+    {
+        "task_id": "cat7_synthetic_049",
+        "category": "logical_deductive_reasoning",
+        "prompt": "In a race, Dan finished before Ed but after Frank. Greg finished before Frank. Who won?",
+        "reference_answer": "Greg.",
+        "answer_aliases": [
+            "Greg"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_049"
+    },
+    {
+        "task_id": "cat7_synthetic_050",
+        "category": "logical_deductive_reasoning",
+        "prompt": "In a race, Dan finished before Ed but after Frank. Greg finished before Frank. Who came in last?",
+        "reference_answer": "Ed.",
+        "answer_aliases": [
+            "Ed"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_050"
+    },
+    {
+        "task_id": "cat7_synthetic_051",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A fruit basket has apples, bananas, and oranges. The fruit you pick is not an apple and not round. What did you pick?",
+        "reference_answer": "Banana.",
+        "answer_aliases": [
+            "A banana",
+            "Bananas"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_051"
+    },
+    {
+        "task_id": "cat7_synthetic_052",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If 1=A, 2=B, 3=C, what does 2,1,3 spell?",
+        "reference_answer": "BAC.",
+        "answer_aliases": [
+            "BAC"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_052"
+    },
+    {
+        "task_id": "cat7_synthetic_053",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If 1=A, 2=B, 3=C, what does 3,1,2 spell?",
+        "reference_answer": "CAB.",
+        "answer_aliases": [
+            "CAB"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_053"
+    },
+    {
+        "task_id": "cat7_synthetic_054",
+        "category": "logical_deductive_reasoning",
+        "prompt": "All humans are mortal. Socrates is a human. Therefore, Socrates is mortal. Is this valid?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True",
+            "Valid"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_054"
+    },
+    {
+        "task_id": "cat7_synthetic_055",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If Monday is 1, Tuesday is 2, what is Friday?",
+        "reference_answer": "5.",
+        "answer_aliases": [
+            "5",
+            "Five"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_055"
+    },
+    {
+        "task_id": "cat7_synthetic_056",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Event X happens at 10 AM. Event Y happens 2 hours after Event X. Event Z happens 1 hour before Event Y. When is Event Z?",
+        "reference_answer": "11 AM.",
+        "answer_aliases": [
+            "11:00 AM",
+            "11 AM"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_056"
+    },
+    {
+        "task_id": "cat7_synthetic_057",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A lock has a 3-digit code. The first digit is 1. The second digit is double the first. The third digit is the sum of the first two. What is the code?",
+        "reference_answer": "123.",
+        "answer_aliases": [
+            "123"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_057"
+    },
+    {
+        "task_id": "cat7_synthetic_058",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A lock has a 3-digit code. The first digit is 2. The second is double the first. The third is the second minus the first. What is the code?",
+        "reference_answer": "242.",
+        "answer_aliases": [
+            "242"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_058"
+    },
+    {
+        "task_id": "cat7_synthetic_059",
+        "category": "logical_deductive_reasoning",
+        "prompt": "There are four doors. Only door 3 is safe. You cannot enter door 1 or 2. Which door do you choose?",
+        "reference_answer": "Door 3.",
+        "answer_aliases": [
+            "Door 3",
+            "3"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_059"
+    },
+    {
+        "task_id": "cat7_synthetic_060",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Of 3 suspects, one is guilty. A says 'B did it.' B says 'I didn't do it.' C says 'I didn't do it.' If exactly one is telling the truth, who is guilty?",
+        "reference_answer": "C.",
+        "answer_aliases": [
+            "C",
+            "Suspect C"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_060"
+    },
+    {
+        "task_id": "cat7_synthetic_061",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If every rose is a flower, and some flowers fade quickly, does it mean some roses fade quickly?",
+        "reference_answer": "No, it is not logically guaranteed.",
+        "answer_aliases": [
+            "No",
+            "Not necessarily"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_061"
+    },
+    {
+        "task_id": "cat7_synthetic_062",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Person X is heavier than Person Y. Person Z is lighter than Person Y. Sort them from heaviest to lightest.",
+        "reference_answer": "X, Y, Z.",
+        "answer_aliases": [
+            "X,Y,Z",
+            "X Y Z",
+            "X, Y, Z"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_062"
+    },
+    {
+        "task_id": "cat7_synthetic_063",
+        "category": "logical_deductive_reasoning",
+        "prompt": "You are facing East. You turn left 90 degrees. What direction are you facing?",
+        "reference_answer": "North.",
+        "answer_aliases": [
+            "North"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_063"
+    },
+    {
+        "task_id": "cat7_synthetic_064",
+        "category": "logical_deductive_reasoning",
+        "prompt": "You are facing South. You turn right 90 degrees. What direction are you facing?",
+        "reference_answer": "West.",
+        "answer_aliases": [
+            "West"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_064"
+    },
+    {
+        "task_id": "cat7_synthetic_065",
+        "category": "logical_deductive_reasoning",
+        "prompt": "I have three pets: a dog, a cat, and a bird. Their names are Max, Bella, and Charlie. The dog is not Max. The bird is Charlie. What is the cat's name?",
+        "reference_answer": "Max.",
+        "answer_aliases": [
+            "Max"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_065"
+    },
+    {
+        "task_id": "cat7_synthetic_066",
+        "category": "logical_deductive_reasoning",
+        "prompt": "I have three pets: a dog, a cat, and a bird. Their names are Max, Bella, and Charlie. The dog is not Max. The bird is Charlie. What is the dog's name?",
+        "reference_answer": "Bella.",
+        "answer_aliases": [
+            "Bella"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_066"
+    },
+    {
+        "task_id": "cat7_synthetic_067",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If today is two days after Monday, what day is tomorrow?",
+        "reference_answer": "Thursday.",
+        "answer_aliases": [
+            "Thursday"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_067"
+    },
+    {
+        "task_id": "cat7_synthetic_068",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If yesterday was Sunday, what day is three days from today?",
+        "reference_answer": "Thursday.",
+        "answer_aliases": [
+            "Thursday"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_068"
+    },
+    {
+        "task_id": "cat7_synthetic_069",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If a rectangle has 4 sides, and a square is a rectangle, how many sides does a square have?",
+        "reference_answer": "4 sides.",
+        "answer_aliases": [
+            "4",
+            "Four"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_069"
+    },
+    {
+        "task_id": "cat7_synthetic_070",
+        "category": "logical_deductive_reasoning",
+        "prompt": "P is true. If P is true, then Q is true. If Q is true, then R is false. Is R true or false?",
+        "reference_answer": "False.",
+        "answer_aliases": [
+            "False"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_070"
+    },
+    {
+        "task_id": "cat7_synthetic_071",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Five runners (A, B, C, D, E). A finishes before B but after E. C finishes after B. D finishes before E. Who finishes third?",
+        "reference_answer": "A.",
+        "answer_aliases": [
+            "Runner A",
+            "A"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_071"
+    },
+    {
+        "task_id": "cat7_synthetic_072",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Five runners (A, B, C, D, E). A finishes before B but after E. C finishes after B. D finishes before E. Who finishes first?",
+        "reference_answer": "D.",
+        "answer_aliases": [
+            "Runner D",
+            "D"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_072"
+    },
+    {
+        "task_id": "cat7_synthetic_073",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A clock shows 3:15. If the minute hand moves 90 degrees clockwise, what minute does it point to?",
+        "reference_answer": "30.",
+        "answer_aliases": [
+            "30",
+            "Minute 30"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_073"
+    },
+    {
+        "task_id": "cat7_synthetic_074",
+        "category": "logical_deductive_reasoning",
+        "prompt": "You have red, blue, and green shirts. You do not wear red on Monday. You wear green on Tuesday. What color do you wear on Monday?",
+        "reference_answer": "Blue.",
+        "answer_aliases": [
+            "Blue"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_074"
+    },
+    {
+        "task_id": "cat7_synthetic_075",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If A = B + C, and B = 2, and C = 3, what is A?",
+        "reference_answer": "5.",
+        "answer_aliases": [
+            "5",
+            "Five"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_075"
+    },
+    {
+        "task_id": "cat7_synthetic_076",
+        "category": "logical_deductive_reasoning",
+        "prompt": "No glops are flims. All flims are blams. Are any glops blams?",
+        "reference_answer": "We cannot determine this from the given information.",
+        "answer_aliases": [
+            "Cannot be determined",
+            "Unknown",
+            "Maybe"
+        ],
+        "difficulty": "hard",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_076"
+    },
+    {
+        "task_id": "cat7_synthetic_077",
+        "category": "logical_deductive_reasoning",
+        "prompt": "All apples are red. This fruit is an apple. What color is it?",
+        "reference_answer": "Red.",
+        "answer_aliases": [
+            "Red"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_077"
+    },
+    {
+        "task_id": "cat7_synthetic_078",
+        "category": "logical_deductive_reasoning",
+        "prompt": "The library is strictly west of the bank. The bank is strictly west of the post office. Is the library east or west of the post office?",
+        "reference_answer": "West.",
+        "answer_aliases": [
+            "West"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_078"
+    },
+    {
+        "task_id": "cat7_synthetic_079",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A shape has 3 sides. A triangle has 3 sides. Therefore, the shape is a triangle. Is this deduction valid?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True",
+            "Valid"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_079"
+    },
+    {
+        "task_id": "cat7_synthetic_080",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Every child loves candy. Mark loves candy. Does this imply Mark is a child?",
+        "reference_answer": "No.",
+        "answer_aliases": [
+            "No",
+            "False",
+            "Invalid"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_080"
+    },
+    {
+        "task_id": "cat7_synthetic_081",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If X is the mother of Y, and Y is the father of Z, how is X related to Z?",
+        "reference_answer": "X is Z's grandmother.",
+        "answer_aliases": [
+            "Grandmother",
+            "Paternal grandmother"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_081"
+    },
+    {
+        "task_id": "cat7_synthetic_082",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If X is the brother of Y, and Y is the sister of Z, is X the brother of Z?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_082"
+    },
+    {
+        "task_id": "cat7_synthetic_083",
+        "category": "logical_deductive_reasoning",
+        "prompt": "There are 3 cups. Cup 1 has a ball. You swap Cup 1 and Cup 2. Then you swap Cup 2 and Cup 3. Where is the ball?",
+        "reference_answer": "Cup 3.",
+        "answer_aliases": [
+            "Cup 3",
+            "3"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_083"
+    },
+    {
+        "task_id": "cat7_synthetic_084",
+        "category": "logical_deductive_reasoning",
+        "prompt": "There are 3 cups. Cup 1 has a ball. You swap Cup 1 and Cup 3. Then you swap Cup 1 and Cup 2. Where is the ball?",
+        "reference_answer": "Cup 3.",
+        "answer_aliases": [
+            "Cup 3",
+            "3"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_084"
+    },
+    {
+        "task_id": "cat7_synthetic_085",
+        "category": "logical_deductive_reasoning",
+        "prompt": "A worker is scheduled for Monday, Wednesday, and Friday. They swap their Monday shift for Thursday. What days do they work now?",
+        "reference_answer": "Wednesday, Thursday, and Friday.",
+        "answer_aliases": [
+            "Wednesday, Thursday, Friday",
+            "Wed, Thu, Fri"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_085"
+    },
+    {
+        "task_id": "cat7_synthetic_086",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If all widgets are gadgets, and no gadgets are trinkets, can a widget be a trinket?",
+        "reference_answer": "No.",
+        "answer_aliases": [
+            "No",
+            "False"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_086"
+    },
+    {
+        "task_id": "cat7_synthetic_087",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Book A is heavier than Book B. Book C is lighter than Book B. Which book is the lightest?",
+        "reference_answer": "Book C.",
+        "answer_aliases": [
+            "Book C",
+            "C"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_087"
+    },
+    {
+        "task_id": "cat7_synthetic_088",
+        "category": "logical_deductive_reasoning",
+        "prompt": "An event occurs every 4 days. It occurs on Day 1. Will it occur on Day 9?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_088"
+    },
+    {
+        "task_id": "cat7_synthetic_089",
+        "category": "logical_deductive_reasoning",
+        "prompt": "An event occurs every 3 days. It occurs on Day 1. Will it occur on Day 5?",
+        "reference_answer": "No.",
+        "answer_aliases": [
+            "No",
+            "False"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_089"
+    },
+    {
+        "task_id": "cat7_synthetic_090",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Only people over 18 can vote. Bob is voting. Therefore, Bob is over 18. Valid?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True",
+            "Valid"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_090"
+    },
+    {
+        "task_id": "cat7_synthetic_091",
+        "category": "logical_deductive_reasoning",
+        "prompt": "All squares are red. Figure A is red. Is Figure A definitely a square?",
+        "reference_answer": "No.",
+        "answer_aliases": [
+            "No",
+            "False",
+            "Invalid"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_091"
+    },
+    {
+        "task_id": "cat7_synthetic_092",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Room 1 is connected to Room 2. Room 2 is connected to Room 3. Room 3 is connected to Room 4. If you start in Room 1, can you reach Room 4?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_092"
+    },
+    {
+        "task_id": "cat7_synthetic_093",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Three brothers: Al, Bob, and Carl. Al is the oldest. Carl is not the youngest. Who is the youngest?",
+        "reference_answer": "Bob.",
+        "answer_aliases": [
+            "Bob"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_093"
+    },
+    {
+        "task_id": "cat7_synthetic_094",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Three sisters: May, June, and April. April is the youngest. June is not the oldest. Who is the oldest?",
+        "reference_answer": "May.",
+        "answer_aliases": [
+            "May"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_094"
+    },
+    {
+        "task_id": "cat7_synthetic_095",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If a red light means stop and a green light means go, what must you do if the light is green?",
+        "reference_answer": "Go.",
+        "answer_aliases": [
+            "Go"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_095"
+    },
+    {
+        "task_id": "cat7_synthetic_096",
+        "category": "logical_deductive_reasoning",
+        "prompt": "All trees have leaves. A pine is a tree. Therefore, a pine has leaves. Is the logic structurally valid?",
+        "reference_answer": "Yes, the deduction is valid based on the premises.",
+        "answer_aliases": [
+            "Yes",
+            "Valid"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_096"
+    },
+    {
+        "task_id": "cat7_synthetic_097",
+        "category": "logical_deductive_reasoning",
+        "prompt": "Person A sits to the left of Person B. Person C sits to the right of Person B. Who is in the middle?",
+        "reference_answer": "Person B.",
+        "answer_aliases": [
+            "Person B",
+            "B"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_097"
+    },
+    {
+        "task_id": "cat7_synthetic_098",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If X is faster than Y, and Z is slower than Y, who is the fastest among the three?",
+        "reference_answer": "X.",
+        "answer_aliases": [
+            "X",
+            "Person X",
+            "Car X"
+        ],
+        "difficulty": "medium",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_098"
+    },
+    {
+        "task_id": "cat7_synthetic_099",
+        "category": "logical_deductive_reasoning",
+        "prompt": "If Item 1 is placed above Item 2, and Item 3 is placed below Item 2, which item is at the top?",
+        "reference_answer": "Item 1.",
+        "answer_aliases": [
+            "Item 1",
+            "1"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_099"
+    },
+    {
+        "task_id": "cat7_synthetic_100",
+        "category": "logical_deductive_reasoning",
+        "prompt": "You must wear a helmet to ride a bike. John is riding a bike. Is John wearing a helmet?",
+        "reference_answer": "Yes.",
+        "answer_aliases": [
+            "Yes",
+            "True"
+        ],
+        "difficulty": "easy",
+        "source": "gemini 3.1",
+        "source_id": "synthetic_logic_100"
+    }
+]

@@ -1,0 +1,998 @@
+[
+  {
+    "task_id": "cat1_synthetic_001",
+    "category": "factual_knowledge",
+    "prompt": "Explain how a microwave oven heats food.",
+    "reference_answer": "Microwave ovens heat food by emitting microwave radiation that causes polar molecules, primarily water, to rotate rapidly, generating thermal energy through dielectric heating.",
+    "answer_aliases": [
+      "Microwaves agitate water molecules, creating friction and heat.",
+      "Dielectric heating of water molecules via microwave radiation."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_001"
+  },
+  {
+    "task_id": "cat1_synthetic_002",
+    "category": "factual_knowledge",
+    "prompt": "Why does the Moon always show the same face to Earth?",
+    "reference_answer": "The Moon's rotation period is exactly equal to its orbital period around Earth, a phenomenon called tidal locking.",
+    "answer_aliases": [
+      "Tidal locking",
+      "Synchronous rotation",
+      "The Moon rotates once per orbit"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_002"
+  },
+  {
+    "task_id": "cat1_synthetic_003",
+    "category": "factual_knowledge",
+    "prompt": "Why do we see lightning before we hear thunder?",
+    "reference_answer": "Light travels much faster than sound, so the light from the lightning reaches our eyes almost instantly, while the sound of thunder takes longer to travel the same distance.",
+    "answer_aliases": [
+      "Because light travels faster than sound",
+      "The speed of light is greater than the speed of sound",
+      "Light reaches us before sound due to its higher speed"
+    ],
+    "difficulty": "easy",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_003"
+  },
+  {
+    "task_id": "cat1_synthetic_004",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the sky appears blue during the day.",
+    "reference_answer": "The sky appears blue due to Rayleigh scattering: air molecules scatter shorter wavelengths of sunlight (blue and violet) more than longer wavelengths (red). Our eyes are more sensitive to blue light, and the scattered blue light reaches us from all directions, making the sky look blue.",
+    "answer_aliases": [
+      "Rayleigh scattering of sunlight causes the sky to be blue",
+      "Blue light is scattered more by the atmosphere",
+      "Atmospheric scattering of short wavelengths"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_004"
+  },
+  {
+    "task_id": "cat1_synthetic_005",
+    "category": "factual_knowledge",
+    "prompt": "How does a microwave oven heat food?",
+    "reference_answer": "Microwave ovens emit electromagnetic waves that cause water molecules in food to vibrate rapidly, generating heat through dielectric heating.",
+    "answer_aliases": [
+      "Microwaves agitate water molecules, producing thermal energy via molecular friction.",
+      "The microwave radiation excites polar molecules, especially water, causing them to rotate and create heat."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_005"
+  },
+  {
+    "task_id": "cat1_synthetic_006",
+    "category": "factual_knowledge",
+    "prompt": "How does a refrigerator transfer heat from its interior to the outside environment?",
+    "reference_answer": "A refrigerator uses a vapor-compression cycle. A refrigerant evaporates inside the cold compartment, absorbing heat. The vapor is compressed to high pressure, raising its temperature. It then flows through condenser coils on the outside, releasing heat to the room as it condenses back into a liquid. The liquid passes through an expansion valve, dropping in pressure and temperature, and the cycle repeats.",
+    "answer_aliases": [
+      "vapor-compression refrigeration cycle",
+      "heat pump principle",
+      "refrigerant evaporation and condensation cycle"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_006"
+  },
+  {
+    "task_id": "cat1_synthetic_007",
+    "category": "factual_knowledge",
+    "prompt": "Why does water expand when it freezes?",
+    "reference_answer": "Water expands when it freezes because its molecules form a hexagonal crystalline structure stabilized by hydrogen bonds, which forces them into a more open arrangement with greater average distance between molecules compared to liquid water.",
+    "answer_aliases": [
+      "Due to hydrogen bonding creating a spacious crystal lattice in ice",
+      "Ice has a lower density than liquid water because of the ordered arrangement of water molecules"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_007"
+  },
+  {
+    "task_id": "cat1_synthetic_008",
+    "category": "factual_knowledge",
+    "prompt": "Why does ice float on water?",
+    "reference_answer": "Ice floats on water because it is less dense than liquid water. When water freezes, its molecules arrange into a crystalline lattice held by hydrogen bonds, which spaces the molecules farther apart than in the liquid state, resulting in lower density.",
+    "answer_aliases": [
+      "Ice is less dense than water due to its crystalline structure.",
+      "Water expands when it freezes, making ice less dense.",
+      "The hydrogen bonds in ice create an open lattice that makes it less dense than liquid water."
+    ],
+    "difficulty": "easy",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_008"
+  },
+  {
+    "task_id": "cat1_synthetic_009",
+    "category": "factual_knowledge",
+    "prompt": "Why does Earth experience different seasons?",
+    "reference_answer": "The Earth's axis is tilted relative to its orbital plane around the Sun, causing different parts of Earth to receive varying amounts of direct sunlight throughout the year, resulting in seasonal changes.",
+    "answer_aliases": [
+      "Due to Earth's axial tilt",
+      "Because the tilt causes uneven solar radiation",
+      "The 23.5-degree tilt leads to seasons"
+    ],
+    "difficulty": "easy",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_009"
+  },
+  {
+    "task_id": "cat1_synthetic_010",
+    "category": "factual_knowledge",
+    "prompt": "Why does the sky appear blue during a clear day?",
+    "reference_answer": "The sky appears blue because of Rayleigh scattering: gas molecules and small particles in Earth's atmosphere scatter shorter wavelengths of sunlight (blue and violet) much more effectively than longer wavelengths (red and orange). Although violet is scattered even more, our eyes are less sensitive to it and the sun emits less violet light, so we perceive the sky as blue. The scattered blue light comes from all directions, giving the sky its uniform color.",
+    "answer_aliases": [
+      "Rayleigh scattering causes the blue color of the sky",
+      "Shorter wavelengths of light are scattered more by the atmosphere",
+      "Blue light is scattered more than red light by air molecules"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_010"
+  },
+  {
+    "task_id": "cat1_synthetic_011",
+    "category": "factual_knowledge",
+    "prompt": "Why does the sky appear blue during the day?",
+    "reference_answer": "Sunlight is scattered by gas molecules and particles in the atmosphere; shorter blue wavelengths are scattered more than longer red wavelengths, so we see blue light coming from all directions.",
+    "answer_aliases": [
+      "Rayleigh scattering makes the sky blue",
+      "The scattering of sunlight by the atmosphere causes the blue color of the sky"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_011"
+  },
+  {
+    "task_id": "cat1_synthetic_012",
+    "category": "factual_knowledge",
+    "prompt": "Why do objects appear different colors?",
+    "reference_answer": "Objects appear colored because they selectively absorb certain wavelengths of visible light and reflect others; the reflected wavelengths determine the perceived color.",
+    "answer_aliases": [
+      "Selective absorption and reflection of light",
+      "Light absorption and reflection",
+      "Wavelength selective absorption"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_012"
+  },
+  {
+    "task_id": "cat1_synthetic_013",
+    "category": "factual_knowledge",
+    "prompt": "Why is the greenhouse effect necessary for life on Earth?",
+    "reference_answer": "The greenhouse effect is the process by which certain gases in Earth's atmosphere, such as carbon dioxide and water vapor, trap heat from the sun, warming the planet. Without this natural effect, Earth's average surface temperature would be about -18\u00b0C (0\u00b0F) instead of the current 15\u00b0C (59\u00b0F), making it too cold to support most life.",
+    "answer_aliases": [
+      "It keeps Earth warm enough for life",
+      "Without it, Earth would be frozen",
+      "It traps heat, maintaining a habitable temperature"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_013"
+  },
+  {
+    "task_id": "cat1_synthetic_014",
+    "category": "factual_knowledge",
+    "prompt": "How does a refrigerator keep food cold?",
+    "reference_answer": "A refrigerator uses a vapor-compression refrigeration cycle. A refrigerant absorbs heat from the interior, evaporating into a gas. The compressor then pressurizes the gas, raising its temperature. The hot gas flows through condenser coils on the back or bottom, releasing heat to the outside air and condensing back into a liquid. The liquid passes through an expansion valve, dropping in pressure and temperature, and re-enters the interior evaporator coils to absorb more heat, repeating the cycle.",
+    "answer_aliases": [
+      "It transfers heat from inside to outside using a refrigerant cycle.",
+      "By circulating a refrigerant that evaporates inside to absorb heat and condenses outside to release heat.",
+      "Through compression, condensation, expansion, and evaporation of a working fluid."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_014"
+  },
+  {
+    "task_id": "cat1_synthetic_015",
+    "category": "factual_knowledge",
+    "prompt": "How does the greenhouse effect warm the Earth's surface?",
+    "reference_answer": "The greenhouse effect warms Earth's surface by trapping heat from the sun; greenhouse gases like carbon dioxide and water vapor absorb and re-emit infrared radiation radiated from the Earth, preventing it from escaping into space and thereby raising the planet's temperature.",
+    "answer_aliases": [
+      "Greenhouse gases in the atmosphere trap solar heat, causing the planet to warm up.",
+      "Solar radiation is absorbed by Earth and re-radiated as infrared; greenhouse gases absorb this infrared, trapping warmth and heating the surface.",
+      "The atmosphere's greenhouse gases let sunlight in but block some of the outgoing heat, warming the Earth like a blanket."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_015"
+  },
+  {
+    "task_id": "cat1_synthetic_016",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the human left lung has only two lobes while the right lung has three, despite both lungs performing the same gas exchange function.",
+    "reference_answer": "The asymmetry arises from the heart's position on the left side of the chest. The heart occupies space in the left thoracic cavity, leaving less room for the left lung. As a result, the left lung develops only two lobes (superior and inferior) and features a cardiac notch to accommodate the heart. The right lung, with more available space, develops three lobes (superior, middle, inferior). This anatomical adaptation does not impair gas exchange because the left lung compensates by having a slightly larger volume in its two lobes relative to the right lung's three.",
+    "answer_aliases": [
+      "Because the heart takes up space on the left side, limiting lung development to two lobes.",
+      "The left lung has a cardiac notch and only two lobes due to the heart's leftward placement.",
+      "The heart's location on the left reduces the space for lung tissue, resulting in two lobes."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_016"
+  },
+  {
+    "task_id": "cat1_synthetic_017",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a ballpoint pen might fail to write on a greasy or waxy surface, even when the pen still contains ink.",
+    "reference_answer": "Ballpoint pens use a tiny rotating ball to transfer oil-based ink from the cartridge to the paper. The ink adheres to the paper through wetting, which requires the paper\u2019s surface energy to be higher than the ink\u2019s surface tension. Grease, wax, or oils drastically lower the paper\u2019s surface energy, preventing the ink from spreading and adhering. The ball then slides over the surface without depositing ink, even though the cartridge is full.",
+    "answer_aliases": [
+      "Grease reduces surface energy, preventing ink wetting and transfer.",
+      "The ball skids without picking up and depositing ink because the surface is too low-energy."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_017"
+  },
+  {
+    "task_id": "cat1_synthetic_018",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a tall tree can continue to transport water from roots to leaves even after a severe drought has caused air bubbles to form in its xylem vessels, and what physiological mechanism allows it to recover or circumvent this issue.",
+    "reference_answer": "Trees rely on the cohesion-tension theory: water is pulled up through xylem by transpiration from leaves, creating negative pressure. Air bubbles (embolisms) break the continuous water column, blocking flow. However, trees can refill embolized vessels via root pressure, where active ion uptake in roots generates positive pressure that pushes water up and dissolves bubbles. Alternatively, living xylem parenchyma cells can secrete solutes into embolized vessels, lowering osmotic potential and drawing water in to refill them. Some trees also bypass blocked vessels by using adjacent functional conduits or by producing new xylem rings in subsequent growing seasons.",
+    "answer_aliases": [
+      "cohesion-tension embolism recovery",
+      "embolism refilling via root pressure",
+      "xylem refilling mechanism",
+      "tree water transport recovery after drought"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_018"
+  },
+  {
+    "task_id": "cat1_synthetic_019",
+    "category": "factual_knowledge",
+    "prompt": "Why do some plants, such as the sensitive plant (Mimosa pudica), rapidly fold their leaves when touched, and what cellular mechanism drives this movement?",
+    "reference_answer": "The rapid leaf folding in Mimosa pudica is a defensive response to deter herbivores or reduce water loss. It is driven by a loss of turgor pressure in specialized motor organs called pulvini at the base of leaflets. Touch triggers an electrical signal (action potential) that travels along the plant. In the pulvinus, this signal causes potassium ions to rapidly exit cells, which then pulls water out via osmosis, collapsing the cells and causing the leaflets to fold.",
+    "answer_aliases": [
+      "seismonastic movement",
+      "thigmonasty",
+      "turgor-driven leaf movement",
+      "action potential in plants"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_019"
+  },
+  {
+    "task_id": "cat1_synthetic_020",
+    "category": "factual_knowledge",
+    "prompt": "Explain how a central bank uses open market operations to influence short-term interest rates and the money supply.",
+    "reference_answer": "A central bank conducts open market operations by buying or selling government securities in the open market. When the central bank buys securities, it credits the reserves of the sellers' banks, increasing the total reserves in the banking system. This expansion of reserves increases the money supply and puts downward pressure on short-term interest rates, such as the federal funds rate, as banks have more funds to lend. Conversely, when the central bank sells securities, it debits the reserves of the buyers' banks, reducing reserves, contracting the money supply, and raising short-term interest rates. This mechanism is a primary tool for implementing monetary policy.",
+    "answer_aliases": [
+      "Buying bonds injects liquidity, lowering rates; selling bonds drains liquidity, raising rates.",
+      "Open market purchases increase reserves and decrease the federal funds rate; sales decrease reserves and increase the rate.",
+      "It adjusts the supply of bank reserves to target the policy interest rate."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_020"
+  },
+  {
+    "task_id": "cat1_synthetic_021",
+    "category": "factual_knowledge",
+    "prompt": "Why does the human brain have a highly convoluted surface with folds (gyri and sulci), and what advantage does this provide over a smooth brain?",
+    "reference_answer": "The convolutions increase the surface area of the cerebral cortex, allowing more neurons to be packed into the limited volume of the skull, which enhances cognitive capacity without requiring a larger head size.",
+    "answer_aliases": [
+      "To increase cortical surface area",
+      "To pack more neurons into the skull",
+      "To allow greater cognitive function within space constraints"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_021"
+  },
+  {
+    "task_id": "cat1_synthetic_022",
+    "category": "factual_knowledge",
+    "prompt": "Explain how the Treaty of Versailles (1919) contributed to the rise of Nazism in Germany.",
+    "reference_answer": "The Treaty of Versailles imposed harsh terms on Germany, including war guilt, massive reparations, military restrictions, and territorial losses. These created economic hardship, national humiliation, and political instability. The Weimar Republic, associated with the treaty, lost legitimacy. Adolf Hitler and the Nazi Party exploited these grievances by promising to overturn the treaty, restore national pride, and provide scapegoats (e.g., Jews, communists), leading to widespread support and ultimately Hitler's rise to power.",
+    "answer_aliases": [
+      "Harsh reparations and war guilt clause fueled resentment, exploited by Nazis",
+      "Economic hardship and national humiliation led to support for Nazi promises",
+      "Treaty's punitive terms destabilized Weimar Republic, enabling Nazi propaganda"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_022"
+  },
+  {
+    "task_id": "cat1_synthetic_023",
+    "category": "factual_knowledge",
+    "prompt": "Explain why adding carbon to iron dramatically increases its hardness and strength, transforming it into steel, while pure iron is relatively soft and ductile.",
+    "reference_answer": "Carbon atoms occupy interstitial sites in the iron crystal lattice, causing lattice strain that impedes the movement of dislocations, which are the primary carriers of plastic deformation. This makes it harder for the material to deform, increasing hardness and strength.",
+    "answer_aliases": [
+      "interstitial solid solution strengthening",
+      "carbon atoms hinder dislocation motion",
+      "iron-carbon alloy hardening mechanism"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_023"
+  },
+  {
+    "task_id": "cat1_synthetic_024",
+    "category": "factual_knowledge",
+    "prompt": "Why are mutations in mitochondrial DNA inherited exclusively from the mother, and how does this pattern affect the inheritance of mitochondrial diseases?",
+    "reference_answer": "Mitochondrial DNA (mtDNA) is inherited only from the mother because the sperm's mitochondria are typically destroyed after fertilization, so only the egg's mitochondria (and their DNA) are passed to the offspring. This maternal inheritance means that mitochondrial diseases, caused by mtDNA mutations, are passed from an affected mother to all her children, but affected fathers do not transmit the disease.",
+    "answer_aliases": [
+      "Because sperm mitochondria are eliminated after fertilization, leaving only maternal mitochondria; thus, mtDNA mutations follow a maternal inheritance pattern.",
+      "During fertilization, the sperm contributes only nuclear DNA, while the egg provides all cytoplasmic components including mitochondria, leading to exclusive maternal transmission of mtDNA."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_024"
+  },
+  {
+    "task_id": "cat1_synthetic_025",
+    "category": "factual_knowledge",
+    "prompt": "Explain why ocean gyres rotate clockwise in the Northern Hemisphere and counterclockwise in the Southern Hemisphere, detailing the role of the Coriolis effect and wind patterns.",
+    "reference_answer": "The rotation direction of ocean gyres is determined by the Coriolis effect, which deflects moving objects to the right in the Northern Hemisphere and to the left in the Southern Hemisphere. Trade winds and westerlies drive surface currents, and Ekman transport results in net water movement at a 90-degree angle to the wind direction. This causes water to converge toward the center of the gyre, setting up a geostrophic balance where the pressure gradient force is balanced by the Coriolis force, leading to a circular flow that is clockwise in the Northern Hemisphere and counterclockwise in the Southern Hemisphere.",
+    "answer_aliases": [
+      "Coriolis effect",
+      "wind-driven circulation",
+      "Ekman transport"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_025"
+  },
+  {
+    "task_id": "cat1_synthetic_026",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the biceps brachii and triceps brachii muscles in the human arm are classified as an antagonistic pair, and how their coordinated contraction and relaxation enable controlled flexion and extension of the elbow joint.",
+    "reference_answer": "The biceps brachii and triceps brachii are an antagonistic pair because they perform opposite actions at the elbow joint. The biceps, located on the anterior upper arm, contracts to flex the elbow (bend the arm), while the triceps, on the posterior upper arm, contracts to extend the elbow (straighten the arm). During flexion, the biceps contracts and the triceps relaxes; during extension, the triceps contracts and the biceps relaxes. This reciprocal inhibition allows for smooth, controlled movements and prevents jerky motion, as one muscle\u2019s contraction is accompanied by the relaxation of its antagonist.",
+    "answer_aliases": [
+      "The biceps and triceps work as opposing muscles to control elbow movement; one contracts while the other relaxes to allow flexion and extension.",
+      "Antagonistic muscle pair: biceps flexes, triceps extends, with reciprocal inhibition for smooth motion."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_026"
+  },
+  {
+    "task_id": "cat1_synthetic_027",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a siphon can transfer liquid from a higher container to a lower one without a pump, and what physical principles prevent it from working if the discharge end is not lower than the liquid source level.",
+    "reference_answer": "A siphon works by using gravity to create a pressure difference. The continuous liquid column in the tube has a longer descending leg, and the weight of the liquid in that leg creates a lower pressure at the top of the siphon, pulling liquid from the higher reservoir. Atmospheric pressure on the source reservoir pushes liquid into the tube. The siphon fails if the discharge end is not lower because gravity would not pull the liquid downward; the pressure differential would reverse, causing backflow, and no sustained flow occurs without the height difference.",
+    "answer_aliases": [
+      "gravity and atmospheric pressure create flow",
+      "pressure differential from height difference",
+      "requires outlet lower than inlet",
+      "continuous liquid column allows siphoning"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_027"
+  },
+  {
+    "task_id": "cat1_synthetic_028",
+    "category": "factual_knowledge",
+    "prompt": "Explain how the invention of the printing press by Johannes Gutenberg in the 15th century contributed to the outbreak of the Protestant Reformation in the 16th century.",
+    "reference_answer": "The printing press enabled the rapid and widespread dissemination of Martin Luther's 95 Theses and other reformist ideas, undermining the Catholic Church's control over religious knowledge and facilitating the spread of Protestantism across Europe.",
+    "answer_aliases": [
+      "Gutenberg's press allowed mass production of Bibles and pamphlets, spreading Reformation ideas quickly",
+      "It broke the Church's monopoly on scripture by making texts available in vernacular languages"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_028"
+  },
+  {
+    "task_id": "cat1_synthetic_029",
+    "category": "factual_knowledge",
+    "prompt": "Why do neutron stars spin so rapidly, and what mechanism leads to their fast rotation?",
+    "reference_answer": "Neutron stars spin rapidly due to the conservation of angular momentum during the core-collapse supernova that forms them. When a massive star's core collapses into a much smaller radius, its rotation rate increases dramatically, similar to a spinning ice skater pulling in their arms.",
+    "answer_aliases": [
+      "conservation of angular momentum",
+      "core-collapse spin-up",
+      "stellar collapse rotation"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_029"
+  },
+  {
+    "task_id": "cat1_synthetic_030",
+    "category": "factual_knowledge",
+    "prompt": "Explain why individuals often feel psychological discomfort after making a difficult choice between two equally attractive options, and describe the mechanism they commonly use to reduce this discomfort, according to cognitive dissonance theory.",
+    "reference_answer": "Cognitive dissonance theory, proposed by Leon Festinger, states that people experience mental discomfort (dissonance) when holding two conflicting cognitions, such as after making a difficult decision. To reduce this discomfort, they often engage in post-decisional attitude change, emphasizing the positive aspects of the chosen option and devaluing the rejected one, thereby aligning their attitudes with their behavior.",
+    "answer_aliases": [
+      "Post-decisional dissonance reduction",
+      "Spreading of alternatives effect",
+      "Rationalization after a difficult choice"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_030"
+  },
+  {
+    "task_id": "cat1_synthetic_031",
+    "category": "factual_knowledge",
+    "prompt": "Explain why modern skyscrapers often include tuned mass dampers near the top, and how they reduce swaying caused by wind or earthquakes.",
+    "reference_answer": "Tuned mass dampers reduce building sway by counteracting resonant vibrations. They consist of a large mass (often hundreds of tons) mounted on springs and dampers. When the building sways in one direction, the mass tends to stay in place due to inertia, then moves out of phase, pushing against the building's motion and dissipating energy through damping, effectively reducing amplitude.",
+    "answer_aliases": [
+      "A tuned mass damper is a pendulum-like device that oscillates opposite to the building's movement, absorbing kinetic energy and minimizing sway.",
+      "The damper works by having a heavy weight that lags behind the building's motion, creating an opposing force that cancels out vibrations."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_031"
+  },
+  {
+    "task_id": "cat1_synthetic_032",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the Hawaiian Islands form a chain of volcanoes that increase in age from the southeast (Hawaii Island) to the northwest (Kauai and beyond), and what this pattern reveals about the movement of tectonic plates and the nature of volcanic hotspots.",
+    "reference_answer": "The Hawaiian Islands are formed by a stationary mantle plume (hotspot) that generates magma as the Pacific Plate moves northwestward over it. The youngest, volcanically active island (Hawaii) is currently above the hotspot, while older islands to the northwest have been carried away, eroded, and subsided. This age progression demonstrates plate motion over a fixed hotspot, providing evidence for plate tectonics.",
+    "answer_aliases": [
+      "The chain results from the Pacific Plate moving over a stationary hotspot, creating progressively older volcanoes to the northwest.",
+      "A mantle plume beneath the moving Pacific Plate produces a linear chain of volcanoes, with the youngest at the hotspot's current location."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_032"
+  },
+  {
+    "task_id": "cat1_synthetic_033",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the Great Vowel Shift occurred in the history of the English language and how it contributed to the significant divergence between English spelling and pronunciation.",
+    "reference_answer": "The Great Vowel Shift was a chain shift in the pronunciation of long vowels in English between the 15th and 18th centuries. It likely occurred due to a combination of social factors, such as the desire for social distinction or dialect contact, and linguistic pressures, where the raising of one vowel forced others to shift to maintain distinctions (a push-pull chain). Long vowels were systematically raised, and the high vowels /i\u02d0/ and /u\u02d0/ became diphthongs. Because the shift took place after the standardization of English spelling, written forms remained largely fixed, reflecting older pronunciations. This mismatch is why modern English spelling often does not correspond directly to current pronunciation, as seen in words like 'bite' (formerly /bi\u02d0t\u0259/) and 'meet' (formerly /me\u02d0t/).",
+    "answer_aliases": [
+      "A chain shift in English long vowels that created a mismatch between spelling and pronunciation.",
+      "The systematic raising and diphthongization of long vowels after spelling was standardized, causing irregular spelling."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_033"
+  },
+  {
+    "task_id": "cat1_synthetic_034",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a sea breeze typically develops during the afternoon along a coastline, while a land breeze occurs at night, referencing the thermal properties of land and water and the resulting pressure gradients.",
+    "reference_answer": "During the day, solar radiation heats the land more rapidly than the adjacent water because land has a lower specific heat capacity. The warm land heats the air above it, causing the air to expand, become less dense, and rise, creating a local low-pressure area. Meanwhile, the air over the cooler water remains relatively denser and higher in pressure. This pressure difference drives a flow of cooler air from the water to the land, known as the sea breeze. At night, the land cools faster than the water due to its lower heat capacity, becoming cooler than the water surface. The air over the warmer water rises, creating a low-pressure region over the sea, while the cooler, denser air over the land sinks and flows seaward as a land breeze.",
+    "answer_aliases": [
+      "sea breeze and land breeze explanation",
+      "coastal wind reversal due to differential heating",
+      "thermal circulation at coastlines"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_034"
+  },
+  {
+    "task_id": "cat1_synthetic_035",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the C4 photosynthetic pathway is advantageous in hot, dry environments, and how it differs from the C3 pathway in terms of carbon fixation and water use efficiency.",
+    "reference_answer": "The C4 pathway minimizes photorespiration by spatially separating initial CO2 fixation from the Calvin cycle. In mesophyll cells, PEP carboxylase fixes CO2 into a four-carbon compound, which is then transported to bundle-sheath cells where CO2 is released and concentrated for Rubisco, reducing oxygenase activity. This allows higher water use efficiency because stomata can remain partially closed, reducing water loss while maintaining high CO2 concentration for photosynthesis.",
+    "answer_aliases": [
+      "C4 plants avoid photorespiration by using a CO2-concentrating mechanism that increases the efficiency of Rubisco and reduces water loss.",
+      "The C4 pathway concentrates CO2 around Rubisco in bundle-sheath cells, preventing wasteful photorespiration and allowing plants to photosynthesize with less water."
+    ],
+    "difficulty": "hard",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_035"
+  },
+  {
+    "task_id": "cat1_synthetic_036",
+    "category": "factual_knowledge",
+    "prompt": "Why do some genetic diseases show anticipation, where symptoms become more severe or appear at an earlier age in successive generations, and what molecular mechanism is responsible for this pattern?",
+    "reference_answer": "Anticipation is caused by the expansion of unstable trinucleotide repeat sequences within specific genes. During meiosis, these repeats can increase in number due to replication slippage. Longer repeats often disrupt gene expression or protein function more severely, leading to earlier onset and increased severity of the disease. This dynamic mutation mechanism explains why disorders like Huntington's disease and fragile X syndrome worsen in subsequent generations.",
+    "answer_aliases": [
+      "Anticipation results from expanding trinucleotide repeats that lengthen across generations, causing earlier onset and increased severity.",
+      "The phenomenon is explained by dynamic mutations where unstable DNA repeats expand during transmission, leading to progressive worsening of the disease phenotype."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_036"
+  },
+  {
+    "task_id": "cat1_synthetic_037",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a diesel engine does not require spark plugs to ignite the fuel-air mixture, while a gasoline engine does, and describe the thermodynamic principle that makes this possible.",
+    "reference_answer": "In a diesel engine, air is compressed to a very high pressure, causing its temperature to rise significantly due to adiabatic heating (from the ideal gas law and the first law of thermodynamics). When fuel is injected into this hot, compressed air, it autoignites without a spark. In contrast, a gasoline engine uses a lower compression ratio to prevent premature ignition (knocking), and the pre-mixed fuel-air charge requires a spark to initiate combustion.",
+    "answer_aliases": [
+      "compression ignition",
+      "adiabatic heating",
+      "autoignition due to high compression temperature"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_037"
+  },
+  {
+    "task_id": "cat1_synthetic_038",
+    "category": "factual_knowledge",
+    "prompt": "Explain why some metamorphic rocks, such as slate and schist, exhibit a foliated texture with visible layering or banding, while others like marble and quartzite appear massive and non-foliated. What geological conditions and mineral properties control the development of foliation?",
+    "reference_answer": "Foliation in metamorphic rocks develops primarily due to directed pressure (differential stress) during regional metamorphism, where minerals recrystallize and align perpendicular to the direction of maximum compression. Rocks containing abundant platy minerals like micas and chlorite easily form foliation because these minerals align with their flat faces perpendicular to stress. In contrast, rocks composed mainly of equidimensional minerals such as calcite (marble) or quartz (quartzite) recrystallize into interlocking grains without preferred orientation, resulting in a non-foliated texture. The degree of foliation also depends on the intensity of metamorphism, temperature, and the presence of fluids that facilitate mineral growth and reorientation.",
+    "answer_aliases": [
+      "Directed pressure causes mineral alignment, forming foliation; platy minerals align perpendicular to stress; non-foliated rocks lack platy minerals.",
+      "Foliation is due to differential stress and platy minerals; marble and quartzite are non-foliated because their minerals are equidimensional."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_038"
+  },
+  {
+    "task_id": "cat1_synthetic_039",
+    "category": "factual_knowledge",
+    "prompt": "Explain why English speakers often pronounce the plural '-s' as /s/ after voiceless consonants (e.g., 'cats'), as /z/ after voiced sounds (e.g., 'dogs'), and as /\u026az/ after sibilants (e.g., 'horses'), detailing the phonological rule of assimilation that governs this allomorphy.",
+    "reference_answer": "The variation in the pronunciation of the English plural '-s' is governed by a phonological process called voicing assimilation. The plural morpheme is underlyingly /z/ (a voiced consonant). After a voiceless consonant (which lacks vocal cord vibration), it assimilates to the voicelessness of the preceding sound, becoming /s/ (as in 'cats'). After a voiced sound (including vowels and voiced consonants), it remains voiced as /z/ (as in 'dogs'). When the stem ends in a sibilant sound (like /s, z, \u0283, \u0292, t\u0283, d\u0292/), an epenthetic vowel /\u026a/ is inserted before the /z/ to break up the cluster of similar sounds, resulting in /\u026az/ (as in 'horses'). This allomorphy ensures ease of articulation and maintains perceptual distinctness.",
+    "answer_aliases": [
+      "The plural -s pronunciation depends on the voicing of the final sound of the stem: /s/ after voiceless, /z/ after voiced, /\u026az/ after sibilants due to assimilation and epenthesis.",
+      "Assimilation rule: plural -s is realized as [s] after [-voice], [z] after [+voice], and [\u026az] after [+strident] consonants."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_039"
+  },
+  {
+    "task_id": "cat1_synthetic_040",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a zipper stays closed when the slider is pulled down, and how the interlocking teeth prevent it from opening under tension.",
+    "reference_answer": "A zipper stays closed because its teeth have a hook-and-hollow shape that interlocks when pressed together by the Y-shaped channel of the slider. As the slider moves down, the channels guide the teeth into engagement, and the hook catches the adjacent tooth, creating a secure chain. Under tension, the hooks pull against each other, resisting separation. To open, the slider's wedge pries the teeth apart when pulled upward.",
+    "answer_aliases": [
+      "The slider uses a Y-shaped channel to mesh the teeth, which have interlocking hooks that prevent lateral pull-apart.",
+      "The zipper teeth lock due to their hooked profile, and the slider engages them; tension pulls the hooks tighter together."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_040"
+  },
+  {
+    "task_id": "cat1_synthetic_041",
+    "category": "factual_knowledge",
+    "prompt": "Explain how the Black Death (bubonic plague) in the 14th century contributed to the decline of feudalism in Western Europe.",
+    "reference_answer": "The massive death toll from the plague caused severe labor shortages, which gave surviving peasants increased bargaining power. They demanded higher wages, better working conditions, and more freedom, leading to the weakening of the manorial system and the rigid social hierarchy of feudalism. Landowners were forced to pay for labor or rent out land, accelerating the shift to a money-based economy and the rise of a more mobile labor force.",
+    "answer_aliases": [
+      "The plague reduced the workforce, empowering peasants to negotiate better terms, which undermined the feudal obligations and manorial ties.",
+      "Labor scarcity after the Black Death allowed peasants to demand wages and mobility, eroding the feudal system's foundation of serfdom and land-bound labor."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_041"
+  },
+  {
+    "task_id": "cat1_synthetic_042",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the air temperature in the troposphere (the lowest layer of Earth's atmosphere) generally decreases with increasing altitude, but in the stratosphere (the layer directly above) the temperature increases with altitude. What key atmospheric component causes this reversal, and how does it work?",
+    "reference_answer": "In the troposphere, temperature decreases with altitude because the surface absorbs solar radiation and warms the air from below; as air rises, it expands due to lower pressure and cools adiabatically. In the stratosphere, the ozone layer absorbs ultraviolet radiation from the sun, which heats the surrounding air. This absorption is most efficient in the upper stratosphere, so temperature increases with altitude.",
+    "answer_aliases": [
+      "The temperature decreases in the troposphere due to adiabatic cooling and surface heating, while it increases in the stratosphere because ozone absorbs UV radiation.",
+      "Tropospheric cooling is caused by decreasing pressure with height and distance from the warm surface; stratospheric warming is due to ozone's absorption of ultraviolet light."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_042"
+  },
+  {
+    "task_id": "cat1_synthetic_043",
+    "category": "factual_knowledge",
+    "prompt": "Explain why monozygotic (identical) twins, who share virtually identical DNA, can exhibit discordance for complex diseases such as schizophrenia or autoimmune disorders, and what mechanisms beyond genetic sequence contribute to these differences.",
+    "reference_answer": "Differences arise from epigenetic modifications, environmental exposures, and stochastic gene expression. Epigenetic marks like DNA methylation and histone modification can change over time in response to diet, stress, or toxins, leading to different gene activity. Additionally, random cellular events during development and life can cause divergence.",
+    "answer_aliases": [
+      "Epigenetic differences",
+      "environmental influences on gene expression",
+      "non-genetic factors causing phenotypic variation"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_043"
+  },
+  {
+    "task_id": "cat1_synthetic_044",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the Earth's outer core is liquid while the inner core is solid, despite both being composed primarily of iron and nickel, and how this state difference drives the geodynamo that generates the Earth's magnetic field.",
+    "reference_answer": "The inner core is solid because the immense pressure at the center of the Earth raises the melting point of the iron-nickel alloy above the actual temperature, keeping it solid. The outer core, under lower pressure, has a melting point below the temperature, so it remains liquid. The liquid outer core undergoes convection, with hot, less dense material rising and cooler, denser material sinking. Combined with Earth's rotation, this motion of electrically conductive fluid generates electric currents, which in turn produce a magnetic field through the dynamo effect.",
+    "answer_aliases": [
+      "Pressure differences cause the inner core to be solid and the outer core liquid, enabling convection that drives the magnetic field.",
+      "The inner core is solid due to high pressure, the outer core is liquid due to lower pressure, and the liquid motion generates the magnetic field."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_044"
+  },
+  {
+    "task_id": "cat1_synthetic_045",
+    "category": "factual_knowledge",
+    "prompt": "Explain why Dijkstra's algorithm fails on graphs with negative edge weights, and how the Bellman-Ford algorithm overcomes this limitation at the cost of higher time complexity.",
+    "reference_answer": "Dijkstra's algorithm relies on the greedy assumption that once a node's shortest path estimate is finalized (extracted from the priority queue), it is optimal. This holds when all edge weights are non-negative because any subsequent path through unvisited nodes would be longer or equal. With negative edge weights, a path through an unvisited node could later yield a smaller total distance, violating the greedy choice. Bellman-Ford instead relaxes all edges repeatedly for V-1 iterations, allowing negative weights to propagate correctly. This ensures correctness even with negative edges (but no negative cycles), but its time complexity is O(VE), compared to Dijkstra's O((V+E) log V).",
+    "answer_aliases": [
+      "Dijkstra's algorithm assumes non-negative weights; Bellman-Ford handles negative weights by relaxing edges multiple times.",
+      "Dijkstra fails with negative edges because its greedy strategy is invalidated; Bellman-Ford uses iterative relaxation to find correct shortest paths."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_045"
+  },
+  {
+    "task_id": "cat1_synthetic_046",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the human trachea is reinforced with C-shaped cartilage rings instead of complete circular rings, and what functional significance this design has for the adjacent esophagus during swallowing.",
+    "reference_answer": "The human trachea has C-shaped cartilage rings to maintain an open airway for respiration. The open part of each ring faces posteriorly, where the trachea lies directly against the esophagus. This design allows the esophagus to expand anteriorly into the tracheal lumen during swallowing, accommodating the passage of a food bolus. If the cartilage rings were complete circles, the rigid structure would prevent esophageal expansion, making swallowing difficult or impossible.",
+    "answer_aliases": [
+      "C-shaped cartilages keep the trachea patent while permitting esophageal distension during swallowing",
+      "The incomplete rings allow the esophagus to bulge into the trachea when food passes",
+      "Posterior gap in tracheal cartilage provides flexibility for esophageal movement"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_046"
+  },
+  {
+    "task_id": "cat1_synthetic_047",
+    "category": "factual_knowledge",
+    "prompt": "Explain why coastal upwelling typically occurs along the western coasts of continents in subtropical regions, such as off the coasts of Peru and California, and describe the sequence of physical processes that bring cold, nutrient-rich water to the surface.",
+    "reference_answer": "Coastal upwelling is driven by prevailing winds blowing parallel to the coast toward the equator. The Coriolis effect deflects the wind-driven surface water to the right in the Northern Hemisphere and to the left in the Southern Hemisphere, causing offshore Ekman transport. This surface divergence draws deeper, cold, nutrient-rich water up to replace it, fueling high marine productivity.",
+    "answer_aliases": [
+      "upwelling",
+      "Ekman transport",
+      "nutrient upwelling"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_047"
+  },
+  {
+    "task_id": "cat1_synthetic_048",
+    "category": "factual_knowledge",
+    "prompt": "Explain why an inverted yield curve is often considered a harbinger of economic recession, detailing the mechanism that links the shape of the yield curve to future economic activity.",
+    "reference_answer": "An inverted yield curve occurs when short-term interest rates exceed long-term rates, which is unusual because lenders typically demand higher yields for longer maturities due to risk and inflation uncertainty. This inversion signals that investors expect future economic slowdown or recession, leading them to seek safe long-term bonds, driving up their prices and pushing down yields. Additionally, banks borrow short-term and lend long-term, so an inverted curve squeezes their net interest margins, reducing lending and tightening credit, which can itself precipitate a recession. The predictive power has been strong historically, though not perfect.",
+    "answer_aliases": [
+      "An inverted yield curve predicts recession because it reflects investor pessimism and tightens bank lending conditions.",
+      "When short-term rates exceed long-term rates, it signals an impending economic downturn due to reduced credit creation and flight to safety."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_048"
+  },
+  {
+    "task_id": "cat1_synthetic_049",
+    "category": "factual_knowledge",
+    "prompt": "Explain why female mammals inactivate one of their two X chromosomes in each cell, and describe the molecular mechanism involving Xist RNA that leads to this inactivation.",
+    "reference_answer": "To achieve dosage compensation, female mammals inactivate one X chromosome in each cell to equalize the expression of X-linked genes with males (XY). The process is initiated by the X-inactivation center (Xic) and involves the long non-coding RNA Xist, which coats the inactive X chromosome and recruits chromatin-modifying complexes that lead to transcriptional silencing and heterochromatin formation.",
+    "answer_aliases": [
+      "Females have two X chromosomes, so one is inactivated to balance gene dosage with males. The Xist RNA from the Xic locus spreads along the chromosome, attracting proteins that modify histones and condense the chromatin, silencing most genes.",
+      "Dosage compensation via X-inactivation; Xist RNA coats the inactive X, leading to epigenetic silencing."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_049"
+  },
+  {
+    "task_id": "cat1_synthetic_050",
+    "category": "factual_knowledge",
+    "prompt": "Explain why appending an element to a dynamic array (such as a Python list or Java ArrayList) is described as having an amortized O(1) time complexity, even though the array must occasionally be resized and all elements copied, which takes O(n) time.",
+    "reference_answer": "Dynamic arrays use a geometric expansion strategy, typically doubling their capacity when full. This ensures that resize operations occur infrequently: after k insertions, the total copying cost across all resizes is proportional to the final size, so the average (amortized) cost per insertion is constant. Specifically, the sum of copying costs is O(n), yielding O(1) per operation over many insertions.",
+    "answer_aliases": [
+      "amortized constant time insertion",
+      "doubling strategy analysis",
+      "aggregate analysis of dynamic array"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_050"
+  },
+  {
+    "task_id": "cat1_synthetic_051",
+    "category": "factual_knowledge",
+    "prompt": "Explain why hail forms in strong thunderstorms even during hot summer weather, and describe the role of updrafts and supercooled water in creating the layered structure of hailstones.",
+    "reference_answer": "Hail forms in strong thunderstorms when powerful updrafts carry raindrops or ice particles high into the cloud, where temperatures are well below freezing. In these sub-zero regions, supercooled water droplets (liquid water below 0\u00b0C) freeze onto the ice particle, adding a layer. The growing hailstone may then fall into warmer, lower regions, collecting more supercooled water, and be carried aloft again by the updraft, repeating the cycle. Each ascent adds a new ice layer, building a concentric structure. The strength of the updraft determines how long the hailstone can be suspended and how large it grows; only intense thunderstorms have updrafts strong enough to support large hail, which is why hail can occur even in summer when surface temperatures are high.",
+    "answer_aliases": [
+      "Hailstones form through repeated cycles of ascent and descent within a thunderstorm, accumulating layers of ice from supercooled water droplets that freeze on contact.",
+      "Large hail develops in severe storms because strong updrafts keep ice particles aloft, allowing them to accrete supercooled water and grow layered structures before falling to the ground."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_051"
+  },
+  {
+    "task_id": "cat1_synthetic_052",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the deep ocean waters in the Atlantic are saltier than those in the Pacific, and how this difference contributes to the global thermohaline circulation.",
+    "reference_answer": "The Atlantic Ocean is saltier at depth due to higher net evaporation rates and lower freshwater input from rivers and precipitation compared to the Pacific, along with the inflow of extremely salty water from the Mediterranean Sea. This high-salinity water, when cooled in the North Atlantic, becomes dense enough to sink, forming North Atlantic Deep Water (NADW). This sinking drives the Atlantic Meridional Overturning Circulation (AMOC), a crucial limb of the global thermohaline conveyor belt that circulates water through all ocean basins, redistributing heat, carbon, and nutrients and regulating global climate.",
+    "answer_aliases": [
+      "Explain why Atlantic deep water is saltier than Pacific deep water and its role in driving global ocean circulation.",
+      "How does the higher salinity of Atlantic deep water compared to the Pacific contribute to the thermohaline circulation?"
+    ],
+    "difficulty": "hard",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_052"
+  },
+  {
+    "task_id": "cat1_synthetic_053",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a temperature inversion in the mid-troposphere, known as a 'cap', can suppress thunderstorm development despite high convective available potential energy (CAPE) at the surface, and describe the mechanism by which this cap is eventually breached to trigger severe storms.",
+    "reference_answer": "A cap is a layer of warm air aloft that inhibits thunderstorm development by preventing rising surface air parcels from reaching the level of free convection. Even if CAPE is high, the cap keeps the parcels cooler than the surrounding environment, so they sink back. The cap can be breached when surface heating or large-scale lifting forces the air to break through, or when the cap erodes due to cooling or mixing. Once broken, the stored energy is released explosively, leading to rapid storm growth.",
+    "answer_aliases": [
+      "A capping inversion suppresses convection because rising parcels are cooler than the warm layer, preventing them from reaching the level of free convection; the cap breaks when surface heating or lifting forces parcels through, or when the inversion weakens.",
+      "A mid-level warm layer acts as a lid on convection; it is overcome when surface temperatures rise enough to make parcels buoyant through the layer, or when dynamic lifting pushes them upward."
+    ],
+    "difficulty": "hard",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_053"
+  },
+  {
+    "task_id": "cat1_synthetic_054",
+    "category": "factual_knowledge",
+    "prompt": "Explain why incompetent individuals often overestimate their own ability in a domain, while highly competent individuals tend to underestimate theirs, according to the Dunning-Kruger effect, and describe the metacognitive deficits that cause this asymmetry.",
+    "reference_answer": "The Dunning-Kruger effect arises from a metacognitive deficit: incompetent individuals lack the very expertise needed to recognize their own errors and poor performance, so they overestimate their competence. Highly competent individuals, on the other hand, mistakenly assume that tasks easy for them are equally easy for others, leading them to underestimate their relative ability. This dual misjudgment creates an asymmetric self-assessment pattern.",
+    "answer_aliases": [
+      "the Dunning-Kruger effect",
+      "metacognitive deficits lead to overestimation and underestimation"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_054"
+  },
+  {
+    "task_id": "cat1_synthetic_055",
+    "category": "factual_knowledge",
+    "prompt": "Explain how the invention of the cotton gin by Eli Whitney in 1793 unexpectedly led to the expansion and entrenchment of slavery in the United States, rather than its decline.",
+    "reference_answer": "The cotton gin dramatically reduced the labor needed to remove seeds from short-staple cotton, making its cultivation highly profitable. This sparked a massive expansion of cotton plantations in the South, which in turn created a soaring demand for enslaved labor to plant, cultivate, and pick the cotton, thereby strengthening and extending the institution of slavery.",
+    "answer_aliases": [
+      "The cotton gin made processing short-staple cotton efficient, leading to a cotton boom that required more slaves for planting and harvesting, thus expanding slavery.",
+      "Eli Whitney's invention increased the profitability of cotton cultivation, which in turn increased the demand for slave labor in the American South, contradicting the expectation that it would reduce the need for slaves."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_055"
+  },
+  {
+    "task_id": "cat1_synthetic_056",
+    "category": "factual_knowledge",
+    "prompt": "Explain why action potentials propagate faster along myelinated axons than unmyelinated ones, and describe the mechanism of saltatory conduction that enables this increased speed.",
+    "reference_answer": "Myelinated axons conduct action potentials faster because the myelin sheath acts as an electrical insulator, reducing membrane capacitance and preventing ion leakage across the axonal membrane. This allows the depolarizing current to spread passively with less decay, reaching the next node of Ranvier where voltage-gated sodium channels are concentrated. The action potential thus 'jumps' from node to node (saltatory conduction), whereas in unmyelinated axons, the action potential must be regenerated continuously along every patch of membrane, which is slower due to the time required for sequential opening of ion channels.",
+    "answer_aliases": [
+      "Myelin insulates the axon so that the depolarization can jump between gaps (nodes of Ranvier) instead of propagating continuously, greatly increasing conduction velocity.",
+      "Saltatory conduction allows the nerve impulse to skip from one node of Ranvier to the next, avoiding the slower process of regenerating the action potential at every point along the axon."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_056"
+  },
+  {
+    "task_id": "cat1_synthetic_057",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the seeds of some plant species, such as those of the Banksia genus in fire-prone ecosystems, require exposure to fire or smoke to germinate, and describe the physiological mechanism by which fire-related cues break seed dormancy.",
+    "reference_answer": "Fire or smoke provides physical and chemical cues that break seed dormancy. Heat can crack hard seed coats, allowing water and gas exchange. Smoke contains karrikins, plant growth regulators that trigger germination signaling pathways, an adaptation to post-fire conditions with reduced competition and nutrient-rich ash beds.",
+    "answer_aliases": [
+      "Heat and smoke chemicals break dormancy in serotinous seeds",
+      "Karrikins in smoke stimulate germination after fire"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_057"
+  },
+  {
+    "task_id": "cat1_synthetic_058",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the photoelectric effect, where light shining on a metal surface ejects electrons, cannot be explained by classical wave theory of light, and how Einstein's introduction of light quanta (photons) resolves the key experimental observations, including the threshold frequency and the instantaneous emission.",
+    "reference_answer": "Classical wave theory predicted that increasing light intensity would increase the kinetic energy of ejected electrons and that emission would occur at any frequency if the light is bright enough, given enough time. However, experiments showed a threshold frequency below which no electrons are emitted regardless of intensity, and the maximum kinetic energy of emitted electrons depends linearly on frequency, not intensity. Einstein explained this by proposing that light consists of discrete quanta (photons) with energy E = hf. An electron absorbs a single photon entirely; if the photon energy exceeds the metal's work function (\u03c6), the electron is ejected with kinetic energy K = hf - \u03c6. Below the threshold frequency (f\u2080 = \u03c6/h), photon energy is insufficient to overcome the work function, so no emission occurs. Instantaneous emission happens because absorption is a one-to-one event. Intensity determines the number of photons, affecting the photocurrent, but not the kinetic energy per electron.",
+    "answer_aliases": [
+      "Einstein's explanation of the photoelectric effect",
+      "photon theory of light and the photoelectric effect",
+      "quantum resolution of the photoelectric effect"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_058"
+  },
+  {
+    "task_id": "cat1_synthetic_059",
+    "category": "factual_knowledge",
+    "prompt": "Explain why an action potential propagates in only one direction along a healthy axon, from the soma toward the synaptic terminals, and what biophysical mechanisms enforce this unidirectional conduction.",
+    "reference_answer": "The unidirectional propagation of an action potential is primarily enforced by the refractory periods of voltage-gated sodium channels. After opening to allow sodium influx during the rising phase, these channels enter an inactivated state that prevents them from reopening immediately, making the recently activated patch of membrane temporarily unexcitable. This ensures that the depolarization can only spread forward to adjacent, resting regions where sodium channels are available to open, thus moving the signal away from the soma and preventing backward propagation.",
+    "answer_aliases": [
+      "Because voltage-gated sodium channels become inactivated after opening, creating a refractory period that blocks backward conduction.",
+      "The absolute refractory period of sodium channels ensures that the action potential can only travel in one direction."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_059"
+  },
+  {
+    "task_id": "cat1_synthetic_060",
+    "category": "factual_knowledge",
+    "prompt": "Explain why a parabolic arch is structurally more efficient than a semicircular arch for supporting a uniformly distributed load, and how this principle is applied in bridge and building design.",
+    "reference_answer": "A parabolic arch is more efficient because its shape closely follows the thrust line for a uniformly distributed load, meaning the internal forces are primarily compressive along the arch, with minimal bending moments. This allows the arch to be constructed with less material and thinner sections. In contrast, a semicircular arch deviates from the ideal thrust line under uniform load, resulting in significant bending stresses that require a thicker, stronger structure. This principle is used in many modern bridges and buildings, where parabolic arches or similar shapes (like catenary for point loads) are chosen to optimize load-bearing efficiency.",
+    "answer_aliases": [
+      "Parabolic arches minimize bending by aligning with the thrust line for uniform loads, unlike semicircular arches.",
+      "The parabolic shape matches the load path, reducing tension and shear forces.",
+      "A parabolic arch carries loads in pure compression under uniform distribution, making it structurally optimal."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_060"
+  },
+  {
+    "task_id": "cat1_synthetic_061",
+    "category": "factual_knowledge",
+    "prompt": "Explain why quantum tunneling is crucial for enabling nuclear fusion in stars like the Sun, and describe how the tunneling probability depends on the energy of the particles and the Coulomb barrier.",
+    "reference_answer": "Quantum tunneling allows protons to overcome the Coulomb barrier even when their thermal energies are insufficient for classical fusion. Because particles have wave-like properties, there is a finite probability of penetrating the barrier. This probability is exponentially suppressed by the Gamow factor, which depends on the barrier height and width; higher energies or a narrower barrier increase the tunneling rate, making fusion possible at stellar core temperatures.",
+    "answer_aliases": [
+      "Quantum tunneling enables protons to fuse by penetrating the electrostatic repulsion barrier, with probability given by the Gamow factor.",
+      "In stars, fusion occurs via quantum tunneling through the Coulomb barrier, with the rate determined by the energy and barrier shape."
+    ],
+    "difficulty": "hard",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_061"
+  },
+  {
+    "task_id": "cat1_synthetic_062",
+    "category": "factual_knowledge",
+    "prompt": "Explain how a ratchet wrench enables a socket to tighten or loosen a bolt in one direction while allowing free rotation in the opposite direction, and describe the mechanical interaction between the pawl and the gear teeth that makes this possible.",
+    "reference_answer": "A ratchet wrench contains a gear wheel with teeth and a spring-loaded pawl that engages the teeth. When the handle is turned in one direction, the pawl locks into the gear teeth, forcing the gear and socket to rotate together, applying torque to the bolt. When turned in the opposite direction, the pawl slides over the teeth, allowing the handle to move without turning the gear, so the socket stays in place. This unidirectional engagement enables continuous tightening or loosening without repositioning the tool.",
+    "answer_aliases": [
+      "The pawl catches the teeth in one direction and slips over them in the other.",
+      "A spring-loaded pawl engages a gear to allow rotation in only one direction."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_062"
+  },
+  {
+    "task_id": "cat1_synthetic_063",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the NMDA receptor is considered a molecular coincidence detector that is crucial for the induction of long-term potentiation (LTP) at hippocampal synapses, and describe the biophysical mechanism that allows it to function as such.",
+    "reference_answer": "The NMDA receptor is a coincidence detector because it requires both presynaptic glutamate release (binding to the receptor) and postsynaptic depolarization (to relieve the voltage-dependent magnesium block of its ion channel). When both conditions occur simultaneously, calcium ions flow into the postsynaptic neuron, activating intracellular signaling cascades that lead to the strengthening of the synapse (LTP).",
+    "answer_aliases": [
+      "The NMDA receptor detects the coincidence of presynaptic activity (glutamate) and postsynaptic depolarization by releasing a magnesium block, allowing calcium entry and triggering LTP.",
+      "NMDA receptor acts as a molecular coincidence detector by opening its calcium-permeable channel only when glutamate binds and the postsynaptic membrane is depolarized, thus enabling LTP induction."
+    ],
+    "difficulty": "hard",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_063"
+  },
+  {
+    "task_id": "cat1_synthetic_064",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the noble gases (Group 18) were long believed to be entirely inert, yet certain compounds like xenon hexafluoroplatinate (XePtF6) can be synthesized. What property of xenon allows it to form chemical bonds, and how does this challenge the traditional view of chemical bonding in noble gases?",
+    "reference_answer": "Noble gases were thought inert because their full valence electron shells (octet) confer exceptional stability and a low tendency to gain, lose, or share electrons. However, xenon, with a larger atomic radius and lower ionization energy than lighter noble gases, can have its outer electrons pulled away or shared by highly electronegative elements like fluorine or oxygen. The energy released by forming strong Xe\u2013F or Xe\u2013O bonds compensates for the ionization energy cost, making the overall compound thermodynamically stable. The synthesis of XePtF6 in 1962 demonstrated that the octet rule is not an absolute barrier, and that noble gas reactivity is possible under sufficiently oxidizing conditions, expanding the understanding of chemical bonding.",
+    "answer_aliases": [
+      "Noble gases have full valence shells making them stable, but heavy ones like xenon have low ionization energy, allowing bond formation with strong oxidizers like fluorine, as the bond energy overcomes the cost of ionization, showing the octet rule can be overcome.",
+      "Xenon can form compounds because its outer electrons are relatively easy to remove due to its size, and bonding with electronegative elements releases enough energy to stabilize the compound, contradicting the belief that noble gases are completely inert."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_064"
+  },
+  {
+    "task_id": "cat1_synthetic_065",
+    "category": "factual_knowledge",
+    "prompt": "Explain why prestressed concrete is used for long-span beams and bridges, and how the application of compressive stress to the concrete before loading counteracts tensile stresses that would otherwise cause cracking.",
+    "reference_answer": "Prestressed concrete is used because concrete is strong in compression but weak in tension. By applying compressive stress via tensioned steel tendons before the beam is loaded, the concrete is pre-compressed. When loads cause tension in the bottom of the beam, the pre-compression cancels out the tensile stress, keeping the concrete in compression and preventing cracks, thus allowing longer spans with less material.",
+    "answer_aliases": [
+      "Prestressed concrete beams have steel tendons that are stretched and anchored, compressing the concrete. This pre-compression offsets the tensile forces from loads, so the concrete remains crack-free and can span greater distances than conventional reinforced concrete.",
+      "By pre-compressing concrete, engineers ensure that tensile stresses from bending are neutralized, exploiting concrete's high compressive strength while mitigating its tensile weakness, enabling slender, long-span structures."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_065"
+  },
+  {
+    "task_id": "cat1_synthetic_066",
+    "category": "factual_knowledge",
+    "prompt": "Explain why legumes like soybeans can form a symbiotic relationship with nitrogen-fixing bacteria, while most other plants cannot, and describe the molecular signaling that leads to root nodule formation.",
+    "reference_answer": "Legumes secrete specific flavonoids into the soil that attract compatible Rhizobium bacteria. In response, the bacteria produce Nod factors (lipochitooligosaccharides), which are recognized by plant receptor kinases, triggering a signaling cascade that causes root hair curling, infection thread formation, and cortical cell division, ultimately forming root nodules where bacteria differentiate into bacteroids that fix atmospheric nitrogen in exchange for carbohydrates from the plant. Most other plants lack this specific flavonoid-Nod factor recognition system.",
+    "answer_aliases": [
+      "Legumes release flavonoids to attract rhizobia, which produce Nod factors that induce nodule formation, allowing nitrogen fixation.",
+      "The symbiotic relationship relies on specific chemical signaling between legumes and rhizobia, involving flavonoids and Nod factors, which other plants do not produce."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_066"
+  },
+  {
+    "task_id": "cat1_synthetic_067",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the human brain, which constitutes only about 2% of body mass, consumes approximately 20% of the body's oxygen and glucose, and describe the primary energy-consuming processes that account for this high metabolic rate.",
+    "reference_answer": "The brain's high metabolic demand is primarily due to the constant activity of neurons, especially the maintenance of the resting membrane potential through the sodium-potassium pump (Na+/K+-ATPase), which actively transports ions against their gradients. This pump alone accounts for a large fraction of neuronal energy use. Additionally, synaptic transmission, including neurotransmitter synthesis, release, and recycling, as well as intracellular signaling and housekeeping processes, contribute significantly. The brain's reliance on aerobic metabolism and its limited energy reserves make it highly dependent on a continuous supply of oxygen and glucose.",
+    "answer_aliases": [
+      "Why does the brain use so much energy?",
+      "What makes the brain so energy-hungry?",
+      "Why does the brain consume a disproportionate amount of the body's energy?"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_067"
+  },
+  {
+    "task_id": "cat1_synthetic_068",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the presence of multiple bystanders at an emergency reduces the likelihood that any one individual will offer help, and describe the psychological mechanisms that underlie this bystander effect.",
+    "reference_answer": "The bystander effect occurs primarily due to two mechanisms: diffusion of responsibility, where each individual feels less personal accountability to intervene when others are present, and pluralistic ignorance, where people look to others for cues and misinterpret their inaction as a sign that the situation is not an emergency, thereby inhibiting their own helping behavior.",
+    "answer_aliases": [
+      "diffusion of responsibility",
+      "pluralistic ignorance"
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_068"
+  },
+  {
+    "task_id": "cat1_synthetic_069",
+    "category": "factual_knowledge",
+    "prompt": "Explain how the introduction of the potato from the Americas to Europe in the 16th century contributed to population growth, and how its monoculture dependency later led to the catastrophic Irish Potato Famine of the 1840s.",
+    "reference_answer": "The potato was a highly nutritious, calorie-dense crop that could thrive in poor soils and climates, leading to significant population growth across Europe. In Ireland, it became a staple monocrop, creating a heavy dependence on a single variety. When the potato blight (Phytophthora infestans) struck in the 1840s, it caused successive crop failures, resulting in mass starvation and emigration. The famine was worsened by British colonial policies, including continued food exports and inadequate relief.",
+    "answer_aliases": [
+      "The potato provided a reliable food source that boosted populations, but Ireland's reliance on a single variety made it vulnerable to the blight, causing famine when the crop failed.",
+      "Potato introduction led to population increases; monoculture dependence in Ireland meant that when blight destroyed the crop, there was no alternative, leading to widespread famine and death."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_069"
+  },
+  {
+    "task_id": "cat1_synthetic_070",
+    "category": "factual_knowledge",
+    "prompt": "Explain why telomeres at the ends of linear chromosomes shorten with each round of DNA replication in somatic cells, and how this progressive shortening contributes to cellular senescence and the Hayflick limit.",
+    "reference_answer": "Telomeres shorten because DNA polymerase cannot fully replicate the 3' ends of linear chromosomes, a problem known as the end-replication problem. This leads to progressive loss of telomeric repeats with each cell division. When telomeres become critically short, cells enter a state of replicative senescence, known as the Hayflick limit, as a tumor suppression mechanism.",
+    "answer_aliases": [
+      "The end-replication problem causes telomere shortening, leading to replicative senescence when telomeres reach a critical length.",
+      "Due to the inability of DNA polymerase to complete replication at chromosome ends, telomeres shorten progressively, triggering cellular aging via the Hayflick limit."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_070"
+  },
+  {
+    "task_id": "cat1_synthetic_071",
+    "category": "factual_knowledge",
+    "prompt": "Explain why the eye of a mature hurricane is typically calm and nearly cloud-free, while the surrounding eyewall experiences the most intense winds and torrential rainfall. What physical mechanisms are responsible for maintaining this structure?",
+    "reference_answer": "The eye forms due to conservation of angular momentum and centrifugal force. As air converges towards the low-pressure center, its tangential velocity increases to conserve angular momentum, leading to strong winds. The centrifugal force prevents the inflowing air from reaching the exact center, causing it to rise in a ring (the eyewall) where the most intense convection occurs. In the center, some air sinks, warming adiabatically and suppressing cloud formation, resulting in the calm, clear eye.",
+    "answer_aliases": [
+      "Angular momentum conservation and centrifugal force create the eye and eyewall structure.",
+      "Descending air in the eye warms and clears clouds, while rising air in the eyewall generates intense storms."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_071"
+  },
+  {
+    "task_id": "cat1_synthetic_072",
+    "category": "factual_knowledge",
+    "prompt": "Explain why, in the double-slit experiment with electrons, an interference pattern gradually appears on the detector screen when electrons are sent through the apparatus one at a time, and how this phenomenon demonstrates the principle of wave-particle duality and the role of measurement in quantum mechanics.",
+    "reference_answer": "When electrons are fired one at a time, each electron behaves as a wave that passes through both slits simultaneously, creating a superposition of paths. The wavefunction of the electron interferes with itself, producing an interference pattern on the screen over many detections. This shows that electrons exhibit wave-like behavior when not observed, but if a detector is placed at the slits to determine which path the electron takes, the interference pattern disappears and the electrons behave as particles. This illustrates wave-particle duality and the collapse of the wavefunction upon measurement.",
+    "answer_aliases": [
+      "The interference pattern arises because each electron's wavefunction goes through both slits and interferes with itself, demonstrating that electrons have wave properties until measured.",
+      "Single electrons produce an interference pattern due to quantum superposition, where the electron exists in multiple states simultaneously, and the pattern reveals its wave nature; observation collapses this superposition."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_072"
+  },
+  {
+    "task_id": "cat1_synthetic_073",
+    "category": "factual_knowledge",
+    "prompt": "Explain why synaptic pruning occurs in the adolescent brain, and how it contributes to both cognitive maturation and the increased risk of schizophrenia during this developmental period.",
+    "reference_answer": "Synaptic pruning is a process that eliminates excess synapses formed during childhood to refine neural circuits. In adolescence, the brain undergoes extensive pruning, particularly in the prefrontal cortex, to improve the efficiency of information processing. This is mediated by microglia and complement proteins that tag weak or unused synapses for removal. The result is a more specialized and efficient network, supporting higher cognitive functions like decision-making and impulse control. However, excessive pruning, possibly due to genetic variants such as those in the C4 gene, can lead to a loss of essential connections, increasing vulnerability to schizophrenia, which often emerges in late adolescence or early adulthood.",
+    "answer_aliases": [
+      "Synaptic pruning in adolescence refines neural circuits by eliminating weak synapses, aiding cognitive development but increasing schizophrenia risk if overactive.",
+      "Adolescent synaptic pruning improves brain efficiency but may contribute to schizophrenia when dysregulated, involving microglia and complement proteins."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_073"
+  },
+  {
+    "task_id": "cat1_synthetic_074",
+    "category": "factual_knowledge",
+    "prompt": "Explain why lateral inhibition is a fundamental mechanism in sensory systems, and describe how it enhances contrast detection in the visual system by using center-surround receptive fields in retinal ganglion cells.",
+    "reference_answer": "Lateral inhibition is a process where an excited neuron reduces the activity of its neighbors, sharpening the difference between stimuli. In the retina, photoreceptors stimulate bipolar cells and horizontal cells; horizontal cells then inhibit neighboring photoreceptors and bipolar cells, creating an antagonistic center-surround receptive field. This arrangement enhances edges and contrast, making boundaries more distinct and facilitating perception of fine details.",
+    "answer_aliases": [
+      "Lateral inhibition enhances contrast by suppressing activity in surrounding neurons, making the center stimulus more prominent.",
+      "Center-surround receptive fields are formed by horizontal cells inhibiting adjacent pathways, increasing the perceived difference between light and dark areas."
+    ],
+    "difficulty": "medium",
+    "source": "fireworks_synthetic",
+    "source_id": "synthetic_074"
+  }
+]
