@@ -1,139 +1,96 @@
-# Phase 1 Instructions: Prompt + Ground-Truth Dataset Generation
-**AMD Developer Hackathon (ACT II) — Track 1 Router Validation Dataset**
+# Phase 1 — Category 1 (Factual Knowledge) Pilot Dataset
+**Target: 50 prompt+answer+difficulty entries, built entirely from local TriviaQA data. No Fireworks or any LLM calls anywhere in this pipeline.**
 
-## 0. Purpose
+This is a pilot batch to validate the format, sourcing approach, and difficulty heuristic before we scale to the full Category 1 dataset. Treat every threshold below as a first guess — flag anything that looks wrong rather than silently working around it.
 
-We are building an internal dataset to validate our task-classifier and local/escalate router **before** the real hackathon harness runs. This is not the hackathon submission. It will never be scored by the hidden LLM-Judge. Its only job is to give us labeled examples we can use to test our own pipeline offline.
+---
 
-## 1. Scope & Budget (hard constraints — do not exceed)
+## Ground rules
 
-- **Total budget: $6.00 in Fireworks credits.** Track spend after every batch. If projected spend crosses $5.00, stop and report before continuing.
-- **Total dataset size: 2,000 prompts**, split evenly across 8 categories → **250 prompts per category**.
-- Difficulty within each category is **randomly mixed**, not tiered — no need to explicitly target easy/medium/hard buckets, just don't cluster generation prompts toward one difficulty (see per-category guidance below for how to get natural spread).
-- **Do not scale this up to 100k without explicit sign-off.** That was the original ambition but the budget only supports ~2k with a strong-model answer pass. If you think you can get more out of the $6 (e.g. via batch inference), report it — don't just spend more.
+- **No API calls.** No Fireworks, no OpenAI, no local LLM inference either. This batch is pure data engineering against the TriviaQA file already on disk.
+- **English only.**
+- **No duplicate prompts** (exact or near-duplicate).
+- **Every entry must be traceable** back to its original TriviaQA question ID.
+- **Document every heuristic decision** (especially difficulty labeling) in a README — we will revisit and likely rewrite these thresholds after reviewing the pilot.
+- Do not touch Categories 2–8 or scale past 50 in this phase.
 
-## 2. Fireworks API basics (confirmed from docs.fireworks.ai)
+---
 
-- Base URL: `https://api.fireworks.ai/inference/v1` — OpenAI-compatible, so the `openai` Python SDK works if you point `base_url` at Fireworks and pass the Fireworks key.
-- Auth: `Authorization: Bearer $FIREWORKS_API_KEY` (env var, never hardcode the key in source).
-- Model strings follow the pattern `accounts/fireworks/models/<slug>` — confirm exact slugs in the Fireworks model catalog before hardcoding, since slugs can change.
-- Use `response_format: {"type": "json_object"}` on every generation call. Always ask the model to return a single JSON object matching a schema you specify in the system prompt. This avoids regex-parsing free text.
-- Rate limits: 10 requests/minute if no payment method is on file, 6,000 requests/minute with one. **Check which state the account is in first** and set your concurrency/throttling accordingly — don't assume.
-- Batch inference endpoint is billed at 50% of live serverless pricing on both input and output tokens. **Investigate this first.** If our volume (2,000 prompt-gen calls + 2,000 answer-gen calls = ~4,000 calls) qualifies for batch and the turnaround time is acceptable, use it — it roughly doubles our effective budget. If batch inference doesn't fit our timeline, fall back to live calls with concurrency respecting the rate limit above.
+## Step 0 — Inventory the source before writing any pipeline code
 
-## 3. Model selection
+TriviaQA ships in multiple variants (`rc` vs `unfiltered`, `wikipedia` vs `web` evidence, train/dev/test splits) with slightly different schemas. Before building anything:
 
-- **Prompt generation (the questions themselves):** use a mid-tier model. Default: `GPT-OSS-120B` (~$0.15/M input, $0.60/M output tokens on Fireworks — confirm current pricing before running, prices drift).
-- **Ground-truth answer generation:** use a stronger model, in a **separate call** from prompt generation. Default: `DeepSeek V4 Pro` (~$1.74/M input, $3.48/M output — confirm current pricing).
-- **Critical constraint: do NOT use MiniMax or Kimi K-series models anywhere in this pipeline.** The hackathon FAQ confirms these are the `ALLOWED_MODELS` for the real evaluation harness. If our dataset is generated or answered using the same models that will later be scored, it'll be biased toward what those models find easy, which defeats the purpose of using this dataset to validate the router. Use GPT-OSS, DeepSeek, Llama, Qwen, or similar — anything **not** MiniMax/Kimi.
-- Log the exact model slug and pricing used for every call (needed for cost tracking and for reproducibility if we regenerate later).
+1. Identify exactly which file(s) you have (check filename, and the top-level structure — is it the `rc` or `unfiltered` set? Does it include an `EntityPages`/evidence field?).
+2. Print/log the full field list from 5 sample records to a `notes/schema_inventory.md` file.
+3. Report back to me which variant it is — this affects how reliable the "answer" field is and matters later for eval integrity.
 
-## 4. Output format
+---
 
-### 4.1 Final dataset file
-A single flat JSON file: `dataset.jsonl` (JSON Lines — one JSON object per line, easier to checkpoint/append/resume than one giant JSON array).
+## Step 1 — Build the candidate pool
 
-Each line:
+Filter TriviaQA questions down to a clean candidate set:
+
+- Keep only entries with a **single, unambiguous primary answer** (skip anything with wildly divergent aliases suggesting an ambiguous/compound answer).
+- Keep only entries with **Wikipedia-sourced evidence** if the field is available (more reliable ground truth than open-web evidence).
+- Question length: reasonable single-sentence trivia questions (rough guideline: 5–40 words) — drop extreme outliers.
+- Drop anything that reads as offensive, violent, or otherwise inappropriate.
+
+## Step 2 — Deduplicate
+
+Normalize question text (lowercase, strip punctuation/whitespace) and drop exact or near-duplicate questions (simple string similarity is fine for this scale).
+
+## Step 3 — Stratified topic sampling (for diversity)
+
+Tag each candidate with a coarse topic bucket using simple keyword/entity heuristics — e.g. `people`, `places`, `history`, `science`, `sports`, `entertainment`, `literature`, `other`. When selecting the final 50:
+
+- Cover **at least 5 distinct buckets**.
+- No single bucket should exceed ~15 of the 50 entries.
+
+## Step 4 — Difficulty labeling (heuristic, no model call)
+
+Since we're not calling an LLM to judge difficulty, use a transparent, computable heuristic. Suggested starting point (adjust if TriviaQA's fields give you something better):
+
+- **Easy**: answer has many aliases listed (proxy for a well-known/famous entity) and/or short, common answer string.
+- **Hard**: answer has few/no aliases, longer or more obscure answer string.
+- **Medium**: everything in between.
+
+Aim for a roughly even 3-way split across the 50. **Explicitly label this heuristic as provisional** in the README — we'll sanity-check it against manual judgment after the pilot.
+
+## Step 5 — Format transform
+
+Each final entry should look like this:
+
 ```json
 {
-  "id": "cat-xxxx",
-  "category": "math",
-  "prompt": "A store offers a 15% discount...",
-  "ground_truth": "...",
-  "ground_truth_meta": { },
-  "generation_model": "accounts/fireworks/models/gpt-oss-120b",
-  "answer_model": "accounts/fireworks/models/deepseek-v4-pro",
-  "seed_topic": "percentages/retail",
-  "created_at": "2026-07-07T12:00:00Z"
+  "task_id": "cat1_pilot_0001",
+  "category": "factual_knowledge",
+  "prompt": "<question text, lightly cleaned>",
+  "reference_answer": "<primary answer string>",
+  "answer_aliases": ["...", "..."],
+  "difficulty": "easy",
+  "source": "triviaqa",
+  "source_id": "<original TriviaQA question id>"
 }
 ```
 
-- `prompt` must **strictly mimic the real harness input shape** — a single natural-language string, no extra formatting, no metadata baked into the text itself. The real harness sends `{"task_id": ..., "prompt": ...}`; our `prompt` field must be exactly what would go in that field. All the metadata above (category, ground truth, etc.) is for our internal use only and must never leak into the prompt text.
-- `ground_truth_meta` is category-specific structured data (see below) — e.g. for math, the numeric answer separate from any explanation; for NER, the entity list.
+Note: `reference_answer`, `answer_aliases`, `difficulty`, `source`, and `source_id` are for **your internal dev/testing use only** — they are not part of the actual hackathon harness input format (`task_id` + `prompt` only). Keep this pilot file clearly separate from anything shaped like the real `/input/tasks.json`.
 
-### 4.2 Checkpointing
-- Write to `dataset.jsonl` incrementally (append after every N=20 successful items), not in one final write at the end. A crash or rate-limit failure partway through must not lose completed work.
-- Keep a separate `progress.json` tracking counts completed per category, total spend so far, and the last successfully processed index, so a run can be resumed rather than restarted.
-- Log every failed generation (bad JSON, API error, timeout) to `errors.jsonl` with the raw response, rather than silently dropping it. Retry failed items up to 2 times before giving up and moving on.
+## Step 6 — Manual spot-check
 
-## 5. Category-specific generation instructions
+50 is small enough to eyeball. Before calling this done, review every entry for:
+- Correctness of the answer
+- No genuinely ambiguous/multi-valid-answer questions slipped through
+- No inappropriate content
+- Difficulty labels look sane on manual read
 
-For every category: generate the **prompt** with the mid-tier model, then generate the **ground truth answer** with the stronger model in a **separate call** that receives the prompt as input (the answer model should not see how the prompt was generated, just the prompt itself — this keeps ground truth honest, generated the way the real target model would have to answer it).
+## Deliverables
 
-### 5.1 Factual knowledge
-- General knowledge, no domain restriction — mix history, science, geography, pop culture, technology, etc.
-- Vary specificity so difficulty is naturally mixed (e.g. "What is the capital of France?" alongside "Which treaty formally ended the Thirty Years' War?").
-- `ground_truth`: concise factual answer (1 sentence typically).
-- `ground_truth_meta`: none needed beyond the answer text itself.
+- `/data/category1_pilot_v1.json` — the 50 entries
+- `/data/category1_pilot_v1_README.md` — source file/variant used, filter thresholds, difficulty heuristic definition, known limitations, and topic bucket counts
+- `/scripts/build_category1_pilot.py` — reproducible script (not one-off/manual), with sample size as a configurable constant so we can rerun it at larger scale later without a rewrite
 
-### 5.2 Math
-- Mix of: arithmetic, percentages, multi-step word problems, unit conversions.
-- **Skew toward the harder end** (multi-step word problems, unit conversions) rather than trivial single-operation arithmetic — trivial arithmetic is exactly what our local deterministic tier (parse + sympy) should handle for free later, so it's low-value to spend dataset budget there.
-- `ground_truth`: final numeric answer, plus a brief solution string.
-- `ground_truth_meta`: `{"final_answer": <number or string>, "unit": <string or null>}` — kept structured and separate from any explanation text so we can do exact-match scoring later.
-- Sanity-check: where feasible, have a second cheap step verify the stronger model's math using a symbolic solver (e.g. sympy) rather than trusting the LLM's arithmetic blindly. If solver and LLM disagree, flag the item in `errors.jsonl` instead of including it — don't guess which is right.
+## Report back to me on
 
-### 5.3 Sentiment
-- **3-class**: positive / negative / neutral.
-- Prompt = a short piece of text (review, comment, statement) + instruction to classify sentiment.
-- `ground_truth_meta`: `{"label": "positive|negative|neutral", "justification": "<one sentence>"}` — both fields required, matching the real eval's requirement to label **and** justify.
-
-### 5.4 Summarization
-- Every generated prompt must include an explicit length constraint: **summarize in 50 words** (fixed, per your latest instruction — do not vary this constraint across items unless told otherwise).
-- Source texts should be generated by the LLM (synthetic short articles/passages), not pulled from real copyrighted sources — keeps us clear of any copyright/licensing complications, and gives control over length/topic diversity.
-- Vary source topic and length so the *summarization task* is non-trivial (e.g. some sources should already be close to 50 words, forcing genuinely different compression skill from sources that are 500 words).
-- `ground_truth`: a summary written by the stronger model, own words, holding to the 50-word constraint. Include a `word_count` field in `ground_truth_meta` so we can later check whether our local models respect the constraint.
-
-### 5.5 Named Entity Recognition (NER)
-- Entity types: **PERSON, ORG, LOCATION, DATE, MONEY, MISC** (default — flag if you want this changed).
-- Prompt = a short passage containing several entities + instruction to extract them.
-- `ground_truth_meta`: `{"entities": [{"text": "...", "type": "..."}, ...]}`.
-- Ensure passages actually contain a mix of entity types (not all PERSON, for instance) — vary seed topics (news snippet, business announcement, historical blurb, travel itinerary) to naturally pull in different entity types.
-
-### 5.6 Code debugging
-- Languages: Python, JavaScript, Java, C++ (default — flag if you want a different set; roughly even split across the 250 items).
-- Bugs generated **freeform by the LLM** (per your instruction), not programmatically injected. To keep ground truth trustworthy despite freeform generation:
-  - Ask the model in the *same generation call* to output both the buggy code and a description of the exact bug (so we have a check even before the answer-model pass).
-  - In the answer-generation step, have the strong model independently identify the bug and the fix, **without** being shown the original bug description — then compare the two. If they materially disagree on what the bug is, flag it to `errors.jsonl` rather than including a possibly-ambiguous or multi-bug snippet.
-  - Where practical (Python/JS especially), actually execute the buggy snippet and capture the real traceback/error as part of the prompt context — real error signal is more reliable than LLM-imagined bugs.
-- `ground_truth_meta`: `{"language": "...", "bug_description": "...", "fixed_code": "..."}`.
-
-### 5.7 Logical / deductive reasoning
-- Per your requirement that this be **verifiable**: prefer puzzle types with a checkable unique solution — constraint satisfaction, scheduling, syllogisms with a formally valid conclusion, small logic grids.
-- Generation approach: have the model generate the puzzle **and** its solution in the same call, then run a lightweight independent verification step:
-  - For constraint-satisfaction/scheduling puzzles: write a small solver/checker (even brute-force for small N) that verifies the claimed solution actually satisfies all stated constraints, and ideally that it's the *unique* solution.
-  - For syllogisms: verify logical validity programmatically (this is checkable with simple rules, doesn't need an LLM).
-  - If a puzzle fails verification (unsolvable, multiple solutions, or the claimed solution is wrong), discard it and regenerate — do not include unverified logic items in the final dataset. This category is the one most likely to silently produce bad ground truth, so the verification step is not optional.
-- `ground_truth_meta`: `{"solution": "...", "verified": true}`.
-
-### 5.8 Code generation
-- Languages: Python, JavaScript, Java, C++ (same default set as debugging).
-- Each prompt should describe a function/small program to write, with **explicit input/output examples** stated as part of the prompt (so the task is well-specified, matching how the real harness prompts likely look).
-- `ground_truth_meta`: `{"language": "...", "solution_code": "...", "test_cases": [{"input": ..., "expected_output": ...}, ...]}` — include at least 3 test cases per item, generated alongside the solution, so we can literally execute generated code against them later rather than relying on an LLM judge for this category.
-- Where the language supports it, **actually run** `solution_code` against `test_cases` before accepting the item, to confirm the "ground truth" solution is actually correct. Discard and regenerate on failure.
-
-## 6. Diversity & deduplication
-
-- Maintain a bank of **diverse seed topics/templates per category** (aim for at least 30–40 distinct seed topics per category so 250 items don't collapse into near-duplicates of a handful of templates). Rotate through seeds rather than sampling the same one repeatedly.
-- After generation, run **embedding-based deduplication**: embed all `prompt` texts (a cheap embedding model — this is near-free relative to the generation budget), compute pairwise similarity within each category, and flag/remove near-duplicates above a similarity threshold (start at cosine similarity ~0.92, adjust if too aggressive/lax). Regenerate replacements for anything removed, so we still land on 250/category.
-
-## 7. Validation pass
-
-- Given the cost sensitivity you flagged, keep this **cheap**: don't spend a third LLM call validating every item. Instead:
-  - Category-match validation: since prompts are generated *for* a target category already (not classified after the fact), there's no ambiguity to check here — skip a separate "does this match its category" LLM call, it'd be redundant spend.
-  - Ground-truth soundness validation is instead handled **inline**, per-category, as described in section 5 above (math solver cross-check, logic puzzle solver verification, code test execution, freeform-bug cross-check) — these are mostly programmatic/deterministic, not additional paid LLM calls, so they don't meaningfully add to spend.
-- This gets you the "yes, validate" outcome you wanted in principle, without the added cost of a blanket extra LLM pass over all 2,000 items.
-
-## 8. Cost tracking & reporting
-
-- After every 100 completed items (across all categories), log cumulative token usage and dollar cost so far to `cost_log.jsonl`.
-- Stop generation and report back if cumulative spend hits $5.00, even if the dataset isn't complete — do not run the budget to zero unsupervised.
-- At the end of the run, produce a short summary: total items per category, total spend, number of items discarded/regenerated per category (useful signal for which categories were hardest to generate cleanly — logic and code debugging are the likely worst offenders).
-
-## 9. Deliverables at end of Phase 1
-
-1. `dataset.jsonl` — 2,000 validated items, 250 per category.
-2. `errors.jsonl` — failed/discarded items with reasons.
-3. `progress.json` — final state (useful if we ever resume/extend).
-4. `cost_log.jsonl` — running cost log.
-5. A short written summary (few sentences) of anything that came up during generation that surprised you or that we should account for when building the classifier/router — e.g. if a category turned out much harder to generate cleanly than expected, or if certain seed topics produced weak items.
+1. Which exact TriviaQA variant/split you used.
+2. TriviaQA's license terms — right now we're treating this dataset as **internal dev/test only, not part of the public hackathon repo**. Confirm that's still the plan, since the license matters a lot more if it ever gets committed publicly.
+3. A known coverage gap: TriviaQA skews toward discrete "who/what/when/where" recall questions. Category 1 also includes "explaining how things work"-style prompts, which TriviaQA doesn't really cover. We'll need a plan for that gap before phase 2 — flagging now so it's not a surprise later.
