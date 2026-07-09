@@ -30,6 +30,19 @@ def extract_labels_from_prompt(prompt: str):
     
     return labels if labels else DEFAULT_LABELS
 
+def extract_target_text(prompt: str) -> str:
+    """Isolate the actual text to be processed, stripping away the instructional prompt."""
+    if "Sentence:" in prompt:
+        return prompt.split("Sentence:")[-1].split("\n\n")[0].strip()
+    elif "Text:" in prompt:
+        return prompt.split("Text:")[-1].split("\n\n")[0].strip()
+    elif '"' in prompt:
+        import re
+        match = re.search(r'"([^"]*)"', prompt)
+        if match:
+            return match.group(1).strip()
+    return prompt
+
 def solve_ner(prompt: str) -> str:
     """
     Extracts named entities using the zero-shot GLiNER model and returns them 
@@ -38,8 +51,11 @@ def solve_ner(prompt: str) -> str:
     # Dynamically figure out what labels the prompt is asking for
     labels_to_find = extract_labels_from_prompt(prompt)
     
+    # Isolate the target text so GLiNER doesn't extract words from the instructions
+    target_text = extract_target_text(prompt)
+    
     # Run the zero-token local inference
-    entities = ner_model.predict_entities(prompt, labels_to_find, threshold=0.3)
+    entities = ner_model.predict_entities(target_text, labels_to_find, threshold=0.3)
     
     formatted_entities = []
     
