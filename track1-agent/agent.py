@@ -65,9 +65,16 @@ def main():
         task_type = detect_task_type(task["prompt"])
         
         if task_type == "entity_extraction":
-            # Massive token savings: solve NER locally for 0 API tokens
-            answer_text = solve_ner(task["prompt"])
-            results.append({"task_id": task["task_id"], "answer": answer_text})
+            # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
+            raw_entities = solve_ner(task["prompt"])
+            
+            # 2. Perfect formatting: use the cheap model to format the extracted entities
+            format_prompt = f"The user requested this task:\n{task['prompt']}\n\nI have already extracted the entities for you: {raw_entities}\n\nYour ONLY job is to take these exact entities and format them exactly as requested in the task instructions (e.g., as tuples, lists, or custom JSON keys). Do not add any preamble. Output ONLY the final formatted result."
+            
+            answer = chat(MODEL_CHEAP, format_prompt, max_tokens=800)
+            
+            results.append({"task_id": task["task_id"], "answer": answer["text"]})
+            total_tokens += answer["total_tokens"]
             continue
 
         model, routing_tokens = route(task["prompt"])
