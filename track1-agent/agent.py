@@ -68,18 +68,8 @@ def main():
             # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
             raw_entities = solve_ner(task["prompt"])
             
-            # 2. Perfect formatting: use the cheap model to format the extracted entities
-            format_prompt = f"""The user requested this task:
-{task['prompt']}
-
-I used a zero-shot model to extract the initial entities: {raw_entities}
-
-Your job is to act as the final refiner and formatter:
-1. Filter out any common nouns (e.g., "new campus", "headquarters", "office", "store") from the extracted entities. Only keep true Proper Named Entities.
-2. Ensure the label strings EXACTLY match the labels requested in the prompt (e.g., if the prompt asks for "org", change "Organization" to "org").
-3. Format the final entities EXACTLY as requested in the task instructions (e.g., as tuples, lists, or custom JSON keys).
-
-Do not add any preamble. Output ONLY the final formatted result."""
+            # 2. Refiner: use the cheap model to clean up the entities and apply task rules
+            format_prompt = f"The user requested this extraction task:\n{task['prompt']}\n\nOur local NER model extracted these preliminary entities: {raw_entities}\n\nYour job is to act as an intelligent refiner. Take these preliminary entities, format them exactly as requested in the task instructions, AND perfectly apply any specific inclusion/exclusion rules mentioned in the prompt (for example, stripping honorifics, ignoring relative dates, or merging nested entities). Output ONLY the final formatted result. Do not add any preamble."
             
             answer = chat(MODEL_CHEAP, format_prompt, max_tokens=800)
             
