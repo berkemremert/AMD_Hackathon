@@ -59,12 +59,20 @@ def main():
     results = []
     total_tokens = 0
     from output_optimizer import detect_task_type, TOKEN_LIMITS
+    from local_solvers import solve_ner
 
     for task in tasks:
+        task_type = detect_task_type(task["prompt"])
+        
+        if task_type == "entity_extraction":
+            # Massive token savings: solve NER locally for 0 API tokens
+            answer_text = solve_ner(task["prompt"])
+            results.append({"task_id": task["task_id"], "answer": answer_text})
+            continue
+
         model, routing_tokens = route(task["prompt"])
         
         # Tighten the prompt using dynamic output optimization
-        task_type = detect_task_type(task["prompt"])
         limits = TOKEN_LIMITS[task_type]
         tight_prompt = f"{limits['suffix']}\n\n{task['prompt']}"
         
