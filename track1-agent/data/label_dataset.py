@@ -61,10 +61,26 @@ JSON: {{"a_correct": true or false, "b_correct": true or false}}"""
 
 
 def parse_judge_json(text: str) -> dict:
-    match = re.search(r"\{.*\}", text, re.DOTALL)
-    if not match:
-        raise ValueError(f"No JSON object found in judge response: {text!r}")
-    return json.loads(match.group(0))
+    # First try to find the JSON block specifically
+    match = re.search(r"\{[^{}]*a_correct[^{}]*\}", text, re.IGNORECASE)
+    if match:
+        try:
+            # Clean up python-style booleans if the model hallucinates them
+            clean_str = match.group(0).replace('True', 'true').replace('False', 'false')
+            return json.loads(clean_str)
+        except json.JSONDecodeError:
+            pass
+
+    # Fallback: look for the text verdicts
+    a_match = re.search(r"A:.*?(CORRECT|INCORRECT)", text, re.IGNORECASE | re.DOTALL)
+    b_match = re.search(r"B:.*?(CORRECT|INCORRECT)", text, re.IGNORECASE | re.DOTALL)
+    
+    if a_match and b_match:
+        a_correct = "INCORRECT" not in a_match.group(1).upper()
+        b_correct = "INCORRECT" not in b_match.group(1).upper()
+        return {"a_correct": a_correct, "b_correct": b_correct}
+        
+    raise ValueError(f"Could not parse judge response: {text!r}")
 
 
 def grade(query: dict, cheap_answer: str, expensive_answer: str, api_key: str = None) -> tuple[bool, bool, int]:
@@ -81,7 +97,7 @@ def grade(query: dict, cheap_answer: str, expensive_answer: str, api_key: str = 
         cheap_answer=cheap_answer,
         expensive_answer=expensive_answer,
     )
-    result = chat(MODEL_JUDGE, prompt, max_tokens=1200, temperature=0.0, api_key=api_key)
+    result = chat(MODEL_JUDGE, prompt, max_tokens=4000, temperature=0.0, api_key=api_key)
     verdict = parse_judge_json(result["text"])
     return bool(verdict["a_correct"]), bool(verdict["b_correct"]), result["total_tokens"]
 
@@ -93,8 +109,8 @@ def process_query(args):
     model_expensive = random.choice(MODEL_EXPENSIVE_POOL)
     
     try:
-        cheap = chat(model_cheap, q["prompt"], max_tokens=700, api_key=api_key)
-        expensive = chat(model_expensive, q["prompt"], max_tokens=700, api_key=api_key)
+        cheap = chat(model_cheap, q["prompt"], max_tokens=4000, api_key=api_key)
+        expensive = chat(model_expensive, q["prompt"], max_tokens=4000, api_key=api_key)
         cheap_ok, expensive_ok, judge_tokens = grade(q, cheap["text"], expensive["text"], api_key=api_key)
         
         return {

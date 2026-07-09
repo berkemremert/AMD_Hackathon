@@ -1,7 +1,0 @@
-.env
-__pycache__/
-*.pyc
-router/checkpoints/
-*.pt
-*.bin
-.DS_Store

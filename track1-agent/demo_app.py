@@ -39,24 +39,7 @@ st.caption(
     "Hackathon Act II's Track 1 (Hybrid Token-Efficient Routing Agent)."
 )
 
-with st.sidebar:
-    st.subheader("Model tiers")
-    st.markdown(f"**Cheap:** `{short_name(MODEL_CHEAP)}`")
-    st.markdown(f"**Escalation:** `{short_name(MODEL_EXPENSIVE)}`")
-    st.divider()
-    st.subheader("Session totals")
-    n = len(st.session_state.history)
-    finetuned_total = sum(h["finetuned_tokens"] for h in st.session_state.history)
-    baseline_total = sum(h["baseline_tokens"] for h in st.session_state.history)
-    saved = baseline_total - finetuned_total
-    saved_pct = (saved / baseline_total * 100) if baseline_total else 0
-    st.metric("Queries run", n)
-    st.metric("Fine-tuned router — total tokens", finetuned_total)
-    st.metric("Prompt-based baseline — total tokens", baseline_total)
-    st.metric("Tokens saved by fine-tuning", saved, delta=f"{saved_pct:.0f}% fewer tokens" if n else None)
-    if st.button("Reset session"):
-        st.session_state.history = []
-        st.rerun()
+
 
 prompt = st.text_area("Enter a query", height=100, placeholder="e.g. What is 12 + 7?")
 run = st.button("Run through router", type="primary", disabled=not prompt.strip())
@@ -102,7 +85,7 @@ if run:
         "finetuned_tokens": answer_tokens,
         "baseline_tokens": baseline_query_tokens,
     })
-    st.rerun()
+
 
 if st.session_state.history:
     st.subheader("Tokens per query, this session")
@@ -113,3 +96,22 @@ if st.session_state.history:
 
     st.subheader("Query log")
     st.dataframe(df, use_container_width=True, hide_index=True)
+
+with st.sidebar:
+    st.subheader("Model tiers")
+    st.markdown(f"**Cheap:** `{short_name(MODEL_CHEAP)}`")
+    st.markdown(f"**Escalation:** `{short_name(MODEL_EXPENSIVE)}`")
+    st.divider()
+    st.subheader("Session totals")
+    n = len(st.session_state.history)
+    finetuned_total = sum(h["finetuned_tokens"] for h in st.session_state.history)
+    baseline_total = sum(h["baseline_tokens"] for h in st.session_state.history)
+    saved = baseline_total - finetuned_total
+    saved_pct = (saved / baseline_total * 100) if baseline_total else 0
+    st.metric("Queries run", n)
+    st.metric("Fine-tuned router — total tokens", finetuned_total)
+    st.metric("Prompt-based baseline — total tokens", baseline_total)
+    st.metric("Tokens saved by fine-tuning", saved, delta=f"{saved_pct:.0f}% fewer tokens" if n else None)
+    if st.button("Reset session"):
+        st.session_state.history = []
+        st.rerun()
