@@ -23,8 +23,16 @@ from fireworks_client import chat
 INPUT_PATH = Path(os.environ.get("TASK_INPUT_PATH", "/input/tasks.json"))
 OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
 
-MODEL_CHEAP = os.environ["MODEL_CHEAP"]
-MODEL_EXPENSIVE = os.environ["MODEL_EXPENSIVE"]
+# Fallback to local dev env vars if ALLOWED_MODELS is not provided
+if "ALLOWED_MODELS" in os.environ:
+    models = os.environ["ALLOWED_MODELS"].split(",")
+    # Heuristic to find the cheap and expensive model in the allowed models
+    # Assuming minimax is cheap and kimi is expensive, or just pick by index
+    MODEL_CHEAP = next((m for m in models if "minimax" in m.lower()), models[0])
+    MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower()), models[-1])
+else:
+    MODEL_CHEAP = os.environ["MODEL_CHEAP"]
+    MODEL_EXPENSIVE = os.environ["MODEL_EXPENSIVE"]
 ROUTER_MODE = os.environ.get("ROUTER_MODE", "finetuned")
 
 
