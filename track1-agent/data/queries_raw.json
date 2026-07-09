@@ -1,0 +1,583 @@
+[
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "An item costs $71. It has a 30% discount applied, then 8% sales tax is added to the discounted price. What is the final price, rounded to 2 decimal places?",
+    "ground_truth": "53.68",
+    "id": "q023"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "What is 424 + 686?",
+    "ground_truth": "1110",
+    "id": "q013"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "easy",
+    "prompt": "Find and explain the bug in this Python function:\n```python\ndef is_even(n):\n    if n % 2 == 1:\n        return True\n    return False\n```",
+    "ground_truth": "inverted condition: returns True for odd numbers instead of even",
+    "id": "q045"
+  },
+  {
+    "category": "text_summarization",
+    "difficulty_pool": "hard",
+    "prompt": "Summarize this in exactly 2 bullet points, each under 15 words: The city's transit authority reported a 22% rise in ridership after launching a flat monthly pass, though fare revenue per trip fell 9% as riders shifted from single tickets. Maintenance costs also rose due to an aging bus fleet, prompting the authority to request emergency funding from the state to cover a projected budget gap next fiscal year.",
+    "ground_truth": "ridership up 22% on flat pass; fare revenue per trip down 9%, maintenance costs up, funding gap looming",
+    "id": "q034"
+  },
+  {
+    "category": "code_generation",
+    "difficulty_pool": "hard",
+    "prompt": "Write a Python function `group_anagrams(words)` that groups a list of strings into lists of anagrams of each other. Return a list of groups, each group sorted alphabetically, and the groups sorted by their first element.",
+    "ground_truth": "{\"function_name\": \"group_anagrams\", \"tests\": [{\"args\": [[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]], \"expected\": [[\"ate\", \"eat\", \"tea\"], [\"bat\"], [\"nat\", \"tan\"]]}]}",
+    "id": "q063"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "easy",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence: \"This laptop's battery easily lasts a full workday, and the screen is gorgeous.\"",
+    "ground_truth": "positive",
+    "id": "q025"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "easy",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence: \"The hotel room smelled of smoke and the AC was broken all weekend.\"",
+    "ground_truth": "negative",
+    "id": "q027"
+  },
+  {
+    "category": "code_generation",
+    "difficulty_pool": "hard",
+    "prompt": "Write a Python function `merge_intervals(intervals)` that takes a list of [start, end] integer pairs and returns a list of merged, non-overlapping intervals sorted by start.",
+    "ground_truth": "{\"function_name\": \"merge_intervals\", \"tests\": [{\"args\": [[[1, 3], [2, 6], [8, 10], [15, 18]]], \"expected\": [[1, 6], [8, 10], [15, 18]]}, {\"args\": [[[1, 4], [4, 5]]], \"expected\": [[1, 5]]}]}",
+    "id": "q062"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "easy",
+    "prompt": "Extract all named entities (person, organization, location, date) from this sentence: \"Noor met with representatives from Solace Health in Seoul on March 18, 2025 to finalize the merger.\"",
+    "ground_truth": "person=Noor; org=Solace Health; location=Seoul; date=March 18, 2025",
+    "id": "q039"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "Two boxes are labeled A and B. Box A is heavier than box B. Box C is lighter than box B. Which box is the lightest?",
+    "ground_truth": "Box C",
+    "id": "q055"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "Find and explain the bug in this Python code, and propose a fix:\n```python\ndef average(nums):\n    return sum(nums) / len(nums) if nums else 0\n\ndef report(groups):\n    return [average(g) for g in groups if g == []]\n```",
+    "ground_truth": "the filter condition `if g == []` excludes every non-empty group, so report() always returns an empty list",
+    "id": "q049"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "easy",
+    "prompt": "What is inflation? Explain in one or two sentences.",
+    "ground_truth": "a sustained rise in the general price level that reduces purchasing power over time",
+    "id": "q008"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "easy",
+    "prompt": "Find and explain the bug in this Python function:\n```python\ndef get_first(items):\n    return items[0]\n\ndef safe_first(items):\n    return get_first(items) if items != None else None\n```",
+    "ground_truth": "checks `items != None` but not for an empty list, so get_first still raises IndexError on []",
+    "id": "q047"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "Four runners, Tia, Uma, Vik, and Wes, finished a race with no ties. Tia finished before Uma. Wes finished immediately after Vik. Vik finished first. What is the finishing order from first to last?",
+    "ground_truth": "Vik, Wes, Tia, Uma",
+    "id": "q057"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "What is 116 + 394?",
+    "ground_truth": "510",
+    "id": "q016"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "Five houses in a row are painted different colors: red, blue, green, yellow, white. The green house is immediately left of the white house. The red house is at one end. The blue house is exactly in the middle. The yellow house is immediately right of the blue house. The green house is not adjacent to the red house. What color is the house at the far right?",
+    "ground_truth": "red",
+    "id": "q056"
+  },
+  {
+    "category": "text_summarization",
+    "difficulty_pool": "easy",
+    "prompt": "Summarize this in one sentence: Researchers found that a new coating reduces bacterial growth on hospital door handles by 90%, and the material costs about the same as standard paint to apply.",
+    "ground_truth": "new coating cuts bacterial growth on door handles by 90%, similar cost to standard paint",
+    "id": "q032"
+  },
+  {
+    "category": "text_summarization",
+    "difficulty_pool": "hard",
+    "prompt": "Summarize this in exactly 2 bullet points, each under 15 words: Quarterly revenue rose 8% year over year, driven mainly by the enterprise segment, which grew 14% as three large customers renewed multi-year contracts. The consumer segment was roughly flat, with a 1% decline attributed to seasonal churn in the mobile app. Operating costs increased 5%, primarily from headcount growth in customer success. Management reiterated full-year guidance and flagged supply chain costs as the main risk for the next two quarters.",
+    "ground_truth": "revenue up 8% on enterprise growth; costs up 5% on headcount, supply chain risk flagged",
+    "id": "q033"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "What is 351 + 174?",
+    "ground_truth": "525",
+    "id": "q012"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain a REST API in under 40 words, then give one concrete real-world example of it in action.",
+    "ground_truth": "an interface that uses HTTP methods to let clients read and modify server resources statelessly",
+    "id": "q007"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "hard",
+    "prompt": "Extract all named entities (person, organization, location) from this sentence, labeling each by type: \"Fatima of Brightline Logistics and Sana of Vantage Robotics announced a joint venture headquartered in Lisbon, with a secondary office opening in Nairobi next quarter.\"",
+    "ground_truth": "person=Fatima,Sana; org=Brightline Logistics,Vantage Robotics; location=Lisbon,Nairobi",
+    "id": "q043"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "Four boxes, W, X, Y, Z, contain different numbers of marbles: 3, 6, 9, and 12, in some order. Box W has more marbles than box X. Box X has more marbles than box Y. Box Z has more marbles than all the others. How many marbles are in box X?",
+    "ground_truth": "6",
+    "id": "q059"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "easy",
+    "prompt": "What is a REST API? Explain in one or two sentences.",
+    "ground_truth": "an interface that uses HTTP methods to let clients read and modify server resources statelessly",
+    "id": "q006"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain photosynthesis in under 40 words, then give one concrete real-world example of it in action.",
+    "ground_truth": "the process plants use to convert light energy into chemical energy, producing oxygen",
+    "id": "q001"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "What is 860 + 568?",
+    "ground_truth": "1428",
+    "id": "q015"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "Find and explain the bug in this Python code, and propose a fix:\n```python\nclass Counter:\n    counts = {}\n    def add(self, key):\n        self.counts[key] = self.counts.get(key, 0) + 1\n    def get(self, key):\n        return self.counts.get(key, 0)\n```",
+    "ground_truth": "class-level mutable attribute: `counts` is shared across all Counter instances instead of being per-instance",
+    "id": "q051"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "Three friends, Ana, Ben, and Cleo, each own a different pet: a cat, a dog, or a fish. Ana does not own the dog. Ben does not own the fish. Cleo owns the cat. Who owns the dog?",
+    "ground_truth": "Ben",
+    "id": "q052"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "hard",
+    "prompt": "Extract all named entities (person, organization, location) from this sentence, labeling each by type: \"Marcus of Vantage Robotics and Priya of Brightline Logistics announced a joint venture headquartered in Warsaw, with a secondary office opening in Manila next quarter.\"",
+    "ground_truth": "person=Marcus,Priya; org=Vantage Robotics,Brightline Logistics; location=Warsaw,Manila",
+    "id": "q040"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain a black hole in under 40 words, then give one concrete real-world example of it in action.",
+    "ground_truth": "a region of spacetime where gravity is so strong nothing, not even light, can escape",
+    "id": "q011"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "What is 69 + 94?",
+    "ground_truth": "163",
+    "id": "q014"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "easy",
+    "prompt": "What is photosynthesis? Explain in one or two sentences.",
+    "ground_truth": "the process plants use to convert light energy into chemical energy, producing oxygen",
+    "id": "q000"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "easy",
+    "prompt": "Find and explain the bug in this Python function:\n```python\ndef find_max(nums):\n    max_val = 0\n    for n in nums:\n        if n > max_val:\n            max_val = n\n    return max_val\n```",
+    "ground_truth": "wrong initial value: seeding max_val at 0 fails for lists where every number is negative",
+    "id": "q046"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "easy",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence: \"The onboarding flow was smooth and the support team replied within minutes.\"",
+    "ground_truth": "positive",
+    "id": "q024"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "An item costs $299. It has a 15% discount applied, then 5% sales tax is added to the discounted price. What is the final price, rounded to 2 decimal places?",
+    "ground_truth": "266.86",
+    "id": "q018"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "hard",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence, watching for sarcasm: \"Oh sure, a 'premium' subscription that still shows ads every two minutes, love that.\"",
+    "ground_truth": "negative",
+    "id": "q028"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "An item costs $84. It has a 25% discount applied, then 7% sales tax is added to the discounted price. What is the final price, rounded to 2 decimal places?",
+    "ground_truth": "67.41",
+    "id": "q019"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain DNS in under 40 words, then give one concrete real-world example of it in action.",
+    "ground_truth": "the system that translates human-readable domain names into IP addresses",
+    "id": "q003"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "hard",
+    "prompt": "Extract all named entities (person, organization, location) from this sentence, labeling each by type: \"Sana of Brightline Logistics and Fatima of Vantage Robotics announced a joint venture headquartered in Toronto, with a secondary office opening in Lisbon next quarter.\"",
+    "ground_truth": "person=Sana,Fatima; org=Brightline Logistics,Vantage Robotics; location=Toronto,Lisbon",
+    "id": "q041"
+  },
+  {
+    "category": "text_summarization",
+    "difficulty_pool": "easy",
+    "prompt": "Summarize this in one sentence: The city council approved a new bike lane network yesterday, covering 12 miles of downtown streets. Construction begins next spring and is expected to finish by fall.",
+    "ground_truth": "12-mile bike lane network approved, construction spring to fall",
+    "id": "q030"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "What is 616 + 79?",
+    "ground_truth": "695",
+    "id": "q017"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain compound interest in under 40 words, then give one concrete real-world example of it in action.",
+    "ground_truth": "interest calculated on both the principal and previously earned interest",
+    "id": "q005"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "Three students, Omar, Priya, and Quinn, each scored differently on a test: 70, 85, or 92. Omar did not score the highest. Quinn scored higher than Omar. Priya scored the highest. What did Omar score?",
+    "ground_truth": "70",
+    "id": "q054"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "hard",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence, watching for sarcasm: \"Great, another 'quick update' that took the app down for six hours. Really convenient.\"",
+    "ground_truth": "negative",
+    "id": "q029"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "easy",
+    "prompt": "Extract all named entities (person, organization, location, date) from this sentence: \"Elena met with representatives from Brightline Logistics in Toronto on June 18, 2025 to finalize the merger.\"",
+    "ground_truth": "person=Elena; org=Brightline Logistics; location=Toronto; date=June 18, 2025",
+    "id": "q037"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "Five colleagues, Alex, Bo, Cid, Dee, and Fen, each work in a different department: Sales, HR, Legal, IT, or Finance. Alex works in neither Sales nor IT. Bo works in Legal. Cid works in Finance. Dee does not work in HR or Sales. Fen works in Sales. Given these constraints, which department does Alex work in?",
+    "ground_truth": "HR",
+    "id": "q058"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "easy",
+    "prompt": "Extract all named entities (person, organization, location, date) from this sentence: \"Marcus met with representatives from Vantage Robotics in Toronto on March 19, 2025 to finalize the merger.\"",
+    "ground_truth": "person=Marcus; org=Vantage Robotics; location=Toronto; date=March 19, 2025",
+    "id": "q038"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "An item costs $103. It has a 15% discount applied, then 8% sales tax is added to the discounted price. What is the final price, rounded to 2 decimal places?",
+    "ground_truth": "94.55",
+    "id": "q022"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "easy",
+    "prompt": "Find and explain the bug in this Python function:\n```python\ndef total(nums):\n    result = 0\n    for i in range(1, len(nums)):\n        result += nums[i]\n    return result\n```",
+    "ground_truth": "off-by-one: loop starts at index 1 instead of 0, so it skips nums[0]",
+    "id": "q044"
+  },
+  {
+    "category": "code_generation",
+    "difficulty_pool": "easy",
+    "prompt": "Write a Python function `is_palindrome(s)` that returns True if the string s reads the same forwards and backwards (ignore case), else False.",
+    "ground_truth": "{\"function_name\": \"is_palindrome\", \"tests\": [{\"args\": [\"racecar\"], \"expected\": true}, {\"args\": [\"Hello\"], \"expected\": false}, {\"args\": [\"Level\"], \"expected\": true}]}",
+    "id": "q060"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "An item costs $75. It has a 15% discount applied, then 5% sales tax is added to the discounted price. What is the final price, rounded to 2 decimal places?",
+    "ground_truth": "66.94",
+    "id": "q020"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "Find and explain the bug in this Python code, and propose a fix:\n```python\ndef dedupe_preserve_order(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            result.append(item)\n        seen.add(item)\n    return result\n```",
+    "ground_truth": "logic order bug: item is added to `seen` unconditionally, but since it's added after the check, this actually works; the real bug is it silently fails on unhashable items like lists, no error handling",
+    "id": "q050"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "easy",
+    "prompt": "Extract all named entities (person, organization, location, date) from this sentence: \"Diego met with representatives from Vantage Robotics in Nairobi on March 18, 2025 to finalize the merger.\"",
+    "ground_truth": "person=Diego; org=Vantage Robotics; location=Nairobi; date=March 18, 2025",
+    "id": "q036"
+  },
+  {
+    "category": "text_summarization",
+    "difficulty_pool": "hard",
+    "prompt": "Summarize this in exactly 2 bullet points, each under 15 words: A two-year study of remote workers found that productivity, measured by completed tasks, held steady compared to in-office baselines, but self-reported feelings of isolation rose sharply among employees who joined the company entirely remotely. Companies that ran regular in-person meetups saw smaller increases in reported isolation than those that stayed fully virtual.",
+    "ground_truth": "remote productivity held steady; isolation rose especially for remote-only hires, mitigated by in-person meetups",
+    "id": "q035"
+  },
+  {
+    "category": "code_generation",
+    "difficulty_pool": "easy",
+    "prompt": "Write a Python function `count_vowels(s)` that returns the number of vowels (a, e, i, o, u, case-insensitive) in the string s.",
+    "ground_truth": "{\"function_name\": \"count_vowels\", \"tests\": [{\"args\": [\"Hello World\"], \"expected\": 3}, {\"args\": [\"xyz\"], \"expected\": 0}]}",
+    "id": "q061"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "easy",
+    "prompt": "What is compound interest? Explain in one or two sentences.",
+    "ground_truth": "interest calculated on both the principal and previously earned interest",
+    "id": "q004"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "hard",
+    "prompt": "Extract all named entities (person, organization, location) from this sentence, labeling each by type: \"Elena of Northwind Traders and Kofi of Solace Health announced a joint venture headquartered in Toronto, with a secondary office opening in Manila next quarter.\"",
+    "ground_truth": "person=Elena,Kofi; org=Northwind Traders,Solace Health; location=Toronto,Manila",
+    "id": "q042"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "easy",
+    "prompt": "What is DNS? Explain in one or two sentences.",
+    "ground_truth": "the system that translates human-readable domain names into IP addresses",
+    "id": "q002"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "easy",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence: \"The app crashed three times during checkout and support never responded.\"",
+    "ground_truth": "negative",
+    "id": "q026"
+  },
+  {
+    "category": "text_summarization",
+    "difficulty_pool": "easy",
+    "prompt": "Summarize this in one sentence: A local bakery chain announced it will open five new locations across the metro area this year, creating roughly 60 new jobs and focusing on gluten-free product lines.",
+    "ground_truth": "bakery chain opening 5 new locations, ~60 jobs, gluten-free focus",
+    "id": "q031"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain inflation in under 40 words, then give one concrete real-world example of it in action.",
+    "ground_truth": "a sustained rise in the general price level that reduces purchasing power over time",
+    "id": "q009"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "An item costs $257. It has a 10% discount applied, then 8% sales tax is added to the discounted price. What is the final price, rounded to 2 decimal places?",
+    "ground_truth": "249.8",
+    "id": "q021"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "Find and explain the bug in this Python code, and propose a fix:\n```python\ndef add_item(item, bucket=[]):\n    bucket.append(item)\n    return bucket\n```",
+    "ground_truth": "mutable default argument: the list is shared and grows across calls instead of resetting",
+    "id": "q048"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "easy",
+    "prompt": "What is a black hole? Explain in one or two sentences.",
+    "ground_truth": "a region of spacetime where gravity is so strong nothing, not even light, can escape",
+    "id": "q010"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "easy",
+    "prompt": "Four coworkers sit in a row: Dara, Eli, Fay, and Gus. Dara sits immediately left of Eli. Gus sits at the far right. Fay sits at the far left. Who sits second from the left?",
+    "ground_truth": "Dara",
+    "id": "q053"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "A tank starts with 480 liters. It drains at 8 liters per minute for 15 minutes, then is refilled at 12 liters per minute for 20 minutes, then drains again at 5 liters per minute for 10 minutes. How many liters are in the tank now?",
+    "ground_truth": "550",
+    "id": "q064"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "Pipe A can fill a pool in 6 hours. Pipe B can fill the same pool in 4 hours. If both pipes are opened together, how many hours will it take to fill the pool? Answer as a decimal rounded to 1 decimal place.",
+    "ground_truth": "2.4",
+    "id": "q065"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "A price is increased by 20%, then decreased by 20%, then increased by 10%. If the original price was $200, what is the final price?",
+    "ground_truth": "$211.20",
+    "id": "q066"
+  },
+  {
+    "category": "math_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "You invest $1000. In year 1 it grows by 5%, in year 2 by 8%, in year 3 it shrinks by 3%. What is the final amount, rounded to 2 decimal places?",
+    "ground_truth": "$1099.98",
+    "id": "q067"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "Five friends, Ivy, Jude, Kai, Lena, and Moss, sit in five seats numbered 1 to 5 in a row. Ivy sits in seat 1. Moss sits in seat 5. The person who drinks tea sits immediately to the right of Ivy. Kai drinks water and sits immediately to the left of Lena. What is the seating order from seat 1 to seat 5?",
+    "ground_truth": "Ivy, Jude, Kai, Lena, Moss",
+    "id": "q068"
+  },
+  {
+    "category": "logical_reasoning",
+    "difficulty_pool": "hard",
+    "prompt": "Five boxes, P, Q, R, S, T, contain weights of 2, 4, 6, 8, and 10 kg, one weight per box. Box P and box Q together weigh 6 kg. Box R is heavier than box S. Box T is the heaviest of all five boxes. Box S and box Q differ in weight by exactly 2 kg. What is the weight of box R, in kg?",
+    "ground_truth": "8",
+    "id": "q069"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "What does `results` evaluate to, and why, given this code?\n```python\ndef make_multipliers():\n    return [lambda x: x * i for i in range(1, 4)]\n\nmultipliers = make_multipliers()\nresults = [m(10) for m in multipliers]\n```",
+    "ground_truth": "results = [30, 30, 30], not [10, 20, 30], because all three lambdas close over the same variable i by reference (late binding), and i equals 3 for all of them once the loop finishes",
+    "id": "q070"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "What do `total1` and `total2` evaluate to, and why, given this code?\n```python\ndef get_evens(nums):\n    return (n for n in nums if n % 2 == 0)\n\nevens = get_evens([1, 2, 3, 4, 5, 6])\ntotal1 = sum(evens)\ntotal2 = sum(evens)\n```",
+    "ground_truth": "total1 = 12 and total2 = 0, because get_evens returns a generator, and generators are exhausted after being consumed once, so the second sum() call has nothing left to iterate",
+    "id": "q071"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "Given `prices = [0.1, 0.2]`, what does `check_total(prices)` return, and why?\n```python\ndef check_total(prices):\n    total = sum(prices)\n    return total == 0.3\n```",
+    "ground_truth": "returns False, because summing 0.1 and 0.2 in binary floating point gives 0.30000000000000004, which is not exactly equal to the float 0.3",
+    "id": "q072"
+  },
+  {
+    "category": "code_debugging",
+    "difficulty_pool": "hard",
+    "prompt": "What happens when you call `factorial(0)` with this code, and why?\n```python\ndef factorial(n):\n    if n == 1:\n        return 1\n    return n * factorial(n - 1)\n```",
+    "ground_truth": "it causes infinite recursion (eventually a RecursionError), because the base case only checks n == 1, not n <= 1, so calling with n=0 recurses through negative numbers forever",
+    "id": "q073"
+  },
+  {
+    "category": "code_generation",
+    "difficulty_pool": "hard",
+    "prompt": "Write a Python function `edit_distance(a, b)` that returns the minimum number of single-character insertions, deletions, or substitutions required to transform string a into string b (Levenshtein distance).",
+    "ground_truth": "{\"function_name\": \"edit_distance\", \"tests\": [{\"args\": [\"kitten\", \"sitting\"], \"expected\": 3}, {\"args\": [\"\", \"abc\"], \"expected\": 3}, {\"args\": [\"abc\", \"abc\"], \"expected\": 0}]}",
+    "id": "q074"
+  },
+  {
+    "category": "code_generation",
+    "difficulty_pool": "hard",
+    "prompt": "Write a Python function `longest_increasing_subsequence_length(nums)` that returns the length of the longest strictly increasing subsequence in a list of integers.",
+    "ground_truth": "{\"function_name\": \"longest_increasing_subsequence_length\", \"tests\": [{\"args\": [[10, 9, 2, 5, 3, 7, 101, 18]], \"expected\": 4}, {\"args\": [[]], \"expected\": 0}, {\"args\": [[5, 4, 3, 2, 1]], \"expected\": 1}]}",
+    "id": "q075"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "hard",
+    "prompt": "Extract all named entities from this sentence, labeling each by type (person, organization, location, date), noting that some words could plausibly be more than one type: \"Amazon announced that Jordan, the new VP hired from Washington, will lead the Phoenix office starting in April.\"",
+    "ground_truth": "person=Jordan; organization=Amazon; location=Washington, Phoenix; date=April (Jordan, Washington, and Phoenix are all also place/country names, but here Jordan is a person and Washington/Phoenix are locations)",
+    "id": "q076"
+  },
+  {
+    "category": "named_entity_recognition",
+    "difficulty_pool": "hard",
+    "prompt": "Extract all named entities from this sentence, labeling each by type: \"Turner joined Sterling Bank in Sterling, Colorado, replacing Bell who moved to a Bell Labs research role in June.\"",
+    "ground_truth": "person=Turner, Bell; organization=Sterling Bank, Bell Labs; location=Sterling, Colorado; date=June (Sterling and Bell each appear twice as different entity types in the same sentence)",
+    "id": "q077"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "hard",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence: \"I wouldn't say the food was bad, exactly, but I also wouldn't rush back.\"",
+    "ground_truth": "negative (a double-negative hedge that still lands as lukewarm-to-negative; the reviewer is avoiding rushing back, a clear signal of dissatisfaction despite the softened wording)",
+    "id": "q078"
+  },
+  {
+    "category": "sentiment_classification",
+    "difficulty_pool": "hard",
+    "prompt": "Classify the sentiment of this review and justify it in one sentence: \"Well, at least it wasn't the WORST customer service I've ever had.\"",
+    "ground_truth": "negative (sarcastic backhanded phrasing; damning with faint praise still signals a poor experience)",
+    "id": "q079"
+  },
+  {
+    "category": "text_summarization",
+    "difficulty_pool": "hard",
+    "prompt": "Summarize this in exactly 3 sentences, each under 12 words, making sure both $4.2 million and 50,000 users appear somewhere in the summary: \"The startup raised $4.2 million in seed funding and grew its user base to 50,000 monthly active users within six months, driven mainly by a viral referral program that cut acquisition costs by half.\"",
+    "ground_truth": "exactly 3 sentences, each under 12 words, must mention both $4.2 million and 50,000 users",
+    "id": "q080"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain the difference between concurrency and parallelism in under 35 words, then give one example of a program that is concurrent but not parallel.",
+    "ground_truth": "concurrency is managing multiple tasks with overlapping progress, not necessarily at the exact same instant; parallelism is executing multiple tasks literally simultaneously on multiple cores; example: a single-core async event loop interleaving I/O-bound tasks",
+    "id": "q081"
+  },
+  {
+    "category": "factual_knowledge",
+    "difficulty_pool": "hard",
+    "prompt": "Explain the difference between a process and a thread in under 35 words, focused on memory.",
+    "ground_truth": "each process has its own isolated memory space; threads within the same process share that process's memory space, so they can directly read and write the same variables",
+    "id": "q082"
+  }
+]

@@ -1,0 +1,5 @@
+[
+  { "task_id": "t1", "prompt": "What is 12 + 7?" },
+  { "task_id": "t2", "prompt": "Summarise the following text in one sentence: The city council approved a new bike lane network yesterday, covering 12 miles of downtown streets." },
+  { "task_id": "t3", "prompt": "Write a Python function `is_palindrome(s)` that returns True if the string s reads the same forwards and backwards (ignore case), else False." }
+]

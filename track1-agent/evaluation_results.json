@@ -1,0 +1,18 @@
+{
+  "always-cheap": {
+    "total_tokens": 5579,
+    "accuracy": 0.9411764705882353
+  },
+  "always-expensive": {
+    "total_tokens": 6306,
+    "accuracy": 0.8823529411764706
+  },
+  "baseline": {
+    "total_tokens": 10212,
+    "accuracy": 0.9411764705882353
+  },
+  "finetuned": {
+    "total_tokens": 5579,
+    "accuracy": 0.9411764705882353
+  }
+}

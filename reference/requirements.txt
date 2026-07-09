@@ -1,0 +1,4 @@
+requests>=2.31
+python-dotenv>=1.0
+torch>=2.3
+transformers>=4.42
