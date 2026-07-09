@@ -141,7 +141,7 @@ def main():
         print(f"Dataset already fully labeled! Total: {len(labeled)} ({easy} easy, {hard} hard).")
         return
 
-    max_workers = len(KEYS) * 4
+    max_workers = len(KEYS) * 10
     print(f"Resuming labeling. Need to label {len(tasks)} more queries. Using {len(KEYS)} API key(s) and {max_workers} workers...")
 
     try:

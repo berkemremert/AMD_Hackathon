@@ -18,7 +18,7 @@ load_dotenv()
 KEYS = []
 if "FIREWORKS_API_KEY" in os.environ:
     KEYS.append(os.environ["FIREWORKS_API_KEY"])
-elif "FIREWORKS_API_KEY_1" in os.environ:
+if "FIREWORKS_API_KEY_1" in os.environ:
     KEYS.append(os.environ["FIREWORKS_API_KEY_1"])
 
 if not KEYS:
@@ -151,7 +151,7 @@ def generate_batch(category: str, difficulty: str, api_key: str) -> list[dict]:
     payload = {
         "model": model_to_use,
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 20000,
+        "max_tokens": 25000,
         "temperature": 0.8,
     }
     
@@ -233,7 +233,7 @@ def main():
         print(f"Dataset already complete with {len(existing)} queries. Nothing to do!")
         return
         
-    max_workers = len(KEYS) * 4
+    max_workers = len(KEYS) * 8
     print(f"Resuming generation. Need {len(tasks)} more batches. Using {len(KEYS)} API key(s) and {max_workers} workers...")
     
     try:
