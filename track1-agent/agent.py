@@ -58,9 +58,17 @@ def main():
     tasks = json.loads(INPUT_PATH.read_text())
     results = []
     total_tokens = 0
+    from output_optimizer import detect_task_type, TOKEN_LIMITS
+
     for task in tasks:
         model, routing_tokens = route(task["prompt"])
-        answer = chat(model, task["prompt"], max_tokens=700)
+        
+        # Tighten the prompt using dynamic output optimization
+        task_type = detect_task_type(task["prompt"])
+        limits = TOKEN_LIMITS[task_type]
+        tight_prompt = f"{limits['suffix']}\n\n{task['prompt']}"
+        
+        answer = chat(model, tight_prompt, max_tokens=limits["cap"])
         total_tokens += routing_tokens + answer["total_tokens"]
         results.append({"task_id": task["task_id"], "answer": answer["text"]})
 
