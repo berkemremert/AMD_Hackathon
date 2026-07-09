@@ -5,14 +5,22 @@ Handles specific tasks entirely on the local CPU to achieve a 0-token cost.
 import json
 import warnings
 import re
+import sys
 from gliner import GLiNER
 
 # Suppress HuggingFace/Torch warnings for cleaner output
 warnings.filterwarnings("ignore")
 
-print("Loading local NER solver (urchade/gliner_small-v2.1)...")
-# We load this globally so it only initializes once.
-ner_model = GLiNER.from_pretrained("urchade/gliner_small-v2.1")
+# Global cache for the GLiNER model so it's loaded only once
+_gliner_model = None
+
+def get_gliner():
+    global _gliner_model
+    if _gliner_model is None:
+        model_name = "urchade/gliner_large-v2.1"
+        print(f"Loading local NER solver ({model_name})...", file=sys.stderr)
+        _gliner_model = GLiNER.from_pretrained(model_name)
+    return _gliner_model
 
 # Standard labels commonly asked for in Track 1
 DEFAULT_LABELS = ["Person", "Organization", "Location", "Date", "Miscellaneous"]
@@ -55,7 +63,7 @@ def solve_ner(prompt: str) -> str:
     target_text = extract_target_text(prompt)
     
     # Run the zero-token local inference
-    entities = ner_model.predict_entities(target_text, labels_to_find, threshold=0.3)
+    entities = get_gliner().predict_entities(target_text, labels_to_find, threshold=0.3)
     
     formatted_entities = []
     
