@@ -16,17 +16,20 @@ API_KEY = os.environ["FIREWORKS_API_KEY"]
 BASE_URL = os.environ.get("FIREWORKS_BASE_URL", "https://api.fireworks.ai/inference/v1")
 
 
-def chat(model: str, prompt: str, max_tokens: int = 800, temperature: float = 0.0, retries: int = 3) -> dict:
+def chat(model: str, prompt: str, max_tokens: int = 800, temperature: float = 0.0, retries: int = 3, api_key: str = None, response_format: dict = None) -> dict:
     """Sends one prompt to `model`. Returns {"text": str, "prompt_tokens": int,
     "completion_tokens": int, "total_tokens": int}."""
     url = f"{BASE_URL}/chat/completions"
-    headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
+    key_to_use = api_key or API_KEY
+    headers = {"Authorization": f"Bearer {key_to_use}", "Content-Type": "application/json"}
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": max_tokens,
         "temperature": temperature,
     }
+    if response_format:
+        payload["response_format"] = response_format
     last_err = None
     for attempt in range(retries):
         try:

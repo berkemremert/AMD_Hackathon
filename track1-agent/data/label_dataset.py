@@ -20,12 +20,24 @@ from fireworks_client import chat
 from code_exec import run_tests
 import os
 
+import concurrent.futures
+import random
+
 IN_PATH = Path(__file__).parent / "queries_raw.json"
 OUT_PATH = Path(__file__).parent / "labeled_dataset.json"
 
-MODEL_CHEAP = os.environ["MODEL_CHEAP"]
-MODEL_EXPENSIVE = os.environ["MODEL_EXPENSIVE"]
-MODEL_JUDGE = os.environ["MODEL_JUDGE"]
+MODEL_CHEAP_POOL = os.environ["MODEL_CHEAP"].split(",")
+MODEL_EXPENSIVE_POOL = os.environ["MODEL_EXPENSIVE"].split(",")
+MODEL_JUDGE = os.environ.get("MODEL_JUDGE", "accounts/fireworks/models/kimi-k2p7-code")
+
+KEYS = []
+if "FIREWORKS_API_KEY" in os.environ:
+    KEYS.append(os.environ["FIREWORKS_API_KEY"])
+elif "FIREWORKS_API_KEY_1" in os.environ:
+    KEYS.append(os.environ["FIREWORKS_API_KEY_1"])
+
+if not KEYS:
+    raise ValueError("No Fireworks API keys found. Please set FIREWORKS_API_KEY in .env")
 
 JUDGE_PROMPT = """You are a fast, decisive grader. Do not deliberate at length, do not count words, \
 do not second-guess yourself. Grade each candidate in one short sentence, then stop.
@@ -55,7 +67,7 @@ def parse_judge_json(text: str) -> dict:
     return json.loads(match.group(0))
 
 
-def grade(query: dict, cheap_answer: str, expensive_answer: str) -> tuple[bool, bool, int]:
+def grade(query: dict, cheap_answer: str, expensive_answer: str, api_key: str = None) -> tuple[bool, bool, int]:
     """Returns (cheap_correct, expensive_correct, judge_tokens_used)."""
     if query["category"] == "code_generation":
         spec = json.loads(query["ground_truth"])
@@ -69,44 +81,82 @@ def grade(query: dict, cheap_answer: str, expensive_answer: str) -> tuple[bool, 
         cheap_answer=cheap_answer,
         expensive_answer=expensive_answer,
     )
-    result = chat(MODEL_JUDGE, prompt, max_tokens=1200, temperature=0.0)
+    result = chat(MODEL_JUDGE, prompt, max_tokens=1200, temperature=0.0, api_key=api_key)
     verdict = parse_judge_json(result["text"])
     return bool(verdict["a_correct"]), bool(verdict["b_correct"]), result["total_tokens"]
 
 
+def process_query(args):
+    idx, q = args
+    api_key = KEYS[idx % len(KEYS)]
+    model_cheap = random.choice(MODEL_CHEAP_POOL)
+    model_expensive = random.choice(MODEL_EXPENSIVE_POOL)
+    
+    try:
+        cheap = chat(model_cheap, q["prompt"], max_tokens=700, api_key=api_key)
+        expensive = chat(model_expensive, q["prompt"], max_tokens=700, api_key=api_key)
+        cheap_ok, expensive_ok, judge_tokens = grade(q, cheap["text"], expensive["text"], api_key=api_key)
+        
+        return {
+            "id": q["id"],
+            "category": q["category"],
+            "difficulty_pool": q["difficulty_pool"],
+            "prompt": q["prompt"],
+            "label": "easy" if cheap_ok else "hard",
+            "cheap_model": model_cheap,
+            "cheap_correct": cheap_ok,
+            "cheap_tokens": cheap["total_tokens"],
+            "expensive_model": model_expensive,
+            "expensive_correct": expensive_ok,
+            "expensive_tokens": expensive["total_tokens"],
+            "judge_tokens": judge_tokens,
+        }
+    except Exception as e:
+        print(f"  [{q['id']}] FAILED: {e}", file=sys.stderr)
+        return None
+
 def main():
+    if not IN_PATH.exists():
+        print(f"Error: {IN_PATH} does not exist. Please run generate_dataset.py first.")
+        return
+        
     queries = json.loads(IN_PATH.read_text())
     labeled = []
     if OUT_PATH.exists():
-        labeled = json.loads(OUT_PATH.read_text())
-    done_ids = {r["id"] for r in labeled}
-
-    for i, q in enumerate(queries):
-        if q["id"] in done_ids:
-            continue
-        print(f"[{i + 1}/{len(queries)}] {q['id']} ({q['category']})...", flush=True)
         try:
-            cheap = chat(MODEL_CHEAP, q["prompt"], max_tokens=700)
-            expensive = chat(MODEL_EXPENSIVE, q["prompt"], max_tokens=700)
-            cheap_ok, expensive_ok, judge_tokens = grade(q, cheap["text"], expensive["text"])
-            record = {
-                "id": q["id"],
-                "category": q["category"],
-                "difficulty_pool": q["difficulty_pool"],
-                "prompt": q["prompt"],
-                "label": "easy" if cheap_ok else "hard",
-                "cheap_correct": cheap_ok,
-                "cheap_tokens": cheap["total_tokens"],
-                "expensive_correct": expensive_ok,
-                "expensive_tokens": expensive["total_tokens"],
-                "judge_tokens": judge_tokens,
-            }
-            labeled.append(record)
-            OUT_PATH.write_text(json.dumps(labeled, indent=2))
-            print(f"  label={record['label']} cheap_ok={cheap_ok} expensive_ok={expensive_ok}")
-        except Exception as e:
-            print(f"  FAILED: {e}", file=sys.stderr)
-            time.sleep(3)
+            labeled = json.loads(OUT_PATH.read_text())
+        except json.JSONDecodeError:
+            pass
+            
+    done_ids = {r["id"] for r in labeled}
+    
+    tasks = []
+    for i, q in enumerate(queries):
+        if q["id"] not in done_ids:
+            tasks.append((i, q))
+
+    if not tasks:
+        easy = sum(1 for r in labeled if r["label"] == "easy")
+        hard = len(labeled) - easy
+        print(f"Dataset already fully labeled! Total: {len(labeled)} ({easy} easy, {hard} hard).")
+        return
+
+    max_workers = len(KEYS) * 4
+    print(f"Resuming labeling. Need to label {len(tasks)} more queries. Using {len(KEYS)} API key(s) and {max_workers} workers...")
+
+    try:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_task = {executor.submit(process_query, t): t for t in tasks}
+            
+            for future in concurrent.futures.as_completed(future_to_task):
+                t = future_to_task[future]
+                result = future.result()
+                if result:
+                    labeled.append(result)
+                    OUT_PATH.write_text(json.dumps(labeled, indent=2))
+                    print(f"[{len(labeled)}/{len(queries)}] {result['id']} -> label={result['label']} (cheap={result['cheap_correct']}, exp={result['expensive_correct']})")
+    except KeyboardInterrupt:
+        print("\nInterrupted by user. Progress has been saved incrementally.")
 
     easy = sum(1 for r in labeled if r["label"] == "easy")
     hard = len(labeled) - easy
