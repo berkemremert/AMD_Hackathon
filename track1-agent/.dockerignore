@@ -1,0 +1,7 @@
+__pycache__/
+.env
+.pytest_cache/
+.DS_Store
+*.pyc
+evaluation_results.json
+.streamlit/
