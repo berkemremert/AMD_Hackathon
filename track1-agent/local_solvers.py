@@ -6,37 +6,10 @@ import json
 import warnings
 import re
 import sys
-from gliner import GLiNER
+import sys
 
 # Suppress HuggingFace/Torch warnings for cleaner output
 warnings.filterwarnings("ignore")
-
-# Global cache for the GLiNER model so it's loaded only once
-_gliner_model = None
-
-def get_gliner():
-    global _gliner_model
-    if _gliner_model is None:
-        model_name = "urchade/gliner_large-v2.1"
-        print(f"Loading local NER solver ({model_name})...", file=sys.stderr)
-        _gliner_model = GLiNER.from_pretrained(model_name)
-    return _gliner_model
-
-# Standard labels commonly asked for in Track 1
-DEFAULT_LABELS = ["Person", "Organization", "Location", "Date", "Miscellaneous"]
-
-def extract_labels_from_prompt(prompt: str):
-    """Attempt to dynamically extract requested labels from the prompt instructions."""
-    prompt_lower = prompt.lower()
-    labels = []
-    if "person" in prompt_lower or "people" in prompt_lower: labels.append("Person")
-    if "org" in prompt_lower or "organization" in prompt_lower: labels.append("Organization")
-    if "loc" in prompt_lower or "location" in prompt_lower: labels.append("Location")
-    if "date" in prompt_lower or "time" in prompt_lower: labels.append("Date")
-    if "event" in prompt_lower: labels.append("Event")
-    if "product" in prompt_lower: labels.append("Product")
-    
-    return labels if labels else DEFAULT_LABELS
 
 def extract_target_text(prompt: str) -> str:
     """Isolate the actual text to be processed, stripping away the instructional prompt."""
@@ -53,28 +26,10 @@ def extract_target_text(prompt: str) -> str:
 
 def solve_ner(prompt: str) -> str:
     """
-    Extracts named entities using the zero-shot GLiNER model and returns them 
-    in the standard JSON format: [{"entity": "Name", "type": "Person"}]
+    Extracts named entities using deterministic pipeline and formats them as requested.
     """
-    # Dynamically figure out what labels the prompt is asking for
-    labels_to_find = extract_labels_from_prompt(prompt)
-    
-    # Isolate the target text so GLiNER doesn't extract words from the instructions
-    target_text = extract_target_text(prompt)
-    
-    # Run the zero-token local inference
-    entities = get_gliner().predict_entities(target_text, labels_to_find, threshold=0.3)
-    
-    formatted_entities = []
-    
-    for ent in entities:
-        formatted_entities.append({
-            "entity": ent["text"],
-            "type": ent["label"]
-        })
-            
-    # Return as a JSON string to match API output expectations
-    return json.dumps(formatted_entities, indent=2)
+    from src.local_ner.core import solve_ner_pipeline
+    return solve_ner_pipeline(prompt)
 
 import threading
 

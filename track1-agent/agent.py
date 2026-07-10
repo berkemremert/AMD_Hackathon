@@ -56,7 +56,7 @@ def main():
     tasks = json.loads(INPUT_PATH.read_text())
     results = []
     total_tokens = 0
-    from output_optimizer import detect_task_type, TOKEN_LIMITS
+    from output_optimizer import detect_task_type, get_dynamic_limits
     from local_solvers import solve_ner
     import validator
 
@@ -79,16 +79,11 @@ def main():
                 
         if task_type == "entity_extraction":
             # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
+            # Using the deterministic pipeline that formats the output exactly as requested
             from local_solvers import solve_ner
-            raw_entities = solve_ner(task["prompt"])
+            formatted_entities = solve_ner(task["prompt"])
             
-            # 2. Refiner: use the cheap model to clean up the entities and apply task rules
-            format_prompt = f"The user requested this extraction task:\n{task['prompt']}\n\nOur local NER model extracted these preliminary entities: {raw_entities}\n\nYour job is to act as an intelligent refiner. Take these preliminary entities, format them exactly as requested in the task instructions, AND perfectly apply any specific inclusion/exclusion rules mentioned in the prompt (for example, stripping honorifics, ignoring relative dates, or merging nested entities). Output ONLY the final formatted result. Do not add any preamble."
-            
-            answer = chat(MODEL_CHEAP, format_prompt, max_tokens=800)
-            
-            results.append({"task_id": task["task_id"], "answer": answer["text"]})
-            total_tokens += answer["total_tokens"]
+            results.append({"task_id": task["task_id"], "answer": formatted_entities})
             continue
             
         if task_type == "sentiment_analysis":
@@ -126,19 +121,25 @@ def main():
                         continue
                         
             elif mode == "compress_only":
-                req = parse_summary_request(task["prompt"])
-                compressed = compress_source(req.source_text, req.constraints)
-                task["prompt"] = f"{req.instruction}\n\n{compressed}"
+                from local_compressor import compress_summarization_prompt
+                # We use MMR to compress the long text, but we MUST send it to the API
+                # to actually rewrite it and fulfill specific formatting constraints 
+                # (like "exactly 20 words"). We do NOT overfit or skip the API.
+                task["prompt"] = compress_summarization_prompt(task["prompt"])
                 # Let it fall through to existing fireworks route
                 
         model, routing_tokens = route(task["prompt"])
-        
-        limits = TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"])
+        # Tighten the prompt using dynamic output optimization
+        limits = get_dynamic_limits(task_type, task["prompt"])
         system_prompt = limits["system"]
+        
+        # [COMPRESSION] Intercept and compress the prompt for all tasks if applicable
+        from local_compressor import optimize_prompt_for_api
+        final_prompt = optimize_prompt_for_api(task["prompt"], task_type, limits.get("suffix", ""))
         
         answer = chat(
             model=model,
-            prompt=task["prompt"],
+            prompt=final_prompt,
             max_tokens=limits["cap"],
             system_prompt=system_prompt,
             extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
@@ -153,7 +154,7 @@ def main():
             
             retry_answer = chat(
                 model=fallback_model,
-                prompt=task["prompt"],
+                prompt=final_prompt,
                 max_tokens=limits.get("retry_cap", 800),
                 system_prompt=system_prompt,
                 extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}

@@ -69,52 +69,56 @@ def detect_task_type(user_prompt: str) -> str:
 
 # Optimized constraints for each domain to ensure maximum token savings 
 # without triggering a failure from the LLM-as-a-judge accuracy gate.
-_BASE = "Answer in English. Be concise and direct; no preamble, no restating the question."
+_BASE = "Constraint: Strict adherence. English. NO preamble. NO restatement."
 
 TOKEN_LIMITS = {
     "knowledge_qa": {
-        "system": f"{_BASE} Give a correct, clear answer in under 120 words.",
-        "cap": 300,
-        "retry_cap": 1024,
+        "system": "Constraint: Max 1 sentence. Direct answer ONLY.",
+        "cap": 64,
+        "retry_cap": 128,
     },
     "math_solving": {
-        "system": f"{_BASE} Work through it in brief steps, then end with 'Answer: <value>' on its own line.",
-        "cap": 512,
-        "retry_cap": 1024,
+        "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
+        "cap": 128,
+        "retry_cap": 256,
     },
     "sentiment_analysis": {
-        "system": f"{_BASE} State the sentiment as positive, negative, or neutral, then one short reason.",
-        "cap": 150,
-        "retry_cap": 300,
+        "system": "Constraint: Output Label. 1 sentence reason (if asked).",
+        "cap": 40,
+        "retry_cap": 80,
     },
     "summarization": {
-        "system": f"{_BASE} Output only the summary and obey any length or format constraint stated in the task.",
-        "cap": 300,
-        "retry_cap": 600,
+        "system": "Constraint: Strict word/sentence limit. Output ONLY summary.",
+        "cap": 128,
+        "retry_cap": 256,
     },
     "entity_extraction": {
-        "system": f"{_BASE} Output valid JSON only: [{{\"entity\":\"...\",\"type\":\"...\"}}]. Do not output conversational text.",
-        "cap": 300,
-        "retry_cap": 600,
+        "system": "Constraint: Output ONLY exact requested format. NO prose.",
+        "cap": 200,
+        "retry_cap": 400,
     },
     "bug_fixing": {
-        "system": f"{_BASE} State the bug in one sentence, then give the corrected code in a single fenced block.",
-        "cap": 512,
-        "retry_cap": 1024,
+        "system": "Constraint: Output ONLY ```python fixed_code ```. NO prose. NO comments.",
+        "cap": 160,
+        "retry_cap": 320,
     },
     "logical_puzzles": {
-        "system": f"{_BASE} Reason in brief numbered steps, checking each constraint, then end with 'Answer: <value>' on its own line.",
-        "cap": 512,
-        "retry_cap": 1024,
+        "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
+        "cap": 128,
+        "retry_cap": 256,
     },
     "code_authoring": {
-        "system": f"{_BASE} Output only the code in a single fenced block — correct, complete, and self-contained.",
-        "cap": 768,
-        "retry_cap": 1536,
+        "system": "Constraint: Output ONLY ```python code ```. Minified, NO comments.",
+        "cap": 320,
+        "retry_cap": 640,
     },
     "fallback": {
-        "system": f"{_BASE}",
-        "cap": 400,
-        "retry_cap": 1024,
+        "system": "Answer concisely.",
+        "cap": 256,
+        "retry_cap": 512,
     },
 }
+
+def get_dynamic_limits(task_type: str, prompt: str) -> dict:
+    """Returns calculated token limits based on the task."""
+    return TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"]).copy()

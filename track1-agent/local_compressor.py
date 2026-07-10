@@ -1,6 +1,6 @@
 """
-Local Extractive Compression Pipeline for Summarization.
-Uses all-MiniLM-L6-v2 to compress a source text before passing to the Fireworks API.
+Local Extractive Compression Pipeline for Summarization, Bug Fixing, and QA.
+Uses all-MiniLM-L6-v2 for semantic extraction and Regex for code minification.
 """
 
 import re
@@ -193,7 +193,6 @@ def calculate_budget(original_words: int, constraints: SummaryConstraints) -> in
     else:
         return min(450, max(100, int(original_words * 0.25)))
 
-
 def repair_cohesion(selected_indices: list[int], sentences: list[SentenceMeta], budget: int) -> list[int]:
     final_indices = set(selected_indices)
     current_words = sum(sentences[i].words for i in final_indices)
@@ -201,7 +200,7 @@ def repair_cohesion(selected_indices: list[int], sentences: list[SentenceMeta], 
     for idx in selected_indices:
         if sentences[idx].starts_with_discourse and idx > 0:
             if idx - 1 not in final_indices:
-                if current_words + sentences[idx-1].words <= budget + 50: # Slight allowance for cohesion
+                if current_words + sentences[idx-1].words <= budget + 50:
                     final_indices.add(idx - 1)
                     current_words += sentences[idx-1].words
                     
@@ -211,7 +210,7 @@ def select_sentences_mmr(sentences: list[SentenceMeta], config: CompressionConfi
     try:
         model, device = _load_embedding_model()
     except Exception as e:
-        return [s.index for s in sentences] # Fallback if model fails
+        return [s.index for s in sentences]
 
     texts = [s.text for s in sentences]
     
@@ -222,7 +221,6 @@ def select_sentences_mmr(sentences: list[SentenceMeta], config: CompressionConfi
         
         relevance_scores = torch.nn.functional.cosine_similarity(embeddings, centroid).cpu().numpy()
         
-    # Apply bonuses/penalties
     for i, s in enumerate(sentences):
         if s.has_number: relevance_scores[i] += config.bonus_number
         if s.has_percent: relevance_scores[i] += config.bonus_percent
@@ -245,14 +243,13 @@ def select_sentences_mmr(sentences: list[SentenceMeta], config: CompressionConfi
                 sims = torch.nn.functional.cosine_similarity(embeddings[idx].unsqueeze(0), embeddings[selected])
                 max_sim = torch.max(sims).item()
                 if max_sim > config.duplicate_threshold:
-                    mmr_scores.append(-1.0) # Highly penalize duplicates
+                    mmr_scores.append(-1.0)
                 else:
                     score = config.lambda_relevance * relevance_scores[idx] - (1 - config.lambda_relevance) * max_sim
                     mmr_scores.append(score)
                     
         best_idx = unselected[max(range(len(mmr_scores)), key=mmr_scores.__getitem__)]
         
-        # If the best remaining sentence is a duplicate, stop.
         if mmr_scores[unselected.index(best_idx)] == -1.0:
             break
             
@@ -262,7 +259,7 @@ def select_sentences_mmr(sentences: list[SentenceMeta], config: CompressionConfi
         
     return sorted(selected)
 
-def compress_summarization_prompt(user_prompt: str, config: Optional[CompressionConfig] = None) -> CompressionResult:
+def compress_summarization_prompt(user_prompt: str, config: Optional[CompressionConfig] = None) -> str:
     if config is None:
         config = CompressionConfig()
         
@@ -270,16 +267,16 @@ def compress_summarization_prompt(user_prompt: str, config: Optional[Compression
         parsed = parse_summarization_prompt(user_prompt)
         
         if parsed.parsing_confidence < 0.6:
-            return CompressionResult(user_prompt, 0, 0, 0, 0, 1.0, False, "low_parsing_confidence")
+            return user_prompt
             
         original_words = len(parsed.source_text.split())
         
         if original_words < 100:
-            return CompressionResult(user_prompt, original_words, original_words, 0, 0, 1.0, False, "source_too_short")
+            return user_prompt
             
         sentences = segment_sentences(parsed.source_text)
         if len(sentences) < 6:
-            return CompressionResult(user_prompt, original_words, original_words, len(sentences), len(sentences), 1.0, False, "too_few_sentences")
+            return user_prompt
             
         budget = calculate_budget(original_words, parsed.constraints)
         
@@ -287,33 +284,114 @@ def compress_summarization_prompt(user_prompt: str, config: Optional[Compression
         selected_indices = repair_cohesion(selected_indices, sentences, budget)
         
         compressed_text = " ".join([sentences[i].text for i in selected_indices])
-        compressed_words = len(compressed_text.split())
         
-        return CompressionResult(
-            compressed_text=compressed_text,
-            original_word_count=original_words,
-            compressed_word_count=compressed_words,
-            original_sentence_count=len(sentences),
-            selected_sentence_count=len(selected_indices),
-            compression_ratio=compressed_words / max(1, original_words),
-            applied=True,
-            selected_indices=selected_indices
-        )
+        return f"{parsed.instruction}\n\n{compressed_text}"
         
     except Exception as e:
-        print(f"[Compressor] Error: {e}", file=sys.stderr)
-        return CompressionResult(user_prompt, 0, 0, 0, 0, 1.0, False, f"error: {str(e)}")
+        print(f"[Compressor] Summarization Error: {e}", file=sys.stderr)
+        return user_prompt
 
-def optimize_prompt_for_api(user_prompt: str, task_type: str, suffix: str) -> str:
-    """Entry point for agent.py."""
-    if task_type != "summarization":
-        return f"{suffix}\n\n{user_prompt}"
+def compress_code_debugging(user_prompt: str) -> str:
+    """Removes docstrings, comments, and empty lines from code blocks."""
+    def minifier(match):
+        code = match.group(2)
+        # Remove block strings (single and double quotes)
+        code = re.sub(r'\"\"\"[\s\S]*?\"\"\"', '', code)
+        code = re.sub(r"'''[\s\S]*?'''", '', code)
         
-    result = compress_summarization_prompt(user_prompt)
-    if not result.applied:
-        return f"{suffix}\n\n{user_prompt}"
+        lines = code.split('\n')
+        new_lines = []
+        for line in lines:
+            stripped = line.strip()
+            if not stripped:
+                continue # remove empty lines
+            if stripped.startswith('#') or stripped.startswith('//'):
+                continue # remove full-line comments
+            new_lines.append(line)
+        return match.group(1) + "\n" + "\n".join(new_lines) + "\n```"
         
-    parsed = parse_summarization_prompt(user_prompt) # Parse again to safely reconstruct
+    # Match ```python ... ``` or ``` ... ```
+    new_prompt = re.sub(r"(```[a-zA-Z]*\n)(.*?)(```)", minifier, user_prompt, flags=re.DOTALL)
     
-    reconstructed = f"{parsed.instruction}\n\n{result.compressed_text}"
-    return f"{suffix}\n\n{reconstructed}"
+    # Also remove extra empty lines in the prompt itself
+    new_prompt = re.sub(r'\n{3,}', '\n\n', new_prompt)
+    return new_prompt
+
+def compress_knowledge_qa(user_prompt: str) -> str:
+    """Uses RAG to extract only sentences relevant to the question."""
+    parts = user_prompt.split("\n\n")
+    if len(parts) < 2:
+        return user_prompt 
+        
+    question_idx = -1
+    for i, p in enumerate(parts):
+        if '?' in p:
+            if question_idx == -1 or len(p) < len(parts[question_idx]):
+                question_idx = i
+                
+    if question_idx == -1:
+        question_idx = 0
+        
+    question_text = parts[question_idx]
+    
+    context_parts = [p for i, p in enumerate(parts) if i != question_idx]
+    context_text = "\n\n".join(context_parts)
+    
+    if len(context_text.split()) < 50:
+        return user_prompt 
+        
+    sentences = segment_sentences(context_text)
+    if len(sentences) < 5:
+        return user_prompt
+        
+    try:
+        model, device = _load_embedding_model()
+    except Exception:
+        return user_prompt
+        
+    try:
+        with torch.inference_mode():
+            q_emb = model.encode([question_text], convert_to_tensor=True, device=device, normalize_embeddings=True)
+            s_embs = model.encode([s.text for s in sentences], convert_to_tensor=True, device=device, normalize_embeddings=True)
+            
+            sims = torch.nn.functional.cosine_similarity(q_emb, s_embs).cpu().numpy()
+            
+        budget = max(3, int(len(sentences) * 0.4))
+        top_indices = sims.argsort()[-budget:][::-1]
+        top_indices = sorted(list(top_indices)) 
+        
+        compressed_context = " ".join([sentences[i].text for i in top_indices])
+        
+        if question_idx == 0:
+            return f"{question_text}\n\n[Extracted Context]: {compressed_context}"
+        else:
+            return f"[Extracted Context]: {compressed_context}\n\n{question_text}"
+            
+    except Exception as e:
+        print(f"[Compressor] QA Error: {e}", file=sys.stderr)
+        return user_prompt
+
+
+def optimize_prompt_for_api(user_prompt: str, task_type: str, suffix: str = "") -> str:
+    """Universal Compression Dispatcher."""
+    compressed = user_prompt
+    
+    if task_type == "summarization":
+        compressed = compress_summarization_prompt(user_prompt)
+    elif task_type in ["code_debugging", "bug_fixing", "code_authoring"]:
+        compressed = compress_code_debugging(user_prompt)
+        # Aggressively remove explanation demands
+        compressed = re.sub(r"(?i)Explain\s+what\s+(the\s+)?bug\s+is\s+and\s+show\s+the\s+corrected\s+code\.?", "", compressed)
+        compressed = re.sub(r"(?i)Explain\s+the\s+bug\s+and\s+give\s+the\s+fixed\s+code\.?", "", compressed)
+        compressed = re.sub(r"(?i)Explain\s+what\s+(the\s+)?bug\s+is\s+and\s+how\s+(your\s+)?fix\s+resolves\s+it\.?", "", compressed)
+        compressed = re.sub(r"(?i)Provide\s+an\s+explanation\.?", "", compressed)
+    elif task_type in ["factual_knowledge", "knowledge_qa"]:
+        compressed = compress_knowledge_qa(user_prompt)
+    elif task_type in ["math_solving", "logical_puzzles"]:
+        compressed = re.sub(r"(?i)Explain\s+your\s+reasoning\.?", "", compressed)
+        compressed = re.sub(r"(?i)Show\s+your\s+work\.?", "", compressed)
+        
+    # The suffix contains output instructions required by the API, so append it safely
+    if suffix:
+        return f"{suffix}\n\n{compressed}"
+    return compressed
