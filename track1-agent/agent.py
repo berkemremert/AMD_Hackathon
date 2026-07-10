@@ -99,6 +99,16 @@ def main():
             print(f"[WARN] Code debug solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
 
         try:
+            if task_type == "code_authoring" or task.get("category") == "code_generation":
+                from local_solvers import solve_code_authoring
+                code_ans = solve_code_authoring(task["prompt"])
+                if code_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": code_ans})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Code authoring solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
             if task_type == "entity_extraction":
                 from local_solvers import solve_ner
                 raw_entities = solve_ner(task["prompt"])

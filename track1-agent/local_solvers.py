@@ -188,7 +188,28 @@ def solve_code_debug(prompt: str) -> str | None:
         except Exception:
             pass
 
+    # Tier 2: Local Neural Coder (Qwen2.5-Coder-1.5B-Instruct) at 0 API tokens
+    try:
+        from src.local_coder import solve_qwen_coder
+        qwen_ans = solve_qwen_coder(prompt, task_type="code_debugging")
+        if qwen_ans is not None:
+            return qwen_ans
+    except Exception as e:
+        print(f"[WARN] Tier 2 Qwen local coder check failed: {e}", file=sys.stderr)
+
+    # Tier 3: Return None to cleanly fall back to the API with our 160-token cap
     return None
+
+def solve_code_authoring(prompt: str) -> str | None:
+    """
+    Tier 2 local code authoring using Qwen2.5-Coder-1.5B-Instruct.
+    If unavailable or fails, returns None to fall back to Tier 3 API call with 320-token cap.
+    """
+    try:
+        from src.local_coder import solve_qwen_coder
+        return solve_qwen_coder(prompt, task_type="code_authoring")
+    except Exception as e:
+        return None
 
 def solve_ner(prompt: str) -> str:
     """
