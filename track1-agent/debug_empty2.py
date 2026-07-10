@@ -1,7 +1,7 @@
 import json, os, requests
 from dotenv import load_dotenv
 load_dotenv()
-from local_summary_compressor import optimize_prompt_for_api
+from local_compressor import optimize_prompt_for_api
 from output_optimizer import TOKEN_LIMITS
 
 data = json.load(open('data/labeled_dataset.json'))

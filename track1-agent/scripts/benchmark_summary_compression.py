@@ -7,7 +7,7 @@ from pathlib import Path
 # Add parent directory to path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from local_summary_compressor import compress_summarization_prompt
+from local_compressor import compress_summarization_prompt
 from output_optimizer import detect_task_type
 
 def run_benchmark():
