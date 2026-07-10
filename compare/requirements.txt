@@ -1,5 +1,0 @@
-# Real dependency for calling Fireworks (OpenAI-compatible API):
-openai>=1.0.0
-
-# If you later add a bundled local model (the free tier), add its runtime here too,
-# e.g. llama-cpp-python for a small quantized GGUF model. Keep the image under 10GB.
