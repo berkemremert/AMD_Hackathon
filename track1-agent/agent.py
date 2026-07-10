@@ -60,6 +60,7 @@ def main():
     total_tokens = 0
     from output_optimizer import detect_task_type, TOKEN_LIMITS
     from local_solvers import solve_ner
+    import validator
 
     for task in tasks:
         task_type = detect_task_type(task["prompt"])
@@ -78,8 +79,16 @@ def main():
         limits = TOKEN_LIMITS[task_type]
         tight_prompt = f"{limits['suffix']}\n\n{task['prompt']}"
         
-        answer = chat(model, tight_prompt, max_tokens=limits["cap"])
+        answer = chat(model, tight_prompt, max_tokens=limits["cap"], extra_params={"reasoning_effort": "none"})
         total_tokens += routing_tokens + answer["total_tokens"]
+        
+        ok, reason = validator.validate(task_type, task["prompt"], answer["text"], answer.get("finish_reason"))
+        if not ok:
+            print(f"Validation failed for task {task['task_id']} ({reason}). Retrying with generous cap...", file=sys.stderr)
+            retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800))
+            total_tokens += retry_answer["total_tokens"]
+            answer = retry_answer
+            
         results.append({"task_id": task["task_id"], "answer": answer["text"]})
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)

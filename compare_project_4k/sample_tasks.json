@@ -1,0 +1,11 @@
+[
+  {"task_id": "t1", "prompt": "What is the capital of Australia?"},
+  {"task_id": "t2", "prompt": "Calculate 17% of 460, then add 38."},
+  {"task_id": "t3", "prompt": "What is the sentiment of this review: 'The battery died in two hours and support never replied.'"},
+  {"task_id": "t4", "prompt": "Summarize the following: The city council voted 7-2 on Tuesday to approve a new bike lane network spanning 40 miles, funded by a state grant. Construction begins in March and local businesses expressed mixed reactions about parking impacts."},
+  {"task_id": "t5", "prompt": "Extract all the people and organizations from: Tim Cook met with officials from the European Commission in Brussels alongside Luca Maestri."},
+  {"task_id": "t6", "prompt": "Fix the bug in this code:\n```python\ndef avg(nums):\n    return sum(nums) / len(nums) + 1\n```"},
+  {"task_id": "t7", "prompt": "Three friends Alice, Bob and Carol each own one pet: a cat, a dog, and a fish. Alice is allergic to fur. Bob's pet barks. Deduce who owns the fish."},
+  {"task_id": "t8", "prompt": "Write a Python function that returns the nth Fibonacci number iteratively."},
+  {"task_id": "t9", "prompt": "Tell me something interesting about deep sea creatures."}
+]

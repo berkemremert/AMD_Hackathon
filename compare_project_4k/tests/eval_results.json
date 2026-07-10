@@ -1,0 +1,1042 @@
+[
+  {
+    "predicted_category": "factual",
+    "answer": "Ottawa is the capital of Canada, located in the province of Ontario.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 41,
+      "completion_tokens": 17,
+      "total_tokens": 58
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "factual_1",
+    "category": "factual",
+    "prompt": "What is the capital of Canada, and in which province is it located?",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 179,
+      "total_tokens": 181,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 178
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "factual",
+    "answer": "Albert Einstein developed the theory of general relativity. It was published in 1915.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 43,
+      "completion_tokens": 19,
+      "total_tokens": 62
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "factual_2",
+    "category": "factual",
+    "prompt": "Who developed the theory of general relativity, and in what year was it published?",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 182,
+      "total_tokens": 184,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 181
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "factual",
+    "answer": "The aurora borealis is caused by charged particles from the sun colliding with Earth's atmosphere. Earth's magnetic field funnels these particles toward the poles, where they excite oxygen and nitrogen molecules, making them glow. The color depends on which gas is hit and the altitude of the collision.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 43,
+      "completion_tokens": 59,
+      "total_tokens": 102
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "factual_3",
+    "category": "factual",
+    "prompt": "What causes the aurora borealis? Explain briefly in 2-3 sentences.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 222,
+      "total_tokens": 224,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 221
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "factual",
+    "answer": "Commercial aircraft cruise around 35,000 feet mainly because the thinner air reduces drag, improving fuel efficiency and speed. Higher altitudes also let planes fly above turbulence and most weather for smoother, safer flights.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 49,
+      "completion_tokens": 42,
+      "total_tokens": 91
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "factual_4",
+    "category": "factual",
+    "prompt": "Why do commercial aircraft typically cruise at altitudes around 35,000 feet? Give the two main reasons briefly.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 211,
+      "total_tokens": 213,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 210
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "factual",
+    "answer": "Brazil has won the most FIFA World Cup titles, with 5 victories in 1958, 1962, 1970, 1994, and 2002.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 46,
+      "completion_tokens": 37,
+      "total_tokens": 83
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "factual_5",
+    "category": "factual",
+    "prompt": "Which country has won the most FIFA World Cup titles, and in which years did it win them?",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 205,
+      "total_tokens": 207,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 204
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "math",
+    "answer": "Discount: 25% of $80 = 0.25 × 80 = $20\nSale price: 80 − 20 = $60\nSales tax: 8% of $60 = 0.08 × 60 = $4.80\nFinal price: 60 + 4.80 = $64.80\n\nAnswer: $64.80",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 65,
+      "completion_tokens": 78,
+      "total_tokens": 143
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "math_1",
+    "category": "math",
+    "prompt": "A jacket costs $80 and is on sale for 25% off. Sales tax of 8% is added after the discount. Calculate the final price.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 259,
+      "total_tokens": 261,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 258
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "math",
+    "answer": "Population growth formula: P = P₀(1 + r)^t\n\nP = 45000 × (1.03)^5\n\n(1.03)^5 = 1.159274...\n\nP = 45000 × 1.159274... = 52167.35...\n\nRounded to the nearest hundred: 52200\n\nAnswer: 52200",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 64,
+      "completion_tokens": 76,
+      "total_tokens": 140
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "math_2",
+    "category": "math",
+    "prompt": "A town of 45,000 people grows by 3% each year. Calculate the projected population after 5 years, rounded to the nearest hundred.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 257,
+      "total_tokens": 259,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 118
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "math",
+    "answer": "2023 revenue: $2.4 million\n\n2024 revenue: $2.4 × 1.15 = $2.76 million\n\n2025 revenue: $2.76 × 0.92 = $2.5392 million\n\nAnswer: $2.5392 million (or $2,539,200)",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 80,
+      "completion_tokens": 69,
+      "total_tokens": 149
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "math_3",
+    "category": "math",
+    "prompt": "A company earned $2.4 million in revenue in 2023. Revenue grew 15% in 2024 and then declined 8% in 2025. How much revenue did the company earn in 2025?",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 264,
+      "total_tokens": 266,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 263
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "math",
+    "answer": "I need to find when the car's value drops below half its original price.\n\nOriginal price: $32,000\nHalf price: $16,000\nAnnual depreciation: 18%, so value retained = 82% = 0.82\n\nAfter n years, value = 32000 × (0.82)^n\n\nI need 32000 × (0.82)^n < 16000\n\nSo (0.82)^n < 0.5\n\nTaking logs: n × ln(0.82) < ln(0.5)\n\nn > ln(0.5)/ln(0.82)  (note ln(0.82) is negative, so inequality flips)\n\nln(0.5) ≈ -0.6931\nln(0.82) ≈ -0.1985\n\nn > -0.6931 / -0.1985 ≈ 3.49\n\nSo n > 3.49, meaning after 4 full years.\n\nCheck:\nAfter 3 years: 32000 × (0.82)^3 = 32000 × 0.551368 = $17,643.78 (more than half)\nAfter 4 years: 32000 × (0.82)^4 = 32000 × 0.452122 = $14,467.90 (less than half)\n\nAnswer: 4 years",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 69,
+      "completion_tokens": 292,
+      "total_tokens": 361
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "math_4",
+    "category": "math",
+    "prompt": "A new car costs $32,000 and loses 18% of its value each year. After how many full years will the car be worth less than half its original price?",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 472,
+      "total_tokens": 474,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 117
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "math",
+    "answer": "Compound interest formula: A = P(1 + r/n)^(nt)\n\nP = 10,000, r = 0.06, n = 12, t = 3\n\nMonthly rate = 0.06/12 = 0.005\nNumber of periods = 36\n\nA_compound = 10000(1.005)^36 = 10000 × 1.1966805248... = 11966.81\n\nSimple interest: A = P(1 + rt) = 10000(1 + 0.06 × 3) = 10000 × 1.18 = 11800.00\n\nDifference = 11966.81 - 11800.00 = 166.81\n\nAnswer: The investment will be worth $11,966.81 after 3 years, which is $166.81 more than with simple interest.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 77,
+      "completion_tokens": 186,
+      "total_tokens": 263
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "math_5",
+    "category": "math",
+    "prompt": "You invest $10,000 at 6% annual interest compounded monthly. How much will the investment be worth after 3 years, and how much more is that than the same account earning 6% simple interest?",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 379,
+      "total_tokens": 381,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 301
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "sentiment",
+    "answer": "Negative — The long wait overshadowed the decent pasta, leaving an overall unfavorable impression.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 70,
+      "completion_tokens": 19,
+      "total_tokens": 89
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "sentiment_1",
+    "category": "sentiment",
+    "prompt": "Classify the sentiment of this review as Positive, Negative, or Neutral, and justify your label in one sentence: 'The pasta was decent but the 45-minute wait killed the mood.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 203,
+      "total_tokens": 205,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 117
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "sentiment",
+    "answer": "Negative — The user expresses disappointment and regret over a long-awaited update that removed features they enjoyed.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 68,
+      "completion_tokens": 20,
+      "total_tokens": 88
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "sentiment_2",
+    "category": "sentiment",
+    "prompt": "'I can't believe I waited a year for this update. Everything I loved about the app is gone.' — What is the sentiment of this comment? Give a one-line justification.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 203,
+      "total_tokens": 205,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 202
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "sentiment",
+    "answer": "Negative — The sarcastic tone and phrases like \"Oh great\" and \"Truly the highlight of my week\" express frustration and disdain toward the meeting.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 71,
+      "completion_tokens": 33,
+      "total_tokens": 104
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "sentiment_3",
+    "category": "sentiment",
+    "prompt": "Determine the sentiment (Positive, Negative, or Neutral) and explain your reasoning in one sentence: 'Oh great, another meeting that could have been an email. Truly the highlight of my week.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 218,
+      "total_tokens": 220,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 117
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "sentiment",
+    "answer": "Neutral — The review contains strong positive elements (views, location) offset by notable negatives (musty smell, overwhelmed staff), making the overall sentiment mixed.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 71,
+      "completion_tokens": 32,
+      "total_tokens": 103
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "sentiment_4",
+    "category": "sentiment",
+    "prompt": "Label the overall sentiment of this hotel review and justify the label in one sentence: 'Stunning views and an unbeatable location, but the room smelled musty and the front desk seemed completely overwhelmed.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 220,
+      "total_tokens": 222,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 219
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "sentiment",
+    "answer": "Neutral — The tweet is a factual announcement with no evaluative or emotional language.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 68,
+      "completion_tokens": 18,
+      "total_tokens": 86
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "sentiment_5",
+    "category": "sentiment",
+    "prompt": "What is the sentiment of this tweet — Positive, Negative, or Neutral? Justify in one sentence: 'The quarterly earnings report will be released Thursday at 9am ET.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 201,
+      "total_tokens": 203,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 200
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "summarization",
+    "answer": "A 2024 survey of 3,000 knowledge workers found that flexible remote work boosted job satisfaction and retention but created challenges around connection, mentorship, and onboarding for younger employees and managers.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 106,
+      "completion_tokens": 39,
+      "total_tokens": 145
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "summarization_1",
+    "category": "summarization",
+    "prompt": "Summarize the following in exactly one sentence: A 2024 survey of 3,000 knowledge workers found that employees with flexible remote options reported 22% higher job satisfaction and were 35% less likely to consider quitting than fully in-office peers. However, respondents under 25 reported feeling less connected to colleagues and mentors, and managers cited difficulty onboarding new hires remotely.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 262,
+      "total_tokens": 264,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 261
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "summarization",
+    "answer": "- Coral reefs cover less than 1% of the ocean floor but support about 25% of marine species.\n- Rising temperatures cause coral bleaching, and back-to-back events in 2016–2017 severely damaged the Great Barrier Reef.\n- Scientists are testing heat-tolerant corals and reef shading, but these are only temporary fixes without major emission reductions.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 154,
+      "completion_tokens": 75,
+      "total_tokens": 229
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "summarization_2",
+    "category": "summarization",
+    "prompt": "Summarize this passage in exactly 3 bullet points: Coral reefs occupy less than 1% of the ocean floor yet support roughly a quarter of all marine species. Rising sea temperatures trigger bleaching events, in which corals expel the symbiotic algae that provide most of their energy, leaving them white and vulnerable to starvation. Back-to-back bleaching events in 2016 and 2017 damaged two-thirds of the Great Barrier Reef. Scientists are experimenting with breeding heat-tolerant corals and shading reefs during heat waves, but most researchers agree these measures only buy time without steep cuts in greenhouse gas emissions.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 336,
+      "total_tokens": 338,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 335
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "summarization",
+    "answer": "Lumen 3 smart thermostat launches next month at $129; preorders Friday, early buyers get two free room sensors.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 205,
+      "completion_tokens": 326,
+      "total_tokens": 531
+    },
+    "retried": true,
+    "validation": "21 words > limit 20",
+    "error": null,
+    "task_id": "summarization_3",
+    "category": "summarization",
+    "prompt": "Write a TL;DR of no more than 20 words: The Lumen 3 smart thermostat launches next month at $129. It learns household schedules within a week, integrates with all major voice assistants, and the company claims average heating-bill savings of 18%. Preorders open Friday, and early buyers receive two extra room sensors at no charge.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 245,
+      "total_tokens": 247,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 117
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "summarization",
+    "answer": "Walking at least 7,000 steps daily was associated with 31% fewer sick days and better sleep quality over six months compared with sedentary behavior. However, the findings are limited by self-reported sleep data, a single-city sample, and the possibility that healthier individuals walk more rather than walking causing better health.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 120,
+      "completion_tokens": 66,
+      "total_tokens": 186
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "summarization_4",
+    "category": "summarization",
+    "prompt": "Summarize this study in exactly two sentences — the first stating the findings, the second the limitations: Researchers tracked 812 adults for six months and found that those who walked at least 7,000 steps daily had 31% fewer sick days and reported better sleep quality than sedentary participants. The study relied on self-reported sleep data, drew participants from a single city, and could not rule out that healthier people simply walk more.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 297,
+      "total_tokens": 299,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 296
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "summarization",
+    "answer": "Decisions: Delay mobile redesign to Q4; ship payments integration first. Move weekly standups to 9:30am.\n\nAction items: Dana will draft the revised roadmap by Friday. Miguel will contact the payments vendor about sandbox access.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 143,
+      "completion_tokens": 49,
+      "total_tokens": 192
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "summarization_5",
+    "category": "summarization",
+    "prompt": "Condense these meeting notes into a summary with exactly two labeled sections, 'Decisions:' and 'Action items:', each 1-2 lines: The product team met Tuesday to review Q3 priorities. After long debate, the group agreed to delay the mobile redesign to Q4 and ship the payments integration first. Dana will draft the revised roadmap by Friday. Miguel agreed to contact the payments vendor about sandbox access. The team also decided to move weekly standups to 9:30am. Priya raised concerns about testing capacity but no decision was made.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 309,
+      "total_tokens": 311,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 308
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "ner",
+    "answer": "```json\n[\n  {\"text\": \"Sundar Pichai\", \"label\": \"person\"},\n  {\"text\": \"Google\", \"label\": \"org\"},\n  {\"text\": \"Mountain View\", \"label\": \"location\"},\n  {\"text\": \"May 14, 2024\", \"label\": \"date\"}\n]\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 80,
+      "completion_tokens": 71,
+      "total_tokens": 151
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "ner_1",
+    "category": "ner",
+    "prompt": "Extract the named entities from this sentence as a JSON array of objects with keys \"text\" and \"label\" (labels: person, org, location, date): 'Sundar Pichai opened Google I/O in Mountain View on May 14, 2024.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 273,
+      "total_tokens": 275,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 272
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "ner",
+    "answer": "[\n  {\"text\": \"WHO\", \"label\": \"org\"},\n  {\"text\": \"Doctors Without Borders\", \"label\": \"org\"},\n  {\"text\": \"Port-au-Prince\", \"label\": \"location\"},\n  {\"text\": \"January 12\", \"label\": \"date\"},\n  {\"text\": \"Marie Dupont\", \"label\": \"person\"}\n]",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 83,
+      "completion_tokens": 79,
+      "total_tokens": 162
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "ner_2",
+    "category": "ner",
+    "prompt": "Identify all entities in the following text and return a JSON array of {\"text\": ..., \"label\": ...} objects using labels person/org/location/date: 'The WHO and Doctors Without Borders coordinated relief efforts in Port-au-Prince after the January 12 earthquake, spokesperson Marie Dupont confirmed.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 283,
+      "total_tokens": 285,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 282
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "ner",
+    "answer": "```json\n[\n  {\"text\": \"Jordan\", \"label\": \"person\"},\n  {\"text\": \"Amazon\", \"label\": \"org\"},\n  {\"text\": \"Seattle\", \"label\": \"location\"},\n  {\"text\": \"Jordan\", \"label\": \"location\"},\n  {\"text\": \"March 3, 2025\", \"label\": \"date\"},\n  {\"text\": \"Chase\", \"label\": \"org\"}\n]\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 76,
+      "completion_tokens": 93,
+      "total_tokens": 169
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "ner_3",
+    "category": "ner",
+    "prompt": "Extract every named entity from this text into a JSON array with fields \"text\" and \"label\" (person/org/location/date): 'Jordan flew from Amazon's Seattle headquarters to Jordan on March 3, 2025, to meet officials from Chase.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 293,
+      "total_tokens": 295,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 292
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "ner",
+    "answer": "```json\n[\n  {\"text\": \"4 July 1776\", \"label\": \"date\"},\n  {\"text\": \"Continental Congress\", \"label\": \"org\"},\n  {\"text\": \"Declaration of Independence\", \"label\": \"org\"},\n  {\"text\": \"Philadelphia\", \"label\": \"location\"},\n  {\"text\": \"Thomas Jefferson\", \"label\": \"person\"}\n]\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 80,
+      "completion_tokens": 82,
+      "total_tokens": 162
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "ner_4",
+    "category": "ner",
+    "prompt": "List all named entities with their labels (person, org, location, date) as a JSON array of {\"text\", \"label\"} objects: 'On 4 July 1776, the Continental Congress adopted the Declaration of Independence in Philadelphia; Thomas Jefferson drafted most of it.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 285,
+      "total_tokens": 287,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 284
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "ner",
+    "answer": "```json\n[\n  {\"text\": \"CES\", \"label\": \"org\"},\n  {\"text\": \"Las Vegas\", \"label\": \"location\"},\n  {\"text\": \"January 7, 2025\", \"label\": \"date\"},\n  {\"text\": \"Nvidia\", \"label\": \"org\"},\n  {\"text\": \"Jensen Huang\", \"label\": \"person\"},\n  {\"text\": \"TSMC\", \"label\": \"org\"},\n  {\"text\": \"AMD\", \"label\": \"org\"},\n  {\"text\": \"Lisa Su\", \"label\": \"person\"},\n  {\"text\": \"Austin\", \"label\": \"location\"},\n  {\"text\": \"January 9\", \"label\": \"date\"}\n]\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 102,
+      "completion_tokens": 152,
+      "total_tokens": 254
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "ner_5",
+    "category": "ner",
+    "prompt": "Extract all named entities (labels: person, org, location, date) and return them as a JSON array of {\"text\", \"label\"} objects: 'At CES in Las Vegas on January 7, 2025, Nvidia CEO Jensen Huang unveiled new chips built with TSMC, while rival AMD, led by Lisa Su, scheduled its own event in Austin for January 9.'",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 377,
+      "total_tokens": 379,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 376
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_debug",
+    "answer": "Bug: starts at index 1 instead of 0, and `range(1, n)` excludes index `n`.\n\nCorrected code:\n\n```python\ndef sum_first_n(nums, n):\n    total = 0\n    for i in range(n):\n        total += nums[i]\n    return total\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 81,
+      "completion_tokens": 65,
+      "total_tokens": 146
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_debug_1",
+    "category": "code_debug",
+    "prompt": "Fix the bug in this Python function — it should sum the first n elements of nums:\n```python\ndef sum_first_n(nums, n):\n    total = 0\n    for i in range(1, n):\n        total += nums[i]\n    return total\n```",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 269,
+      "total_tokens": 271,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 268
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_debug",
+    "answer": "Bug: Mutable default argument. The list `[]` is created once and shared across all calls.\n\nFix:\n\n```python\ndef add_item(item, items=None):\n    if items is None:\n        items = []\n    items.append(item)\n    return items\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 62,
+      "completion_tokens": 54,
+      "total_tokens": 116
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_debug_2",
+    "category": "code_debug",
+    "prompt": "This Python function behaves strangely when called multiple times. Find and fix the bug:\n```python\ndef add_item(item, items=[]):\n    items.append(item)\n    return items\n```",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 240,
+      "total_tokens": 242,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 239
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_debug",
+    "answer": "Bug: Initializing `max` to `0` fails for arrays where all numbers are negative or where the actual max is less than 0.\n\nFix: Initialize `max` to the first array element.\n\n```javascript\nfunction findMax(arr) {\n  if (arr.length === 0) return undefined;\n  let max = arr[0];\n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] > max) max = arr[i];\n  }\n  return max;\n}\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 108,
+      "completion_tokens": 111,
+      "total_tokens": 219
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_debug_3",
+    "category": "code_debug",
+    "prompt": "This JavaScript function should return the largest number in an array but gives the wrong answer for some inputs. Find the bug and fix it:\n```javascript\nfunction findMax(arr) {\n  let max = 0;\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] > max) max = arr[i];\n  }\n  return max;\n}\n```",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 342,
+      "total_tokens": 344,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 341
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_debug",
+    "answer": "Bug: `result.append(flatten(item))` nests the flattened sublist as a single element instead of extending `result` with its elements.\n\nFix: Use `result.extend(flatten(item))` instead of `result.append(flatten(item))`.\n\n```python\ndef flatten(lst):\n    result = []\n    for item in lst:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 93,
+      "completion_tokens": 99,
+      "total_tokens": 192
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_debug_4",
+    "category": "code_debug",
+    "prompt": "This Python function is supposed to flatten arbitrarily nested lists, but the output is wrong. Find and fix the bug:\n```python\ndef flatten(lst):\n    result = []\n    for item in lst:\n        if isinstance(item, list):\n            result.append(flatten(item))\n        else:\n            result.append(item)\n    return result\n```",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 312,
+      "total_tokens": 314,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 189
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_debug",
+    "answer": "**Bug:** Modifying a dictionary's size during iteration raises `RuntimeError: dictionary changed size during iteration`.\n\n**Corrected code:**\n```python\ndef remove_negatives(d):\n    for key in list(d):\n        if d[key] < 0:\n            del d[key]\n    return d\n```\n\nOr more Pythonic:\n```python\ndef remove_negatives(d):\n    return {k: v for k, v in d.items() if v >= 0}\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 74,
+      "completion_tokens": 98,
+      "total_tokens": 172
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_debug_5",
+    "category": "code_debug",
+    "prompt": "This Python function crashes at runtime. Explain the error and provide corrected code:\n```python\ndef remove_negatives(d):\n    for key in d:\n        if d[key] < 0:\n            del d[key]\n    return d\n```",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 295,
+      "total_tokens": 297,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 294
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "logic",
+    "answer": "Priya refuses anything with a motor, so she cannot use bus or car. Therefore Priya uses bike.\n\nMarcus sits in traffic jams driving alone, so he uses a car (not bus, and driving alone rules out bus).\n\nThat leaves Elena with the remaining mode: bus.\n\nAnswer: Priya = bike, Marcus = car, Elena = bus.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 86,
+      "completion_tokens": 73,
+      "total_tokens": 159
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "logic_1",
+    "category": "logic",
+    "prompt": "Logic puzzle: Priya, Marcus, and Elena each commute by a different mode: bike, bus, or car. Priya refuses to use anything with a motor. Marcus sits in traffic jams every morning driving alone. Deduce who uses which mode of transport.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 273,
+      "total_tokens": 275,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 272
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "logic",
+    "answer": "We have four consecutive slots and four presentations A, B, C, D.\n\nConstraints:\n- A must go first → A is in slot 1\n- D must come immediately after A → D is in slot 2\n- C must be earlier than B → C must be in a lower-numbered slot than B\n\nSo far: slots 1 and 2 are A and D. Slots 3 and 4 remain for C and B.\n\nSince C must be earlier than B, C goes in slot 3 and B goes in slot 4.\n\nAnswer: A, D, C, B",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 78,
+      "completion_tokens": 124,
+      "total_tokens": 202
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "logic_2",
+    "category": "logic",
+    "prompt": "Four presentations (A, B, C, D) must be scheduled in four consecutive slots. A must go first. D must come immediately after A. C must be earlier than B. Deduce the only possible order.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 318,
+      "total_tokens": 320,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 219
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "logic",
+    "answer": "Working: Zed says \"We are both knaves.\" If Zed were a knight, he would be telling the truth, which would mean he is a knave — contradiction. So Zed must be a knave. Since Zed is a knave, his statement is false. The negation of \"We are both knaves\" is \"It is not the case that both of us are knaves,\" meaning at least one is not a knave. Since Zed is a knave, Ora must be a knight.\n\nAnswer: Zed is a knave and Ora is a knight.",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 91,
+      "completion_tokens": 126,
+      "total_tokens": 217
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "logic_3",
+    "category": "logic",
+    "prompt": "A classic knights and knaves puzzle: on an island, knights always tell the truth and knaves always lie. You meet Zed and Ora. Zed says: 'We are both knaves.' Determine what Zed and Ora each are, and explain why.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 316,
+      "total_tokens": 318,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 117
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "logic",
+    "answer": "Let me work through this step by step.\n\nFrom \"Kim finished ahead of Tom but behind Uma\": Uma > Kim > Tom (in terms of finishing position, meaning Uma finished before Kim, who finished before Tom)\n\nFrom \"Uma was not first\": Uma is in position 2, 3, or 4. But since Uma > Kim > Tom, Uma must be ahead of at least two people, so Uma can be position 1 or 2. Combined with Uma not first: Uma is position 2.\n\nSo: Uma is 2nd, Kim is 3rd, Tom is 4th.\n\nThat leaves Raj for position 1.\n\nCheck \"Raj did not finish last\": Raj is 1st, so this is satisfied.\n\nFinal order: 1. Raj, 2. Uma, 3. Kim, 4. Tom\n\nAnswer: 1. Raj, 2. Uma, 3. Kim, 4. Tom",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 89,
+      "completion_tokens": 210,
+      "total_tokens": 299
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "logic_4",
+    "category": "logic",
+    "prompt": "Puzzle: Four runners — Kim, Raj, Tom, and Uma — finished a race in distinct positions 1 through 4. Kim finished ahead of Tom but behind Uma. Uma was not first. Raj did not finish last. Determine the exact finishing order.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 399,
+      "total_tokens": 401,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 398
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "logic",
+    "answer": "Let me work through this step by step.\n\nSeats: 1, 2, 3, 4, 5\n\nClues:\n- Ana sits at one of the ends: seat 1 or seat 5\n- Dev sits in seat 3\n- Ben sits immediately to the right of Cara (so Cara-Ben are consecutive)\n- Ana sits somewhere to the right of Ben\n\nSince Ana is to the right of Ben, Ana must be in a higher-numbered seat than Ben.\nSince Ana is at an end, and must be right of Ben, Ana cannot be seat 1.\nTherefore Ana is in seat 5.\n\nDev is in seat 3.\n\nSo we have: _, _, Dev, _, Ana\n\nCara and Ben must be consecutive with Ben immediately right of Cara.\nAvailable seats: 1, 2, 4\n\nPossible Cara-Ben pairs from available seats:\n- Cara in 1, Ben in 2 ✓\n- Cara in 2, Ben in 3 ✗ (Dev is there)\n- Cara in 4, Ben in 5 ✗ (Ana is there)\n\nSo Cara is in seat 1, Ben is in seat 2.\n\nThat leaves Eli for seat 4.\n\nFinal arrangement: Cara, Ben, Dev, Eli, Ana\n\nAnswer: Seat 1: Cara, Seat 2: Ben, Seat 3: Dev, Seat 4: Eli, Seat 5: Ana",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 106,
+      "completion_tokens": 311,
+      "total_tokens": 417
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "logic_5",
+    "category": "logic",
+    "prompt": "Logic puzzle: Ana, Ben, Cara, Dev, and Eli sit in a row of five seats numbered 1 to 5, left to right. Ana sits at one of the ends. Dev sits in seat 3. Ben sits immediately to the right of Cara. Ana sits somewhere to the right of Ben. Deduce the full seating arrangement.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 518,
+      "total_tokens": 520,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 117
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_gen",
+    "answer": "```python\nimport re\n\ndef is_palindrome(s):\n    cleaned = re.sub(r'[^a-zA-Z0-9]', '', s).lower()\n    return cleaned == cleaned[::-1]\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 63,
+      "completion_tokens": 45,
+      "total_tokens": 108
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_gen_1",
+    "category": "code_gen",
+    "prompt": "Write a Python function is_palindrome(s) that returns True if s is a palindrome, ignoring case, spaces, and punctuation.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 221,
+      "total_tokens": 223,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 220
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_gen",
+    "answer": "```python\ndef merge_intervals(intervals):\n    if not intervals:\n        return []\n    intervals.sort()\n    merged = [intervals[0]]\n    for start, end in intervals[1:]:\n        last_start, last_end = merged[-1]\n        if start <= last_end:\n            merged[-1][1] = max(last_end, end)\n        else:\n            merged.append([start, end])\n    return merged\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 90,
+      "completion_tokens": 91,
+      "total_tokens": 181
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_gen_2",
+    "category": "code_gen",
+    "prompt": "Implement a Python function merge_intervals(intervals) that takes a list of [start, end] pairs and returns the merged, sorted list. Example: [[1,3],[2,6],[8,10]] should return [[1,6],[8,10]].",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 295,
+      "total_tokens": 297,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 294
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_gen",
+    "answer": "```sql\nSELECT c.name, SUM(o.amount) AS total_amount\nFROM customers c\nJOIN orders o ON c.id = o.customer_id\nGROUP BY c.id, c.name\nORDER BY total_amount DESC\nLIMIT 5;\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 70,
+      "completion_tokens": 50,
+      "total_tokens": 120
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_gen_3",
+    "category": "code_gen",
+    "prompt": "Write a SQL query that returns the names of the top 5 customers by total order amount, given tables customers(id, name) and orders(id, customer_id, amount).",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 233,
+      "total_tokens": 235,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 232
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_gen",
+    "answer": "```javascript\nfunction debounce(fn, delay) {\n    let timer;\n    return function (...args) {\n        clearTimeout(timer);\n        timer = setTimeout(() => fn.apply(this, args), delay);\n    };\n}\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 67,
+      "completion_tokens": 47,
+      "total_tokens": 114
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_gen_4",
+    "category": "code_gen",
+    "prompt": "Write a JavaScript function debounce(fn, delay) that returns a debounced version of fn which only executes after delay milliseconds have passed since the last call.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 228,
+      "total_tokens": 230,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 227
+      },
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "predicted_category": "code_gen",
+    "answer": "```python\nclass Node:\n    def __init__(self, key, value):\n        self.key = key\n        self.value = value\n        self.prev = None\n        self.next = None\n\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.head = Node(0, 0)\n        self.tail = Node(0, 0)\n        self.head.next = self.tail\n        self.tail.prev = self.head\n\n    def _remove(self, node):\n        prev = node.prev\n        nxt = node.next\n        prev.next = nxt\n        nxt.prev = prev\n\n    def _add(self, node):\n        node.prev = self.head\n        node.next = self.head.next\n        self.head.next.prev = node\n        self.head.next = node\n\n    def get(self, key: int) -> int:\n        if key in self.cache:\n            node = self.cache[key]\n            self._remove(node)\n            self._add(node)\n            return node.value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self._remove(self.cache[key])\n        node = Node(key, value)\n        self._add(node)\n        self.cache[key] = node\n        if len(self.cache) > self.capacity:\n            lru = self.tail.prev\n            self._remove(lru)\n            del self.cache[lru.key]\n```",
+    "model": "accounts/fireworks/models/kimi-k2p7-code",
+    "usage": {
+      "prompt_tokens": 76,
+      "completion_tokens": 314,
+      "total_tokens": 390
+    },
+    "retried": false,
+    "validation": null,
+    "error": null,
+    "task_id": "code_gen_5",
+    "category": "code_gen",
+    "prompt": "Implement an LRUCache class in Python with get(key) and put(key, value) methods that both run in O(1) time, evicting the least recently used entry when capacity is exceeded.",
+    "passed": true,
+    "judge_usage": {
+      "prompt_tokens": 506,
+      "total_tokens": 508,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 117
+      },
+      "finish_reason": "stop"
+    }
+  }
+]

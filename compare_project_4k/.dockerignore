@@ -1,0 +1,13 @@
+# Never let secrets or dev artifacts near the build context
+.env
+.env.*
+!.env.example
+tests/
+output/
+*.log
+__pycache__/
+*.pyc
+.claude/
+eval.py
+bakeoff.py
+sample_tasks.json

@@ -72,38 +72,47 @@ def detect_task_type(user_prompt: str) -> str:
 TOKEN_LIMITS = {
     "knowledge_qa": {
         "suffix": "Provide a direct, concise answer without any preamble.",
-        "cap": 160,
+        "cap": 64,
+        "retry_cap": 200,
     },
     "math_solving": {
         "suffix": "Briefly show your steps, then conclude with: Answer: <result>.",
-        "cap": 600,
+        "cap": 384,
+        "retry_cap": 600,
     },
     "sentiment_analysis": {
         "suffix": "Provide the exact sentiment label (positive, negative, neutral, mixed) followed by a single sentence of justification.",
-        "cap": 120,
+        "cap": 40,
+        "retry_cap": 120,
     },
     "summarization": {
         "suffix": "Provide only the summary, adhering strictly to the requested format or length.",
-        "cap": 200,
+        "cap": 128,
+        "retry_cap": 256,
     },
     "entity_extraction": {
         "suffix": 'Output valid JSON only: [{"entity":"...","type":"..."}]. Do not output conversational text.',
         "cap": 200,
+        "retry_cap": 400,
     },
     "bug_fixing": {
         "suffix": "Identify the bug in one sentence, then provide the corrected code block. No extra text.",
-        "cap": 800,
+        "cap": 160,
+        "retry_cap": 800,
     },
     "logical_puzzles": {
         "suffix": "Provide brief step-by-step reasoning, then conclude with: Answer: <result>.",
-        "cap": 800,
+        "cap": 416,
+        "retry_cap": 800,
     },
     "code_authoring": {
         "suffix": "Write the requested code inside a single block. Be as concise as possible.",
-        "cap": 900,
+        "cap": 320,
+        "retry_cap": 900,
     },
     "fallback": {
         "suffix": "Answer the question directly and concisely.",
-        "cap": 400,
+        "cap": 256,
+        "retry_cap": 600,
     },
 }

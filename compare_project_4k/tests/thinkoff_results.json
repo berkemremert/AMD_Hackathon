@@ -1,0 +1,1806 @@
+{
+  "phaseA": {
+    "minimax-m3|factual_1": {
+      "answer": "The capital of Canada is **Ottawa**, and it is located in the province of **Ontario**.",
+      "usage": {
+        "prompt_tokens": 129,
+        "total_tokens": 150,
+        "completion_tokens": 21,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|factual_2": {
+      "answer": "The theory of general relativity was developed by **Albert Einstein**, and it was published in **1915**. Einstein presented his field equations to the Prussian Academy of Sciences on November 25, 1915, and the theory was formally published in the Annalen der Physik in 1916.",
+      "usage": {
+        "prompt_tokens": 130,
+        "total_tokens": 190,
+        "completion_tokens": 60,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|factual_3": {
+      "answer": "The aurora borealis (northern lights) is caused by charged particles from the Sun (solar wind) colliding with gases in Earth's upper atmosphere near the magnetic poles. These collisions excite the gas molecules, causing them to release energy as colorful light—typically green, pink, or purple—depending on the type of gas involved.",
+      "usage": {
+        "prompt_tokens": 131,
+        "total_tokens": 199,
+        "completion_tokens": 68,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|factual_4": {
+      "answer": "Commercial aircraft typically cruise at around 35,000 feet for two main reasons:\n\n1. **Fuel efficiency**: At higher altitudes, the air is thinner, which means less aerodynamic drag on the aircraft. This allows the engines to burn less fuel to maintain the same speed, making long flights more economical.\n\n2. **Weather avoidance**: Cruising above most weather systems (storms, turbulence, and cloud layers) provides a smoother, safer ride for passengers and crew, while also allowing for more consistent flight conditions.",
+      "usage": {
+        "prompt_tokens": 136,
+        "total_tokens": 238,
+        "completion_tokens": 102,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|factual_5": {
+      "answer": "Brazil has won the most FIFA World Cup titles, with a total of **5 championships**. They won in the following years:\n\n1. **1958** – Held in Sweden\n2. **1962** – Held in Chile\n3. **1970** – Held in Mexico\n4. **1994** – Held in the United States\n5. **2002** – Held in South Korea and Japan\n\nBrazil is the only nation to have played in every World Cup tournament and remains the most successful team in the history of the competition.",
+      "usage": {
+        "prompt_tokens": 134,
+        "total_tokens": 246,
+        "completion_tokens": 112,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_1": {
+      "answer": "# Calculating the Final Price\n\n## Step 1: Calculate the Discount\n- Original price: $80\n- Discount: 25% off\n- Discount amount: $80 × 0.25 = $20\n- Sale price: $80 − $20 = **$60**\n\n## Step 2: Add Sales Tax\n- Sale price: $60\n- Sales tax: 8%\n- Tax amount: $60 × 0.08 = $4.80\n- Final price: $60 + $4.80 = **$64.80**\n\n## Answer\nThe final price is **$64.80**.",
+      "usage": {
+        "prompt_tokens": 146,
+        "total_tokens": 277,
+        "completion_tokens": 131,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_2": {
+      "answer": "# Population Growth Calculation\n\n## Given Information\n- **Current population:** 45,000\n- **Annual growth rate:** 3% (0.03)\n- **Time period:** 5 years\n\n## Formula\nUsing the exponential growth formula:\n$$P = P_0 \\times (1 + r)^t$$\n\nWhere:\n- P₀ = initial population\n- r = growth rate\n- t = time in years\n\n## Calculation\n\n$$P = 45{,}000 \\times (1.03)^5$$\n\n**Step 1:** Calculate (1.03)⁵\n$$(1.03)^5 = 1.159274$$\n\n**Step 2:** Multiply by initial population\n$$P = 45{,}000 \\times 1.159274 = 52{,}167.34$$\n\n## Result\n\n**Projected population after 5 years ≈ 52,200** (rounded to the nearest hundred)\n\nThe town is expected to gain approximately 7,200 residents over the 5-year period.",
+      "usage": {
+        "prompt_tokens": 145,
+        "total_tokens": 360,
+        "completion_tokens": 215,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_3": {
+      "answer": "# Revenue Calculation\n\n**Starting revenue (2023):** $2.4 million\n\n**2024 (15% growth):**\n$2.4M × 1.15 = $2.76 million\n\n**2025 (8% decline):**\n$2.76M × 0.92 = **$2.5392 million**\n\nThe company earned approximately **$2.54 million** in revenue in 2025.",
+      "usage": {
+        "prompt_tokens": 161,
+        "total_tokens": 252,
+        "completion_tokens": 91,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_4": {
+      "answer": "I need to find when the car's value drops below $16,000 (half of $32,000).\n\n**Setting up the equation:**\n\nThe car depreciates by 18% each year, meaning it retains 82% of its value annually.\n\nValue after n years: V = 32000 × (0.82)^n\n\nI need: 32000 × (0.82)^n < 16000\n\n**Solving:**\n\n(0.82)^n < 0.5\n\nTaking the natural log of both sides:\nn × ln(0.82) < ln(0.5)\n\nn > ln(0.5) / ln(0.82)\n\nn > (-0.6931) / (-0.1985)\n\nn > 3.49\n\n**Checking the values:**\n\n- After 3 years: 32000 × (0.82)³ = 32000 × 0.5514 = $17,645 (still above $16,000)\n- After 4 years: 32000 × (0.82)⁴ = 32000 × 0.4521 = $14,469 (below $16,000)\n\n**Answer: 4 full years**",
+      "usage": {
+        "prompt_tokens": 150,
+        "total_tokens": 403,
+        "completion_tokens": 253,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_5": {
+      "answer": "# Compound vs. Simple Interest Comparison\n\n## Compound Interest Calculation\n\nUsing the formula: **A = P(1 + r/n)^(nt)**\n\n**Given values:**\n- P = $10,000 (principal)\n- r = 0.06 (annual rate)\n- n = 12 (compounding periods per year)\n- t = 3 years\n\n**Calculation:**\n$$A = 10{,}000\\left(1 + \\frac{0.06}{12}\\right)^{12 \\times 3}$$\n\n$$A = 10{,}000(1.005)^{36}$$\n\n$$A = 10{,}000 \\times 1.19668$$\n\n$$\\boxed{A \\approx \\$11{,}966.80}$$\n\n## Simple Interest Calculation\n\nUsing the formula: **A = P(1 + rt)**\n\n$$A = 10{,}000(1 + 0.06 \\times 3)$$\n\n$$A = 10{,}000(1.18)$$\n\n$$\\boxed{A = \\$11{,}800.00}$$\n\n## Difference\n\n| Type | Final Value |\n|------|-------------|\n| Compound (monthly) | $11,966.80 |\n| Simple | $11,800.00 |\n| **Difference** | **$166.80** |\n\nThe compound interest account earns **$166.80 more** than the simple interest account over 3 years. This difference comes from earning interest on previously earned interest — a benefit that grows significantly larger over longer time horizons.",
+      "usage": {
+        "prompt_tokens": 158,
+        "total_tokens": 468,
+        "completion_tokens": 310,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|sentiment_1": {
+      "answer": "**Negative** — The positive qualifier \"decent\" is outweighed by the strong negative impact of the long wait, which the reviewer explicitly says \"killed the mood,\" indicating overall dissatisfaction.",
+      "usage": {
+        "prompt_tokens": 152,
+        "total_tokens": 192,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|sentiment_2": {
+      "answer": "**Sentiment:** Negative.\n\n**Justification:** The user expresses disappointment and frustration, indicating that the update removed features they previously enjoyed after a long wait.",
+      "usage": {
+        "prompt_tokens": 149,
+        "total_tokens": 181,
+        "completion_tokens": 32,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|sentiment_3": {
+      "answer": "**Sentiment: Negative**\n\nThe speaker uses sarcasm (\"Oh great,\" \"Truly the highlight of my week\") to express frustration and annoyance about a pointless meeting, indicating a negative sentiment.",
+      "usage": {
+        "prompt_tokens": 153,
+        "total_tokens": 192,
+        "completion_tokens": 39,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|sentiment_4": {
+      "answer": "**Mixed Sentiment**\n\nThe review contains both positive elements (\"stunning views,\" \"unbeatable location\") and negative elements (\"musty smell,\" \"overwhelmed front desk\"), resulting in an overall mixed sentiment.",
+      "usage": {
+        "prompt_tokens": 154,
+        "total_tokens": 199,
+        "completion_tokens": 45,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|sentiment_5": {
+      "answer": "Neutral. The tweet is purely informational, stating a factual event (the release of a quarterly earnings report) without expressing any positive or negative emotion or opinion.",
+      "usage": {
+        "prompt_tokens": 150,
+        "total_tokens": 182,
+        "completion_tokens": 32,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|summarization_1": {
+      "answer": "A 2024 survey of 3,000 knowledge workers found that flexible remote work boosts job satisfaction by 22% and reduces quit likelihood by 35%, but younger employees feel less connected to colleagues and managers struggle with remote onboarding.",
+      "usage": {
+        "prompt_tokens": 189,
+        "total_tokens": 237,
+        "completion_tokens": 48,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|summarization_2": {
+      "answer": "- Coral reefs cover less than 1% of the ocean floor but support about 25% of marine species, making them disproportionately important to ocean biodiversity.\n- Rising sea temperatures cause bleaching events where corals lose their energy-providing algae, and back-to-back events in 2016-2017 damaged two-thirds of the Great Barrier Reef.\n- Interventions like breeding heat-tolerant corals and shading reefs may buy time, but scientists agree meaningful reef preservation requires steep reductions in greenhouse gas emissions.",
+      "usage": {
+        "prompt_tokens": 230,
+        "total_tokens": 327,
+        "completion_tokens": 97,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|summarization_3": {
+      "answer": "Lumen 3 thermostat launches next month at $129, learns schedules, works with voice assistants, saves 18% on heating. Preorders Friday include two free room sensors.",
+      "usage": {
+        "prompt_tokens": 185,
+        "total_tokens": 222,
+        "completion_tokens": 37,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": false
+    },
+    "minimax-m3|summarization_4": {
+      "answer": "The study found that adults who walked at least 7,000 steps daily experienced 31% fewer sick days and reported better sleep quality compared to sedentary participants over a six-month tracking period. However, the findings are limited by reliance on self-reported sleep data, a single-city participant pool, and the inability to determine whether healthier individuals are simply more inclined to walk.",
+      "usage": {
+        "prompt_tokens": 200,
+        "total_tokens": 274,
+        "completion_tokens": 74,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|summarization_5": {
+      "answer": "**Decisions:** Delay the mobile redesign to Q4 to prioritize shipping the payments integration first; move weekly standups to 9:30am.\n\n**Action items:** Dana to draft the revised roadmap by Friday; Miguel to contact the payments vendor regarding sandbox access.",
+      "usage": {
+        "prompt_tokens": 226,
+        "total_tokens": 280,
+        "completion_tokens": 54,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|ner_1": {
+      "answer": "```json\n[\n  {\"text\": \"Sundar Pichai\", \"label\": \"person\"},\n  {\"text\": \"Google I/O\", \"label\": \"org\"},\n  {\"text\": \"Mountain View\", \"label\": \"location\"},\n  {\"text\": \"May 14, 2024\", \"label\": \"date\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 169,
+        "total_tokens": 241,
+        "completion_tokens": 72,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|ner_2": {
+      "answer": "```json\n[\n  {\"text\": \"WHO\", \"label\": \"org\"},\n  {\"text\": \"Doctors Without Borders\", \"label\": \"org\"},\n  {\"text\": \"Port-au-Prince\", \"label\": \"location\"},\n  {\"text\": \"January 12\", \"label\": \"date\"},\n  {\"text\": \"Marie Dupont\", \"label\": \"person\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 173,
+        "total_tokens": 253,
+        "completion_tokens": 80,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|ner_3": {
+      "answer": "```json\n[\n  {\"text\": \"Jordan\", \"label\": \"person\"},\n  {\"text\": \"Amazon\", \"label\": \"org\"},\n  {\"text\": \"Seattle\", \"label\": \"location\"},\n  {\"text\": \"Jordan\", \"label\": \"location\"},\n  {\"text\": \"March 3, 2025\", \"label\": \"date\"},\n  {\"text\": \"Chase\", \"label\": \"org\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 167,
+        "total_tokens": 259,
+        "completion_tokens": 92,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|ner_4": {
+      "answer": "```json\n[\n  {\"text\": \"4 July 1776\", \"label\": \"date\"},\n  {\"text\": \"Continental Congress\", \"label\": \"org\"},\n  {\"text\": \"Declaration of Independence\", \"label\": \"org\"},\n  {\"text\": \"Philadelphia\", \"label\": \"location\"},\n  {\"text\": \"Thomas Jefferson\", \"label\": \"person\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 170,
+        "total_tokens": 251,
+        "completion_tokens": 81,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": false
+    },
+    "minimax-m3|ner_5": {
+      "answer": "```json\n[\n  {\"text\": \"Las Vegas\", \"label\": \"location\"},\n  {\"text\": \"January 7, 2025\", \"label\": \"date\"},\n  {\"text\": \"Nvidia\", \"label\": \"org\"},\n  {\"text\": \"Jensen Huang\", \"label\": \"person\"},\n  {\"text\": \"TSMC\", \"label\": \"org\"},\n  {\"text\": \"AMD\", \"label\": \"org\"},\n  {\"text\": \"Lisa Su\", \"label\": \"person\"},\n  {\"text\": \"Austin\", \"label\": \"location\"},\n  {\"text\": \"January 9\", \"label\": \"date\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 192,
+        "total_tokens": 330,
+        "completion_tokens": 138,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": false
+    },
+    "minimax-m3|code_debug_1": {
+      "answer": "The bug is in the `range(1, n)` — it starts at index 1 instead of 0, and also stops at `n-1` instead of including `n`. This skips the first element and misses the last one.\n\n**Fix:** Use `range(0, n+1)` or simply `range(n)`:\n\n```python\ndef sum_first_n(nums, n):\n    total = 0\n    for i in range(n):\n        total += nums[i]\n    return total\n```\n\n**Example:**\n- `sum_first_n([1, 2, 3, 4], 3)` → `6` (sums `1+2+3`) ✓\n- Original buggy version would return `5` (sums `2+3`, skipping index 0 and stopping early).",
+      "usage": {
+        "prompt_tokens": 170,
+        "total_tokens": 340,
+        "completion_tokens": 170,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_debug_2": {
+      "answer": "# The Bug: Mutable Default Argument\n\nThis is a classic Python pitfall. The default argument `items=[]` is created **once** when the function is defined, not each time the function is called. Every call that doesn't pass `items` shares the same list.\n\n## Demonstration of the Problem\n\n```python\nprint(add_item(\"a\"))  # ['a']\nprint(add_item(\"b\"))  # ['a', 'b']  ← unexpected!\nprint(add_item(\"c\"))  # ['a', 'b', 'c']\n```\n\n## The Fix\n\nUse `None` as the default and create a new list inside the function:\n\n```python\ndef add_item(item, items=None):\n    if items is None:\n        items = []\n    items.append(item)\n    return items\n```\n\nNow each call gets a fresh list:\n\n```python\nprint(add_item(\"a\"))  # ['a']\nprint(add_item(\"b\"))  # ['b']\nprint(add_item(\"c\"))  # ['c']\n```\n\n## Why This Happens\n\nIn Python, default arguments are evaluated **once** at function definition time and stored in the function's `__defaults__` attribute. Mutable defaults (lists, dicts, sets) persist across calls, leading to accumulating state.\n\n## Rule of Thumb\n\n> Never use a mutable object (`list`, `dict`, `set`) as a default argument. Use `None` and create the object inside the function body.",
+      "usage": {
+        "prompt_tokens": 152,
+        "total_tokens": 450,
+        "completion_tokens": 298,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_debug_3": {
+      "answer": "# The Bug\n\nThe function initializes `max = 0`, which fails when the array contains **only negative numbers**. In that case, `0` is greater than every element, so the function incorrectly returns `0` instead of the actual largest (least negative) number.\n\n**Example failure:**\n```javascript\nfindMax([-5, -2, -8, -1]); // returns 0, should return -1\n```\n\n# The Fix\n\nInitialize `max` with the first element of the array instead of `0`:\n\n```javascript\nfunction findMax(arr) {\n  if (arr.length === 0) return undefined; // handle empty arrays\n  \n  let max = arr[0];\n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] > max) max = arr[i];\n  }\n  return max;\n}\n```\n\n# Why This Works\n\n- `max` now starts as an actual element from the array, so the comparison is always between real values.\n- The loop starts at index `1` since `arr[0]` is already the initial `max`.\n- The empty-array guard prevents `undefined` behavior when `arr[0]` doesn't exist.\n\n# Alternative One-Liner\n\nIf your environment supports it, you can use the spread operator with `Math.max`:\n\n```javascript\nfunction findMax(arr) {\n  return Math.max(...arr);\n}\n```\n\nThis works correctly for negative numbers, positive numbers, and mixed values.",
+      "usage": {
+        "prompt_tokens": 197,
+        "total_tokens": 503,
+        "completion_tokens": 306,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_debug_4": {
+      "answer": "# The Bug\n\nThe function returns a **nested** list instead of a **flat** one. When it encounters a sublist, it recursively calls `flatten(item)` and appends the *entire returned list* as a single element, rather than extending `result` with its individual elements.\n\nFor example, `flatten([1, [2, 3], 4])` returns `[1, [2, 3], 4]` instead of `[1, 2, 3, 4]`.\n\n# The Fix\n\nUse `extend` instead of `append` when the item is a list:\n\n```python\ndef flatten(lst):\n    result = []\n    for item in lst:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result\n```\n\n# Verification\n\n```python\nprint(flatten([1, [2, 3], 4]))           # [1, 2, 3, 4]\nprint(flatten([1, [2, [3, 4], 5], 6]))   # [1, 2, 3, 4, 5, 6]\nprint(flatten([]))                        # []\nprint(flatten([1, 2, 3]))                 # [1, 2, 3]\n```\n\n# Alternative: One-liner with `itertools.chain`\n\nIf you want a more concise version:\n\n```python\nfrom itertools import chain\n\ndef flatten(lst):\n    return list(chain.from_iterable(\n        flatten(item) if isinstance(item, list) else [item]\n        for item in lst\n    ))\n```\n\nOr using a generator with `yield from`:\n\n```python\ndef flatten(lst):\n    for item in lst:\n        if isinstance(item, list):\n            yield from flatten(item)\n        else:\n            yield item\n```\n\nThe key insight: `append` adds one element, while `extend` adds each element of an iterable individually.",
+      "usage": {
+        "prompt_tokens": 182,
+        "total_tokens": 592,
+        "completion_tokens": 410,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_debug_5": {
+      "answer": "# The Error: Modifying a Dictionary While Iterating\n\nThe function crashes with a `RuntimeError: dictionary changed size during iteration`.\n\n## Why It Crashes\n\nIn Python, you **cannot modify a dictionary (add or delete keys) while iterating over it**. The iterator keeps track of the dictionary's internal state, and when that state changes mid-loop, Python raises a `RuntimeError` to prevent undefined behavior.\n\n## Corrected Code\n\nThere are several ways to fix this. Here are the best options:\n\n### Option 1: Iterate over a copy of the keys (simplest fix)\n```python\ndef remove_negatives(d):\n    for key in list(d):          # list(d) creates a snapshot of the keys\n        if d[key] < 0:\n            del d[key]\n    return d\n```\n\n### Option 2: Build a new dictionary (cleaner, avoids mutation)\n```python\ndef remove_negatives(d):\n    return {k: v for k, v in d.items() if v >= 0}\n```\n\n### Option 3: Collect keys first, then delete\n```python\ndef remove_negatives(d):\n    keys_to_delete = [key for key in d if d[key] < 0]\n    for key in keys_to_delete:\n        del d[key]\n    return d\n```\n\n## Quick Demo\n\n```python\nprices = {\"apple\": 1.50, \"banana\": -0.75, \"cherry\": 3.00, \"date\": -2.00}\nprint(remove_negatives(prices))\n# {'apple': 1.5, 'cherry': 3.0}\n```\n\n## Key Takeaway\n\n| ❌ Don't do this | ✅ Do this instead |\n|---|---|\n| `for key in d:` then `del d[key]` | `for key in list(d):` then `del d[key]` |\n| Mutating a collection during iteration | Iterate over a copy, or build a new collection |\n\nThe same rule applies to **sets** and (in some cases) **lists** — never modify a collection while looping over it directly.",
+      "usage": {
+        "prompt_tokens": 163,
+        "total_tokens": 601,
+        "completion_tokens": 438,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_1": {
+      "answer": "# Solving the Commute Puzzle\n\n## Given Information\n- **Three people:** Priya, Marcus, Elena\n- **Three modes:** bike, bus, car (each used by exactly one person)\n- **Clue 1:** Priya refuses to use anything with a motor\n- **Clue 2:** Marcus sits in traffic jams driving alone every morning\n\n## Step-by-Step Deduction\n\n**Priya's mode:**\n- Bike = no motor ✓\n- Bus = has motor ✗\n- Car = has motor ✗\n- → **Priya rides a bike**\n\n**Marcus's mode:**\n- He drives alone in traffic jams → he must be the driver of a car\n- → **Marcus drives a car**\n\n**Elena's mode:**\n- Only mode left is the bus\n- → **Elena takes the bus**\n\n## Final Answer\n\n| Person | Mode |\n|--------|------|\n| Priya | Bike |\n| Marcus | Car |\n| Elena | Bus |",
+      "usage": {
+        "prompt_tokens": 167,
+        "total_tokens": 370,
+        "completion_tokens": 203,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_2": {
+      "answer": "A, D, C, B",
+      "usage": {
+        "prompt_tokens": 159,
+        "total_tokens": 167,
+        "completion_tokens": 8,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_3": {
+      "answer": "# Knights and Knaves Puzzle: Zed and Ora\n\n## The Setup\n\n- **Knights** always tell the truth\n- **Knaves** always lie\n\nZed makes the statement: *\"We are both knaves.\"*\n\n## Analysis\n\nI need to check whether Zed's statement can be true or false, and what that implies.\n\n### Case 1: Suppose Zed is a knight (truth-teller)\n\nIf Zed is a knight, his statement must be true. So \"we are both knaves\" would be true, meaning Zed is a knave. But this contradicts the assumption that Zed is a knight. ❌ **Contradiction.**\n\n### Case 2: Suppose Zed is a knave (liar)\n\nIf Zed is a knave, his statement must be false. The statement \"we are both knaves\" is false, which means **at least one of them is not a knave** — i.e., at least one is a knight.\n\nSince Zed is a knave, the statement is false, which is consistent. And Ora must be a knight (since at least one of them is a knight, and Zed is a knave). ✅ **No contradiction.**\n\n## Conclusion\n\n- **Zed is a knave** (he lied when he said they were both knaves)\n- **Ora is a knight** (she tells the truth)\n\n## Why This Works\n\nZed's claim that \"we are both knaves\" is self-defeating if he were a knight, because a knight cannot truthfully claim to be a knave. The only way the statement can be false (as required for a knave) is if at least one person is a knight — and since Zed is the knave, Ora must be the knight.",
+      "usage": {
+        "prompt_tokens": 165,
+        "total_tokens": 526,
+        "completion_tokens": 361,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_4": {
+      "answer": "# Solving the Race Puzzle\n\n**Given clues:**\n1. Kim finished ahead of Tom but behind Uma\n2. Uma was not first\n3. Raj did not finish last\n4. All four finished in distinct positions 1–4\n\n## Working Through the Logic\n\n**From clue 1:** Uma → Kim → Tom (in that order, with gaps possible)\n\n**From clue 2:** Uma is in position 2, 3, or 4\n\n**From clue 3:** Raj is in position 1, 2, or 3\n\n## Testing the Possibilities\n\nSince Uma, Kim, and Tom occupy three consecutive spots in that order, and Uma isn't first, the only valid arrangement is:\n\n| Position | Runner |\n|----------|--------|\n| 1 | Raj |\n| 2 | Uma |\n| 3 | Kim |\n| 4 | Tom |\n\n## Verification\n\n- ✅ Kim ahead of Tom, behind Uma (3rd is behind 2nd, ahead of 4th)\n- ✅ Uma not first (she's 2nd)\n- ✅ Raj not last (he's 1st)\n- ✅ All positions distinct\n\n## Answer\n\n**1st: Raj, 2nd: Uma, 3rd: Kim, 4th: Tom**",
+      "usage": {
+        "prompt_tokens": 167,
+        "total_tokens": 431,
+        "completion_tokens": 264,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_5": {
+      "answer": "I need to find the seating arrangement for Ana, Ben, Cara, Dev, and Eli in seats 1-5.\n\n**Given constraints:**\n1. Ana sits at one of the ends (seat 1 or seat 5)\n2. Dev sits in seat 3\n3. Ben sits immediately to the right of Cara\n4. Ana sits somewhere to the right of Ben\n\n**Working through the logic:**\n\nFrom constraint 3: Ben is immediately right of Cara, so possible pairs are (Cara, Ben) in seats (1,2), (2,3), (3,4), or (4,5).\n\nFrom constraint 2: Dev is in seat 3, so the pair (Cara, Ben) cannot be in seats (2,3) or (3,4).\n\nThis leaves (Cara, Ben) in seats (1,2) or (4,5).\n\nFrom constraint 4: Ana is to the right of Ben.\n\n**Case 1:** Cara in seat 1, Ben in seat 2.\nThen Ana must be to the right of seat 2, so Ana is in seat 4 or 5.\nBut constraint 1 says Ana is at an end (seat 1 or 5). Since seat 1 is Cara, Ana must be in seat 5.\nThis leaves Eli in seat 4.\nArrangement: Cara, Ben, Dev, Eli, Ana ✓\n\n**Case 2:** Cara in seat 4, Ben in seat 5.\nThen Ana must be to the right of seat 5, which is impossible.\nThis case fails.\n\n**Final arrangement:**\n\n| Seat 1 | Seat 2 | Seat 3 | Seat 4 | Seat 5 |\n|--------|--------|--------|--------|--------|\n| Cara   | Ben    | Dev    | Eli    | Ana    |\n\n**Verification:**\n- Ana is at an end (seat 5) ✓\n- Dev is in seat 3 ✓\n- Ben is immediately right of Cara (seats 1,2) ✓\n- Ana (seat 5) is to the right of Ben (seat 2) ✓",
+      "usage": {
+        "prompt_tokens": 185,
+        "total_tokens": 622,
+        "completion_tokens": 437,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_gen_1": {
+      "answer": "# Palindrome Checker\n\nHere's a Python function that checks if a string is a palindrome, ignoring case, spaces, and punctuation:\n\n```python\nimport string\n\ndef is_palindrome(s):\n    \"\"\"\n    Returns True if s is a palindrome, ignoring case, spaces, and punctuation.\n    \n    Args:\n        s (str): The string to check.\n    \n    Returns:\n        bool: True if s is a palindrome, False otherwise.\n    \"\"\"\n    # Remove punctuation and spaces, then convert to lowercase\n    cleaned = ''.join(\n        char.lower() for char in s \n        if char.isalnum()  # Keep only alphanumeric characters\n    )\n    \n    # Compare the cleaned string with its reverse\n    return cleaned == cleaned[::-1]\n```\n\n## How it works:\n\n1. **Filter characters**: We iterate through each character in the input string and keep only alphanumeric characters (letters and digits), converting them to lowercase. This automatically removes spaces and punctuation.\n\n2. **Compare with reverse**: We check if the cleaned string equals its reverse using slice notation `[::-1]`.\n\n## Examples:\n\n```python\n# Test cases\nprint(is_palindrome(\"A man, a plan, a canal: Panama\"))  # True\nprint(is_palindrome(\"racecar\"))                          # True\nprint(is_palindrome(\"Was it a car or a cat I saw?\"))    # True\nprint(is_palindrome(\"No 'x' in Nixon\"))                  # True\nprint(is_palindrome(\"hello\"))                            # False\nprint(is_palindrome(\"12321\"))                            # True\nprint(is_palindrome(\"\"))                                 # True (empty string)\n```\n\n## Alternative version (using `str.translate`):\n\nFor better performance with large strings, you can use `str.translate`:\n\n```python\ndef is_palindrome(s):\n    # Create a translation table that removes punctuation\n    translator = str.maketrans('', '', string.punctuation + ' ')\n    cleaned = s.translate(translator).lower()\n    return cleaned == cleaned[::-1]\n```\n\nBoth versions produce the same results, but the first version is more readable while the second may be slightly faster for very long strings.",
+      "usage": {
+        "prompt_tokens": 142,
+        "total_tokens": 596,
+        "completion_tokens": 454,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_gen_2": {
+      "answer": "# Merge Intervals Implementation\n\nHere's a clean, efficient implementation of the `merge_intervals` function:\n\n```python\ndef merge_intervals(intervals):\n    \"\"\"\n    Merge overlapping intervals and return a sorted list of non-overlapping intervals.\n    \n    Args:\n        intervals: List of [start, end] pairs\n    \n    Returns:\n        Sorted list of merged, non-overlapping [start, end] pairs\n    \n    Examples:\n        >>> merge_intervals([[1,3],[2,6],[8,10]])\n        [[1, 6], [8, 10]]\n        >>> merge_intervals([[1,4],[4,5]])\n        [[1, 5]]\n        >>> merge_intervals([])\n        []\n    \"\"\"\n    if not intervals:\n        return []\n    \n    # Sort intervals by start time (and by end time as tiebreaker)\n    sorted_intervals = sorted(intervals, key=lambda x: (x[0], x[1]))\n    \n    merged = [sorted_intervals[0][:]]  # Make a copy of the first interval\n    \n    for current in sorted_intervals[1:]:\n        last = merged[-1]\n        # Check if current interval overlaps with the last merged interval\n        if current[0] <= last[1]:\n            # Merge by extending the end if needed\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, append as a new interval\n            merged.append(current[:])\n    \n    return merged\n```\n\n## How It Works\n\nThe algorithm follows these steps:\n\n1. **Handle edge case**: Return empty list if input is empty\n2. **Sort intervals**: Sort by start time (with end time as tiebreaker) so we can process them in order\n3. **Iterate and merge**: Walk through sorted intervals, maintaining a list of merged intervals:\n   - If the current interval's start is ≤ the last merged interval's end → they overlap, so extend the end\n   - Otherwise → no overlap, start a new merged interval\n\n## Complexity\n\n- **Time**: O(n log n) — dominated by the sort\n- **Space**: O(n) — for the output list\n\n## Test Cases\n\n```python\n# Test cases\nprint(merge_intervals([[1,3],[2,6],[8,10]]))           # [[1, 6], [8, 10]]\nprint(merge_intervals([[1,4],[4,5]]))                  # [[1, 5]]  (touching intervals merge)\nprint(merge_intervals([[1,3],[2,4],[5,7],[6,9]]))      # [[1, 4], [5, 9]]\nprint(merge_intervals([[4,5],[1,3],[3,6]]))            # [[1, 6]]  (unsorted input)\nprint(merge_intervals([]))                              # []\nprint(merge_intervals([[5,5]]))                        # [[5, 5]]  (single point)\nprint(merge_intervals([[1,10],[2,3],[4,5],[6,7]]))     # [[1, 10]] (one big interval covers all)\n```\n\n## Alternative: Using `functools.reduce`\n\nFor a more functional style, here's a one-liner version:\n\n```python\nfrom functools import reduce\n\ndef merge_intervals(intervals):\n    def merge_two(a, b):\n        # Merge two sorted, non-overlapping interval lists\n        result = []\n        i = j = 0\n        while i < len(a) and j < len(b):\n            if a[i][0] <= b[j][0]:\n                result.append(a[i]); i += 1\n            else:\n                result.append(b[j]); j += 1\n        result.extend(a[i:]); result.extend(b[j:])\n        # Now collapse overlaps in result\n        merged = [result[0][:]]\n        for iv in result[1:]:\n            if iv[0] <= merged[-1][1]:\n                merged[-1][1] = max(merged[-1][1], iv[1])\n            else:\n                merged.append(iv[:])\n        return merged\n    \n    if not intervals:\n        return []\n    sorted_ivs = sorted(intervals, key=lambda x: (x[0], x[1]))\n    return reduce(merge_two, [[iv] for iv in sorted_ivs], [])\n```\n\nThe first implementation is clearer and more idiomatic for this problem — I'd recommend using it.",
+      "usage": {
+        "prompt_tokens": 169,
+        "total_tokens": 1112,
+        "completion_tokens": 943,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_gen_3": {
+      "answer": "```sql\nSELECT c.name\nFROM customers c\nJOIN orders o ON o.customer_id = c.id\nGROUP BY c.id, c.name\nORDER BY SUM(o.amount) DESC\nLIMIT 5;\n```\n\n**How it works:**\n\n1. **JOIN** customers with orders on `customer_id` to link each order to its customer.\n2. **GROUP BY** customer so we can aggregate order amounts per customer.\n3. **SUM(o.amount)** computes the total order amount for each customer.\n4. **ORDER BY ... DESC** ranks customers from highest to lowest total spend.\n5. **LIMIT 5** returns only the top 5.\n\n**Optional improvements:**\n\n- If you want to handle ties or want the result to be deterministic, add a secondary sort:\n  ```sql\n  ORDER BY SUM(o.amount) DESC, c.id ASC\n  ```\n- If `amount` could be `NULL` and you want to exclude those orders, use `SUM(o.amount)` (which ignores NULLs) — already handled.\n- If you also want to see the total amount alongside the name:\n  ```sql\n  SELECT c.name, SUM(o.amount) AS total_amount\n  FROM customers c\n  JOIN orders o ON o.customer_id = c.id\n  GROUP BY c.id, c.name\n  ORDER BY total_amount DESC\n  LIMIT 5;\n  ```",
+      "usage": {
+        "prompt_tokens": 149,
+        "total_tokens": 430,
+        "completion_tokens": 281,
+        "prompt_tokens_details": {
+          "cached_tokens": 108
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_gen_4": {
+      "answer": "# Debounce Function Implementation\n\nHere's a clean implementation of a `debounce` function in JavaScript:\n\n```javascript\nfunction debounce(fn, delay) {\n  let timerId = null;\n\n  return function debounced(...args) {\n    // Clear any existing timer\n    if (timerId !== null) {\n      clearTimeout(timerId);\n    }\n\n    // Set a new timer to call fn after delay\n    timerId = setTimeout(() => {\n      fn.apply(this, args);\n      timerId = null;\n    }, delay);\n  };\n}\n```\n\n## How It Works\n\n1. **Closure over `timerId`**: Each call to `debounced` shares the same `timerId` variable, allowing us to track and cancel pending invocations.\n\n2. **Cancel previous timer**: If a previous call is still pending, `clearTimeout` cancels it — this is the core of debouncing.\n\n3. **Schedule new call**: A new `setTimeout` is created. Only the *last* call in a burst of rapid calls will survive, since all previous ones get cancelled.\n\n4. **Preserve context and arguments**: Using `...args` and `fn.apply(this, args)` ensures the original function receives the correct `this` binding and all arguments from the final call.\n\n## Usage Example\n\n```javascript\n// Example: Search input that calls API only after user stops typing\nconst search = (query) => {\n  console.log('Searching for:', query);\n  // fetch(`/api/search?q=${query}`)...\n};\n\nconst debouncedSearch = debounce(search, 300);\n\ninputElement.addEventListener('input', (e) => {\n  debouncedSearch(e.target.value);\n});\n\n// Rapid typing: \"h\", \"he\", \"hel\", \"hell\", \"hello\"\n// Only \"hello\" triggers the search after 300ms of silence\n```\n\n## Bonus: Adding a `cancel` Method\n\nFor more control, you can attach a `cancel` method to the returned function:\n\n```javascript\nfunction debounce(fn, delay) {\n  let timerId = null;\n\n  function debounced(...args) {\n    if (timerId !== null) {\n      clearTimeout(timerId);\n    }\n    timerId = setTimeout(() => {\n      fn.apply(this, args);\n      timerId = null;\n    }, delay);\n  }\n\n  debounced.cancel = () => {\n    if (timerId !== null) {\n      clearTimeout(timerId);\n      timerId = null;\n    }\n  };\n\n  return debounced;\n}\n\n// Usage:\nconst debouncedSearch = debounce(search, 300);\ndebouncedSearch.cancel(); // Cancel any pending invocation\n```\n\n## Common Use Cases\n\n- **Search input**: Wait until user stops typing before making API calls\n- **Window resize**: Recalculate layout only after resizing finishes\n- **Scroll events**: Update UI after scrolling settles\n- **Form validation**: Validate after user pauses typing\n- **Auto-save**: Save document after user stops editing\n\n## Debounce vs. Throttle\n\n| Feature | Debounce | Throttle |\n|---------|----------|----------|\n| Behavior | Fires once after delay | Fires at regular intervals |\n| Use case | \"Wait until they stop\" | \"Limit rate of execution\" |\n| Example | Search-as-you-type | Scroll position updates |\n\nThis implementation is the standard pattern used by libraries like Lodash (`_.debounce`).",
+      "usage": {
+        "prompt_tokens": 146,
+        "total_tokens": 848,
+        "completion_tokens": 702,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|code_gen_5": {
+      "answer": "# LRUCache Implementation\n\nHere's an efficient O(1) LRU Cache implementation using a **doubly linked list** combined with a **hash map**:\n\n```python\nclass Node:\n    \"\"\"Doubly linked list node to track usage order.\"\"\"\n    __slots__ = ('key', 'value', 'prev', 'next')\n    \n    def __init__(self, key=0, value=0):\n        self.key = key\n        self.value = value\n        self.prev = None\n        self.next = None\n\n\nclass LRUCache:\n    \"\"\"\n    LRU Cache with O(1) get and put operations.\n    \n    Uses a doubly linked list to maintain usage order and a hash map\n    for O(1) key lookups. The most recently used item is at the head,\n    and the least recently used item is at the tail.\n    \"\"\"\n    \n    def __init__(self, capacity: int):\n        if capacity <= 0:\n            raise ValueError(\"Capacity must be positive\")\n        \n        self.capacity = capacity\n        self.cache = {}  # key -> Node mapping for O(1) lookup\n        \n        # Sentinel nodes to avoid edge case checks for head/tail\n        self.head = Node()  # Dummy head (points to most recent)\n        self.tail = Node()  # Dummy tail (points to least recent)\n        self.head.next = self.tail\n        self.tail.prev = self.head\n    \n    def _remove(self, node: Node) -> None:\n        \"\"\"Remove a node from the doubly linked list. O(1).\"\"\"\n        node.prev.next = node.next\n        node.next.prev = node.prev\n    \n    def _add_to_front(self, node: Node) -> None:\n        \"\"\"Add a node right after the head (most recent position). O(1).\"\"\"\n        node.prev = self.head\n        node.next = self.head.next\n        self.head.next.prev = node\n        self.head.next = node\n    \n    def get(self, key: int) -> int:\n        \"\"\"\n        Get the value of key if it exists, otherwise return -1.\n        Marks the key as recently used. O(1).\n        \"\"\"\n        node = self.cache.get(key)\n        if node is None:\n            return -1\n        \n        # Move to front (most recently used position)\n        self._remove(node)\n        self._add_to_front(node)\n        return node.value\n    \n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Insert/update the key-value pair. Evicts LRU entry if over capacity. O(1).\n        \"\"\"\n        node = self.cache.get(key)\n        \n        if node is not None:\n            # Update existing key\n            node.value = value\n            self._remove(node)\n            self._add_to_front(node)\n        else:\n            # Insert new key\n            if len(self.cache) >= self.capacity:\n                # Evict least recently used (node before tail)\n                lru = self.tail.prev\n                self._remove(lru)\n                del self.cache[lru.key]\n            \n            new_node = Node(key, value)\n            self.cache[key] = new_node\n            self._add_to_front(new_node)\n```\n\n## How It Works\n\n**Data structures used:**\n- **Hash map** (`self.cache`): Maps keys to nodes for O(1) lookup\n- **Doubly linked list**: Maintains usage order — head is most recent, tail is least recent\n- **Sentinel nodes** (`head`/`tail`): Eliminate edge-case checks for empty list\n\n**Operation flow:**\n\n| Operation | Steps | Complexity |\n|-----------|-------|------------|\n| `get(key)` | Hash lookup → move node to front → return value | O(1) |\n| `put(key, value)` | Hash lookup → update/insert → evict LRU if full | O(1) |\n\n## Example Usage\n\n```python\ncache = LRUCache(2)\n\ncache.put(1, 1)        # cache: {1=1}\ncache.put(2, 2)        # cache: {1=1, 2=2}\nprint(cache.get(1))    # returns 1, cache: {2=2, 1=1}\ncache.put(3, 3)        # evicts key 2, cache: {1=1, 3=3}\nprint(cache.get(2))    # returns -1 (not found)\ncache.put(4, 4)        # evicts key 1, cache: {3=3, 4=4}\nprint(cache.get(1))    # returns -1\nprint(cache.get(3))    # returns 3\nprint(cache.get(4))    # returns 4\n```\n\n## Why This Design?\n\n1. **Hash map alone** can't track usage order efficiently\n2. **Linked list alone** can't provide O(1) lookup\n3. **Combined**: Hash map gives O(1) access; doubly linked list gives O(1) reordering and removal (singly linked would be O(n) for removal)\n\nThe `__slots__` declaration on `Node` reduces memory overhead by avoiding a per-instance `__dict__`, which matters when caching many entries.",
+      "usage": {
+        "prompt_tokens": 155,
+        "total_tokens": 1246,
+        "completion_tokens": 1091,
+        "prompt_tokens_details": {
+          "cached_tokens": 78
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|factual_1": {
+      "answer": "The capital of Canada is **Ottawa**, and it is located in the province of **Ontario**.",
+      "usage": {
+        "prompt_tokens": 24,
+        "total_tokens": 47,
+        "completion_tokens": 23,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|factual_2": {
+      "answer": "The theory of general relativity was developed by **Albert Einstein** and was published in **1915**. The final form of the field equations was presented on November 25, 1915.",
+      "usage": {
+        "prompt_tokens": 26,
+        "total_tokens": 66,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|factual_3": {
+      "answer": "The aurora borealis is caused by charged particles from the sun—carried by solar wind—colliding with gases in Earth's atmosphere. Our planet's magnetic field funnels these particles toward the poles, where they excite oxygen and nitrogen molecules, causing them to emit colorful light.",
+      "usage": {
+        "prompt_tokens": 26,
+        "total_tokens": 84,
+        "completion_tokens": 58,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|factual_4": {
+      "answer": "Commercial aircraft typically cruise around 35,000 feet for two main reasons:\n\n1. **Fuel efficiency** — At high altitude, the air is thinner, so drag is lower and engines operate more efficiently, reducing fuel consumption.\n\n2. **Speed and performance** — The thinner air allows higher true airspeed for a given engine power setting, and cruising above most weather (turbulence, storms) provides smoother, faster, and safer flight.",
+      "usage": {
+        "prompt_tokens": 32,
+        "total_tokens": 122,
+        "completion_tokens": 90,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|factual_5": {
+      "answer": "Brazil has won the most FIFA World Cup titles, with **5 championships**:\n\n- **1958**\n- **1962**\n- **1970**\n- **1994**\n- **2002**",
+      "usage": {
+        "prompt_tokens": 29,
+        "total_tokens": 70,
+        "completion_tokens": 41,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_1": {
+      "answer": "I need to find the final price after discount and sales tax.\n\n## Given Information\n- Original price: $80\n- Discount: 25%\n- Sales tax: 8% (applied after discount)\n\n## Step 1: Calculate the Discount\nDiscount amount: $80 × 0.25 = $20\n\nSale price: $80 − $20 = **$60**\n\n## Step 2: Calculate Sales Tax\nTax amount: $60 × 0.08 = $4.80\n\n## Step 3: Final Price\nFinal price: $60 + $4.80 = **$64.80**",
+      "usage": {
+        "prompt_tokens": 41,
+        "total_tokens": 170,
+        "completion_tokens": 129,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_2": {
+      "answer": "I need to find the projected population after 5 years with 3% annual growth.\n\n## Formula\n\nFor exponential growth: P = P₀(1 + r)^t\n\nWhere:\n- P₀ = 45,000\n- r = 0.03\n- t = 5\n\n## Calculation\n\nP = 45,000 × (1.03)^5\n\nP = 45,000 × 1.159274...\n\nP = 52,167.35...\n\n## Answer\n\nRounded to the nearest hundred: **52,200 people**",
+      "usage": {
+        "prompt_tokens": 40,
+        "total_tokens": 157,
+        "completion_tokens": 117,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_3": {
+      "answer": "I need to find the revenue in 2025 after a 15% growth then an 8% decline.\n\n**2023 revenue:** $2.4 million\n\n**2024 revenue:** $2.4 × 1.15 = **$2.76 million**\n\n**2025 revenue:** $2.76 × 0.92 = **$2.5392 million**\n\nThe company earned **$2.5392 million** (or about **$2.54 million**) in revenue in 2025.",
+      "usage": {
+        "prompt_tokens": 56,
+        "total_tokens": 164,
+        "completion_tokens": 108,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_4": {
+      "answer": "I need to find when the car's value drops below half its original price, which is $16,000.\n\n## Setting Up the Model\n\nThe car loses 18% of its value each year, so it retains 82% of its value each year.\n\nValue after t years: V(t) = 32000 × (0.82)^t\n\n## Finding When Value < $16,000\n\nI need: 32000 × (0.82)^t < 16000\n\nDividing both sides by 32000:\n$$(0.82)^t < 0.5$$\n\nTaking logarithms:\n$$t \\cdot \\ln(0.82) < \\ln(0.5)$$\n\nSince ln(0.82) is negative, I flip the inequality:\n$$t > \\frac{\\ln(0.5)}{\\ln(0.82)} = \\frac{-0.6931}{-0.1985} \\approx 3.49$$\n\n## Checking Values\n\n- After 3 years: 32000 × (0.82)³ = 32000 × 0.5514 ≈ $17,643 (still above half)\n- After 4 years: 32000 × (0.82)⁴ = 32000 × 0.4521 ≈ $14,468 (below half)\n\n## Answer\n\nAfter **4 full years**, the car will be worth less than half its original price.",
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 349,
+        "completion_tokens": 304,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_5": {
+      "answer": "I need to find the future value with compound interest, then compare it to simple interest.\n\n## Given Information\n- Principal (P) = $10,000\n- Annual rate (r) = 6% = 0.06\n- Time (t) = 3 years\n- Compounding: monthly, so n = 12\n\n## Compound Interest\n\n$$A = P\\left(1 + \\frac{r}{n}\\right)^{nt}$$\n\n$$A = 10000\\left(1 + \\frac{0.06}{12}\\right)^{12 \\times 3}$$\n\n$$A = 10000\\left(1.005\\right)^{36}$$\n\n$$A = 10000 \\times 1.1966805248...$$\n\n$$A \\approx \\$11,966.81$$\n\n## Simple Interest\n\n$$A = P(1 + rt) = 10000(1 + 0.06 \\times 3) = 10000 \\times 1.18 = \\$11,800.00$$\n\n## Difference\n\n$$\\$11,966.81 - \\$11,800.00 = \\$166.81$$\n\n## Answer\nThe compounded monthly investment will be worth **$11,966.81**, which is **$166.81 more** than the simple interest account.",
+      "usage": {
+        "prompt_tokens": 53,
+        "total_tokens": 323,
+        "completion_tokens": 270,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|sentiment_1": {
+      "answer": "Negative — the reviewer acknowledges the pasta was acceptable, but the long wait is framed as the dominant factor that \"killed the mood.\"",
+      "usage": {
+        "prompt_tokens": 47,
+        "total_tokens": 75,
+        "completion_tokens": 28,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|sentiment_2": {
+      "answer": "Negative — the user expresses regret, frustration, and loss over a disappointing app update.",
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 63,
+        "completion_tokens": 18,
+        "prompt_tokens_details": {
+          "cached_tokens": 43
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|sentiment_3": {
+      "answer": "Negative — the statement uses sarcasm (\"Oh great,\" \"Truly the highlight of my week\") to express frustration about a meeting the speaker finds unnecessary and annoying.",
+      "usage": {
+        "prompt_tokens": 48,
+        "total_tokens": 82,
+        "completion_tokens": 34,
+        "prompt_tokens_details": {
+          "cached_tokens": 46
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|sentiment_4": {
+      "answer": "**Sentiment:** Mixed\n\n**Justification:** The review pairs strong positives (views, location) with clear negatives (musty smell, overwhelmed staff), so it is not overall positive or negative.",
+      "usage": {
+        "prompt_tokens": 48,
+        "total_tokens": 89,
+        "completion_tokens": 41,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|sentiment_5": {
+      "answer": "Neutral — the tweet is a factual announcement with no evaluative or emotional language.",
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 63,
+        "completion_tokens": 18,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|summarization_1": {
+      "answer": "A 2024 survey of 3,000 knowledge workers found that flexible remote work boosted job satisfaction and retention but created challenges around connection, mentorship, and remote onboarding.",
+      "usage": {
+        "prompt_tokens": 84,
+        "total_tokens": 119,
+        "completion_tokens": 35,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|summarization_2": {
+      "answer": "- Coral reefs cover less than 1% of the ocean floor but support about 25% of marine species.\n- Rising temperatures cause coral bleaching, and back-to-back events in 2016–2017 damaged two-thirds of the Great Barrier Reef.\n- Scientists are testing heat-tolerant corals and reef shading, but these are only temporary fixes without major emission reductions.",
+      "usage": {
+        "prompt_tokens": 132,
+        "total_tokens": 209,
+        "completion_tokens": 77,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|summarization_3": {
+      "answer": "Lumen 3 smart thermostat launches next month for $129, learns schedules, works with voice assistants, and saves 18% on heating bills.",
+      "usage": {
+        "prompt_tokens": 81,
+        "total_tokens": 112,
+        "completion_tokens": 31,
+        "prompt_tokens_details": {
+          "cached_tokens": 79
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|summarization_4": {
+      "answer": "Adults who walked at least 7,000 steps daily had 31% fewer sick days and better sleep quality over six months compared with sedentary adults. However, the findings are limited by self-reported sleep data, a single-city sample, and the possibility that healthier people may simply walk more.",
+      "usage": {
+        "prompt_tokens": 98,
+        "total_tokens": 161,
+        "completion_tokens": 63,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|summarization_5": {
+      "answer": "**Decisions:** Delay mobile redesign to Q4; ship payments integration first. Move weekly standups to 9:30am.\n\n**Action items:** Dana will draft the revised roadmap by Friday. Miguel will contact the payments vendor about sandbox access.",
+      "usage": {
+        "prompt_tokens": 121,
+        "total_tokens": 172,
+        "completion_tokens": 51,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|ner_1": {
+      "answer": "```json\n[\n  {\"text\": \"Sundar Pichai\", \"label\": \"person\"},\n  {\"text\": \"Google I/O\", \"label\": \"org\"},\n  {\"text\": \"Mountain View\", \"label\": \"location\"},\n  {\"text\": \"May 14, 2024\", \"label\": \"date\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 65,
+        "total_tokens": 138,
+        "completion_tokens": 73,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|ner_2": {
+      "answer": "```json\n[\n  {\"text\": \"WHO\", \"label\": \"org\"},\n  {\"text\": \"Doctors Without Borders\", \"label\": \"org\"},\n  {\"text\": \"Port-au-Prince\", \"label\": \"location\"},\n  {\"text\": \"January 12\", \"label\": \"date\"},\n  {\"text\": \"Marie Dupont\", \"label\": \"person\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 68,
+        "total_tokens": 151,
+        "completion_tokens": 83,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|ner_3": {
+      "answer": "```json\n[\n  {\"text\": \"Jordan\", \"label\": \"person\"},\n  {\"text\": \"Amazon\", \"label\": \"org\"},\n  {\"text\": \"Seattle\", \"label\": \"location\"},\n  {\"text\": \"Jordan\", \"label\": \"location\"},\n  {\"text\": \"March 3, 2025\", \"label\": \"date\"},\n  {\"text\": \"Chase\", \"label\": \"org\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 61,
+        "total_tokens": 154,
+        "completion_tokens": 93,
+        "prompt_tokens_details": {
+          "cached_tokens": 59
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|ner_4": {
+      "answer": "```json\n[\n  {\"text\": \"4 July 1776\", \"label\": \"date\"},\n  {\"text\": \"Continental Congress\", \"label\": \"org\"},\n  {\"text\": \"Declaration of Independence\", \"label\": \"org\"},\n  {\"text\": \"Philadelphia\", \"label\": \"location\"},\n  {\"text\": \"Thomas Jefferson\", \"label\": \"person\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 65,
+        "total_tokens": 147,
+        "completion_tokens": 82,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": false
+    },
+    "kimi-k2p7-code|ner_5": {
+      "answer": "```json\n[\n  {\"text\": \"CES\", \"label\": \"org\"},\n  {\"text\": \"Las Vegas\", \"label\": \"location\"},\n  {\"text\": \"January 7, 2025\", \"label\": \"date\"},\n  {\"text\": \"Nvidia\", \"label\": \"org\"},\n  {\"text\": \"Jensen Huang\", \"label\": \"person\"},\n  {\"text\": \"TSMC\", \"label\": \"org\"},\n  {\"text\": \"AMD\", \"label\": \"org\"},\n  {\"text\": \"Lisa Su\", \"label\": \"person\"},\n  {\"text\": \"Austin\", \"label\": \"location\"},\n  {\"text\": \"January 9\", \"label\": \"date\"}\n]\n```",
+      "usage": {
+        "prompt_tokens": 87,
+        "total_tokens": 239,
+        "completion_tokens": 152,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_debug_1": {
+      "answer": "The bug is that `range(1, n)` starts at index 1 and stops before `n`, so it misses the first element (`nums[0]`) and also fails when `n` is 0 or larger than the list. Use `range(n)` to iterate over the first `n` indices:\n\n```python\ndef sum_first_n(nums, n):\n    total = 0\n    for i in range(n):\n        total += nums[i]\n    return total\n```\n\nOr more Pythonically:\n\n```python\ndef sum_first_n(nums, n):\n    return sum(nums[:n])\n```",
+      "usage": {
+        "prompt_tokens": 65,
+        "total_tokens": 190,
+        "completion_tokens": 125,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_debug_2": {
+      "answer": "This is a classic Python gotcha: **mutable default arguments**.\n\nThe list `items=[]` is created **once** when the function is defined, not each time the function is called. So the same list is reused across calls, causing items to accumulate unexpectedly.\n\n## The Bug\n\n```python\ndef add_item(item, items=[]):\n    items.append(item)\n    return items\n\nprint(add_item(1))   # [1]  ← seems fine\nprint(add_item(2))   # [1, 2]  ← unexpected! 1 is still there\nprint(add_item(3))   # [1, 2, 3]  ← keeps growing\n```\n\n## The Fix\n\nUse `None` as the default and create a new list inside the function:\n\n```python\ndef add_item(item, items=None):\n    if items is None:\n        items = []\n    items.append(item)\n    return items\n```\n\nNow each call with no argument gets a fresh list:\n\n```python\nprint(add_item(1))   # [1]\nprint(add_item(2))   # [2]\n```\n\nThis pattern is the standard Python idiom for avoiding mutable default argument pitfalls.",
+      "usage": {
+        "prompt_tokens": 46,
+        "total_tokens": 290,
+        "completion_tokens": 244,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_debug_3": {
+      "answer": "The bug is the initial value of `max`. Setting it to `0` causes the function to return `0` when all numbers are negative (or for empty arrays, it incorrectly returns `0` instead of something like `undefined`).\n\nFix: initialize `max` to the first array element, or use `-Infinity`.\n\n```javascript\nfunction findMax(arr) {\n  if (arr.length === 0) return undefined; // handle empty array\n  let max = arr[0];\n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] > max) max = arr[i];\n  }\n  return max;\n}\n```\n\nOr more concisely:\n\n```javascript\nfunction findMax(arr) {\n  return arr.length ? Math.max(...arr) : undefined;\n}\n```",
+      "usage": {
+        "prompt_tokens": 92,
+        "total_tokens": 261,
+        "completion_tokens": 169,
+        "prompt_tokens_details": {
+          "cached_tokens": 90
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_debug_4": {
+      "answer": "I need to find the bug in this flatten function.\n\n## The Bug\n\nThe function uses `result.append(flatten(item))`, which appends the **entire flattened sublist as a single nested element** instead of extending `result` with the individual elements from the sublist.\n\nFor example:\n```python\nflatten([1, [2, 3], 4])\n# Currently returns: [1, [2, 3], 4]  (wrong!)\n# Should return:     [1, 2, 3, 4]\n```\n\n## The Fix\n\nReplace `result.append(flatten(item))` with `result.extend(flatten(item))`.\n\n```python\ndef flatten(lst):\n    result = []\n    for item in lst:\n        if isinstance(item, list):\n            result.extend(flatten(item))  # fixed: extend, not append\n        else:\n            result.append(item)\n    return result\n```\n\n`list.append(x)` adds `x` as a single element, while `list.extend(iterable)` adds each element of `iterable` individually. Since `flatten(item)` returns a list, we want to spread its elements into `result`.",
+      "usage": {
+        "prompt_tokens": 77,
+        "total_tokens": 321,
+        "completion_tokens": 244,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_debug_5": {
+      "answer": "## The Error\n\nThis function crashes with a **`RuntimeError: dictionary changed size during iteration`**.\n\n## Why It Happens\n\nIn Python, you cannot modify a dictionary's size (add or remove keys) while iterating over it directly with `for key in d`. Deleting keys during iteration invalidates the iterator.\n\n## Corrected Code\n\nHere are several safe approaches:\n\n### Option 1: Iterate over a snapshot of keys\n```python\ndef remove_negatives(d):\n    for key in list(d):\n        if d[key] < 0:\n            del d[key]\n    return d\n```\n\n### Option 2: Use dictionary comprehension to build a new dict\n```python\ndef remove_negatives(d):\n    return {key: value for key, value in d.items() if value >= 0}\n```\n\n### Option 3: Use `copy()` to iterate safely\n```python\ndef remove_negatives(d):\n    for key in d.copy():\n        if d[key] < 0:\n            del d[key]\n    return d\n```\n\n## Recommendation\n\n**Option 2** is usually preferred because it's more concise, readable, and avoids mutation during iteration entirely. However, if you need to modify the original dictionary in-place, use **Option 1** or **Option 3**.",
+      "usage": {
+        "prompt_tokens": 58,
+        "total_tokens": 323,
+        "completion_tokens": 265,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_1": {
+      "answer": "I need to work through this logic puzzle step by step.\n\n**Clues:**\n1. Priya, Marcus, and Elena each use a different mode: bike, bus, or car\n2. Priya refuses to use anything with a motor\n3. Marcus sits in traffic jams every morning driving alone\n\n**Deduction:**\n\nFrom clue 3: Marcus \"driving alone\" in traffic jams → **Marcus uses the car**\n\nFrom clue 2: Priya refuses anything with a motor. The bus and car both have motors, so → **Priya uses the bike**\n\nThat leaves only the bus for Elena → **Elena uses the bus**\n\n**Answer:**\n- **Priya: bike**\n- **Marcus: car**\n- **Elena: bus**",
+      "usage": {
+        "prompt_tokens": 62,
+        "total_tokens": 220,
+        "completion_tokens": 158,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_2": {
+      "answer": "I need to find the only possible order for presentations A, B, C, D in four consecutive slots.\n\n**Constraints:**\n- A must go first (slot 1)\n- D must come immediately after A\n- C must be earlier than B\n\n**Step-by-step deduction:**\n\nSince A is first, slot 1 = A.\n\nSince D must come immediately after A, slot 2 = D.\n\nThis leaves slots 3 and 4 for C and B.\n\nSince C must be earlier than B, slot 3 = C and slot 4 = B.\n\n**The only possible order is: A, D, C, B**",
+      "usage": {
+        "prompt_tokens": 54,
+        "total_tokens": 185,
+        "completion_tokens": 131,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_3": {
+      "answer": "I need to figure out what Zed and Ora are based on Zed's statement: \"We are both knaves.\"\n\n## Analyzing Zed's Statement\n\n**Suppose Zed is a knight.**\n- Then Zed tells the truth.\n- So his statement \"We are both knaves\" would be true.\n- But that would mean Zed himself is a knave — contradiction.\n- **Therefore, Zed cannot be a knight.**\n\n**So Zed must be a knave.**\n- Then Zed lies.\n- So his statement \"We are both knaves\" is false.\n- For \"both\" to be false, at least one of them is not a knave.\n- Since Zed is a knave, the other person — Ora — must not be a knave.\n- **Therefore, Ora is a knight.**\n\n## Answer\n\n- **Zed is a knave**\n- **Ora is a knight**\n\nZed's claim that they're both knaves is a lie. The lie fails because while Zed is indeed a knave, Ora is actually a knight.",
+      "usage": {
+        "prompt_tokens": 67,
+        "total_tokens": 298,
+        "completion_tokens": 231,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_4": {
+      "answer": "I need to find the finishing order 1-4 for Kim, Raj, Tom, and Uma.\n\n**Clues:**\n1. Kim finished ahead of Tom: Kim < Tom (position-wise)\n2. Kim finished behind Uma: Uma < Kim\n3. Uma was not first: Uma ≠ 1\n4. Raj did not finish last: Raj ≠ 4\n\n**From clues 1 and 2:** Uma < Kim < Tom\n\nSo Uma, Kim, Tom are in that order (Uma ahead of Kim, Kim ahead of Tom).\n\n**From clue 3:** Uma is not first, so Uma must be 2 or 3.\n\n**Case A: Uma = 2**\nThen Kim = 3, Tom = 4. Raj must be 1.\nCheck clue 4: Raj = 1, not last. ✓\n\n**Case B: Uma = 3**\nThen Kim = 4, but Tom must be behind Kim, which is impossible (no position 5). ✗\n\n**Only valid solution:**\n\n| Position | Runner |\n|----------|--------|\n| 1 | Raj |\n| 2 | Uma |\n| 3 | Kim |\n| 4 | Tom |",
+      "usage": {
+        "prompt_tokens": 65,
+        "total_tokens": 327,
+        "completion_tokens": 262,
+        "prompt_tokens_details": {
+          "cached_tokens": 63
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_5": {
+      "answer": "I need to find the seating arrangement for Ana, Ben, Cara, Dev, and Eli in seats 1-5.\n\n**Given clues:**\n1. Ana sits at one of the ends (seat 1 or seat 5)\n2. Dev sits in seat 3\n3. Ben sits immediately to the right of Cara (so Cara-Ben are consecutive)\n4. Ana sits somewhere to the right of Ben\n\n**Analysis:**\n\nFrom clue 4, Ana is to the right of Ben, so Ana's seat number > Ben's seat number.\n\nFrom clue 1, Ana is at seat 1 or seat 5.\n\nSince Ana must be to the right of Ben, Ana cannot be in seat 1 (there's no seat to her left for Ben). So **Ana is in seat 5**.\n\nFrom clue 2, **Dev is in seat 3**.\n\nSo seats 1, 2, and 4 are left for Ben, Cara, and Eli.\n\nFrom clue 3, Cara and Ben are consecutive (Cara immediately left of Ben). Possible positions for the Cara-Ben pair among remaining seats {1, 2, 4}:\n- Seats 1-2: Cara in 1, Ben in 2\n- Seats 4-5: But seat 5 is Ana, so not possible\n\nSo **Cara is in seat 1** and **Ben is in seat 2**.\n\nThat leaves **Eli in seat 4**.\n\n**Final arrangement:**\n\n| Seat | 1 | 2 | 3 | 4 | 5 |\n|------|---|---|---|---|---|\n| Person | Cara | Ben | Dev | Eli | Ana |",
+      "usage": {
+        "prompt_tokens": 82,
+        "total_tokens": 435,
+        "completion_tokens": 353,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_gen_1": {
+      "answer": "Looking at this problem, I need to create a function that checks if a string is a palindrome while ignoring case, spaces, and punctuation.\n\nHere's my solution:\n\n```python\nimport re\n\ndef is_palindrome(s):\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned = re.sub(r'[^a-zA-Z0-9]', '', s).lower()\n    # Check if cleaned string equals its reverse\n    return cleaned == cleaned[::-1]\n```\n\n**How it works:**\n1. `re.sub(r'[^a-zA-Z0-9]', '', s)` removes all characters that aren't letters or digits (spaces and punctuation)\n2. `.lower()` converts to lowercase for case-insensitive comparison\n3. `cleaned[::-1]` creates the reversed string\n4. Returns `True` if the cleaned string reads the same forwards and backwards\n\n**Examples:**\n```python\nis_palindrome(\"A man, a plan, a canal: Panama\")  # True\nis_palindrome(\"race a car\")                       # False\nis_palindrome(\"No 'x' in Nixon\")                  # True\nis_palindrome(\"\")                                 # True\nis_palindrome(\"Madam, I'm Adam\")                    # True\n```\n\nIf you prefer to avoid regex, here's an alternative using `isalnum()`:\n\n```python\ndef is_palindrome(s):\n    cleaned = ''.join(c.lower() for c in s if c.isalnum())\n    return cleaned == cleaned[::-1]\n```\n\nBoth versions produce the same result.",
+      "usage": {
+        "prompt_tokens": 37,
+        "total_tokens": 361,
+        "completion_tokens": 324,
+        "prompt_tokens_details": {
+          "cached_tokens": 35
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_gen_2": {
+      "answer": "Looking at this problem, I need to:\n\n1. Sort intervals by start time\n2. Merge overlapping or adjacent intervals\n\nHere's my implementation:\n\n```python\ndef merge_intervals(intervals):\n    if not intervals:\n        return []\n    \n    # Sort by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    merged = [intervals[0]]\n    \n    for current in intervals[1:]:\n        last = merged[-1]\n        \n        # Check if current overlaps with or is adjacent to last\n        if current[0] <= last[1]:\n            # Merge them\n            last[1] = max(last[1], current[1])\n        else:\n            merged.append(current)\n    \n    return merged\n```\n\n**How it works:**\n\n| Step | Action |\n|------|--------|\n| 1 | Sort intervals by start time: `[[1,3],[2,6],[8,10]]` |\n| 2 | Initialize with first interval: `[[1,3]]` |\n| 3 | `[2,6]` overlaps with `[1,3]` (2 ≤ 3), merge → `[[1,6]]` |\n| 4 | `[8,10]` doesn't overlap (8 > 6), append → `[[1,6],[8,10]]` |\n\n**Test cases:**\n\n```python\nprint(merge_intervals([[1,3],[2,6],[8,10]]))        # [[1,6],[8,10]]\nprint(merge_intervals([[1,4],[4,5]]))                # [[1,5]] (adjacent)\nprint(merge_intervals([[1,4],[0,4]]))                # [[0,4]]\nprint(merge_intervals([]))                            # []\nprint(merge_intervals([[5,7],[1,3],[2,4]]))          # [[1,4],[5,7]]\n```\n\n**Time Complexity:** O(n log n) due to sorting  \n**Space Complexity:** O(n) for the output list",
+      "usage": {
+        "prompt_tokens": 64,
+        "total_tokens": 488,
+        "completion_tokens": 424,
+        "prompt_tokens_details": {
+          "cached_tokens": 62
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_gen_3": {
+      "answer": "Here's a SQL query to find the top 5 customers by total order amount:\n\n```sql\nSELECT \n    c.name,\n    SUM(o.amount) AS total_order_amount\nFROM \n    customers c\nJOIN \n    orders o ON c.id = o.customer_id\nGROUP BY \n    c.id, c.name\nORDER BY \n    total_order_amount DESC\nLIMIT 5;\n```\n\n**Explanation:**\n- `JOIN` links customers to their orders\n- `GROUP BY` aggregates orders per customer\n- `SUM(o.amount)` calculates each customer's total spending\n- `ORDER BY ... DESC` ranks from highest to lowest\n- `LIMIT 5` returns only the top 5\n\nIf you want to include customers with **no orders** (with a total of 0), use a `LEFT JOIN` instead.",
+      "usage": {
+        "prompt_tokens": 44,
+        "total_tokens": 211,
+        "completion_tokens": 167,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|code_gen_4": {
+      "answer": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Interactive Debounce Lab</title>\n    <script src=\"https://cdn.tailwindcss.com\"></script>\n    <link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap\" rel=\"stylesheet\">\n    <style>\n        body {\n            font-family: 'Inter', sans-serif;\n            background-color: #0f172a;\n            color: #e2e8f0;\n        }\n        .mono {\n            font-family: 'JetBrains Mono', monospace;\n        }\n        /* Custom Scrollbar */\n        ::-webkit-scrollbar {\n            width: 8px;\n            height: 8px;\n        }\n        ::-webkit-scrollbar-track {\n            background: #1e293b; \n        }\n        ::-webkit-scrollbar-thumb {\n            background: #475569; \n            border-radius: 4px;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #64748b; \n        }\n        \n        .grid-bg {\n            background-size: 40px 40px;\n            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),\n                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);\n        }\n\n        .pulse-ring {\n            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n        }\n        @keyframes pulse-ring {\n            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }\n            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); }\n            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }\n        }\n\n        .bar-transition {\n            transition: width 0.1s linear;\n        }\n    </style>\n</head>\n<body class=\"min-h-screen flex flex-col\">\n\n    <!-- Header -->\n    <header class=\"bg-slate-900 border-b border-slate-800 sticky top-0 z-50\">\n        <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between\">\n            <div class=\"flex items-center gap-3\">\n                <div class=\"w-8 h-8 rounded bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white\">D</div>\n                <h1 class=\"text-xl font-bold tracking-tight text-white\">Debounce<span class=\"text-cyan-400\">Lab</span></h1>\n            </div>\n            <div class=\"text-sm text-slate-400 hidden sm:block\">\n                Visualize & Test the <code class=\"text-cyan-300 bg-slate-800 px-1 rounded\">debounce(fn, delay)</code> implementation\n            </div>\n        </div>\n    </header>\n\n    <main class=\"flex-grow p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6\">\n\n        <!-- Left Column: Code & Controls -->\n        <div class=\"lg:col-span-5 space-y-6\">\n            \n            <!-- Code Card -->\n            <section class=\"bg-slate-900 rounded-xl border border-slate-800 shadow-2xl overflow-hidden\">\n                <div class=\"bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center\">\n                    <span class=\"text-xs font-semibold text-slate-400 uppercase tracking-wider\">Implementation</span>\n                    <span class=\"text-xs text-emerald-400 flex items-center gap-1\">\n                        <span class=\"w-2 h-2 rounded-full bg-emerald-400\"></span> Active\n                    </span>\n                </div>\n                <div class=\"p-4 overflow-x-auto\">\n                    <pre class=\"mono text-sm leading-relaxed text-slate-300\"><code><span class=\"text-purple-400\">function</span> <span class=\"text-blue-400\">debounce</span>(fn, delay) {\n  <span class=\"text-purple-400\">let</span> timeoutId;\n\n  <span class=\"text-purple-400\">return function</span>(...args) {\n    <span class=\"text-slate-500\">// Clear any existing pending execution</span>\n    <span class=\"text-blue-400\">clearTimeout</span>(timeoutId);\n\n    <span class=\"text-slate-500\">// Schedule a new execution after delay</span>\n    timeoutId = <span class=\"text-blue-400\">setTimeout</span>(() => {\n      fn.<span class=\"text-blue-400\">apply</span>(<span class=\"text-purple-400\">this</span>, args);\n    }, delay);\n  };\n}</code></pre>\n                </div>\n            </section>\n\n            <!-- Controls Card -->\n            <section class=\"bg-slate-900 rounded-xl border border-slate-800 shadow-xl p-6\">\n                <h2 class=\"text-lg font-semibold text-white mb-4 flex items-center gap-2\">\n                    <svg class=\"w-5 h-5 text-cyan-400\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4\"></path></svg>\n                    Configuration\n                </h2>\n                \n                <div class=\"mb-6\">\n                    <div class=\"flex justify-between mb-2\">\n                        <label class=\"text-sm text-slate-400\">Delay</label>\n                        <span class=\"text-sm font-bold text-cyan-400 mono\"><span id=\"delayValue\">1000</span>ms</span>\n                    </div>\n                    <input type=\"range\" id=\"delaySlider\" min=\"200\" max=\"3000\" step=\"100\" value=\"1000\" \n                        class=\"w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500\">\n                    <div class=\"flex justify-between text-xs text-slate-500 mt-1\">\n                        <span>Fast (200ms)</span>\n                        <span>Slow (3000ms)</span>\n                    </div>\n                </div>\n\n                <div class=\"grid grid-cols-2 gap-3\">\n                    <button id=\"triggerBtn\" class=\"group relative flex items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-3 px-4 rounded-lg transition-all active:scale-95 shadow-lg shadow-cyan-900/50\">\n                        <span>Trigger Call</span>\n                        <span class=\"text-xs bg-cyan-800 px-2 py-0.5 rounded text-cyan-100 group-hover:bg-cyan-700\">Space</span>\n                    </button>\n                    <button id=\"resetBtn\" class=\"flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-3 px-4 rounded-lg transition-all active:scale-95 border border-slate-700\">\n                        <svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15\"></path></svg>\n                        Reset\n                    </button>\n                </div>\n            </section>\n\n            <!-- Stats Card -->\n            <section class=\"grid grid-cols-3 gap-4\">\n                <div class=\"bg-slate-900 rounded-xl border border-slate-800 p-4 text-center\">\n                    <div class=\"text-xs text-slate-500 uppercase tracking-wider mb-1\">Calls</div>\n                    <div id=\"statCalls\" class=\"text-2xl font-bold text-white mono\">0</div>\n                </div>\n                <div class=\"bg-slate-900 rounded-xl border border-slate-800 p-4 text-center\">\n                    <div class=\"text-xs text-slate-500 uppercase tracking-wider mb-1\">Executed</div>\n                    <div id=\"statExec\" class=\"text-2xl font-bold text-emerald-400 mono\">0</div>\n                </div>\n                <div class=\"bg-slate-900 rounded-xl border border-slate-800 p-4 text-center\">\n                    <div class=\"text-xs text-slate-500 uppercase tracking-wider mb-1\">Saved</div>\n                    <div id=\"statSaved\" class=\"text-2xl font-bold text-amber-400 mono\">0</div>\n                </div>\n            </section>\n        </div>\n\n        <!-- Right Column: Visualization -->\n        <div class=\"lg:col-span-7 space-y-6\">\n            \n            <!-- Visualizer -->\n            <section class=\"bg-slate-900 rounded-xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col h-full min-h-[500px]\">\n                <div class=\"bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center\">\n                    <span class=\"text-xs font-semibold text-slate-400 uppercase tracking-wider\">Live Visualization</span>\n                    <div class=\"flex gap-3 text-xs\">\n                        <div class=\"flex items-center gap-1\"><span class=\"w-3 h-3 rounded-sm bg-cyan-500/20 border border-cyan-500\"></span> Call</div>\n                        <div class=\"flex items-center gap-1\"><span class=\"w-3 h-3 rounded-sm bg-emerald-500/20 border border-emerald-500\"></span> Executed</div>\n                    </div>\n                </div>\n\n                <div class=\"relative flex-grow p-6 grid-bg flex flex-col\">\n                    \n                    <!-- Timer Bar -->\n                    <div class=\"mb-8\">\n                        <div class=\"flex justify-between text-sm mb-2\">\n                            <span class=\"text-slate-400\">Pending Timer</span>\n                            <span id=\"timerText\" class=\"text-cyan-300 mono\">Idle</span>\n                        </div>\n                        <div class=\"h-4 bg-slate-800 rounded-full overflow-hidden border border-slate-700 relative\">\n                            <div id=\"timerBar\" class=\"h-full bg-gradient-to-r from-cyan-600 to-blue-500 w-0 bar-transition\"></div>\n                        </div>\n                    </div>\n\n                    <!-- Action Area / Heatmap -->\n                    <div class=\"flex-grow relative border border-slate-800 rounded-lg bg-slate-950/50 overflow-hidden\" id=\"vizContainer\">\n                        <div class=\"absolute inset-0 flex items-center justify-center pointer-events-none\">\n                            <div id=\"idleState\" class=\"text-center\">\n                                <div class=\"w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto mb-3 pulse-ring\">\n                                    <svg class=\"w-8 h-8 text-cyan-400\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M13 10V3L4 14h7v7l9-11h-7z\"></path></svg>\n                                </div>\n                                <p class=\"text-slate-400\">Press \"Trigger Call\" repeatedly to see debouncing in action.</p>\n                            </div>\n                        </div>\n                        <!-- Ripples will be injected here -->\n                    </div>\n\n                    <!-- Status Log -->\n                    <div class=\"mt-6 h-32 bg-slate-950 rounded-lg border border-slate-800 p-3 overflow-y-auto mono text-xs\" id=\"logContainer\">\n                        <div class=\"text-slate-500 italic\">System ready. Waiting for input...</div>\n                    </div>\n                </div>\n            </section>\n        </div>\n\n    </main>\n\n    <script>\n        // --- The Core Implementation ---\n        function debounce(fn, delay) {\n            let timeoutId;\n\n            return function(...args) {\n                clearTimeout(timeoutId);\n                timeoutId = setTimeout(() => {\n                    fn.apply(this, args);\n                }, delay);\n            };\n        }\n\n        // --- Application State ---\n        const state = {\n            delay: 1000,\n            calls: 0,\n            executed: 0,\n            saved: 0,\n            timerStart: 0,\n            timerRemaining: 0,\n            isPending: false,\n            animationFrame: null\n        };\n\n        // --- DOM Elements ---\n        const els = {\n            delaySlider: document.getElementById('delaySlider'),\n            delayValue: document.getElementById('delayValue'),\n            triggerBtn: document.get",
+      "usage": {
+        "prompt_tokens": 41,
+        "total_tokens": 3113,
+        "completion_tokens": 3072,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "length"
+      },
+      "error": null,
+      "passed": false
+    },
+    "kimi-k2p7-code|code_gen_5": {
+      "answer": "Looking at this problem, I need an LRU Cache with O(1) `get` and `put`. The classic solution combines a **hash map** for O(1) key lookup with a **doubly linked list** for O(1) order updates.\n\n## Why These Data Structures?\n\n- **Hash map (dict)**: O(1) key → node lookup\n- **Doubly linked list**: O(1) removal and reinsertion when an item is accessed\n\nPython's `collections.OrderedDict` actually implements exactly this, but I'll provide the explicit implementation since that's usually what's expected in interviews.\n\n## Implementation\n\n```python\nclass Node:\n    \"\"\"Doubly linked list node.\"\"\"\n    def __init__(self, key=0, value=0):\n        self.key = key\n        self.value = value\n        self.prev = None\n        self.next = None\n\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}  # key -> node\n        \n        # Sentinel head and tail nodes (empty list boundaries)\n        self.head = Node()\n        self.tail = Node()\n        self.head.next = self.tail\n        self.tail.prev = self.head\n    \n    def _remove(self, node: Node) -> None:\n        \"\"\"Remove node from linked list.\"\"\"\n        prev_node = node.prev\n        next_node = node.next\n        prev_node.next = next_node\n        next_node.prev = prev_node\n    \n    def _add_to_front(self, node: Node) -> None:\n        \"\"\"Add node right after head (most recently used position).\"\"\"\n        node.prev = self.head\n        node.next = self.head.next\n        self.head.next.prev = node\n        self.head.next = node\n    \n    def _move_to_front(self, node: Node) -> None:\n        \"\"\"Mark node as most recently used.\"\"\"\n        self._remove(node)\n        self._add_to_front(node)\n    \n    def _pop_tail(self) -> Node:\n        \"\"\"Remove and return least recently used node (before tail sentinel).\"\"\"\n        lru = self.tail.prev\n        self._remove(lru)\n        return lru\n    \n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        \n        node = self.cache[key]\n        self._move_to_front(node)\n        return node.value\n    \n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            # Update existing value and mark as recently used\n            node = self.cache[key]\n            node.value = value\n            self._move_to_front(node)\n            return\n        \n        # Create new node\n        new_node = Node(key, value)\n        self.cache[key] = new_node\n        self._add_to_front(new_node)\n        \n        # Evict if over capacity\n        if len(self.cache) > self.capacity:\n            lru = self._pop_tail()\n            del self.cache[lru.key]\n```\n\n## Complexity Analysis\n\n| Operation | Time | Space |\n|-----------|------|-------|\n| `get` | O(1) | O(capacity) total |\n| `put` | O(1) | O(capacity) total |\n\n## Example Walkthrough\n\n```python\ncache = LRUCache(2)\ncache.put(1, 1)   # cache: {1=1}\ncache.put(2, 2)   # cache: {1=1, 2=2}\ncache.get(1)      # returns 1, 1 is now most recently used\ncache.put(3, 3)   # evicts key 2, cache: {1=1, 3=3}\ncache.get(2)      # returns -1 (not found)\ncache.put(4, 4)   # evicts key 1, cache: {3=3, 4=4}\ncache.get(1)      # returns -1\ncache.get(3)      # returns 3\ncache.get(4)      # returns 4\n```\n\n## Alternative: Using `OrderedDict`\n\nFor production Python code, this is more concise:\n\n```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = OrderedDict()\n    \n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self.cache.move_to_end(key)\n        return self.cache[key]\n    \n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.cache.move_to_end(key)\n        self.cache[key] = value\n        if len(self.cache) > self.capacity:\n            self.cache.popitem(last=False)\n```\n\nBoth versions satisfy the O(1) requirement. The explicit linked list version is typically preferred in interviews to demonstrate understanding.",
+      "usage": {
+        "prompt_tokens": 50,
+        "total_tokens": 1076,
+        "completion_tokens": 1026,
+        "prompt_tokens_details": {
+          "cached_tokens": 48
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    }
+  },
+  "phaseB": {
+    "minimax-m3|math_1": {
+      "answer": "Working:\n- Discount: 25% of $80 = $20\n- Sale price: $80 − $20 = $60\n- Sales tax: 8% of $60 = $4.80\n- Final price: $60 + $4.80 = $64.80\n\nAnswer: $64.80",
+      "usage": {
+        "prompt_tokens": 160,
+        "total_tokens": 228,
+        "completion_tokens": 68,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_2": {
+      "answer": "Population after 5 years = 45000 × (1.03)^5\n\n(1.03)^5 = 1.1592740743\n\n45000 × 1.1592740743 = 52167.33\n\nRounded to nearest hundred: 52,200\n\nAnswer: 52,200",
+      "usage": {
+        "prompt_tokens": 159,
+        "total_tokens": 226,
+        "completion_tokens": 67,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_3": {
+      "answer": "Working:\n- 2023 revenue: $2.4 million\n- 2024 revenue: $2.4M × 1.15 = $2.76 million\n- 2025 revenue: $2.76M × 0.92 = $2.5392 million\n\nAnswer: $2.5392 million",
+      "usage": {
+        "prompt_tokens": 175,
+        "total_tokens": 245,
+        "completion_tokens": 70,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_4": {
+      "answer": "The car's value after n years is 32000 × (0.82)^n.\n\nWe need (0.82)^n < 0.5.\n\nTaking logarithms: n × ln(0.82) < ln(0.5)\n\nn > ln(0.5) / ln(0.82) = -0.6931 / -0.1985 ≈ 3.49\n\nSo after 4 full years.\n\nAnswer: 4",
+      "usage": {
+        "prompt_tokens": 164,
+        "total_tokens": 260,
+        "completion_tokens": 96,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|math_5": {
+      "answer": "# Compound vs Simple Interest Calculation\n\n## Compound Interest (Monthly Compounding)\n\nFormula: A = P(1 + r/n)^(nt)\n\n- P = $10,000\n- r = 0.06\n- n = 12 (monthly)\n- t = 3 years\n\nA = 10,000 × (1 + 0.06/12)^(12×3)\nA = 10,000 × (1.005)^36\nA = 10,000 × 1.196680\nA = **$11,966.80**\n\n## Simple Interest\n\nFormula: A = P(1 + rt)\n\nA = 10,000 × (1 + 0.06 × 3)\nA = 10,000 × 1.18\nA = **$11,800.00**\n\n## Difference\n\n$11,966.80 − $11,800.00 = **$166.80**\n\nAnswer: $11,966.80 (compound), which is $166.80 more than simple interest.",
+      "usage": {
+        "prompt_tokens": 172,
+        "total_tokens": 392,
+        "completion_tokens": 220,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_1": {
+      "answer": "Working:\n\n- Priya refuses anything with a motor → bike (only non-motor option).\n- Marcus drives alone in traffic jams → car.\n- Elena gets the remaining mode → bus.\n\nAnswer: Priya bikes, Marcus drives a car, Elena takes the bus.",
+      "usage": {
+        "prompt_tokens": 181,
+        "total_tokens": 235,
+        "completion_tokens": 54,
+        "prompt_tokens_details": {
+          "cached_tokens": 122
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_2": {
+      "answer": "A must be first, and D must come immediately after A, so A and D occupy slots 1 and 2.\n\nRemaining slots 3 and 4 are for B and C, with C earlier than B.\n\nSo C is in slot 3 and B is in slot 4.\n\nOrder: A, D, C, B\n\nAnswer: A, D, C, B",
+      "usage": {
+        "prompt_tokens": 173,
+        "total_tokens": 252,
+        "completion_tokens": 79,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_3": {
+      "answer": "Zed says, \"We are both knaves.\"\n\nIf Zed were a knight, he would be telling the truth, meaning both he and Ora are knaves. But a knight cannot be a knave — contradiction.\n\nIf Zed were a knave, he would be lying, meaning it is not the case that both are knaves. So at least one of them is a knight. Since Zed is a knave, Ora must be a knight.\n\nAnswer: Zed is a knave and Ora is a knight.",
+      "usage": {
+        "prompt_tokens": 179,
+        "total_tokens": 284,
+        "completion_tokens": 105,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_4": {
+      "answer": "We need to find the finishing order of Kim, Raj, Tom, and Uma in positions 1–4.\n\n**Clues:**\n1. Kim finished ahead of Tom but behind Uma: Uma > Kim > Tom\n2. Uma was not first\n3. Raj did not finish last\n\n**Working:**\n\nFrom clue 1: Uma is ahead of Kim, who is ahead of Tom. So Uma, Kim, Tom occupy three consecutive positions in that order (Uma first among them, Tom last among them).\n\nFrom clue 2: Uma is not in position 1.\n\nSo Uma must be in position 2 or 3.\n\n**Case 1:** Uma = 2, Kim = 3, Tom = 4.\nThen Raj must be in position 1. Check clue 3: Raj is not last ✓ (Raj is 1st).\n\n**Case 2:** Uma = 3, Kim = 4, Tom = ? — but Tom must be behind Kim, so Tom would need position 5+, impossible.\n\nSo the only valid arrangement is:\n- 1st: Raj\n- 2nd: Uma\n- 3rd: Kim\n- 4th: Tom\n\nAnswer: Raj, Uma, Kim, Tom",
+      "usage": {
+        "prompt_tokens": 181,
+        "total_tokens": 436,
+        "completion_tokens": 255,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "minimax-m3|logic_5": {
+      "answer": "Seats 1–5, left to right.\n\n- Dev is in seat 3.\n- Ana is at an end (seat 1 or 5).\n- Ben is immediately right of Cara, so they occupy consecutive seats (Cara, Ben) with Cara left of Ben.\n- Ana is to the right of Ben.\n\nTry Ana at seat 1: Ana is left of Ben, violating \"Ana to the right of Ben.\" ✗\n\nTry Ana at seat 5: Ana is right of Ben ✓.\n\nBen must be left of Ana (seat 5), so Ben is in seat 2, 3, or 4. But seat 3 is Dev, so Ben is in seat 2 or 4.\n\n- Ben in seat 2 → Cara in seat 1. Check: Ana(5) right of Ben(2) ✓.\n- Ben in seat 4 → Cara in seat 3, but seat 3 is Dev ✗.\n\nSo: Cara=1, Ben=2, Dev=3, Ana=5, leaving seat 4 for Eli.\n\nArrangement: Cara, Ben, Dev, Eli, Ana.\n\nAnswer: Cara, Ben, Dev, Eli, Ana (seats 1–5)",
+      "usage": {
+        "prompt_tokens": 199,
+        "total_tokens": 455,
+        "completion_tokens": 256,
+        "prompt_tokens_details": {
+          "cached_tokens": 97
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_1": {
+      "answer": "Discount: 25% of $80 = 0.25 × 80 = $20\nSale price: 80 − 20 = $60\nSales tax: 8% of $60 = 0.08 × 60 = $4.80\nFinal price: 60 + 4.80 = $64.80\n\nAnswer: $64.80",
+      "usage": {
+        "prompt_tokens": 65,
+        "total_tokens": 143,
+        "completion_tokens": 78,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_2": {
+      "answer": "Population growth formula: P = P₀ × (1 + r)^t\n\nP = 45,000 × (1.03)^5\n\n(1.03)^5 = 1.1592740743\n\nP = 45,000 × 1.1592740743 = 52,167.33334\n\nRounded to the nearest hundred: 52,200\n\nAnswer: 52,200",
+      "usage": {
+        "prompt_tokens": 64,
+        "total_tokens": 150,
+        "completion_tokens": 86,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_3": {
+      "answer": "2024 revenue = $2.4 million × 1.15 = $2.76 million\n2025 revenue = $2.76 million × 0.92 = $2.5392 million\n\nAnswer: $2.5392 million",
+      "usage": {
+        "prompt_tokens": 80,
+        "total_tokens": 132,
+        "completion_tokens": 52,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_4": {
+      "answer": "I need to find when the car's value drops below half its original price.\n\nOriginal price: $32,000\nHalf price: $16,000\nAnnual depreciation: 18%, so value retained = 82% = 0.82\n\nAfter n years, value = 32000 × (0.82)^n\n\nI need: 32000 × (0.82)^n < 16000\n\nSo (0.82)^n < 0.5\n\nTaking logs: n × ln(0.82) < ln(0.5)\nn > ln(0.5)/ln(0.82)  (note ln(0.82) is negative, so inequality flips)\n\nln(0.5) ≈ -0.6931\nln(0.82) ≈ -0.1985\n\nn > -0.6931/(-0.1985) ≈ 3.49\n\nSo n = 4 full years.\n\nCheck:\nAfter 3 years: 32000 × (0.82)^3 = 32000 × 0.551368 = $17,643.78 (more than half)\nAfter 4 years: 32000 × (0.82)^4 = 32000 × 0.452122 = $14,467.90 (less than half)\n\nAnswer: 4 years",
+      "usage": {
+        "prompt_tokens": 69,
+        "total_tokens": 356,
+        "completion_tokens": 287,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|math_5": {
+      "answer": "Compound interest formula: A = P(1 + r/n)^(nt)\n\nP = 10,000, r = 0.06, n = 12, t = 3\n\nMonthly rate = 0.06/12 = 0.005\nNumber of periods = 36\n\nA_compound = 10000(1.005)^36 = 10000 × 1.1966805248... = 11966.81\n\nSimple interest: A = P(1 + rt) = 10000(1 + 0.06 × 3) = 10000 × 1.18 = 11800.00\n\nDifference = 11966.81 - 11800.00 = 166.81\n\nAnswer: The investment will be worth $11,966.81, which is $166.81 more than with simple interest.",
+      "usage": {
+        "prompt_tokens": 77,
+        "total_tokens": 259,
+        "completion_tokens": 182,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_1": {
+      "answer": "Priya refuses anything with a motor, so she cannot use bus or car. Therefore Priya uses bike.\n\nMarcus sits in traffic jams driving alone, so he uses a car (not bus, and driving alone rules out bus).\n\nThat leaves Elena with the remaining mode: bus.\n\nAnswer: Priya - bike, Marcus - car, Elena - bus.",
+      "usage": {
+        "prompt_tokens": 86,
+        "total_tokens": 159,
+        "completion_tokens": 73,
+        "prompt_tokens_details": {
+          "cached_tokens": 27
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_2": {
+      "answer": "We have four consecutive slots and four presentations A, B, C, D.\n\nConstraints:\n- A must go first → A is in slot 1.\n- D must come immediately after A → D is in slot 2.\n- C must be earlier than B → C comes before B.\n\nAfter placing A and D in slots 1 and 2, slots 3 and 4 remain for C and B.\nSince C must be earlier than B, C goes in slot 3 and B goes in slot 4.\n\nAnswer: A, D, C, B",
+      "usage": {
+        "prompt_tokens": 78,
+        "total_tokens": 194,
+        "completion_tokens": 116,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_3": {
+      "answer": "Working: Zed says \"We are both knaves.\"\n\nIf Zed is a knight, he tells the truth, so his statement would be true, meaning both are knaves. But this contradicts Zed being a knight. So Zed cannot be a knight.\n\nTherefore Zed is a knave. Since knaves always lie, his statement is false. The negation of \"We are both knaves\" is \"It is not the case that both of us are knaves,\" meaning at least one is not a knave. Since Zed is a knave, Ora must be the one who is not a knave, so Ora is a knight.\n\nAnswer: Zed is a knave and Ora is a knight.",
+      "usage": {
+        "prompt_tokens": 91,
+        "total_tokens": 245,
+        "completion_tokens": 154,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_4": {
+      "answer": "I need to find the finishing order from positions 1 to 4.\n\nClues:\n1. Kim finished ahead of Tom but behind Uma → Uma > Kim > Tom (in position: Uma has a better position number than Kim, who has a better position number than Tom)\n2. Uma was not first\n3. Raj did not finish last\n\nFrom clue 1: Uma, Kim, Tom must appear in that order (Uma ahead of Kim, Kim ahead of Tom). So three positions are taken by Uma, Kim, Tom in relative order.\n\nSince Uma is not first, and Uma must be ahead of Kim and Tom, Uma can be 2nd or 3rd.\n\nIf Uma is 3rd, then Kim and Tom must be 4th and... wait, Kim must be behind Uma, so Kim would need to be 4th, and Tom would need to be behind Kim — impossible (no position 5).\n\nSo Uma must be 2nd. Then Kim is 3rd, Tom is 4th.\n\nThat leaves Raj in 1st. Check clue 3: Raj did not finish last. Raj is 1st — satisfied.\n\nFinal order: 1. Raj, 2. Uma, 3. Kim, 4. Tom.\n\nAnswer: 1. Raj, 2. Uma, 3. Kim, 4. Tom",
+      "usage": {
+        "prompt_tokens": 89,
+        "total_tokens": 388,
+        "completion_tokens": 299,
+        "prompt_tokens_details": {
+          "cached_tokens": 3
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    },
+    "kimi-k2p7-code|logic_5": {
+      "answer": "Let me work through this step by step.\n\nSeats: 1, 2, 3, 4, 5 (left to right)\n\nClues:\n- Ana sits at one of the ends: seat 1 or seat 5\n- Dev sits in seat 3\n- Ben sits immediately to the right of Cara (so Cara-Ben are consecutive)\n- Ana sits somewhere to the right of Ben\n\nSince Ana is to the right of Ben, Ana cannot be in seat 1 (leftmost). So Ana must be in seat 5.\n\nDev is in seat 3.\n\nSo seats 1, 2, 4 are for Ben, Cara, Eli.\n\nCara-Ben must be consecutive. Possible pairs among seats 1, 2, 4:\n- Seats 1 and 2: Cara in 1, Ben in 2 (Ben immediately right of Cara) ✓\n- Seats 2 and 4: not consecutive ✗\n\nSo Cara is in seat 1, Ben is in seat 2.\n\nThat leaves Eli in seat 4.\n\nFinal arrangement:\n- Seat 1: Cara\n- Seat 2: Ben\n- Seat 3: Dev\n- Seat 4: Eli\n- Seat 5: Ana\n\nAnswer: Seat 1: Cara, Seat 2: Ben, Seat 3: Dev, Seat 4: Eli, Seat 5: Ana",
+      "usage": {
+        "prompt_tokens": 106,
+        "total_tokens": 408,
+        "completion_tokens": 302,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "reasoning": {
+        "reasoning_fields": {},
+        "think_tags_in_content": false,
+        "finish_reason": "stop"
+      },
+      "error": null,
+      "passed": true
+    }
+  }
+}
