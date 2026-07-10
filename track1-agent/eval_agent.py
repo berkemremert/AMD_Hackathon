@@ -61,6 +61,9 @@ def main():
     with open(DATA_PATH, "r") as f:
         records = json.load(f)
         
+    # Filter to only use 'easy' difficulty pool as requested
+    records = [r for r in records if r.get("difficulty_pool") == "easy"]
+        
     # Sample exactly 40 entries, including all categories
     tasks = sample_tasks(records, 40)
     print(f"Sampled {len(tasks)} tasks across {len(set(t.get('category', 'unknown') for t in tasks))} categories.")
@@ -95,9 +98,9 @@ def main():
         limits = TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"])
         tight_prompt = f"{limits['suffix']}\n\n{prompt}"
         
-        print(f"[API CALL] Model: {model} | Cap: {limits['cap']} | Reasoning: None")
+        print(f"[API CALL] Model: {model} | Cap: {limits['cap']} | Reasoning: Low")
         try:
-            answer = chat(model, tight_prompt, max_tokens=limits["cap"], extra_params={"reasoning_effort": "none"})
+            answer = chat(model, tight_prompt, max_tokens=limits["cap"], extra_params={"reasoning_effort": "low", "reasoning_history": "disabled"})
             call_tokens = answer["total_tokens"]
             total_tokens += call_tokens
             
@@ -108,7 +111,7 @@ def main():
             ok, reason = validator.validate(task_type, prompt, answer["text"], answer.get("finish_reason"))
             if not ok:
                 print(f"[VALIDATION FAILED] Reason: {reason}. Retrying with thinking OFF and generous cap ({limits.get('retry_cap', 800)})...")
-                retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800), extra_params={"reasoning_effort": "none"})
+                retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800), extra_params={"reasoning_effort": "low", "reasoning_history": "disabled"})
                 retry_tokens = retry_answer["total_tokens"]
                 total_tokens += retry_tokens
                 print(f"[RETRY RESPONSE] Tokens: {retry_tokens} | Finish Reason: {retry_answer.get('finish_reason')}")
