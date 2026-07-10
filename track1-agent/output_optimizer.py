@@ -36,7 +36,7 @@ HEURISTICS = {
         r"\bcalculate\b", r"\bhow (much|many|long|far)\b.*\d", r"\d.*\bhow (much|many|long|far)\b",
         r"\d+\s*%", r"\bpercent",
         r"\bsum of\b", r"\bproduct of\b", r"\bproject(ed|ion)\b.*\d",
-        r"\d+\s*[\+\-\*/x]\s*\d+", r"\bwhat is \d", r"\baverage\b.*\d", r"\btotal\b.*\d",
+        r"\d+\s*(?:[\+\*/x]|\s-\s)\s*\d+", r"\bwhat is \d", r"\baverage\b.*\d", r"\btotal\b.*\d",
     ],
     "logical_puzzles": [
         r"\bpuzzle\b", r"\briddle\b", r"\bif .* then .* (who|what|which)\b",
@@ -72,47 +72,47 @@ def detect_task_type(user_prompt: str) -> str:
 TOKEN_LIMITS = {
     "knowledge_qa": {
         "suffix": "Provide a direct, concise answer without any preamble.",
-        "cap": 64,
-        "retry_cap": 200,
+        "cap": 100,
+        "retry_cap": 600,
     },
     "math_solving": {
         "suffix": "Briefly show your steps, then conclude with: Answer: <result>.",
         "cap": 384,
-        "retry_cap": 600,
+        "retry_cap": 500,
     },
     "sentiment_analysis": {
         "suffix": "Provide the exact sentiment label (positive, negative, neutral, mixed) followed by a single sentence of justification.",
-        "cap": 40,
-        "retry_cap": 120,
+        "cap": 150,
+        "retry_cap": 250,
     },
     "summarization": {
         "suffix": "Provide only the summary, adhering strictly to the requested format or length.",
-        "cap": 128,
+        "cap": 160,
         "retry_cap": 256,
     },
     "entity_extraction": {
         "suffix": 'Output valid JSON only: [{"entity":"...","type":"..."}]. Do not output conversational text.',
-        "cap": 200,
+        "cap": 256,
         "retry_cap": 400,
     },
     "bug_fixing": {
         "suffix": "Identify the bug in one sentence, then provide the corrected code block. No extra text.",
-        "cap": 160,
-        "retry_cap": 800,
+        "cap": 256,
+        "retry_cap": 500,
     },
     "logical_puzzles": {
         "suffix": "Provide brief step-by-step reasoning, then conclude with: Answer: <result>.",
         "cap": 416,
-        "retry_cap": 800,
+        "retry_cap": 600,
     },
     "code_authoring": {
         "suffix": "Write the requested code inside a single block. Be as concise as possible.",
-        "cap": 320,
-        "retry_cap": 900,
+        "cap": 512,
+        "retry_cap": 700,
     },
     "fallback": {
         "suffix": "Answer the question directly and concisely.",
         "cap": 256,
-        "retry_cap": 600,
+        "retry_cap": 400,
     },
 }

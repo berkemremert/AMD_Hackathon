@@ -59,7 +59,7 @@ def evaluate_ner():
     
     # Hardcode the official Track 1 judge model
     judge_model = "accounts/fireworks/models/glm-5p2"
-    model_cheap = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/minimax-m3")
+    model_cheap = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/minimax-m2p7")
     
     print(f"Using Official Judge Model: {judge_model}")
     print(f"Evaluating all {len(sample)} NER tasks with 10 concurrent requests...")

@@ -131,7 +131,7 @@ def validate(category, prompt, answer, finish_reason=None):
         return _check_ner(answer)
     if category in ("code_authoring", "bug_fixing"):
         return _check_code(prompt, answer)
-    if category in ("math_solving", "logical_puzzles"):
+    if category == "math_solving":
         return _check_math(answer)
     if category == "summarization":
         return _check_summarization(prompt, answer)

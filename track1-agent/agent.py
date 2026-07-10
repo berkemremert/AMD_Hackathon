@@ -85,7 +85,7 @@ def main():
         ok, reason = validator.validate(task_type, task["prompt"], answer["text"], answer.get("finish_reason"))
         if not ok:
             print(f"Validation failed for task {task['task_id']} ({reason}). Retrying with generous cap...", file=sys.stderr)
-            retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800))
+            retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800), extra_params={"reasoning_effort": "none"})
             total_tokens += retry_answer["total_tokens"]
             answer = retry_answer
             

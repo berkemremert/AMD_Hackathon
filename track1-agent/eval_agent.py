@@ -19,7 +19,7 @@ if "ALLOWED_MODELS" in os.environ:
     MODEL_CHEAP = next((m for m in models if "minimax" in m.lower()), models[0])
     MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower()), models[-1])
 else:
-    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/minimax-m3")
+    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/minimax-m2p7")
     MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
 
 
@@ -107,8 +107,8 @@ def main():
             # Validation
             ok, reason = validator.validate(task_type, prompt, answer["text"], answer.get("finish_reason"))
             if not ok:
-                print(f"[VALIDATION FAILED] Reason: {reason}. Retrying with thinking ON and generous cap ({limits.get('retry_cap', 800)})...")
-                retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800))
+                print(f"[VALIDATION FAILED] Reason: {reason}. Retrying with thinking OFF and generous cap ({limits.get('retry_cap', 800)})...")
+                retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800), extra_params={"reasoning_effort": "none"})
                 retry_tokens = retry_answer["total_tokens"]
                 total_tokens += retry_tokens
                 print(f"[RETRY RESPONSE] Tokens: {retry_tokens} | Finish Reason: {retry_answer.get('finish_reason')}")
