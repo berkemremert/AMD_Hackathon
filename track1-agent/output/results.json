@@ -1,0 +1,14 @@
+[
+  {
+    "task_id": "t1",
+    "answer": "19"
+  },
+  {
+    "task_id": "t2",
+    "answer": "The city council approved a 12-mile bike lane network for downtown streets."
+  },
+  {
+    "task_id": "t3",
+    "answer": "```python\ndef is_palindrome(s):\n    s = s.lower()\n    return s == s[::-1]\n```"
+  }
+]
