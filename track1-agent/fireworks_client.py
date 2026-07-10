@@ -13,15 +13,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.environ["FIREWORKS_API_KEY"]
+API_KEY = os.environ.get("FIREWORKS_API_KEY", "")
 BASE_URL = os.environ.get("FIREWORKS_BASE_URL", "https://api.fireworks.ai/inference/v1")
 
 
 def chat(model: str, prompt: str, max_tokens: int = 800, temperature: float = 0.0, retries: int = 3, api_key: str = None, response_format: dict = None, extra_params: dict = None, system_prompt: str = None) -> dict:
     """Sends one prompt to `model`. Returns {"text": str, "prompt_tokens": int,
     "completion_tokens": int, "total_tokens": int, "finish_reason": str}."""
-    url = f"{BASE_URL}/chat/completions"
-    key_to_use = api_key or API_KEY
+    base_url = os.environ.get("FIREWORKS_BASE_URL", BASE_URL).rstrip("/")
+    url = f"{base_url}/chat/completions"
+    key_to_use = api_key or os.environ.get("FIREWORKS_API_KEY", API_KEY)
+    if not key_to_use:
+        raise RuntimeError("FIREWORKS_API_KEY environment variable is not set.")
     headers = {"Authorization": f"Bearer {key_to_use}", "Content-Type": "application/json"}
     messages = []
     if system_prompt:

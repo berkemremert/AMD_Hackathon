@@ -26,11 +26,8 @@ OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
 # Fallback to local dev env vars if ALLOWED_MODELS is not provided
 if "ALLOWED_MODELS" in os.environ:
     models = [m.strip() for m in os.environ["ALLOWED_MODELS"].split(",") if m.strip()]
-    if not models:
-        models = ["accounts/fireworks/models/kimi-k2p6"] # absolute failsafe
-    # Assume the first model provided is the primary/expensive one, and the last is the fallback/cheap one
-    MODEL_EXPENSIVE = models[0]
-    MODEL_CHEAP = models[-1]
+    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1] if models else "accounts/fireworks/models/kimi-k2p6")
+    MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0] if models else "accounts/fireworks/models/kimi-k2p6")
 else:
     MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
     MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
@@ -66,34 +63,70 @@ def main():
     for task in tasks:
         task_type = detect_task_type(task["prompt"])
         
-        if task_type == "math_solving":
-            from local_solvers import solve_math_exact
-            math_ans = solve_math_exact(task["prompt"])
-            if math_ans is not None:
-                results.append({"task_id": task["task_id"], "answer": math_ans})
-                continue
-                
-        if task_type == "logical_puzzles":
-            from local_solvers import solve_logic_puzzle
-            logic_ans = solve_logic_puzzle(task["prompt"])
-            if logic_ans is not None:
-                results.append({"task_id": task["task_id"], "answer": logic_ans})
-                continue
-                
-        if task_type == "entity_extraction":
-            # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
-            # Using the deterministic pipeline that formats the output exactly as requested
-            from local_solvers import solve_ner
-            formatted_entities = solve_ner(task["prompt"])
-            
-            results.append({"task_id": task["task_id"], "answer": formatted_entities})
-            continue
-            
-        if task_type == "sentiment_analysis":
-            from local_solvers import solve_sentiment
-            sentiment_output = solve_sentiment(task["prompt"])
-            results.append({"task_id": task["task_id"], "answer": sentiment_output})
-            continue
+        # ── Local solvers (0 API tokens) with graceful fallback ──
+        try:
+            if task_type == "math_solving":
+                from local_solvers import solve_math_exact
+                math_ans = solve_math_exact(task["prompt"])
+                if math_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": str(math_ans)})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Math solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            is_logic = (task_type == "logical_puzzles" or 
+                        task.get("category") == "logical_reasoning" or 
+                        any(w in task["prompt"].lower() for w in ["arrange", "constraints:", "clues to determine", "standing in a line", "chairs numbered", "favorite color:", "each have a different", "logic puzzle", "in a row"]))
+            if is_logic:
+                from local_solvers import solve_logic_puzzle
+                logic_ans = solve_logic_puzzle(task["prompt"])
+                if logic_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": str(logic_ans)})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Logic solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            is_debug = (task_type == "bug_fixing" or task.get("category") == "code_debugging" or "identify the bug" in task["prompt"].lower())
+            if is_debug:
+                from local_solvers import solve_code_debug
+                debug_ans = solve_code_debug(task["prompt"])
+                if debug_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": str(debug_ans)})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Code debug solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            if task_type == "code_authoring" or task.get("category") == "code_generation":
+                from local_solvers import solve_code_authoring
+                code_ans = solve_code_authoring(task["prompt"])
+                if code_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": str(code_ans)})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Code authoring solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            if task_type == "entity_extraction":
+                from local_solvers import solve_ner
+                raw_entities = solve_ner(task["prompt"])
+                if raw_entities is not None:
+                    results.append({"task_id": task["task_id"], "answer": str(raw_entities)})
+                    continue
+        except Exception as e:
+            print(f"[WARN] NER solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            if task_type == "sentiment_analysis":
+                from local_solvers import solve_sentiment
+                sentiment_output = solve_sentiment(task["prompt"])
+                if sentiment_output is not None:
+                    results.append({"task_id": task["task_id"], "answer": str(sentiment_output)})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Sentiment solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
 
         if task_type == "summarization":
             import os
@@ -111,7 +144,7 @@ def main():
                         print("Local summarization failed validation, falling back to Fireworks API.", file=sys.stderr)
                         pass # Let it fall through to existing fireworks route
                     else:
-                        results.append({"task_id": task["task_id"], "answer": res.answer})
+                        results.append({"task_id": task["task_id"], "answer": str(res.answer)})
                         # Approximating local tokens for tracking, though they cost $0
                         total_tokens += res.attempts[-1].output_tokens if res.attempts else 0
                         continue
@@ -125,47 +158,44 @@ def main():
                         
             elif mode == "compress_only":
                 from local_compressor import compress_summarization_prompt
-                # We use MMR to compress the long text, but we MUST send it to the API
-                # to actually rewrite it and fulfill specific formatting constraints 
-                # (like "exactly 20 words"). We do NOT overfit or skip the API.
                 task["prompt"] = compress_summarization_prompt(task["prompt"])
-                # Let it fall through to existing fireworks route
                 
-        model, routing_tokens = route(task["prompt"])
-        # Tighten the prompt using dynamic output optimization
-        limits = get_dynamic_limits(task_type, task["prompt"])
-        system_prompt = limits["system"]
-        
-        # [COMPRESSION] Intercept and compress the prompt for all tasks if applicable
-        from local_compressor import optimize_prompt_for_api
-        final_prompt = optimize_prompt_for_api(task["prompt"], task_type, limits.get("suffix", ""))
-        
-        answer = chat(
-            model=model,
-            prompt=final_prompt,
-            max_tokens=limits["cap"],
-            system_prompt=system_prompt,
-            extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
-        )
-        total_tokens += routing_tokens + answer["total_tokens"]
-        
-        ok, reason = validator.validate(task_type, task["prompt"], answer["text"], answer.get("finish_reason"))
-        if not ok or not answer["text"].strip():
-            # Fallback to opposite tier model on failure or blank response
-            fallback_model = MODEL_EXPENSIVE if model == MODEL_CHEAP else MODEL_CHEAP
-            print(f"Validation failed for task {task['task_id']} ({reason}). Retrying with fallback model {fallback_model}...", file=sys.stderr)
+        try:
+            model, routing_tokens = route(task["prompt"])
+            limits = get_dynamic_limits(task_type, task["prompt"])
+            system_prompt = limits["system"]
             
-            retry_answer = chat(
-                model=fallback_model,
+            from local_compressor import optimize_prompt_for_api
+            final_prompt = optimize_prompt_for_api(task["prompt"], task_type, limits.get("suffix", ""))
+            
+            answer = chat(
+                model=model,
                 prompt=final_prompt,
-                max_tokens=limits.get("retry_cap", 800),
+                max_tokens=limits["cap"],
                 system_prompt=system_prompt,
                 extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
             )
-            total_tokens += retry_answer["total_tokens"]
-            answer = retry_answer
+            total_tokens += routing_tokens + answer.get("total_tokens", 0)
             
-        results.append({"task_id": task["task_id"], "answer": answer["text"]})
+            ok, reason = validator.validate(task_type, task["prompt"], answer.get("text", ""), answer.get("finish_reason"))
+            if not ok or not answer.get("text", "").strip():
+                fallback_model = MODEL_EXPENSIVE if model == MODEL_CHEAP else MODEL_CHEAP
+                print(f"Validation failed for task {task['task_id']} ({reason}). Retrying with fallback model {fallback_model}...", file=sys.stderr)
+                
+                retry_answer = chat(
+                    model=fallback_model,
+                    prompt=final_prompt,
+                    max_tokens=limits.get("retry_cap", 800),
+                    system_prompt=system_prompt,
+                    extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
+                )
+                total_tokens += retry_answer.get("total_tokens", 0)
+                answer = retry_answer
+                
+            results.append({"task_id": task["task_id"], "answer": str(answer.get("text", ""))})
+        except Exception as e:
+            print(f"[ERROR] API handling failed for task {task['task_id']}: {e}", file=sys.stderr)
+            results.append({"task_id": task["task_id"], "answer": "Unable to process task."})
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(results, indent=2))

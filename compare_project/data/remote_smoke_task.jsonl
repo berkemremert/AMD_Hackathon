@@ -1,0 +1,2 @@
+{"id":"remote-smoke-001","input":"Write a Python function named normalize_scores that min-max normalizes a list of numbers and returns a list of floats. Answer with code only.","expected_format":"code"}
+

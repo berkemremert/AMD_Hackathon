@@ -1,0 +1,22 @@
+[
+  {
+    "task_id": "sample-factual",
+    "prompt": "Explain in one concise sentence what ROCm is."
+  },
+  {
+    "task_id": "sample-math",
+    "prompt": "Calculate 42 * 17. Return only the number."
+  },
+  {
+    "task_id": "sample-sentiment",
+    "prompt": "Classify the sentiment as positive, neutral, or negative: The model is fast but the docs are confusing."
+  },
+  {
+    "task_id": "sample-summary",
+    "prompt": "Summarize in one sentence: AMD Developer Cloud gives builders access to GPUs for AI workloads in the cloud."
+  },
+  {
+    "task_id": "sample-code",
+    "prompt": "Write a Python function add_one(x) that returns x plus one. Return code only."
+  }
+]

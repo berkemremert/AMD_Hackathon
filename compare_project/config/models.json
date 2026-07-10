@@ -1,0 +1,52 @@
+{
+  "local_confidence_threshold": 0.92,
+  "remote_required_by_default": true,
+  "remote_max_attempts": 4,
+  "remote_backoff_seconds": 2.0,
+  "retry_truncated": true,
+  "include_all_allowed_fallbacks": false,
+  "logic_specialist_patterns": [
+    "\\bpremise\\b"
+  ],
+  "fireworks": {
+    "base_url": "https://api.fireworks.ai/inference/v1",
+    "default_model": "gemma-4-31b-it",
+    "temperature": 0.0,
+    "max_tokens": {
+      "factual": 64,
+      "math": 288,
+      "sentiment": 64,
+      "summarization": 128,
+      "ner": 96,
+      "code_debugging": 128,
+      "logic": 288,
+      "code_generation": 128,
+      "general": 96
+    }
+  },
+  "model_overrides": {
+    "gemma": { "reasoning_effort": "none" },
+    "kimi": { "reasoning_effort": "none" }
+  },
+  "local_model": {
+    "model_path": "/app/models/model.gguf",
+    "model_label": "qwen2.5-3b-q4",
+    "categories": ["sentiment", "summarization", "ner", "factual", "general"],
+    "max_tokens": 256,
+    "n_ctx": 2048,
+    "n_threads": 2,
+    "_comment": "Zero-token tier. Inert unless LOCAL_MODEL_PATH is set or model_path exists (baseline stays Fireworks-only). Categories are a starting guess for a 2-3B model - tune from a graded run before trusting hard categories (math/logic/code stay remote)."
+  },
+  "model_policy": {
+    "code_debugging": ["kimi-k2p7-code", "gemma-4-31b-it"],
+    "code_generation": ["kimi-k2p7-code", "gemma-4-31b-it"],
+    "math": ["gemma-4-31b-it", "kimi-k2p7-code"],
+    "logic": ["gemma-4-31b-it", "kimi-k2p7-code"],
+    "logic_specialist": ["kimi-k2p7-code", "gemma-4-31b-it"],
+    "sentiment": ["gemma-4-31b-it", "kimi-k2p7-code"],
+    "summarization": ["gemma-4-31b-it", "kimi-k2p7-code"],
+    "ner": ["gemma-4-31b-it", "kimi-k2p7-code"],
+    "factual": ["gemma-4-31b-it", "kimi-k2p7-code"],
+    "general": ["gemma-4-31b-it", "kimi-k2p7-code"]
+  }
+}

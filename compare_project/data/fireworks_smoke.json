@@ -1,0 +1,6 @@
+[
+  {
+    "task_id": "smoke-ok",
+    "prompt": "Reply with exactly: OK"
+  }
+]

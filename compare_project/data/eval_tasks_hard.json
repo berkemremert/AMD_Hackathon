@@ -1,0 +1,214 @@
+[
+  {
+    "task_id": "hmath-001",
+    "category": "math",
+    "prompt": "A store sells notebooks at $4.50 each. Buying 10 or more gives 20% off the total. How much do 12 notebooks cost in dollars? Return only the number.",
+    "expected_contains_any": ["43.2"]
+  },
+  {
+    "task_id": "hmath-002",
+    "category": "math",
+    "prompt": "A shirt costs $80. It is discounted 25%, then 10% tax is added to the discounted price. What is the final price in dollars? Return only the number.",
+    "expected_regex": "\\b66\\b"
+  },
+  {
+    "task_id": "hmath-003",
+    "category": "math",
+    "prompt": "A car travels 240 km using 16 liters of fuel. At the same rate, how many liters are needed for 90 km? Return only the number.",
+    "expected_regex": "\\b6\\b"
+  },
+  {
+    "task_id": "hmath-004",
+    "category": "math",
+    "prompt": "What is the sum of all integers from 1 to 20 inclusive? Return only the number.",
+    "expected_regex": "\\b210\\b"
+  },
+  {
+    "task_id": "hmath-005",
+    "category": "math",
+    "prompt": "If 3 workers build a wall in 12 hours, how many hours would 4 workers take at the same rate? Return only the number.",
+    "expected_regex": "\\b9\\b"
+  },
+  {
+    "task_id": "hmath-006",
+    "category": "math",
+    "prompt": "A recipe needs 3 eggs for 12 muffins. How many eggs are needed for 30 muffins? Return only the number.",
+    "expected_regex": "\\b7\\.5\\b|\\b8\\b"
+  },
+  {
+    "task_id": "hlogic-001",
+    "category": "logic",
+    "prompt": "Five people A, B, C, D, E finished a race. A finished before B but after C. D finished last. E finished before C. Who finished first? Return only the letter.",
+    "expected_regex": "\\bE\\b"
+  },
+  {
+    "task_id": "hlogic-002",
+    "category": "logic",
+    "prompt": "On an island, knights always tell the truth and knaves always lie. Person X says 'I am a knave.' Is X a knight or a knave? Answer with one word, or say impossible.",
+    "expected_contains_any": ["impossible", "neither", "paradox", "cannot"]
+  },
+  {
+    "task_id": "hlogic-003",
+    "category": "logic",
+    "prompt": "Three boxes are labeled Apples, Oranges, and Mixed. Every label is wrong. You draw one fruit from the box labeled Mixed and it is an apple. What does that box actually contain? Answer with one word.",
+    "expected_contains_any": ["apple", "apples"]
+  },
+  {
+    "task_id": "hlogic-004",
+    "category": "logic",
+    "prompt": "If the day before yesterday was Wednesday, what is the day after tomorrow? Return only the day name.",
+    "expected_contains_any": ["sunday"]
+  },
+  {
+    "task_id": "hlogic-005",
+    "category": "logic",
+    "prompt": "In a family, each daughter has the same number of brothers as sisters, and each son has twice as many sisters as brothers. How many sons are in the family? Return only the number.",
+    "expected_regex": "\\b3\\b"
+  },
+  {
+    "task_id": "hlogic-006",
+    "category": "logic",
+    "prompt": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost in dollars? Return only the number.",
+    "expected_contains_any": ["0.05", ".05"]
+  },
+  {
+    "task_id": "hfactual-001",
+    "category": "factual",
+    "prompt": "What is the SI unit of electrical resistance? Answer with one word.",
+    "expected_contains_any": ["ohm"]
+  },
+  {
+    "task_id": "hfactual-002",
+    "category": "factual",
+    "prompt": "Which planet in our solar system has the shortest rotation period (shortest day)? Answer with only the planet name.",
+    "expected_contains_any": ["jupiter"]
+  },
+  {
+    "task_id": "hfactual-003",
+    "category": "factual",
+    "prompt": "In database systems, what do the four letters of ACID stand for? List the four words.",
+    "expected_contains_all": ["atomicity", "consistency", "isolation", "durability"]
+  },
+  {
+    "task_id": "hfactual-004",
+    "category": "factual",
+    "prompt": "What is the worst-case time complexity of binary search on a sorted array of n elements? Answer in big-O notation.",
+    "expected_regex": "o\\(\\s*log"
+  },
+  {
+    "task_id": "hfactual-005",
+    "category": "factual",
+    "prompt": "Who developed the theory of general relativity? Answer with only the surname.",
+    "expected_contains_any": ["einstein"]
+  },
+  {
+    "task_id": "hsentiment-001",
+    "category": "sentiment",
+    "prompt": "Classify the sentiment as positive, neutral, or negative: Fantastic, my flight got cancelled and now I'm stuck at the airport overnight.",
+    "expected_label": "negative"
+  },
+  {
+    "task_id": "hsentiment-002",
+    "category": "sentiment",
+    "prompt": "Classify the sentiment as positive, neutral, or negative: This isn't the worst product I've used, but I wouldn't buy it again.",
+    "expected_label": "negative"
+  },
+  {
+    "task_id": "hsentiment-003",
+    "category": "sentiment",
+    "prompt": "Classify the sentiment as positive, neutral, or negative: Despite a few minor bugs, this app has completely transformed how I work and I love it.",
+    "expected_label": "positive"
+  },
+  {
+    "task_id": "hsentiment-004",
+    "category": "sentiment",
+    "prompt": "Classify the sentiment as positive, neutral, or negative: The quarterly report was released on Tuesday and covers three business units.",
+    "expected_label": "neutral"
+  },
+  {
+    "task_id": "hsummary-001",
+    "category": "summarization",
+    "prompt": "In no more than 8 words, summarize: The city council voted to expand the bike lane network after months of debate, citing safety and reduced congestion.",
+    "expected_contains_any": ["bike", "lane", "cycl"],
+    "expected_max_words": 8
+  },
+  {
+    "task_id": "hsummary-002",
+    "category": "summarization",
+    "prompt": "Summarize the main finding in one sentence: A study of 10,000 patients found that a daily 20-minute walk reduced the risk of heart disease by 30 percent compared with a sedentary group.",
+    "expected_contains_any": ["walk", "heart", "30", "risk"]
+  },
+  {
+    "task_id": "hsummary-003",
+    "category": "summarization",
+    "prompt": "Give a one-line headline (under 10 words) for: Engineers unveiled a solar-powered desalination device that produces 5 liters of fresh water per hour at one-tenth the cost of existing units.",
+    "expected_contains_any": ["desalinat", "water", "solar"],
+    "expected_max_words": 10
+  },
+  {
+    "task_id": "hner-001",
+    "category": "ner",
+    "prompt": "Extract all person names from: After the meeting, Ms. Rodriguez emailed Dr. Okafor and the intern Jamie about the Henderson account.",
+    "expected_contains_all": ["rodriguez", "okafor", "jamie"]
+  },
+  {
+    "task_id": "hner-002",
+    "category": "ner",
+    "prompt": "Extract the monetary amounts and dates from: The invoice dated 2025-03-14 lists 1,250.00 dollars due by April 1, plus a late fee of 75 dollars.",
+    "expected_contains_all": ["2025-03-14", "1,250", "april 1", "75"]
+  },
+  {
+    "task_id": "hner-003",
+    "category": "ner",
+    "prompt": "List the organizations mentioned in: The deal between Acme Corp and Globex was reviewed by the Federal Trade Commission before approval.",
+    "expected_contains_all": ["acme", "globex", "federal trade commission"]
+  },
+  {
+    "task_id": "hcodegen-001",
+    "category": "code_generation",
+    "prompt": "Write a Python function two_sum(nums, target) that returns the indices of the two numbers in nums that add up to target. Return code only.",
+    "expected_contains_all": ["def two_sum", "return"]
+  },
+  {
+    "task_id": "hcodegen-002",
+    "category": "code_generation",
+    "prompt": "Write a Python function is_balanced(s) that returns True if the parentheses (), [], and {} in string s are balanced and correctly nested, else False. Return code only.",
+    "expected_contains_all": ["def is_balanced", "return"]
+  },
+  {
+    "task_id": "hcodegen-003",
+    "category": "code_generation",
+    "prompt": "Write a Python list comprehension assigned to a variable result that contains the squares of the even numbers from 0 to 20 inclusive. Return code only.",
+    "expected_regex": "\\[.*for.*in.*range"
+  },
+  {
+    "task_id": "hcodedebug-001",
+    "category": "code_debugging",
+    "prompt": "Fix the bug and return corrected code only:\n\ndef factorial(n):\n    result = 1\n    for i in range(1, n):\n        result *= i\n    return result",
+    "expected_contains_any": ["range(1, n+1)", "range(1, n + 1)", "range(2, n+1)", "range(n)"]
+  },
+  {
+    "task_id": "hcodedebug-002",
+    "category": "code_debugging",
+    "prompt": "Fix the infinite recursion and return corrected code only:\n\ndef countdown(n):\n    print(n)\n    countdown(n - 1)",
+    "expected_contains_any": ["if n", "n <= 0", "n == 0", "n > 0", "return"]
+  },
+  {
+    "task_id": "hcodedebug-003",
+    "category": "code_debugging",
+    "prompt": "This function returns the wrong result for a list of only negative numbers. Fix it and return corrected code only:\n\ndef get_max(lst):\n    max_val = 0\n    for x in lst:\n        if x > max_val:\n            max_val = x\n    return max_val",
+    "expected_contains_any": ["lst[0]", "float('-inf')", "-inf", "max(lst)", "max(lst[0]"]
+  },
+  {
+    "task_id": "hgeneral-001",
+    "category": "general",
+    "prompt": "Convert 2:45 PM to 24-hour time. Answer in HH:MM format.",
+    "expected_contains_any": ["14:45"]
+  },
+  {
+    "task_id": "hgeneral-002",
+    "category": "general",
+    "prompt": "How many days are in a leap year? Return only the number.",
+    "expected_regex": "\\b366\\b"
+  }
+]

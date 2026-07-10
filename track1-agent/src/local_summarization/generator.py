@@ -72,6 +72,8 @@ class QwenSummaryGenerator(LocalSummaryGenerator):
         return self.config.default_max_new_tokens
 
     def generate(self, request: ParsedSummaryRequest, source_text: str, is_repair: bool = False, previous_output: str = "", validation_errors: list = None) -> GenerationAttempt:
+        if self.model is None or self.tokenizer is None:
+            self._load_model()
         import torch
         
         system_prompt = (
@@ -125,6 +127,15 @@ class QwenSummaryGenerator(LocalSummaryGenerator):
         # Extract output ignoring the prompt
         generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs["input_ids"], generated_ids)]
         output_text = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+        
+        if self.config.device == "cpu":
+            global _MODEL_CACHE, _TOKENIZER_CACHE
+            _MODEL_CACHE.pop(self.config.model_id, None)
+            _TOKENIZER_CACHE.pop(self.config.model_id, None)
+            self.model = None
+            self.tokenizer = None
+            import gc
+            gc.collect()
         
         return GenerationAttempt(
             prompt=prompt,

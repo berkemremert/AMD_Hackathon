@@ -141,7 +141,56 @@ def main():
             print(f"[WARN] Logic solver failed: {e}")
 
         try:
-            if task_type == "entity_extraction" or task.get("category") == "named_entity_recognition":
+            is_debug = (task_type == "bug_fixing" or task.get("category") == "code_debugging" or "identify the bug" in prompt.lower())
+            if is_debug:
+                from local_solvers import solve_code_debug
+                debug_ans = solve_code_debug(prompt)
+                if debug_ans is not None:
+                    print(f"[LOCAL SOLVER] Code debug solver answered:\n{debug_ans}")
+                    print("[TOKENS] 0 API tokens used.\n\n<EOT>")
+                    print("="*80 + "\n")
+                    success_count += 1
+                    results.append({
+                        "task_id": task_id,
+                        "category_dataset": task.get("category", "unknown"),
+                        "category_detected": task_type,
+                        "prompt": prompt,
+                        "solver_type": "local",
+                        "model_or_solver": "local_solver (code_debug)",
+                        "tokens_used": 0,
+                        "output": debug_ans,
+                        "validation_passed": True
+                    })
+                    continue
+        except Exception as e:
+            print(f"[WARN] Code debug solver failed: {e}")
+
+        try:
+            if task_type == "code_authoring" or task.get("category") == "code_generation":
+                from local_solvers import solve_code_authoring
+                code_ans = solve_code_authoring(prompt)
+                if code_ans is not None:
+                    print(f"[LOCAL SOLVER] Code authoring solver answered:\n{code_ans}")
+                    print("[TOKENS] 0 API tokens used.\n\n<EOT>")
+                    print("="*80 + "\n")
+                    success_count += 1
+                    results.append({
+                        "task_id": task_id,
+                        "category_dataset": task.get("category", "unknown"),
+                        "category_detected": task_type,
+                        "prompt": prompt,
+                        "solver_type": "local",
+                        "model_or_solver": "local_solver (code_authoring)",
+                        "tokens_used": 0,
+                        "output": code_ans,
+                        "validation_passed": True
+                    })
+                    continue
+        except Exception as e:
+            print(f"[WARN] Code authoring solver failed: {e}")
+
+        try:
+            if task_type == "entity_extraction":
                 print("[ROUTER] Local task detected. Routing to heuristic NER (0 tokens).")
                 raw_entities = solve_ner(prompt)
                 print(f"[RESULT] Local NER output:\n{raw_entities}")

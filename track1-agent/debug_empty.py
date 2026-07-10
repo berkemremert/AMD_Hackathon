@@ -1,5 +1,5 @@
 import json, os
-from local_summary_compressor import optimize_prompt_for_api
+from local_compressor import optimize_prompt_for_api
 from fireworks_client import chat
 from output_optimizer import TOKEN_LIMITS
 
