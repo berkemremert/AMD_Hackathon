@@ -20,7 +20,7 @@ def _load():
     global _model, _tokenizer, _device
     if _model is not None:
         return
-    _device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+    _device = torch.device("cpu")
     _tokenizer = DistilBertTokenizerFast.from_pretrained(CHECKPOINT_DIR)
     _model = DistilBertForSequenceClassification.from_pretrained(CHECKPOINT_DIR).to(_device)
     _model.eval()

@@ -63,43 +63,69 @@ def main():
     for task in tasks:
         task_type = detect_task_type(task["prompt"])
         
-        if task_type == "math_solving":
-            from local_solvers import solve_math_exact
-            math_ans = solve_math_exact(task["prompt"])
-            if math_ans is not None:
-                results.append({"task_id": task["task_id"], "answer": math_ans})
+        # ── Local solvers (0 API tokens) with graceful fallback ──
+        try:
+            if task_type == "math_solving":
+                from local_solvers import solve_math_exact
+                math_ans = solve_math_exact(task["prompt"])
+                if math_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": math_ans})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Math solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            is_logic = (task_type == "logical_puzzles" or 
+                        task.get("category") == "logical_reasoning" or 
+                        any(w in task["prompt"].lower() for w in ["arrange", "constraints:", "clues to determine", "standing in a line", "chairs numbered", "favorite color:", "each have a different", "logic puzzle", "in a row"]))
+            if is_logic:
+                from local_solvers import solve_logic_puzzle
+                logic_ans = solve_logic_puzzle(task["prompt"])
+                if logic_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": logic_ans})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Logic solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            is_debug = (task_type == "bug_fixing" or task.get("category") == "code_debugging" or "identify the bug" in task["prompt"].lower())
+            if is_debug:
+                from local_solvers import solve_code_debug
+                debug_ans = solve_code_debug(task["prompt"])
+                if debug_ans is not None:
+                    results.append({"task_id": task["task_id"], "answer": debug_ans})
+                    continue
+        except Exception as e:
+            print(f"[WARN] Code debug solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            if task_type == "entity_extraction":
+                from local_solvers import solve_ner
+                raw_entities = solve_ner(task["prompt"])
+                results.append({"task_id": task["task_id"], "answer": raw_entities})
                 continue
-                
-        if task_type == "logical_puzzles":
-            from local_solvers import solve_logic_puzzle
-            logic_ans = solve_logic_puzzle(task["prompt"])
-            if logic_ans is not None:
-                results.append({"task_id": task["task_id"], "answer": logic_ans})
+        except Exception as e:
+            print(f"[WARN] NER solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            if task_type == "sentiment_analysis":
+                from local_solvers import solve_sentiment
+                sentiment_output = solve_sentiment(task["prompt"])
+                results.append({"task_id": task["task_id"], "answer": sentiment_output})
                 continue
-                
-        if task_type == "entity_extraction":
-            # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
-            from local_solvers import solve_ner
-            raw_entities = solve_ner(task["prompt"])
-            
-            # Use ONLY GLiNER for 0 API token cost as requested
-            results.append({"task_id": task["task_id"], "answer": raw_entities})
-            continue
-            
-        if task_type == "sentiment_analysis":
-            from local_solvers import solve_sentiment
-            sentiment_output = solve_sentiment(task["prompt"])
-            results.append({"task_id": task["task_id"], "answer": sentiment_output})
-            continue
+        except Exception as e:
+            print(f"[WARN] Sentiment solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
 
         model, routing_tokens = route(task["prompt"])
         
-        limits = TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"])
+        from output_optimizer import get_dynamic_limits, optimize_prompt_for_api
+        limits = get_dynamic_limits(task_type, task["prompt"])
         system_prompt = limits["system"]
+        optimized_prompt = optimize_prompt_for_api(task["prompt"], task_type)
         
         answer = chat(
             model=model,
-            prompt=task["prompt"],
+            prompt=optimized_prompt,
             max_tokens=limits["cap"],
             system_prompt=system_prompt,
             extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
@@ -114,7 +140,7 @@ def main():
             
             retry_answer = chat(
                 model=fallback_model,
-                prompt=task["prompt"],
+                prompt=optimized_prompt,
                 max_tokens=limits.get("retry_cap", 800),
                 system_prompt=system_prompt,
                 extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}

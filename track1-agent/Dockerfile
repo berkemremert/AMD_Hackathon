@@ -21,4 +21,4 @@ RUN python3 download_models.py
 ENV ROUTER_MODE=finetuned
 
 # Run the evaluation script by default to demonstrate the agent
-CMD ["python3", "eval_agent.py"]
+CMD ["python3", "agent.py"]

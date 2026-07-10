@@ -60,11 +60,15 @@ def chat(model: str, prompt: str, max_tokens: int = 800, temperature: float = 0.
                 "finish_reason": finish_reason,
             }
         except requests.exceptions.HTTPError as e:
-            # If the model doesn't support reasoning_effort (e.g. Minimax), it returns 400 Bad Request
-            if e.response.status_code == 400 and "reasoning_effort" in e.response.text:
-                if "reasoning_effort" in payload:
-                    del payload["reasoning_effort"]
-                continue  # Retry instantly without the unsupported parameter
+            # If the model doesn't support reasoning params (e.g. Minimax), it returns 400 Bad Request
+            if e.response.status_code == 400:
+                stripped = False
+                for param in ("reasoning_effort", "reasoning_history"):
+                    if param in payload:
+                        del payload[param]
+                        stripped = True
+                if stripped:
+                    continue  # Retry instantly without the unsupported parameters
             
             last_err = e
             time.sleep(2 * (attempt + 1))

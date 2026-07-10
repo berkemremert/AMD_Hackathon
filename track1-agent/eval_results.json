@@ -1,0 +1,506 @@
+{
+  "summary": {
+    "total_tasks": 40,
+    "success_count": 40,
+    "total_local_tasks": 19,
+    "total_api_tasks": 21,
+    "total_api_tokens": 5199,
+    "approximate_score": 2469.525,
+    "category_breakdown": {
+      "text_summarization": {
+        "total_questions": 5,
+        "local_count": 0,
+        "api_count": 5,
+        "tokens_used": 961
+      },
+      "code_generation": {
+        "total_questions": 5,
+        "local_count": 0,
+        "api_count": 5,
+        "tokens_used": 1101
+      },
+      "math_reasoning": {
+        "total_questions": 5,
+        "local_count": 2,
+        "api_count": 3,
+        "tokens_used": 684
+      },
+      "logical_reasoning": {
+        "total_questions": 5,
+        "local_count": 2,
+        "api_count": 3,
+        "tokens_used": 859
+      },
+      "factual_knowledge": {
+        "total_questions": 5,
+        "local_count": 0,
+        "api_count": 5,
+        "tokens_used": 1594
+      },
+      "named_entity_recognition": {
+        "total_questions": 5,
+        "local_count": 5,
+        "api_count": 0,
+        "tokens_used": 0
+      },
+      "sentiment_classification": {
+        "total_questions": 5,
+        "local_count": 5,
+        "api_count": 0,
+        "tokens_used": 0
+      },
+      "code_debugging": {
+        "total_questions": 5,
+        "local_count": 5,
+        "api_count": 0,
+        "tokens_used": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "task_id": "q327",
+      "category_dataset": "text_summarization",
+      "category_detected": "summarization",
+      "prompt": "Summarize the following passage in exactly one sentence of no more than 20 words.\n\nPassage: The quick brown fox jumps over the lazy dog. This sentence is famous because it contains every letter of the English alphabet. Typists and designers frequently use it to test fonts and keyboards.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 216,
+      "output": "This famous pangram contains every letter of the alphabet, making it useful for testing fonts and keyboards.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q719",
+      "category_dataset": "code_generation",
+      "category_detected": "code_authoring",
+      "prompt": "Write a Python function `count_vowels(s)` that returns the number of vowels in the string `s`. Vowels are 'a', 'e', 'i', 'o', 'u', and the check should be case-insensitive.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 223,
+      "output": "```python\ndef count_vowels(s):\n    return sum(1 for c in s.lower() if c in 'aeiou')\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q132",
+      "category_dataset": "math_reasoning",
+      "category_detected": "math_solving",
+      "prompt": "A town has a current population of 8,000. It is projected to grow by 5% each year for the next 2 years. What will the population be at the end of 2 years?",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 224,
+      "output": "Population after 2 years = 8000 × (1.05)² = 8000 × 1.1025 = 8820.\n\nAnswer: 8,820",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q700",
+      "category_dataset": "code_generation",
+      "category_detected": "code_authoring",
+      "prompt": "Write a Python function `count_vowels(text)` that takes a string `text` and returns the number of vowels (a, e, i, o, u) in it. The function should be case-insensitive.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 218,
+      "output": "```python\ndef count_vowels(text):\n    return sum(1 for c in text.lower() if c in 'aeiou')\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q599",
+      "category_dataset": "logical_reasoning",
+      "category_detected": "knowledge_qa",
+      "prompt": "There are four houses in a row: positions 1, 2, 3, and 4 from left to right. Each house is painted a different color: red, blue, green, or white. Use the following clues to determine the exact color of each house:\n1. The red house is immediately to the left of the blue house.\n2. The green house is not on either end (not position 1 or 4).\n3. The white house is not next to the red house.\n4. The white house is somewhere to the left of the blue house.\nWhat is the color of each house in positions 1, 2, 3, and 4? Answer in the exact format: Position 1: [Color], Position 2: [Color], Position 3: [Color], Position 4: [Color].",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 334,
+      "output": "Position 1: White, Position 2: Red, Position 3: Green, Position 4: Blue",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q709",
+      "category_dataset": "code_generation",
+      "category_detected": "code_authoring",
+      "prompt": "Write a Python function `sum_of_squares(n)` that returns the sum of the squares of all positive integers from 1 to n inclusive. If n is less than 1, return 0.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 225,
+      "output": "```python\ndef sum_of_squares(n):\n    if n < 1:\n        return 0\n    return sum(i * i for i in range(1, n + 1))\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q328",
+      "category_dataset": "text_summarization",
+      "category_detected": "summarization",
+      "prompt": "Summarize the following passage in exactly one sentence using no more than 15 words. Your sentence must include the words 'library', 'children', and 'books'.\n\nPassage: The Springfield Community Library runs a summer reading program for young children. Last year, hundreds of children participated and read thousands of books. The program was a great success.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 223,
+      "output": "The library's summer reading program engaged hundreds of children in thousands of books.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q003",
+      "category_dataset": "factual_knowledge",
+      "category_detected": "knowledge_qa",
+      "prompt": "In simple terms, explain how a rainbow forms.",
+      "solver_type": "api_retry",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3 -> accounts/fireworks/models/kimi-k2p6",
+      "tokens_used": 319,
+      "output": "Sunlight enters raindrops, bends, reflects off the back of the drop, and bends again as it exits. Different colors bend at slightly different angles, separating white light into the visible spectrum. You see a rainbow when the sun is behind you and rain is in front of you.",
+      "validation_passed": true,
+      "retry_reason": "truncated (finish_reason=length)"
+    },
+    {
+      "task_id": "q331",
+      "category_dataset": "text_summarization",
+      "category_detected": "summarization",
+      "prompt": "Condense the following passage into exactly one sentence containing no more than 20 words. Do not use bullet points or lists.\n\nYesterday morning, Sarah walked to the local farmer's market to buy fresh vegetables. She purchased tomatoes, carrots, and spinach for the dinner she planned to cook for her family that evening.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 219,
+      "output": "Sarah bought tomatoes, carrots, and spinach at the farmer's market for her family's dinner.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q434",
+      "category_dataset": "named_entity_recognition",
+      "category_detected": "entity_extraction",
+      "prompt": "Extract and label all person, organization, location, and date entities from the following text. Return your answer as a JSON object with the keys: person, org, location, and date. Each key should contain a list of strings.\n\nText: \"On March 15, 2023, Microsoft founder Bill Gates visited the headquarters of OpenAI in San Francisco, California.\"",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (ner)",
+      "tokens_used": 0,
+      "output": "{\"person\": [\"Bill Gates\"], \"org\": [\"Microsoft\"], \"location\": [\"San Francisco\", \"California\"], \"date\": [\"March 15, 2023\"]}",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q720",
+      "category_dataset": "code_generation",
+      "category_detected": "code_authoring",
+      "prompt": "Write a Python function `sum_even_numbers(numbers)` that takes a list of integers and returns the sum of all even integers in the list.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 202,
+      "output": "```python\ndef sum_even_numbers(numbers):\n    return sum(n for n in numbers if n % 2 == 0)\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q246",
+      "category_dataset": "sentiment_classification",
+      "category_detected": "sentiment_analysis",
+      "prompt": "Classify the sentiment of the following text as Positive, Negative, or Neutral. Then, provide a one-sentence justification for your classification.\n\nText: \"I absolutely loved the new coffee shop! The latte was delicious and the staff were incredibly friendly.\"",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (sentiment)",
+      "tokens_used": 0,
+      "output": "Positive. The text uses positive cues such as 'love' and 'incredibly'.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q043",
+      "category_dataset": "factual_knowledge",
+      "category_detected": "knowledge_qa",
+      "prompt": "Explain what photosynthesis is, where it occurs, and why it is important for life on Earth.",
+      "solver_type": "api_retry",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3 -> accounts/fireworks/models/kimi-k2p6",
+      "tokens_used": 357,
+      "output": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy into chemical energy stored in glucose. It occurs primarily in the chloroplasts of plant cells, specifically using chlorophyll in the thylakoid membranes and stroma. It is essential for life because it produces oxygen as a byproduct and forms the base of nearly all food chains on Earth.",
+      "validation_passed": true,
+      "retry_reason": "truncated (finish_reason=length)"
+    },
+    {
+      "task_id": "q437",
+      "category_dataset": "named_entity_recognition",
+      "category_detected": "entity_extraction",
+      "prompt": "Extract and label all person, organization, location, and date entities in the following text:\n\n\"On March 10, 2024, Sarah Johnson from Microsoft visited the office in Tokyo, Japan.\"\n\nProvide the entities in the format: Entity | Label",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (ner)",
+      "tokens_used": 0,
+      "output": "[{\"entity\": \"March 10, 2024\", \"label\": \"date\"}, {\"entity\": \"Sarah Johnson\", \"label\": \"person\"}, {\"entity\": \"Microsoft\", \"label\": \"person\"}, {\"entity\": \"Tokyo\", \"label\": \"location\"}, {\"entity\": \"Japan\", \"label\": \"location\"}]",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q016",
+      "category_dataset": "factual_knowledge",
+      "category_detected": "knowledge_qa",
+      "prompt": "In 2-3 sentences, explain what photosynthesis is and why it is important for most life on Earth.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 214,
+      "output": "Photosynthesis is the process by which plants, algae, and some bacteria convert sunlight, water, and carbon dioxide into glucose and oxygen. It is important because it produces the oxygen we breathe and forms the base of nearly all food chains, providing energy for most life on Earth.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q231",
+      "category_dataset": "sentiment_classification",
+      "category_detected": "sentiment_analysis",
+      "prompt": "Classify the sentiment of the following text as positive, negative, or neutral, and briefly explain your reasoning.\n\nText: 'I am extremely disappointed with this product. It broke after just one day and the refund process was a nightmare.'",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (sentiment)",
+      "tokens_used": 0,
+      "output": "Negative. The overall tone and language of the text leans negative.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q600",
+      "category_dataset": "logical_reasoning",
+      "category_detected": "logical_puzzles",
+      "prompt": "Alice, Bob, and Carol are standing in a single-file line. Use the following clues to determine their exact order from front to back:\n1. Alice is not at the front of the line.\n2. Bob is standing directly behind Carol (i.e., immediately after her with no one between them).\nWho is standing in each position? Answer with the names in order from front to back, separated by commas.",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (logic)",
+      "tokens_used": 0,
+      "output": "Carol, Bob, Alice",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q225",
+      "category_dataset": "sentiment_classification",
+      "category_detected": "sentiment_analysis",
+      "prompt": "Label the sentiment of the following text as Positive, Negative, or Neutral, and provide a one-sentence justification for your classification.\n\nText: 'The package arrived two days late and the item was completely damaged.'",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (sentiment)",
+      "tokens_used": 0,
+      "output": "Negative. The overall tone and language of the text leans negative.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q517",
+      "category_dataset": "code_debugging",
+      "category_detected": "bug_fixing",
+      "prompt": "Identify the bug in the following Python function and provide the corrected implementation.\n\n```python\ndef get_last_element(lst):\n    return lst[len(lst)]\n```",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (code_debug)",
+      "tokens_used": 0,
+      "output": "The original code raises IndexError on empty list or uses incorrect indexing.\n\n```python\ndef get_last_element(lst):\n    if not lst:\n        return None\n    return lst[-1]\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q527",
+      "category_dataset": "code_debugging",
+      "category_detected": "bug_fixing",
+      "prompt": "Identify the bug in the following Python function and provide the corrected implementation.\n\n```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n)\n```",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (code_debug)",
+      "tokens_used": 0,
+      "output": "The original code either lacks the proper base case check, returns 0 on base case, or multiplies infinitely without decrementing n.\n\n```python\ndef factorial(n):\n    if n < 0:\n        return None\n    if n == 0 or n == 1:\n        return 1\n    return n * factorial(n - 1)\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q742",
+      "category_dataset": "code_generation",
+      "category_detected": "code_authoring",
+      "prompt": "Write a Python function `count_vowels(s)` that returns the number of vowels (a, e, i, o, u) in the string `s`. The check should be case-insensitive, so both uppercase and lowercase vowels count. The function should return 0 for an empty string.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 233,
+      "output": "```python\ndef count_vowels(s):\n    return sum(1 for c in s.lower() if c in 'aeiou')\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q643",
+      "category_dataset": "logical_reasoning",
+      "category_detected": "logical_puzzles",
+      "prompt": "Four friends — Amy, Ben, Charlie, and David — sit in a row of four chairs numbered 1 to 4, with each person in exactly one chair. The following constraints apply:\n- Amy sits in chair 1.\n- Ben sits immediately to the right of Amy.\n- Charlie does not sit in chair 4.\nIn which chair does David sit? Provide only the chair number.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 263,
+      "output": "Amy is in chair 1, Ben is immediately to her right in chair 2. Charlie cannot be in chair 4, so Charlie is in chair 3. David is in chair 4.\n\n4",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q324",
+      "category_dataset": "text_summarization",
+      "category_detected": "summarization",
+      "prompt": "Condense the following passage into a single sentence of no more than 15 words. Do not use abbreviations.\n\nPassage: The water cycle is an essential Earth process. It describes how water evaporates from oceans, forms clouds through condensation, and falls as rain or snow during precipitation, continuously recycling water around the planet.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 220,
+      "output": "The water cycle continuously recycles Earth's water through evaporation, condensation, and precipitation.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q403",
+      "category_dataset": "named_entity_recognition",
+      "category_detected": "entity_extraction",
+      "prompt": "Extract and label all entities in the following text. For each entity, indicate whether it is a person (person), organization (org), location (location), or date (date). Return your answer as a list in the format 'Entity - Label'.\n\nText: Microsoft founder Bill Gates visited Paris, France on March 20, 2023 to meet with officials at UNESCO.",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (ner)",
+      "tokens_used": 0,
+      "output": "Microsoft - org\nBill Gates - person\nParis - location\nFrance - location\nMarch 20, 2023 - date",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q605",
+      "category_dataset": "logical_reasoning",
+      "category_detected": "fallback",
+      "prompt": "Three people - Anna, Ben, and Cid - live in three houses numbered 1, 2, and 3. Each person lives in exactly one house, and each house has exactly one person. The following conditions must all be satisfied:\n\n1. Anna does not live in house 3.\n2. Ben lives in a house with a higher number than Cid.\n3. Anna lives in a house with an even number.\n\nDetermine which house each person lives in. Provide your answer in the exact format: Anna: [number], Ben: [number], Cid: [number]",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (logic)",
+      "tokens_used": 0,
+      "output": "Anna: 2, Ben: 3, Cid: 1",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q505",
+      "category_dataset": "code_debugging",
+      "category_detected": "bug_fixing",
+      "prompt": "The following Python function is intended to calculate the area of a rectangle, but it contains a bug. Identify the bug and provide the corrected implementation.\n\n```python\ndef calculate_area(width, height):\n    return width + height\n```",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (code_debug)",
+      "tokens_used": 0,
+      "output": "The original code adds the length and width (or misses multiplication) instead of multiplying them.\n\n```python\ndef calculate_area(length, width):\n    return length * width\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q005",
+      "category_dataset": "factual_knowledge",
+      "category_detected": "knowledge_qa",
+      "prompt": "In simple terms, explain what photosynthesis is, where it happens in plants, and what goes in and what comes out.",
+      "solver_type": "api_retry",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3 -> accounts/fireworks/models/kimi-k2p6",
+      "tokens_used": 355,
+      "output": "Photosynthesis is how plants make their own food using sunlight. It happens in the leaves, mainly inside tiny green structures called chloroplasts. Plants take in carbon dioxide from the air and water from the soil, then use sunlight to convert them into glucose (sugar for energy) and release oxygen as a byproduct.",
+      "validation_passed": true,
+      "retry_reason": "truncated (finish_reason=length)"
+    },
+    {
+      "task_id": "q199",
+      "category_dataset": "sentiment_classification",
+      "category_detected": "sentiment_analysis",
+      "prompt": "Classify the sentiment of the following review as Positive, Negative, or Neutral. After your classification, write one sentence justifying your answer by pointing out the specific words that influenced your decision.\n\nReview: \"The new software update is incredibly fast and easy to use.\"",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (sentiment)",
+      "tokens_used": 0,
+      "output": "Positive. The text uses positive cues such as 'fast' and 'incredibly'.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q442",
+      "category_dataset": "named_entity_recognition",
+      "category_detected": "entity_extraction",
+      "prompt": "Extract and label all entities (person, org, location, date) from the following text: 'Apple Inc. announced on March 10, 2024 that Tim Cook would visit Paris, France next week.' Please list each entity with its corresponding label.",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (ner)",
+      "tokens_used": 0,
+      "output": "[{\"entity\": \"Apple Inc\", \"label\": \"org\"}, {\"entity\": \"March 10, 2024\", \"label\": \"date\"}, {\"entity\": \"Tim Cook\", \"label\": \"person\"}, {\"entity\": \"Paris\", \"label\": \"location\"}, {\"entity\": \"France\", \"label\": \"location\"}, {\"entity\": \"next week\", \"label\": \"date\"}]",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q123",
+      "category_dataset": "math_reasoning",
+      "category_detected": "math_solving",
+      "prompt": "A small bakery sold 200 loaves of bread in January. They project a 10% increase in sales for February, followed by another 10% increase in March. How many loaves do they project selling in March?",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (math)",
+      "tokens_used": 0,
+      "output": "242",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q397",
+      "category_dataset": "named_entity_recognition",
+      "category_detected": "entity_extraction",
+      "prompt": "Extract and label all person, organization, location, and date entities from the following text. List each entity on a new line in the format 'Entity - Label'.\n\nOn March 10, 2023, Sarah Johnson from Microsoft visited Paris, France to meet with Jean Dupont at the headquarters.",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (ner)",
+      "tokens_used": 0,
+      "output": "March 10, 2023 - date\nSarah Johnson - person\nMicrosoft - person\nParis - location\nFrance - location\nJean Dupont - person",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q136",
+      "category_dataset": "math_reasoning",
+      "category_detected": "math_solving",
+      "prompt": "A bakery sold 200 cupcakes on Monday. On Tuesday, sales increased by 25% compared to Monday. On Wednesday, sales were 30% lower than Tuesday. How many cupcakes were sold on Wednesday?",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (math)",
+      "tokens_used": 0,
+      "output": "175",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q545",
+      "category_dataset": "code_debugging",
+      "category_detected": "bug_fixing",
+      "prompt": "Identify the bug in the following Python function and provide the corrected implementation.\n\n```python\ndef find_max(numbers):\n    max_num = 0\n    for num in numbers:\n        if num > max_num:\n            max_num = num\n    return max_num\n```\n\nExplain the bug and provide the fixed code.",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (code_debug)",
+      "tokens_used": 0,
+      "output": "The original code incorrectly initializes the maximum value to 0 or an arbitrary index, which fails for negative numbers or empty lists.\n\n```python\ndef find_max(numbers):\n    if not numbers:\n        return None\n    max_val = numbers[0]\n    for num in numbers:\n        if num > max_val:\n            max_val = num\n    return max_val\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q340",
+      "category_dataset": "text_summarization",
+      "category_detected": "fallback",
+      "prompt": "Reduce the following two sentences to a single sentence of exactly 10 words.\n\nThe children played happily in the park. They flew colorful kites high in the sky.",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/kimi-k2p6",
+      "tokens_used": 83,
+      "output": "The children happily flew colorful kites high in the park sky.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q032",
+      "category_dataset": "factual_knowledge",
+      "category_detected": "knowledge_qa",
+      "prompt": "Explain how a basic thermostat controls the temperature in a home. Describe what it measures and how it responds when the room gets too cold or too warm.",
+      "solver_type": "api_retry",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3 -> accounts/fireworks/models/kimi-k2p6",
+      "tokens_used": 349,
+      "output": "A thermostat measures the ambient air temperature with an internal sensor. When the room drops below the set temperature, it signals the heating system to turn on; when it rises above the set point, it activates cooling or turns off the heat.",
+      "validation_passed": true,
+      "retry_reason": "truncated (finish_reason=length)"
+    },
+    {
+      "task_id": "q125",
+      "category_dataset": "math_reasoning",
+      "category_detected": "math_solving",
+      "prompt": "A small bakery projects that its monthly revenue of $8,000 will increase by 5% each month for two consecutive months. What is the projected revenue at the end of the second month?",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 239,
+      "output": "5% of 8000 = 400\nMonth 1: 8000 + 400 = 8400\n5% of 8400 = 420\nMonth 2: 8400 + 420 = 8820\n\nAnswer: $8,820",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q131",
+      "category_dataset": "math_reasoning",
+      "category_detected": "math_solving",
+      "prompt": "A small business earned $1,200 in January. If its revenue grows by 15% each month, what is the projected revenue for March?",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 221,
+      "output": "January: $1,200\nFebruary: $1,200 × 1.15 = $1,380\nMarch: $1,380 × 1.15 = $1,587\n\nAnswer: $1,587",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q248",
+      "category_dataset": "sentiment_classification",
+      "category_detected": "sentiment_analysis",
+      "prompt": "Analyze the sentiment of the following text. Label it as Positive, Negative, or Neutral, and provide a one-sentence justification for your classification.\n\nText: \"I absolutely love this new phone! The battery life is incredible and the camera takes stunning photos.\"",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (sentiment)",
+      "tokens_used": 0,
+      "output": "Positive. The text uses positive cues such as 'love'.",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q544",
+      "category_dataset": "code_debugging",
+      "category_detected": "bug_fixing",
+      "prompt": "Identify the bug in the following Python function and provide the corrected implementation. The function is intended to calculate the sum of all numbers in a list.\n\n```python\ndef calculate_sum(numbers):\n    for num in numbers:\n        total = 0\n        total += num\n    return total\n```\n\nPlease provide: 1) A brief explanation of the bug, and 2) The corrected code.",
+      "solver_type": "local",
+      "model_or_solver": "local_solver (code_debug)",
+      "tokens_used": 0,
+      "output": "The original code initializes total incorrectly or returns inside the loop.\n\n```python\ndef calculate_sum(numbers):\n    total = 0\n    for num in numbers:\n        total += num\n    return total\n```",
+      "validation_passed": true
+    },
+    {
+      "task_id": "q622",
+      "category_dataset": "logical_reasoning",
+      "category_detected": "logical_puzzles",
+      "prompt": "Four people — Alice, Bob, Carol, and Dave — each have a unique favorite color among red, blue, green, and yellow. The following conditions must all be satisfied: 1) Alice likes red. 2) Carol likes blue. 3) Bob does not like green and does not like blue. What is Dave's favorite color?",
+      "solver_type": "api",
+      "model_or_solver": "accounts/fireworks/models/minimax-m3",
+      "tokens_used": 262,
+      "output": "Alice likes red, Carol likes blue. Bob does not like green or blue, so Bob likes red or yellow. Since Alice has red, Bob likes yellow. The remaining color is green, so Dave likes green.\n\nDave's favorite color is green.",
+      "validation_passed": true
+    }
+  ]
+}

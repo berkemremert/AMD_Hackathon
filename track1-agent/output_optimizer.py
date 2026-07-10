@@ -5,6 +5,7 @@ system instruction and output token cap to minimize API costs without losing acc
 """
 
 import re
+from prompt_compressor import optimize_prompt_for_api
 
 # We define regex heuristics to quickly classify tasks into 8 domains.
 # The order here is optimized to catch the most specific domains first.
@@ -73,48 +74,52 @@ _BASE = "Answer in English. Be concise and direct; no preamble, no restating the
 
 TOKEN_LIMITS = {
     "knowledge_qa": {
-        "system": f"{_BASE} Give a correct, clear answer in under 120 words.",
-        "cap": 300,
-        "retry_cap": 1024,
+        "system": f"{_BASE} Answer directly in at most 3 short sentences.",
+        "cap": 64,
+        "retry_cap": 256,
     },
     "math_solving": {
-        "system": f"{_BASE} Work through it in brief steps, then end with 'Answer: <value>' on its own line.",
-        "cap": 512,
-        "retry_cap": 1024,
+        "system": f"{_BASE} Show brief steps, ending with 'Answer: <value>' on the last line.",
+        "cap": 384,
+        "retry_cap": 768,
     },
     "sentiment_analysis": {
-        "system": f"{_BASE} State the sentiment as positive, negative, or neutral, then one short reason.",
-        "cap": 150,
-        "retry_cap": 300,
+        "system": f"{_BASE} Output only the sentiment label (positive, negative, or neutral); add one short reason only if requested.",
+        "cap": 40,
+        "retry_cap": 128,
     },
     "summarization": {
-        "system": f"{_BASE} Output only the summary and obey any length or format constraint stated in the task.",
-        "cap": 300,
-        "retry_cap": 600,
+        "system": f"{_BASE} Strictly obey the requested format and length. No preamble.",
+        "cap": 128,
+        "retry_cap": 384,
     },
     "entity_extraction": {
-        "system": f"{_BASE} Output valid JSON only: [{{\"entity\":\"...\",\"type\":\"...\"}}]. Do not output conversational text.",
-        "cap": 300,
-        "retry_cap": 600,
+        "system": f"{_BASE} Output entities strictly in the exact requested format (e.g. valid JSON). Do not output conversational text.",
+        "cap": 200,
+        "retry_cap": 400,
     },
     "bug_fixing": {
-        "system": f"{_BASE} State the bug in one sentence, then give the corrected code in a single fenced block.",
-        "cap": 512,
-        "retry_cap": 1024,
+        "system": f"{_BASE} State the bug briefly, then provide the corrected code in a single fenced block. Be concise.",
+        "cap": 160,
+        "retry_cap": 384,
     },
     "logical_puzzles": {
-        "system": f"{_BASE} Reason in brief numbered steps, checking each constraint, then end with 'Answer: <value>' on its own line.",
-        "cap": 512,
-        "retry_cap": 1024,
+        "system": f"{_BASE} Provide brief reasoning, ending with the final answer on the last line.",
+        "cap": 416,
+        "retry_cap": 768,
     },
     "code_authoring": {
-        "system": f"{_BASE} Output only the code in a single fenced block — correct, complete, and self-contained.",
-        "cap": 768,
-        "retry_cap": 1536,
+        "system": f"{_BASE} Output only the code in a single fenced block with minimal comments. No preamble.",
+        "cap": 320,
+        "retry_cap": 640,
     },
     "fallback": {
-        "system": f"{_BASE}",
-        "cap": 400,
-        "retry_cap": 1024,
+        "system": f"{_BASE} Be concise and direct.",
+        "cap": 256,
+        "retry_cap": 512,
     },
 }
+
+def get_dynamic_limits(task_type: str, prompt: str) -> dict:
+    """Returns exact configured token limits based on the task type."""
+    return TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"]).copy()

@@ -1,0 +1,3 @@
+"""
+Source directory root package.
+"""
