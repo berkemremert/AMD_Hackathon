@@ -16,10 +16,11 @@ DATA_PATH = Path(__file__).parent / "data" / "labeled_dataset.json"
 # Fallback to local dev env vars if ALLOWED_MODELS is not provided
 if "ALLOWED_MODELS" in os.environ:
     models = os.environ["ALLOWED_MODELS"].split(",")
-    MODEL_CHEAP = next((m for m in models if "minimax" in m.lower()), models[0])
-    MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower()), models[-1])
+    # The user wants to use kimi-k2p6 (non-coding version) always
+    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[0])
+    MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[-1])
 else:
-    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/minimax-m2p7")
+    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
     MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
 
 
@@ -86,6 +87,16 @@ def main():
             print("[ROUTER] Local task detected. Routing to local GLiNER (0 tokens).")
             raw_entities = solve_ner(prompt)
             print(f"[RESULT] Local NER output:\n{raw_entities}")
+            print(f"[TOKENS] 0 API tokens used.")
+            success_count += 1
+            print("\n<EOT>\n" + "=" * 80)
+            continue
+            
+        if task_type == "sentiment_analysis":
+            from local_solvers import solve_sentiment
+            print("[ROUTER] Local task detected. Routing to local CardiffNLP Sentiment (0 tokens).")
+            sentiment_output = solve_sentiment(prompt)
+            print(f"[RESULT] Local Sentiment output:\n{sentiment_output}")
             print(f"[TOKENS] 0 API tokens used.")
             success_count += 1
             print("\n<EOT>\n" + "=" * 80)

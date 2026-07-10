@@ -1,0 +1,98 @@
+[
+  {
+    "task_id": "mh-1",
+    "answer": "80"
+  },
+  {
+    "task_id": "mh-2",
+    "answer": "3"
+  },
+  {
+    "task_id": "mh-3",
+    "answer": "764.92"
+  },
+  {
+    "task_id": "lh-1",
+    "answer": "Step 1: Analyze the given information.\nFriends: Ana (A), Ben (B), Cem (C), Deniz (D)\nPets: Cat (Ca), Dog (Dg), Fish (F), Bird (Bi)\nHouses: Red (R), Blue (Bl), Green (G), Yellow (Y)\n\nClues:\n1. Ana owns neither the cat nor the dog. ($A \\neq Ca$, $A \\neq Dg$)\n2. The fish owner lives in the red house. ($F \\rightarrow R$)\n3. Ben lives in the blue house. ($B \\rightarrow Bl$)\n4. Cem owns the dog. ($C \\rightarrow Dg$)\n5. Deniz lives in neither the red nor the green house. ($D \\neq R$, $D \\neq G$)\n\nStep 2: Determine Cem's pet and house constraints.\nFrom Clue 4, Cem owns the dog ($C \\rightarrow Dg$).\nSince Cem owns the dog, Ana cannot own the dog (consistent with Clue 1).\n\nStep 3: Determine Deniz's house color.\nFrom Clue 5, Deniz does not live in Red or Green.\nThe available colors are Red, Blue, Green, Yellow.\nBen lives in Blue (Clue 3).\nTherefore, Deniz must live in Yellow. ($D \\rightarrow Y$)\n\nStep 4: Determine the remaining house colors.\nHouses assigned: Ben $\\rightarrow$ Blue, Deniz $\\rightarrow$ Yellow.\nRemaining houses: Red, Green.\nRemaining people: Ana, Cem.\nSo, {Ana, Cem} must live in {Red, Green}.\n\nStep 5: Determine the fish owner's house color.\nFrom Clue 2, the fish owner lives in the Red house ($F \\rightarrow R$).\nSince Cem owns the dog, Cem cannot own the fish.\nAna, Ben, or Deniz could own the fish.\n\nStep 6: Determine Deniz's pet.\nDeniz lives in Yellow ($D \\rightarrow Y$).\nIf Deniz owned the fish, Deniz would live in Red (Clue 2). This contradicts $D \\rightarrow Y$.\nTherefore, Deniz does not own the fish. ($D \\neq F$)\n\nStep 7: Determine Ana's pet.\nAna does not own the cat or the dog (Clue 1).\nAna does not own the fish (If Ana owned the fish, Ana would live in Red. If Ana lives in Red, Cem must live in Green. Let's check this later, but for now, we check if Ana can own the fish).\nIf Ana owns the fish ($A \\rightarrow F$), then Ana lives in Red ($A \\rightarrow R$).\nIf $A \\rightarrow R$, then Cem must live in Green ($C \\rightarrow G$).\nIf $A \\rightarrow F$, then the remaining pets are Cat and Bird for Ben and Deniz.\nBen lives in Blue ($B \\rightarrow Bl$). Deniz lives in Yellow ($D \\rightarrow Y$).\nIf $A \\rightarrow F$, then $C \\rightarrow Dg$. Pets remaining: Cat, Bird.\nIf $B \\rightarrow Ca$, then $D \\rightarrow Bi$.\nIf $B \\rightarrow Bi$, then $D \\rightarrow Ca$.\nThis scenario is consistent so far.\n\nLet's check the other possibility for Ana's pet: Ana owns the bird ($A \\rightarrow Bi$).\nIf $A \\rightarrow Bi$, then the fish owner must be Ben or Deniz.\nIf Ben owns the fish ($B \\rightarrow F$), then Ben lives in Red (Clue 2). This contradicts $B \\rightarrow Bl$ (Clue 3). So, Ben does not own the fish.\nTherefore, Deniz must own the fish ($D \\rightarrow F$).\nIf $D \\rightarrow F$, then Deniz lives in Red (Clue 2). This contradicts $D \\rightarrow Y$ (from Step 3).\nTherefore, Ana cannot own the bird.\n\nStep 8: Conclude Ana's pet.\nSince Ana cannot own the Cat, Dog, or Bird, Ana must own the Fish ($A \\rightarrow F$).\n\nStep 9: Determine Ana's house color.\nSince Ana owns the fish, and the"
+  },
+  {
+    "task_id": "lh-2",
+    "answer": "A is a knight, B is a knave, C is a knave."
+  },
+  {
+    "task_id": "lh-3",
+    "answer": "Kaya, Mert, Okan, Nil, Lale"
+  },
+  {
+    "task_id": "ch-1",
+    "answer": "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = OrderedDict()\n\n    def get(self, key: int) -\u003e int:\n        if key not in self.cache:\n            return -1\n        # Move the accessed item to the end to mark it as most recently used\n        self.cache.move_to_end(key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -\u003e None:\n        if key in self.cache:\n            # Update value and move to end\n            self.cache[key] = value\n            self.cache.move_to_end(key)\n        else:\n            # Check capacity and evict if necessary\n            if len(self.cache) \u003e= self.capacity:\n                # Pop the first item (least recently used)\n                self.cache.popitem(last=False)\n            \n            # Add the new item (it will be the most recently used)\n            self.cache[key] = value\n\n# Usage:\n# cache = LRUCache(2)\n# cache.put(1, 1)\n# cache.put(2, 2)\n# print(cache.get(1))  # returns 1\n# cache.put(3, 3)      # evicts key 2\n# print(cache.get(2))  # returns -1\n# cache.put(4, 4)      # evicts key 1\n# print(cache.get(1))  # returns -1\n# print(cache.get(3))  # returns 3\n```\nThe `OrderedDict` from the `collections` module is used to maintain insertion order, allowing O(1) operations for moving items to the end and evicting the first item."
+  },
+  {
+    "task_id": "ch-2",
+    "answer": "```python\ndef valid_brackets(s):\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    for char in s:\n        if char in \"([{\":\n            stack.append(char)\n        elif char in \")]}\":\n            if not stack:\n                return False\n            top_element = stack.pop()\n            if mapping[char] != top_element:\n                return False\n    return not stack\n```\nCall `valid_brackets(s)` with a string `s` containing characters and brackets to check for balanced and properly nested brackets."
+  },
+  {
+    "task_id": "ch-3",
+    "answer": "```python\nimport re\n\ndef parse_duration(s: str) -\u003e int:\n    \"\"\"\n    Converts duration strings like '2h30m', '45s', '1h5s', '10m' into total seconds as an int.\n    Valid units are h, m, s, appearing at most once each and always in h-then-m-then-s order.\n    Raises ValueError for anything invalid (empty string, unknown units, wrong order).\n    \"\"\"\n    if not s:\n        raise ValueError(\"Input string cannot be empty.\")\n\n    total_seconds = 0\n    \n    # Regex to capture optional hours, minutes, and seconds in order\n    # It looks for: (number followed by 'h')? (number followed by 'm')? (number followed by 's')?\n    pattern = re.compile(r\"^(?:(\\d+)h)?(?:(\\d+)m)?(?:(\\d+)s)?$\")\n    match = pattern.fullmatch(s)\n\n    if not match:\n        raise ValueError(f\"Invalid duration format: {s}\")\n\n    h_str, m_str, s_str = match.groups()\n\n    # Check if any part was matched, ensuring at least one unit is present\n    if h_str is None and m_str is None and s_str is None:\n        raise ValueError(f\"Invalid duration format: {s} (no units provided)\")\n\n    try:\n        if h_str:\n            hours = int(h_str)\n            total_seconds += hours * 3600\n        if m_str:\n            minutes = int(m_str)\n            total_seconds += minutes * 60\n        if s_str:\n            seconds = int(s_str)\n            total_seconds += seconds\n    except ValueError:\n        # This should theoretically not happen if the regex only captures digits, \n        # but included for robustness against unexpected parsing issues.\n        raise ValueError(f\"Error converting numeric values in duration: {s}\")\n\n    return total_seconds\n```\nUsage: Call `parse_duration('2h30m')` to get the total seconds for the given duration string."
+  },
+  {
+    "task_id": "dh-1",
+    "answer": "The bug is that when the search space is exhausted and `lo` equals `len(arr)`, accessing `arr[lo]` causes an `IndexError`.\n\n```python\ndef binary_search(arr, target):\n    lo, hi = 0, len(arr)\n    while lo \u003c hi:\n        mid = (lo + hi) // 2\n        if arr[mid] \u003c target:\n            lo = mid + 1\n        else:\n            hi = mid\n    return lo if lo \u003c len(arr) and arr[lo] == target else -1\n```"
+  },
+  {
+    "task_id": "dh-2",
+    "answer": "Modifying a dictionary while iterating over it raises a `RuntimeError` because the iteration structure becomes invalid when elements are deleted during traversal.\n\n```python\ndef remove_negatives(d):\n    keys_to_delete = [k for k in d if d[k] \u003c 0]\n    for k in keys_to_delete:\n        del d[k]\n    return d\n```"
+  },
+  {
+    "task_id": "dh-3",
+    "answer": "The fix is to use a default argument in the lambda function: `funcs.append(lambda x, multiplier=i: x * multiplier)`"
+  },
+  {
+    "task_id": "fh-1",
+    "answer": "Optimistic locking assumes conflicts are rare, allowing transactions to proceed without immediate locking and checking for changes upon commit. Pessimistic locking assumes conflicts are likely, acquiring exclusive locks on data immediately to prevent other transactions from modifying it. Optimistic locking is better for low-contention systems, while pessimistic locking is superior for high-contention scenarios where data integrity must be guaranteed instantly."
+  },
+  {
+    "task_id": "fh-2",
+    "answer": "The CAP theorem states that a distributed data store can only simultaneously guarantee two out of three properties: Consistency, Availability, and Partition Tolerance. A single-node relational database typically prioritizes Consistency and Availability, as network partitions are not a concern. Conversely, a Dynamo-style distributed store often prioritizes Availability and Partition Tolerance, leading to eventual consistency."
+  },
+  {
+    "task_id": "fh-3",
+    "answer": "TLS uses asymmetric cryptography during the initial handshake to securely authenticate parties and exchange a secret session key, solving the problem of secure key distribution over an insecure channel. It then switches to symmetric cryptography for the bulk data transfer because symmetric algorithms are vastly faster and more computationally efficient for encrypting large volumes of data using the established session key."
+  },
+  {
+    "task_id": "sh-1",
+    "answer": "Negative. The customer expresses extreme dissatisfaction with the service experience."
+  },
+  {
+    "task_id": "sh-2",
+    "answer": "Mixed. The negative experiences of the commute and parking are balanced by the overwhelmingly positive concert experience."
+  },
+  {
+    "task_id": "sh-3",
+    "answer": "Negative. The sentence describes a catastrophic natural disaster and its aftermath."
+  },
+  {
+    "task_id": "nh-1",
+    "answer": "Goldman Sachs — organization\nMarch 2019 — date\nPriya Nair — person\nAlderbrook Capital — organization\nLondon — location\nTemasek — organization\nBarclays — organization\nJes Staley — person"
+  },
+  {
+    "task_id": "nh-2",
+    "answer": "Apple — organization\nOxford Street — location\nLondon — location\nBlack Friday — date\nHarrods — organization"
+  },
+  {
+    "task_id": "nh-3",
+    "answer": "OECD — organization\nEuropean Central Bank — organization\nDeutsche Bank — organization\nFrankfurt — location\neurozone — location\nDecember — date"
+  },
+  {
+    "task_id": "suh-1",
+    "answer": "Congestion pricing reduced downtown traffic by 18% and boosted bus speeds. Revenue funds transit upgrades, but retailers and drivers lobby for exemptions and reviews."
+  },
+  {
+    "task_id": "suh-2",
+    "answer": "By changing how the system manages user sessions to use secure, self-contained tokens, the application became faster, more reliable, and required less maintenance, though logging out now involves a small extra step."
+  },
+  {
+    "task_id": "suh-3",
+    "answer": "Supporters cite a 22% reduction in sick days, stable output across 61 firms, and improved employee wellbeing as evidence of the four-day workweek's success. Critics argue the trial's scope was limited to small knowledge-work companies, noting scheduling strain in customer-facing roles and the reliance on self-reported productivity data."
+  }
+]

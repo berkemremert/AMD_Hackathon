@@ -1,0 +1,98 @@
+[
+  {
+    "task_id": "mh-1",
+    "answer": "222"
+  },
+  {
+    "task_id": "mh-2",
+    "answer": "3"
+  },
+  {
+    "task_id": "mh-3",
+    "answer": "222"
+  },
+  {
+    "task_id": "lh-1",
+    "answer": "Ana owns the fish, and Ana's house is red."
+  },
+  {
+    "task_id": "lh-2",
+    "answer": "A is a knight, B is a knave, and C is a knave."
+  },
+  {
+    "task_id": "lh-3",
+    "answer": "The order from first to last is Kaya, Mert, Okan, Nil, Lale."
+  },
+  {
+    "task_id": "ch-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "ch-2",
+    "answer": "def valid_brackets(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for c in s:\n        if c in '([{':\n            stack.append(c)\n        elif c in pairs:\n            if not stack or stack.pop() != pairs[c]:\n                return False\n    return not stack"
+  },
+  {
+    "task_id": "ch-3",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "dh-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "dh-2",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "dh-3",
+    "answer": "222"
+  },
+  {
+    "task_id": "fh-1",
+    "answer": "## Optimistic vs. Pessimistic Locking\n\n**Optimistic Locking:**\n\n* **Mechanism:** Assumes that conflicts (two transactions trying to modify the same data simultaneously) are rare. It allows transactions to proceed without acquiring locks initially. A version number or timestamp is typically used to detect conflicts at commit time.\n* **Conflict Resolution:** If a conflict is detected (the version has changed), the transaction is rolled back and must be retried.\n* **Pros:** High concurrency, better performance under low contention.\n* **Cons:** Requires application logic to handle retries; performance degrades"
+  },
+  {
+    "task_id": "fh-2",
+    "answer": "**CAP Theorem Statement:**\n\nThe CAP theorem states that a distributed data store can only provide two out of the following three guarantees simultaneously:\n\n1. **Consistency (C):** Every read receives the most recent write or an error.\n2. **Availability (A):** Every request receives a (non-error) response, without the guarantee that it contains the most recent write.\n3. **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of part of the system (network partitions).\n\n**Trade-offs:**\n\n* **Typical Single-"
+  },
+  {
+    "task_id": "fh-3",
+    "answer": "TLS uses both asymmetric and symmetric cryptography for efficiency and security:\n\n1. **Asymmetric Cryptography (e.g., RSA, ECC):** Used initially to **authenticate** the server (via digital certificates) and securely **exchange a shared secret key**. This is computationally expensive but necessary for initial trust establishment.\n2. **Symmetric Cryptography (e.g., AES):** Used for the **bulk of the data transfer** during the session. Symmetric encryption is much faster and more efficient for encrypting large amounts of data.\n\nIn summary, asymmetric cryptography handles the secure key exchange"
+  },
+  {
+    "task_id": "sh-1",
+    "answer": "Negative. The comment uses sarcasm to express strong dissatisfaction with the long hold time and poor service."
+  },
+  {
+    "task_id": "sh-2",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sh-3",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "nh-1",
+    "answer": "Goldman Sachs — organization\nMarch 2019 — date\nPriya Nair — person\nAlderbrook Capital — organization\nLondon — location\nTemasek — organization\nBarclays — organization\nJes Staley — person"
+  },
+  {
+    "task_id": "nh-2",
+    "answer": "Apple — organization\nOxford Street — location\nLondon — location\nBlack Friday — date\nHarrods — organization"
+  },
+  {
+    "task_id": "nh-3",
+    "answer": "2024 — date\nOECD — organization\nEuropean Central Bank — organization\nDeutsche Bank — organization\nFrankfurt — location\nDecember — date\neurozone — location"
+  },
+  {
+    "task_id": "suh-1",
+    "answer": "Congestion pricing reduced traffic and emissions, funding transit upgrades. Concerns remain over impact on drivers and retail. A review is planned."
+  },
+  {
+    "task_id": "suh-2",
+    "answer": "The team improved performance and reduced session-related issues by changing how the system handles user sessions, though logging out now requires a small extra step."
+  },
+  {
+    "task_id": "suh-3",
+    "answer": "Supporters cite a 22% reduction in sick days, stable output, and improved employee wellbeing as evidence supporting the four-day workweek trial. Critics argue that the trial's results are skewed by the participation of small knowledge-work firms and scheduling strain in customer-facing industries, questioning the validity of self-reported productivity metrics."
+  }
+]

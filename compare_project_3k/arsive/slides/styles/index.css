@@ -1,0 +1,97 @@
+/* TokenRouter deck — global dark skin */
+
+:root {
+  --tr-bg-0: #0a0f1e;
+  --tr-bg-1: #101830;
+  --tr-ink: #e8ecf4;
+  --tr-muted: #9aa4b8;
+  --tr-accent-0: #ff7a1a;
+  --tr-accent-1: #fbbf24;
+}
+
+.slidev-layout {
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(255, 122, 26, 0.10), transparent 60%),
+    radial-gradient(800px 500px at -10% 110%, rgba(59, 130, 246, 0.08), transparent 55%),
+    linear-gradient(160deg, var(--tr-bg-0), var(--tr-bg-1));
+  color: var(--tr-ink);
+}
+
+.slidev-layout h1 {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.slidev-layout h1:not(.no-bar)::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 4px;
+  margin-top: 0.55rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--tr-accent-0), var(--tr-accent-1));
+}
+
+.slidev-layout.centered-h h1::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slidev-layout strong { color: #ffffff; }
+.slidev-layout em { color: var(--tr-muted); }
+
+.slidev-layout code:not(pre code) {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--tr-accent-1);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 0.08em 0.4em;
+  border-radius: 0.35em;
+}
+
+.slidev-layout table { font-size: 0.92em; }
+.slidev-layout th { color: var(--tr-muted); font-weight: 600; }
+.slidev-layout td, .slidev-layout th {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* components */
+.kicker {
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tr-accent-0);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 1rem;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.card-accent {
+  background: linear-gradient(180deg, rgba(255, 122, 26, 0.12), rgba(255, 122, 26, 0.05));
+  border: 1px solid rgba(255, 122, 26, 0.45);
+}
+
+/* Accent text. Deliberately NO background-clip gradient: Chromium's PDF
+   printer traces a ghost box around clipped backgrounds. Solid amber, with
+   .num-hot/.num-warm for a two-tone wordmark, prints pixel-clean. */
+.num {
+  color: #fb9d1f;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.num-hot { color: var(--tr-accent-0); font-weight: 800; letter-spacing: -0.02em; }
+.num-warm { color: var(--tr-accent-1); font-weight: 800; letter-spacing: -0.02em; }
+
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.22;
+  pointer-events: none;
+}

@@ -1,0 +1,258 @@
+[
+  {
+    "task_id": "fact-1",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fact-2",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fact-3",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fact-4",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fact-5",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fact-6",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fact-7",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fact-8",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "math-1",
+    "answer": "75"
+  },
+  {
+    "task_id": "math-2",
+    "answer": "222"
+  },
+  {
+    "task_id": "math-3",
+    "answer": "222"
+  },
+  {
+    "task_id": "math-4",
+    "answer": "222"
+  },
+  {
+    "task_id": "math-5",
+    "answer": "222"
+  },
+  {
+    "task_id": "math-6",
+    "answer": "222"
+  },
+  {
+    "task_id": "math-7",
+    "answer": "952"
+  },
+  {
+    "task_id": "math-8",
+    "answer": "222"
+  },
+  {
+    "task_id": "sent-1",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sent-2",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sent-3",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sent-4",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sent-5",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sent-6",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sent-7",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sent-8",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "summ-1",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "summ-2",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "summ-3",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "summ-4",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "summ-5",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "summ-6",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "summ-7",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "summ-8",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "ner-1",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "ner-2",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "ner-3",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "ner-4",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "ner-5",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "ner-6",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "ner-7",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "ner-8",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "debug-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-2",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-3",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-4",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-5",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-6",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-7",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-8",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "logic-1",
+    "answer": "42"
+  },
+  {
+    "task_id": "logic-2",
+    "answer": "42"
+  },
+  {
+    "task_id": "logic-3",
+    "answer": "Fay finished first."
+  },
+  {
+    "task_id": "logic-4",
+    "answer": "42"
+  },
+  {
+    "task_id": "logic-5",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "logic-6",
+    "answer": "Yes — by transitivity, every Bloop is a Lazzie."
+  },
+  {
+    "task_id": "logic-7",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "logic-8",
+    "answer": "42"
+  },
+  {
+    "task_id": "code-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-2",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-3",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-4",
+    "answer": "def reverse_words(s):\n    return ' '.join(s.split()[::-1])"
+  },
+  {
+    "task_id": "code-5",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-6",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-7",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-8",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  }
+]

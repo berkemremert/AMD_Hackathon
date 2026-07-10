@@ -1,0 +1,27 @@
+20:07:59.895567 loaded 24 tasks
+20:07:59.897124 task lh-1 cat=logic mode=full layer=code
+20:07:59.897295 task lh-2 cat=logic mode=full layer=code
+20:07:59.897564 task lh-3 cat=factual mode=full layer=code generic
+20:07:59.899331 task mh-2 cat=math mode=full layer=pal
+20:07:59.899444 task mh-1 cat=math mode=full layer=pal
+20:07:59.900667 task mh-3 cat=math mode=full layer=pal
+20:07:59.939601 task ch-2 cat=code_gen mode=full layer=library code-tested
+20:07:59.940275 task ch-3 cat=code_gen mode=full layer=remote
+20:07:59.941227 task dh-3 cat=math mode=full layer=pal
+20:07:59.942072 task dh-1 cat=code_debug mode=full layer=remote
+20:07:59.942260 task fh-1 cat=factual mode=full layer=remote generic
+20:07:59.942373 task ch-1 cat=code_gen mode=full layer=remote
+20:07:59.942808 task fh-2 cat=factual mode=full layer=remote generic
+20:07:59.943192 task sh-1 cat=sentiment mode=full layer=remote
+20:07:59.943259 task fh-3 cat=factual mode=full layer=remote generic
+20:07:59.943611 task sh-2 cat=sentiment mode=full layer=remote
+20:07:59.943829 task sh-3 cat=sentiment mode=full layer=remote
+20:07:59.944100 task nh-1 cat=ner mode=full layer=remote
+20:07:59.944650 task nh-2 cat=ner mode=full layer=remote
+20:07:59.945112 task nh-3 cat=ner mode=full layer=remote
+20:07:59.945426 task suh-1 cat=summarize mode=full layer=remote
+20:07:59.945585 task suh-2 cat=summarize mode=full layer=remote
+20:07:59.945885 task suh-3 cat=summarize mode=full layer=remote
+20:07:59.966195 task dh-2 cat=code_debug mode=full layer=remote generic
+20:07:59.966577 fireworks: 20 calls, 1777 prompt + 148 completion = 1925 tokens
+20:07:59.966580 done: 24 tasks in 72ms

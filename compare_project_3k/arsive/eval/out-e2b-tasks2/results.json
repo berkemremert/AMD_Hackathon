@@ -1,0 +1,258 @@
+[
+  {
+    "task_id": "fact-1",
+    "answer": "Canberra"
+  },
+  {
+    "task_id": "fact-2",
+    "answer": "Photosynthesis is the process where plants convert light energy, usually from the sun, into chemical energy in the form of glucose (sugar). This occurs primarily in the leaves and involves taking in carbon dioxide ($\\text{CO}_2$) from the air and water ($\\text{H}_2\\text{O}$) from the soil. The process uses chlorophyll to capture light energy, which is then used to convert $\\text{CO}_2$ and $\\text{H}_2\\text{O}$ into glucose and oxygen ($\\text{O}_2$) as a byproduct."
+  },
+  {
+    "task_id": "fact-3",
+    "answer": "TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are both transport layer protocols used for sending data over the internet, but they differ primarily in their connection-oriented nature, reliability, and speed.\n\n| Feature | TCP (Transmission Control Protocol) | UDP (User Datagram Protocol) |\n| :--- | :--- | :--- |\n| **Connection** | Connection-oriented (requires a handshake before data transfer). | Connectionless (sends data without prior setup). |\n| **Reliability** | Reliable (guarantees delivery through acknowledgments and re"
+  },
+  {
+    "task_id": "fact-4",
+    "answer": "George Orwell wrote *1984*, and it was published in 1949."
+  },
+  {
+    "task_id": "fact-5",
+    "answer": "**Opportunity cost** is the value of the next best alternative that must be forgone when making a choice.\n\n**Simple Example:** If you have $\\$10$ and can either buy a book or a movie ticket, and you choose the book, the opportunity cost is the enjoyment or experience you would have gotten from the movie ticket."
+  },
+  {
+    "task_id": "fact-6",
+    "answer": "The Earth has seasons primarily because of its **axial tilt** of approximately 23.5 degrees relative to its orbit around the Sun. This tilt causes different parts of the Earth to receive varying amounts of direct solar energy throughout the year, leading to different seasons."
+  },
+  {
+    "task_id": "fact-7",
+    "answer": "HTTP status code 404 means \"Not Found.\""
+  },
+  {
+    "task_id": "fact-8",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "math-1",
+    "answer": "75"
+  },
+  {
+    "task_id": "math-2",
+    "answer": "222"
+  },
+  {
+    "task_id": "math-3",
+    "answer": "54080"
+  },
+  {
+    "task_id": "math-4",
+    "answer": "72"
+  },
+  {
+    "task_id": "math-5",
+    "answer": "80"
+  },
+  {
+    "task_id": "math-6",
+    "answer": "162"
+  },
+  {
+    "task_id": "math-7",
+    "answer": "952"
+  },
+  {
+    "task_id": "math-8",
+    "answer": "1320"
+  },
+  {
+    "task_id": "sent-1",
+    "answer": "Positive. The reviewer uses strong positive language like \"absolutely love,\" \"lasts forever,\" and \"stunning\" to express high satisfaction."
+  },
+  {
+    "task_id": "sent-2",
+    "answer": "Negative. The comment explicitly describes poor service and a negative experience with the food quality."
+  },
+  {
+    "task_id": "sent-3",
+    "answer": "Mixed. The review contains positive comments about the room and cleanliness alongside negative feedback about the wifi and breakfast."
+  },
+  {
+    "task_id": "sent-4",
+    "answer": "Neutral. The statement is purely factual reporting of an event without any expressed emotion or judgment."
+  },
+  {
+    "task_id": "sent-5",
+    "answer": "Negative. The speaker is clearly expressing frustration and dissatisfaction with the software update."
+  },
+  {
+    "task_id": "sent-6",
+    "answer": "Mixed. The review praises the performance while noting a minor drawback regarding the laptop's weight."
+  },
+  {
+    "task_id": "sent-7",
+    "answer": "Negative. The statement expresses a clear lack of enjoyment and failure to engage with the book."
+  },
+  {
+    "task_id": "sent-8",
+    "answer": "Positive. The tweet expresses a sense of accomplishment and pride after completing a difficult challenge."
+  },
+  {
+    "task_id": "summ-1",
+    "answer": "Despite rapid adoption fueled by cost reductions and environmental concerns, electric vehicles face challenges like infrastructure limitations and battery production impact, prompting automakers to invest in solid-state battery research for future improvements."
+  },
+  {
+    "task_id": "summ-2",
+    "answer": "City council approved a transit budget for light rail, electric buses, and bike lanes to reduce congestion and emissions."
+  },
+  {
+    "task_id": "summ-3",
+    "answer": "Graphene oxide membranes offer a new, energy-efficient water filtration method that removes 99% of heavy metals and microplastics with lower pressure than RO. Field trials are planned next year, seeking regulatory approval for municipal use."
+  },
+  {
+    "task_id": "summ-4",
+    "answer": "Remote work has drastically altered office real estate, leading to high vacancy rates and forcing conversions of office towers into residential or mixed-use properties. Consequently, suburban co-working spaces are growing, and office demand is expected to stabilize at 70-80% of 2019 levels with flexible leases becoming the norm."
+  },
+  {
+    "task_id": "summ-5",
+    "answer": "An early Monday eruption sent ash plumes 12 kilometers high, leading to the evacuation of 8,000 residents, flight suspensions, and warnings of prolonged volcanic activity."
+  },
+  {
+    "task_id": "summ-6",
+    "answer": "Walking 7,000 steps daily halves early death risk; benefits peak around 10,000 steps."
+  },
+  {
+    "task_id": "summ-7",
+    "answer": "The company launched its fourth-generation smartwatch, featuring blood-glucose monitoring, a ten-day battery life, and enhanced fitness tracking, with pricing starting at $399."
+  },
+  {
+    "task_id": "summ-8",
+    "answer": "Due to severe droughts in Brazil and Vietnam, coffee prices have hit a 15-year high, leading to a 20% year-over-year increase in retail prices, with analysts predicting elevated costs for at least the next two growing seasons."
+  },
+  {
+    "task_id": "ner-1",
+    "answer": "Tim Cook — person\nApple — organization\nAustin — location\nSeptember 12, 2023 — date"
+  },
+  {
+    "task_id": "ner-2",
+    "answer": "Angela Merkel — person\nSiemens — organization\nVolkswagen — organization\nBerlin — location\nlast October — date"
+  },
+  {
+    "task_id": "ner-3",
+    "answer": "The World Health Organization — organization\nMay 5, 2023 — date\nDr. Tedros Adhanom — person"
+  },
+  {
+    "task_id": "ner-4",
+    "answer": "Serena Williams — person\nUS Open — organization\nNew York — location\nSeptember 2022 — date"
+  },
+  {
+    "task_id": "ner-5",
+    "answer": "March 3 — date\nMount Fuji — location\nYamanashi Prefecture police — organization"
+  },
+  {
+    "task_id": "ner-6",
+    "answer": "Goldman Sachs — organization\nJPMorgan — organization\nFederal Reserve — organization\nWashington — location\nWednesday — date"
+  },
+  {
+    "task_id": "ner-7",
+    "answer": "Elon Musk — person\nSpaceX — organization\nCape Canaveral — location\nFriday — date\nJanuary 24 — date"
+  },
+  {
+    "task_id": "ner-8",
+    "answer": "The Louvre — location\nParis — location\nMetropolitan Museum of Art — organization\n2025 — date"
+  },
+  {
+    "task_id": "debug-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-2",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-3",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-4",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-5",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-6",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-7",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "debug-8",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "logic-1",
+    "answer": "42"
+  },
+  {
+    "task_id": "logic-2",
+    "answer": "A is a knave and B is a knight."
+  },
+  {
+    "task_id": "logic-3",
+    "answer": "Fay finished first."
+  },
+  {
+    "task_id": "logic-4",
+    "answer": "42"
+  },
+  {
+    "task_id": "logic-5",
+    "answer": "Pick from the box labeled **'Mixed'**.\n\n**Reasoning:**\n\nSince every label is wrong, the box labeled 'Mixed' cannot actually contain a mixture of apples and oranges. Therefore, it must contain either only apples or only oranges.\n\n1. **If you pick an Apple from the 'Mixed' box:** You know this box is the 'Apples' box. The remaining two boxes (labeled 'Apples' and 'Oranges') must contain 'Oranges' and 'Mixed' in some order. Since the 'Apples' box cannot be 'Apples',"
+  },
+  {
+    "task_id": "logic-6",
+    "answer": "Yes — by transitivity, every Bloop is a Lazzie."
+  },
+  {
+    "task_id": "logic-7",
+    "answer": "Wednesday"
+  },
+  {
+    "task_id": "logic-8",
+    "answer": "42"
+  },
+  {
+    "task_id": "code-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-2",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-3",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-4",
+    "answer": "def reverse_words(s):\n    return ' '.join(s.split()[::-1])"
+  },
+  {
+    "task_id": "code-5",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-6",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-7",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "code-8",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  }
+]

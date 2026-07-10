@@ -1,0 +1,10 @@
+{
+  "practice-01": {"category": "factual", "expected": "Canberra; it is near Lake Burley Griffin (an artificial lake on the Molonglo River)."},
+  "practice-02": {"category": "math", "expected": "144 (240 - 36 - 60)."},
+  "practice-03": {"category": "sentiment", "expected": "Mixed (positive battery life, negative scratch-prone screen)."},
+  "practice-04": {"category": "summarization", "expected": "A single-sentence summary of the placeholder paragraph."},
+  "practice-05": {"category": "ner", "expected": "Maria Sanchez — person; Fireworks AI — organization; Berlin — location; last March — date."},
+  "practice-06": {"category": "code_debug", "expected": "nums[0] only returns the first element; return max(nums) (or iterate tracking the maximum)."},
+  "practice-07": {"category": "logic", "expected": "Sam owns the cat. (single-attribute grid — target: solved in plain code, 0 tokens)"},
+  "practice-08": {"category": "code_gen", "expected": "A function returning the second-largest DISTINCT value (e.g. sorted(set(nums))[-2]), handling duplicates."}
+}

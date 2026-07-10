@@ -26,13 +26,12 @@ OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
 # Fallback to local dev env vars if ALLOWED_MODELS is not provided
 if "ALLOWED_MODELS" in os.environ:
     models = os.environ["ALLOWED_MODELS"].split(",")
-    # Heuristic to find the cheap and expensive model in the allowed models
-    # Assuming minimax is cheap and kimi is expensive, or just pick by index
-    MODEL_CHEAP = next((m for m in models if "minimax" in m.lower()), models[0])
-    MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower()), models[-1])
+    # The user wants to use kimi-k2p6 (non-coding version) always
+    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[0])
+    MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[-1])
 else:
-    MODEL_CHEAP = os.environ["MODEL_CHEAP"]
-    MODEL_EXPENSIVE = os.environ["MODEL_EXPENSIVE"]
+    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
+    MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
 ROUTER_MODE = os.environ.get("ROUTER_MODE", "finetuned")
 
 
@@ -67,10 +66,17 @@ def main():
         
         if task_type == "entity_extraction":
             # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
+            from local_solvers import solve_ner
             raw_entities = solve_ner(task["prompt"])
             
             # Use ONLY GLiNER for 0 API token cost as requested
             results.append({"task_id": task["task_id"], "answer": raw_entities})
+            continue
+            
+        if task_type == "sentiment_analysis":
+            from local_solvers import solve_sentiment
+            sentiment_output = solve_sentiment(task["prompt"])
+            results.append({"task_id": task["task_id"], "answer": sentiment_output})
             continue
 
         model, routing_tokens = route(task["prompt"])

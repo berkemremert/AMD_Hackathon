@@ -1,0 +1,29 @@
+11:27:09.666134 loaded 24 tasks
+11:27:09.684352 local: using running server at http://127.0.0.1:8080
+11:27:09.685855 task lh-1 cat=logic mode=full layer=code
+11:27:09.686211 task lh-2 cat=logic mode=full layer=code
+11:27:09.687537 task lh-3 cat=factual mode=full layer=code generic
+11:27:09.791113 task ch-1 cat=code_gen mode=full layer=remote
+11:27:09.852687 task ch-2 cat=code_gen mode=full layer=library code-tested
+11:27:09.915447 task ch-3 cat=code_gen mode=full layer=remote
+11:27:10.055722 task dh-1 cat=code_debug mode=full layer=remote
+11:27:10.143996 task dh-2 cat=code_debug mode=full layer=remote generic
+11:27:11.140119 task mh-2 cat=math mode=full layer=local-pal
+11:27:12.083060 task mh-3 cat=math mode=full layer=pal
+11:27:13.263792 task mh-1 cat=math mode=full layer=pal
+11:27:13.570170 task dh-3 cat=math mode=full layer=pal
+11:27:19.170127 task fh-1 cat=factual mode=full layer=local generic
+11:27:19.547386 task fh-2 cat=factual mode=full layer=local generic
+11:27:20.939095 task sh-1 cat=sentiment mode=full layer=local
+11:27:22.506852 task sh-2 cat=sentiment mode=full layer=local
+11:27:23.597201 task sh-3 cat=sentiment mode=full layer=local
+11:27:26.353418 task nh-1 cat=ner mode=full layer=local
+11:27:26.423772 task fh-3 cat=factual mode=full layer=local generic
+11:27:28.061252 task nh-2 cat=ner mode=full layer=local
+11:27:29.206879 task nh-3 cat=ner mode=full layer=local
+11:27:30.653360 task suh-2 cat=summarize mode=full layer=local
+11:27:31.428255 task suh-1 cat=summarize mode=full layer=local
+11:27:33.242692 task suh-3 cat=summarize mode=full layer=local
+11:27:33.250440 fireworks: 7 calls, 619 prompt + 50 completion = 669 tokens
+11:27:33.250447 local: 16 calls, 781 completion tokens (scored: 0)
+11:27:33.250875 done: 24 tasks in 23.586s

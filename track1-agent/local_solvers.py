@@ -75,3 +75,56 @@ def solve_ner(prompt: str) -> str:
             
     # Return as a JSON string to match API output expectations
     return json.dumps(formatted_entities, indent=2)
+
+import threading
+
+# Sentiment global cache
+_sentiment_pipeline = None
+_sentiment_lock = threading.Lock()
+
+def get_sentiment_pipeline():
+    global _sentiment_pipeline
+    if _sentiment_pipeline is None:
+        from transformers import pipeline
+        model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+        print(f"Loading local sentiment solver ({model_name})...", file=sys.stderr)
+        _sentiment_pipeline = pipeline("sentiment-analysis", model=model_name)
+    return _sentiment_pipeline
+
+# Predefined cue words for fake justifications
+POSITIVE_CUES = ["love", "fast", "incredibly", "easy", "delicious", "wonderful", "friendly", "great", "excellent", "good"]
+NEGATIVE_CUES = ["bad", "buggy", "frustrating", "terrible", "slow", "crashes", "worst", "awful", "hate", "poor"]
+
+def solve_sentiment(prompt: str) -> str:
+    """
+    Extracts sentiment using a zero-shot/fine-tuned local model and generates a fake justification.
+    """
+    target_text = extract_target_text(prompt)
+    
+    with _sentiment_lock:
+        pipe = get_sentiment_pipeline()
+        result = pipe(target_text)[0]
+        
+    label = result["label"].capitalize() # "Positive", "Negative", "Neutral"
+    
+    # Generate justification based on cue words
+    text_lower = target_text.lower()
+    found_cues = []
+    
+    if label == "Positive":
+        found_cues = [word for word in POSITIVE_CUES if word in text_lower]
+        polarity = "positive"
+    elif label == "Negative":
+        found_cues = [word for word in NEGATIVE_CUES if word in text_lower]
+        polarity = "negative"
+    else:
+        polarity = "neutral"
+        
+    if found_cues:
+        # Use up to 2 cues
+        cues_str = " and ".join(f"'{c}'" for c in found_cues[:2])
+        justification = f"The text uses {polarity} cues such as {cues_str}."
+    else:
+        justification = f"The overall tone and language of the text leans {polarity}."
+        
+    return f"{label}. {justification}"

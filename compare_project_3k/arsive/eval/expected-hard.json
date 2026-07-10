@@ -1,0 +1,33 @@
+{
+  "mh-1": {"category": "math", "expected": "80 (cost*1.4*0.75=84 -> cost=84/1.05)"},
+  "mh-2": {"category": "math", "expected": "3 hours (1/6+1/4-1/12 = 1/3 per hour)"},
+  "mh-3": {"category": "math", "expected": "Bob has more, by $764.92 (Alice 5000*1.06^3=5955.08, Bob 6000*1.12=6720)"},
+
+  "lh-1": {"category": "logic", "expected": "Ana owns the fish; Ana's house is red. (Deniz->yellow, Ben->blue, fish owner in red, Cem has dog, Ana can't have cat/dog)"},
+  "lh-2": {"category": "logic", "expected": "A knight, B knave, C knave. (If A knave -> B knight -> A,C same -> C knave, but then C's 'B is a knight' would be true — contradiction.)"},
+  "lh-3": {"category": "logic", "expected": "Kaya, Mert, Okan, Nil, Lale (Mert=2, Nil=4, Okan=3)"},
+
+  "ch-1": {"category": "code_gen", "expected": "Working LRUCache, e.g. OrderedDict with move_to_end; get missing -> -1; eviction of LRU on overflow; get/put update recency"},
+  "ch-2": {"category": "code_gen", "expected": "Stack-based matcher; valid_brackets('a(b[c]{d})')==True, valid_brackets('([)]')==False, unbalanced/closing-without-open -> False"},
+  "ch-3": {"category": "code_gen", "expected": "parse_duration('2h30m')==9000, '45s'==45, '1h5s'==3605, '10m'==600; ValueError on '', '5x', 'm5', '30m2h' (wrong order), duplicate units"},
+
+  "dh-1": {"category": "code_debug", "expected": "IndexError when target > all elements (lo==len(arr)); guard: return lo if lo < len(arr) and arr[lo]==target else -1"},
+  "dh-2": {"category": "code_debug", "expected": "Mutating dict during iteration; iterate over list(d) / list(d.items()) or build a new dict comprehension"},
+  "dh-3": {"category": "code_debug", "expected": "Late-binding closure: all lambdas share final i=3; fix with default arg lambda x, i=i: x*i (or functools.partial)"},
+
+  "fh-1": {"category": "factual", "expected": "Optimistic: assume no conflict, check version at commit, best for low contention. Pessimistic: lock upfront, best for high contention / costly retries."},
+  "fh-2": {"category": "factual", "expected": "Under network partition, choose consistency or availability (CAP). Single-node RDBMS: CA-ish (no partition tolerance concern / consistency-first). Dynamo-style: AP — stays available, eventual consistency."},
+  "fh-3": {"category": "factual", "expected": "Asymmetric for key exchange/authentication (no shared secret needed but slow); symmetric for bulk data (fast). TLS handshake uses asymmetric to establish a symmetric session key."},
+
+  "sh-1": {"category": "sentiment", "expected": "Negative (sarcasm — surface praise, actual complaint)"},
+  "sh-2": {"category": "sentiment", "expected": "Positive overall (mixed, but the dominant verdict is strongly positive)"},
+  "sh-3": {"category": "sentiment", "expected": "Neutral (factual/reportive despite emotionally charged content words)"},
+
+  "nh-1": {"category": "ner", "expected": "Priya Nair (person), Jes Staley (person), Goldman Sachs (org), Alderbrook Capital (org), Temasek (org), Barclays (org), London (location), March 2019 (date)"},
+  "nh-2": {"category": "ner", "expected": "Apple (org), Harrods (org), Oxford Street (location), London (location), Black Friday (date)"},
+  "nh-3": {"category": "ner", "expected": "OECD (org), European Central Bank (org), Deutsche Bank (org), Frankfurt (location), eurozone (location, acceptable), 2024 (date), December (date)"},
+
+  "suh-1": {"category": "summarize", "expected": "<=25 words covering: $15 weekday congestion charge cut traffic 18%, sped buses, revenue funds transit; retailers/taxis object; review in six months. MUST be <=25 words."},
+  "suh-2": {"category": "summarize", "expected": "One plain-language sentence: new login/session design made the site faster and more reliable, with a minor logout complexity trade-off. No jargon like JWT/P99/Redis ideally."},
+  "suh-3": {"category": "summarize", "expected": "Exactly 2 sentences: (1) supporters cite fewer sick days, stable output, wellbeing; (2) critics cite unrepresentative firms, scheduling strain, self-reported data."}
+}

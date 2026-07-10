@@ -1,0 +1,98 @@
+[
+  {
+    "task_id": "mh-1",
+    "answer": "222"
+  },
+  {
+    "task_id": "mh-2",
+    "answer": "222"
+  },
+  {
+    "task_id": "mh-3",
+    "answer": "222"
+  },
+  {
+    "task_id": "lh-1",
+    "answer": "42"
+  },
+  {
+    "task_id": "lh-2",
+    "answer": "42"
+  },
+  {
+    "task_id": "lh-3",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "ch-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "ch-2",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "ch-3",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "dh-1",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "dh-2",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "dh-3",
+    "answer": "222"
+  },
+  {
+    "task_id": "fh-1",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fh-2",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "fh-3",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "sh-1",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sh-2",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "sh-3",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  },
+  {
+    "task_id": "nh-1",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "nh-2",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "nh-3",
+    "answer": "Tim Cook — person\nApple — organization"
+  },
+  {
+    "task_id": "suh-1",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "suh-2",
+    "answer": "A concise generic answer."
+  },
+  {
+    "task_id": "suh-3",
+    "answer": "A concise generic answer."
+  }
+]

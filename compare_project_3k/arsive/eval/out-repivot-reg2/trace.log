@@ -1,0 +1,26 @@
+11:06:58.076771 loaded 22 tasks
+11:06:58.077939 local: no model bundled and no server at http://127.0.0.1:8080 — Fireworks-only
+11:06:58.078063 dedup: 1 duplicate task(s) will reuse answers
+11:06:58.078269 task kk-2 cat=logic mode=full layer=code
+11:06:58.078367 task kk-1 cat=logic mode=full layer=code
+11:06:58.078482 task kk-3 cat=logic mode=full layer=code
+11:06:58.078670 task zb-1 cat=logic mode=full layer=code
+11:06:58.078851 task pos-2 cat=logic mode=full layer=code
+11:06:58.078937 task pos-1 cat=factual mode=full layer=code generic
+11:06:58.079596 task kk-4 cat=logic mode=full layer=remote
+11:06:58.079804 task zb-2 cat=logic mode=full layer=remote
+11:06:58.080667 task pos-3 cat=logic mode=full layer=remote
+11:06:58.108674 task sl-1 cat=code_gen mode=full layer=library code-tested
+11:06:58.110086 task mr-3 cat=code_debug mode=full layer=remote
+11:06:58.135213 task sl-3 cat=code_gen mode=full layer=library code-tested
+11:06:58.136212 task sl-2 cat=code_gen mode=full layer=library code-tested
+11:06:58.137234 task dd-1 cat=factual mode=full layer=remote generic
+11:06:58.137782 task cp-1 cat=factual mode=full layer=remote generic
+11:06:58.138627 task cp-2 cat=summarize mode=full layer=remote
+11:06:58.139149 task gr-1 cat=sentiment mode=full layer=remote
+11:06:58.139619 task gr-2 cat=sentiment mode=full layer=remote
+11:06:58.180719 task mr-2 cat=code_debug mode=full layer=mutate code-tested
+11:06:58.232081 task sl-4 cat=code_gen mode=full layer=remote code-tested
+11:06:58.283889 task mr-1 cat=code_debug mode=full layer=mutate code-tested
+11:06:58.284255 fireworks: 10 calls, 636 prompt + 80 completion = 716 tokens
+11:06:58.284258 done: 22 tasks in 208ms

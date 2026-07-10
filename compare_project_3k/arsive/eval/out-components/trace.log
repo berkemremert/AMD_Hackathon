@@ -1,0 +1,25 @@
+21:04:07.340785 loaded 22 tasks
+21:04:07.341781 dedup: 1 duplicate task(s) will reuse answers
+21:04:07.342133 task kk-2 cat=logic mode=full layer=code
+21:04:07.342137 task kk-3 cat=logic mode=full layer=code
+21:04:07.342195 task kk-1 cat=logic mode=full layer=code
+21:04:07.342688 task pos-1 cat=factual mode=full layer=code generic
+21:04:07.342883 task zb-1 cat=logic mode=full layer=code
+21:04:07.343068 task pos-2 cat=logic mode=full layer=code
+21:04:07.346472 task kk-4 cat=logic mode=full layer=remote
+21:04:07.346543 task zb-2 cat=logic mode=full layer=remote
+21:04:07.347169 task pos-3 cat=logic mode=full layer=remote
+21:04:07.378845 task sl-1 cat=code_gen mode=full layer=library code-tested
+21:04:07.381314 task mr-3 cat=code_debug mode=full layer=remote
+21:04:07.404596 task sl-2 cat=code_gen mode=full layer=library code-tested
+21:04:07.405363 task sl-3 cat=code_gen mode=full layer=library code-tested
+21:04:07.406563 task dd-1 cat=factual mode=full layer=remote generic
+21:04:07.407152 task cp-1 cat=factual mode=full layer=remote generic
+21:04:07.407935 task cp-2 cat=summarize mode=full layer=remote
+21:04:07.408397 task gr-1 cat=sentiment mode=full layer=remote
+21:04:07.408821 task gr-2 cat=sentiment mode=full layer=remote
+21:04:07.449291 task mr-2 cat=code_debug mode=full layer=mutate code-tested
+21:04:07.503404 task sl-4 cat=code_gen mode=full layer=remote code-tested
+21:04:07.546458 task mr-1 cat=code_debug mode=full layer=mutate code-tested
+21:04:07.546766 fireworks: 10 calls, 636 prompt + 80 completion = 716 tokens
+21:04:07.546769 done: 22 tasks in 206ms

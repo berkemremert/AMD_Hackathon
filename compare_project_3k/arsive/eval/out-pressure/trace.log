@@ -1,0 +1,76 @@
+12:15:52.741222 loaded 64 tasks
+12:15:52.743252 using external local server at http://127.0.0.1:8080
+12:16:19.354196 task fact-1 cat=factual cls=llm-batch mode=full layer=local-unproven
+12:16:23.418185 task fact-2 cat=factual cls=llm-batch mode=full layer=local consistent
+12:16:32.729399 task fact-5 cat=factual cls=llm-batch mode=full layer=local-unproven
+12:16:35.751913 task fact-6 cat=factual cls=llm-batch mode=full layer=local consistent
+12:16:40.523828 task fact-7 cat=factual cls=llm-batch mode=off layer=local
+12:16:43.242484 task math-1 cat=math cls=regex mode=off layer=deterministic
+12:16:44.658055 task fact-8 cat=factual cls=llm-batch mode=off layer=local
+12:16:46.745340 task math-2 cat=math cls=llm-batch mode=off layer=deterministic
+12:16:49.141233 task math-3 cat=math cls=llm-batch mode=off layer=deterministic
+12:16:49.466166 task math-4 cat=math cls=regex mode=off layer=deterministic
+12:16:57.391810 task fact-4 cat=logic cls=regex mode=full layer=local consistent
+12:17:04.495480 task math-5 cat=math cls=regex mode=off layer=local
+12:17:06.293234 task math-6 cat=math cls=llm-batch mode=off layer=local
+12:17:09.769238 task sent-1 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:10.984427 task math-7 cat=math cls=regex mode=off layer=local
+12:17:12.236162 task sent-2 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:14.111381 task sent-4 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:15.173190 task sent-3 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:16.233597 task sent-5 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:17.578615 task sent-6 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:18.710771 task sent-7 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:20.190115 task sent-8 cat=sentiment cls=llm-batch mode=off layer=local
+12:17:23.614306 task summ-1 cat=summarize cls=llm-batch mode=off layer=local
+12:17:24.736589 task summ-2 cat=summarize cls=regex mode=off layer=local
+12:17:24.921747 task math-8 cat=math cls=llm-batch mode=off layer=local
+12:17:29.428684 task summ-3 cat=summarize cls=regex mode=off layer=local
+12:17:29.532063 task summ-5 cat=summarize cls=llm-batch mode=off layer=local
+12:17:31.678734 task summ-4 cat=summarize cls=regex mode=off layer=local
+12:17:33.620075 task summ-6 cat=summarize cls=regex mode=off layer=local
+12:17:35.321022 task summ-7 cat=summarize cls=llm-batch mode=off layer=local
+12:17:37.479465 task ner-1 cat=ner cls=llm-batch mode=off layer=local
+12:17:38.810889 task ner-2 cat=ner cls=llm-batch mode=off layer=local
+12:17:38.933029 task summ-8 cat=summarize cls=llm-batch mode=off layer=local
+12:17:41.614897 task ner-3 cat=ner cls=llm-batch mode=off layer=local
+12:17:41.799928 task ner-5 cat=ner cls=llm-batch mode=off layer=local
+12:17:43.621933 task ner-4 cat=ner cls=llm-batch mode=off layer=local
+12:17:45.610129 task ner-6 cat=ner cls=llm-batch mode=off layer=local
+12:17:46.193526 task ner-7 cat=ner cls=llm-batch mode=off layer=local
+12:17:48.167145 task ner-8 cat=ner cls=llm-batch mode=off layer=local
+12:17:51.347133 task debug-1 cat=code_debug cls=llm-batch mode=off layer=local
+12:17:55.370980 task debug-3 cat=code_debug cls=llm-batch mode=off layer=local
+12:17:55.887650 task debug-4 cat=code_debug cls=llm-batch mode=off layer=local
+12:17:58.293707 task debug-2 cat=code_debug cls=llm-batch mode=off layer=local
+12:18:03.508026 task debug-7 cat=code_debug cls=llm-batch mode=off layer=local
+12:18:08.356534 task debug-8 cat=code_debug cls=llm-batch mode=off layer=local
+12:18:10.252793 task debug-6 cat=logic cls=llm-batch mode=off layer=local
+12:18:10.740110 task debug-5 cat=math cls=regex mode=off layer=local
+12:18:22.335951 task logic-1 cat=logic cls=llm-batch mode=off layer=local
+12:18:23.642740 task logic-2 cat=logic cls=regex mode=off layer=local
+12:18:24.281608 task logic-3 cat=logic cls=llm-batch mode=off layer=local
+12:18:29.817418 task logic-6 cat=logic cls=llm-batch mode=off layer=local
+12:18:37.220971 task logic-4 cat=math cls=llm-batch mode=off layer=local
+12:18:37.259378 task logic-5 cat=logic cls=llm-batch mode=off layer=local
+12:18:42.246081 task logic-7 cat=logic cls=llm-batch mode=off layer=local
+12:18:50.591892 task code-2 cat=code_gen cls=llm-batch mode=off layer=local
+12:18:50.986272 task code-1 cat=code_gen cls=llm-batch mode=off layer=local
+12:18:52.795843 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.796187 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.802356 task code-3 cat=code_gen cls=llm-batch mode=off layer=local-unproven
+12:18:52.801666 task fact-3 cat=logic cls=llm-batch mode=full layer=local-unproven
+12:18:52.796307 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.802900 task logic-8 cat=logic cls=llm-batch mode=off layer=local-unproven
+12:18:52.804378 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.804394 task code-7 cat=code_gen cls=llm-batch mode=off layer=local-unproven
+12:18:52.805440 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.805452 task code-8 cat=code_gen cls=regex mode=off layer=local-unproven
+12:18:52.805548 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.805559 task code-6 cat=code_gen cls=llm-batch mode=off layer=local-unproven
+12:18:52.795701 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.813257 task code-4 cat=code_gen cls=llm-batch mode=off layer=local-unproven
+12:18:52.824432 local error: Post "http://127.0.0.1:8080/chat/completions": context deadline exceeded
+12:18:52.824451 task code-5 cat=code_gen cls=llm-batch mode=off layer=local-unproven
+12:18:53.037419 local: 79 calls, 3805 completion tokens
+12:18:53.054239 done: 64 tasks in 3m0.306s
