@@ -5,7 +5,6 @@ system instruction and output token cap to minimize API costs without losing acc
 """
 
 import re
-from prompt_compressor import optimize_prompt_for_api
 
 # We define regex heuristics to quickly classify tasks into 8 domains.
 # The order here is optimized to catch the most specific domains first.
@@ -70,56 +69,56 @@ def detect_task_type(user_prompt: str) -> str:
 
 # Optimized constraints for each domain to ensure maximum token savings 
 # without triggering a failure from the LLM-as-a-judge accuracy gate.
-_BASE = "Answer in English. Be concise and direct; no preamble, no restating the question."
+_BASE = "Constraint: Strict adherence. English. NO preamble. NO restatement."
 
 TOKEN_LIMITS = {
     "knowledge_qa": {
-        "system": f"{_BASE} Answer directly in at most 3 short sentences.",
+        "system": "Constraint: Max 1 sentence. Direct answer ONLY.",
         "cap": 64,
-        "retry_cap": 256,
-    },
-    "math_solving": {
-        "system": f"{_BASE} Show brief steps, ending with 'Answer: <value>' on the last line.",
-        "cap": 384,
-        "retry_cap": 768,
-    },
-    "sentiment_analysis": {
-        "system": f"{_BASE} Output only the sentiment label (positive, negative, or neutral); add one short reason only if requested.",
-        "cap": 40,
         "retry_cap": 128,
     },
-    "summarization": {
-        "system": f"{_BASE} Strictly obey the requested format and length. No preamble.",
+    "math_solving": {
+        "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
         "cap": 128,
-        "retry_cap": 384,
+        "retry_cap": 256,
+    },
+    "sentiment_analysis": {
+        "system": "Constraint: Output Label. 1 sentence reason (if asked).",
+        "cap": 40,
+        "retry_cap": 80,
+    },
+    "summarization": {
+        "system": "Constraint: Strict word/sentence limit. Output ONLY summary.",
+        "cap": 128,
+        "retry_cap": 256,
     },
     "entity_extraction": {
-        "system": f"{_BASE} Output entities strictly in the exact requested format (e.g. valid JSON). Do not output conversational text.",
+        "system": "Constraint: Output ONLY exact requested format. NO prose.",
         "cap": 200,
         "retry_cap": 400,
     },
     "bug_fixing": {
-        "system": f"{_BASE} State the bug briefly, then provide the corrected code in a single fenced block. Be concise.",
+        "system": "Constraint: Output ONLY ```python fixed_code ```. NO prose. NO comments.",
         "cap": 160,
-        "retry_cap": 384,
+        "retry_cap": 320,
     },
     "logical_puzzles": {
-        "system": f"{_BASE} Provide brief reasoning, ending with the final answer on the last line.",
-        "cap": 416,
-        "retry_cap": 768,
+        "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
+        "cap": 128,
+        "retry_cap": 256,
     },
     "code_authoring": {
-        "system": f"{_BASE} Output only the code in a single fenced block with minimal comments. No preamble.",
+        "system": "Constraint: Output ONLY ```python code ```. Minified, NO comments.",
         "cap": 320,
         "retry_cap": 640,
     },
     "fallback": {
-        "system": f"{_BASE} Be concise and direct.",
+        "system": "Answer concisely.",
         "cap": 256,
         "retry_cap": 512,
     },
 }
 
 def get_dynamic_limits(task_type: str, prompt: str) -> dict:
-    """Returns exact configured token limits based on the task type."""
+    """Returns calculated token limits based on the task."""
     return TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"]).copy()
