@@ -1,0 +1,90 @@
+[
+  {
+    "task_id": "kk-1",
+    "answer": "Pia is a knight, Quin is a knave, and Rex is a knight."
+  },
+  {
+    "task_id": "kk-2",
+    "answer": "Ada is a knave and Bex is a knight."
+  },
+  {
+    "task_id": "kk-3",
+    "answer": "Mira is a knight and Nils is a knave."
+  },
+  {
+    "task_id": "kk-4",
+    "answer": "42"
+  },
+  {
+    "task_id": "zb-1",
+    "answer": "Hana owns the dog, and Finn's house is green."
+  },
+  {
+    "task_id": "zb-2",
+    "answer": "42"
+  },
+  {
+    "task_id": "pos-1",
+    "answer": "The order from first to last is Aylin, Bora, Efe, Demir, Ceren."
+  },
+  {
+    "task_id": "pos-2",
+    "answer": "Sena finished last."
+  },
+  {
+    "task_id": "pos-3",
+    "answer": "42"
+  },
+  {
+    "task_id": "mr-1",
+    "answer": "The bug: `range(1, n)` should be `range(1, n + 1)`.\n\ndef factorial(n):\n    out = 1\n    for i in range(1, n + 1):\n        out *= i\n    return out"
+  },
+  {
+    "task_id": "mr-2",
+    "answer": "The bug: `\u003c` should be `\u003e`.\n\ndef bigger(a, b):\n    return a if a \u003e b else b"
+  },
+  {
+    "task_id": "mr-3",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "sl-1",
+    "answer": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a"
+  },
+  {
+    "task_id": "sl-2",
+    "answer": "def count_vowels(s):\n    return sum(1 for c in s.lower() if c in 'aeiou')"
+  },
+  {
+    "task_id": "sl-3",
+    "answer": "def digit_sum(n):\n    return sum(int(d) for d in str(abs(n)))"
+  },
+  {
+    "task_id": "sl-4",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "dd-1",
+    "answer": "Au"
+  },
+  {
+    "task_id": "dd-2",
+    "answer": "Au"
+  },
+  {
+    "task_id": "cp-1",
+    "answer": "Tokyo"
+  },
+  {
+    "task_id": "cp-2",
+    "answer": "The library renovation, which included a children's wing, computers, and a media lab, led to a 31% increase in attendance, despite some concerns over a $1.2 million cost overrun."
+  },
+  {
+    "task_id": "gr-1",
+    "answer": "Negative. The review expresses dissatisfaction with the late delivery and damaged packaging, sarcastically suggesting these issues were desired."
+  },
+  {
+    "task_id": "gr-2",
+    "answer": "Positive. The reviewer is clearly satisfied."
+  }
+]

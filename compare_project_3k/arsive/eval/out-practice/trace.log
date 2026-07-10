@@ -1,0 +1,12 @@
+11:11:05.023768 loaded 8 tasks
+11:11:05.024957 local: no model bundled and no server at http://127.0.0.1:8080 — Fireworks-only
+11:11:05.027697 task practice-04 cat=summarize mode=full layer=remote
+11:11:05.028830 task practice-01 cat=factual mode=full layer=remote generic
+11:11:05.028881 task practice-02 cat=math mode=full layer=pal
+11:11:05.029233 task practice-07 cat=logic mode=full layer=code
+11:11:05.029384 task practice-03 cat=sentiment mode=full layer=remote
+11:11:05.029513 task practice-05 cat=ner mode=full layer=remote
+11:11:05.069956 task practice-06 cat=code_debug mode=full layer=remote
+11:11:05.071198 task practice-08 cat=code_gen mode=full layer=remote
+11:11:05.071803 fireworks: 7 calls, 308 prompt + 56 completion = 364 tokens
+11:11:05.071806 done: 8 tasks in 49ms

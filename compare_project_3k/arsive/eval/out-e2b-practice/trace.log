@@ -1,0 +1,13 @@
+11:28:03.515101 loaded 8 tasks
+11:28:03.519120 local: using running server at http://127.0.0.1:8080
+11:28:04.367980 task practice-04 cat=summarize mode=full layer=local
+11:28:04.685823 task practice-01 cat=factual mode=full layer=local generic
+11:28:04.799054 task practice-06 cat=code_debug mode=full layer=remote
+11:28:04.799341 task practice-07 cat=logic mode=full layer=code
+11:28:04.846568 task practice-08 cat=code_gen mode=full layer=remote
+11:28:05.689285 task practice-03 cat=sentiment mode=full layer=local
+11:28:06.135428 task practice-02 cat=math mode=full layer=pal
+11:28:06.663969 task practice-05 cat=ner mode=full layer=local
+11:28:06.696265 fireworks: 3 calls, 137 prompt + 24 completion = 161 tokens
+11:28:06.696271 local: 5 calls, 90 completion tokens (scored: 0)
+11:28:06.696273 done: 8 tasks in 3.182s

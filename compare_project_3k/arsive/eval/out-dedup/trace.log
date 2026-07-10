@@ -1,0 +1,7 @@
+20:08:18.228023 loaded 6 tasks
+20:08:18.228926 dedup: 3 duplicate task(s) will reuse answers
+20:08:18.229211 task d-6 cat=math mode=full layer=code
+20:08:18.231509 task d-4 cat=sentiment mode=full layer=remote
+20:08:18.231926 task d-1 cat=factual mode=full layer=remote generic
+20:08:18.232468 fireworks: 2 calls, 63 prompt + 17 completion = 80 tokens
+20:08:18.232474 done: 6 tasks in 5ms

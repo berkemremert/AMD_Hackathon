@@ -1,0 +1,10 @@
+[
+  { "task_id": "practice-01", "prompt": "What is the capital of Australia, and what body of water is it near?" },
+  { "task_id": "practice-02", "prompt": "A store has 240 items. It sells 15% on Monday and 60 more on Tuesday. How many items remain?" },
+  { "task_id": "practice-03", "prompt": "Classify the sentiment of this review: The battery life is great, but the screen scratches too easily." },
+  { "task_id": "practice-04", "prompt": "Summarize the following in one sentence: The committee met for three hours and, after much debate, agreed to postpone the budget vote until the next quarter so that each department could submit revised figures." },
+  { "task_id": "practice-05", "prompt": "Extract all named entities (person, organization, location, date) from: On March 3, 2021, Satya Nadella announced in Seattle that Microsoft would acquire the startup." },
+  { "task_id": "practice-06", "prompt": "Fix the bug in this Python function:\n\ndef average(nums):\n    total = 0\n    for n in nums:\n        total += n\n    return total / len(nums) + 1" },
+  { "task_id": "practice-07", "prompt": "Three friends — Alice, Bob, and Carol — each own a different pet: a cat, a dog, and a bird. Alice does not own the cat or the dog. Bob does not own the bird. Who owns the bird?" },
+  { "task_id": "practice-08", "prompt": "Write a Python function that returns the nth Fibonacci number iteratively." }
+]

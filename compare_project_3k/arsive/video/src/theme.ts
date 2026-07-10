@@ -1,0 +1,15 @@
+export const T = {
+  bg0: '#0a0f1e',
+  bg1: '#101830',
+  ink: '#e8ecf4',
+  muted: '#9aa4b8',
+  hot: '#ff7a1a',
+  warm: '#fbbf24',
+  mid: '#fb9d1f',
+  good: '#4ade80',
+  bad: '#f87171',
+  card: 'rgba(255,255,255,0.045)',
+  cardBorder: 'rgba(255,255,255,0.10)',
+  font: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+  mono: 'ui-monospace, "SF Mono", Menlo, monospace',
+};

@@ -1,0 +1,69 @@
+12:29:32.484982 loaded 64 tasks
+12:29:32.490147 local: using running server at http://127.0.0.1:8080
+12:29:35.300347 task fact-1 cat=factual mode=full layer=local generic
+12:29:37.260404 task fact-2 cat=factual mode=full layer=local generic
+12:29:38.081659 task fact-4 cat=factual mode=full layer=local generic
+12:29:39.123502 task fact-3 cat=factual mode=full layer=local generic
+12:29:39.187353 task fact-8 cat=code_debug mode=full layer=remote generic
+12:29:39.187919 task math-1 cat=math mode=full layer=code
+12:29:40.407855 task fact-5 cat=factual mode=full layer=local generic
+12:29:40.952404 task fact-7 cat=factual mode=full layer=local generic
+12:29:41.181315 task fact-6 cat=factual mode=full layer=local generic
+12:29:42.253592 task math-3 cat=math mode=full layer=local-pal
+12:29:42.253939 task math-2 cat=math mode=full layer=local-pal
+12:29:42.254305 task math-7 cat=math mode=full layer=code
+12:29:42.772622 task math-4 cat=math mode=full layer=local-pal
+12:29:43.179319 task math-5 cat=math mode=full layer=local-pal
+12:29:43.933917 task math-6 cat=math mode=full layer=local-pal
+12:29:43.943521 task sent-3 cat=sentiment mode=full layer=remote
+12:29:44.169424 task math-8 cat=math mode=full layer=local-pal
+12:29:44.871400 task sent-2 cat=sentiment mode=full layer=local
+12:29:44.876757 task sent-6 cat=sentiment mode=full layer=remote
+12:29:44.877963 task sent-7 cat=sentiment mode=full layer=remote
+12:29:44.878973 task sent-8 cat=sentiment mode=full layer=remote
+12:29:45.214055 task sent-1 cat=sentiment mode=full layer=local
+12:29:45.744957 task sent-4 cat=sentiment mode=full layer=local
+12:29:46.064079 task sent-5 cat=sentiment mode=full layer=local
+12:29:47.003948 task summ-2 cat=summarize mode=full layer=local
+12:29:47.518888 task summ-1 cat=summarize mode=full layer=local
+12:29:48.867086 task summ-3 cat=summarize mode=full layer=local
+12:29:50.004930 task summ-4 cat=summarize mode=full layer=local
+12:29:50.411056 task summ-5 cat=summarize mode=full layer=local
+12:29:51.233388 task summ-6 cat=summarize mode=full layer=local
+12:29:51.953447 task summ-7 cat=summarize mode=full layer=local
+12:29:53.055863 task ner-1 cat=ner mode=full layer=local
+12:29:53.508157 task summ-8 cat=summarize mode=full layer=local
+12:29:54.086860 task ner-2 cat=ner mode=full layer=local
+12:29:54.734622 task ner-3 cat=ner mode=full layer=local
+12:29:55.192992 task ner-4 cat=ner mode=full layer=local
+12:29:55.594678 task ner-5 cat=ner mode=full layer=local
+12:29:55.646283 task debug-1 cat=code_debug mode=full layer=remote
+12:29:55.675020 task debug-2 cat=code_debug mode=full layer=remote generic
+12:29:55.711534 task debug-3 cat=code_debug mode=full layer=remote
+12:29:55.739995 task debug-4 cat=code_debug mode=full layer=remote
+12:29:55.765913 task debug-5 cat=code_debug mode=full layer=remote
+12:29:55.791939 task debug-6 cat=code_debug mode=full layer=remote generic
+12:29:55.820943 task debug-7 cat=code_debug mode=full layer=remote
+12:29:55.849547 task debug-8 cat=code_debug mode=full layer=remote generic
+12:29:56.220514 task ner-6 cat=ner mode=full layer=local
+12:29:56.220866 task logic-2 cat=logic mode=full layer=code
+12:29:56.221181 task logic-3 cat=logic mode=full layer=code
+12:29:56.756511 task ner-7 cat=ner mode=full layer=local
+12:29:57.310636 task ner-8 cat=ner mode=full layer=local
+12:29:57.310882 task logic-6 cat=factual mode=full layer=code generic
+12:30:01.096460 task logic-4 cat=math mode=full layer=remote
+12:30:03.830806 task logic-1 cat=logic mode=full layer=remote
+12:30:03.883215 task code-1 cat=code_gen mode=full layer=remote
+12:30:03.911454 task code-2 cat=code_gen mode=full layer=remote
+12:30:03.940785 task code-3 cat=code_gen mode=full layer=remote
+12:30:03.965436 task code-4 cat=code_gen mode=full layer=library code-tested
+12:30:03.990537 task code-5 cat=code_gen mode=full layer=remote
+12:30:04.018762 task code-6 cat=code_gen mode=full layer=remote
+12:30:04.047205 task code-7 cat=code_gen mode=full layer=remote
+12:30:04.060234 task logic-7 cat=factual mode=full layer=local generic
+12:30:04.077752 task code-8 cat=code_gen mode=full layer=remote
+12:30:05.091359 task logic-5 cat=factual mode=full layer=local generic
+12:30:08.688739 task logic-8 cat=logic mode=full layer=remote
+12:30:08.689504 fireworks: 23 calls, 1219 prompt + 238 completion = 1457 tokens
+12:30:08.689510 local: 38 calls, 1746 completion tokens (scored: 0)
+12:30:08.689512 done: 64 tasks in 36.205s

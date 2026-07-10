@@ -1,0 +1,31 @@
+{
+  "kk-1": {"category": "logic", "expected": "Pia is a knight, Quin is a knave, and Rex is a knight."},
+  "kk-2": {"category": "logic", "expected": "Ada is a knave and Bex is a knight."},
+  "kk-3": {"category": "logic", "expected": "Mira is a knight and Nils is a knave."},
+  "kk-4": {"category": "logic", "expected": "Ozan is a knight and Pera is a knave. (out-of-grammar 'is not a knight' — solver must defer to the model)"},
+
+  "zb-1": {"category": "logic", "expected": "Hana owns the dog, and Finn's house is green."},
+  "zb-2": {"category": "logic", "expected": "Ivo drinks tea and owns the fish. (three domains — solver must defer to the model)"},
+
+  "pos-1": {"category": "logic", "expected": "Aylin, Bora, Efe, Demir, Ceren (first to last)."},
+  "pos-2": {"category": "logic", "expected": "Sena finished last."},
+  "pos-3": {"category": "logic", "expected": "Vera finished last. (negated clue 'was not last' — solver must defer to the model)"},
+
+  "mr-1": {"category": "code_debug", "expected": "range(1, n) excludes n; use range(1, n + 1). Corrected code multiplies through n."},
+  "mr-2": {"category": "code_debug", "expected": "The comparison is inverted; return a if a > b else b."},
+  "mr-3": {"category": "code_debug", "expected": "counts[w] = 1 overwrites instead of incrementing; use counts[w] = counts.get(w, 0) + 1. (multi-token fix — mutation repair must defer to the model)"},
+
+  "sl-1": {"category": "code_gen", "expected": "A correct Euclidean gcd implementation passing gcd(12, 18) == 6."},
+  "sl-2": {"category": "code_gen", "expected": "A correct vowel counter passing count_vowels('Orange') == 3."},
+  "sl-3": {"category": "code_gen", "expected": "A correct digit-sum function passing digit_sum(1234) == 10."},
+  "sl-4": {"category": "code_gen", "expected": "A Fibonacci with fib(1) = 0, fib(2) = 1 passing fib(6) == 5. (non-standard convention — the library variants fail the example and must defer)"},
+
+  "dd-1": {"category": "factual", "expected": "Au"},
+  "dd-2": {"category": "factual", "expected": "Au (normalized duplicate of dd-1 — must cost zero extra calls)"},
+
+  "cp-1": {"category": "factual", "expected": "Tokyo"},
+  "cp-2": {"category": "summarization", "expected": "One sentence: the bond-funded library renovation (children's wing, computers, media lab) lifted attendance 31%, though the $1.2M overrun draws criticism ahead of an October audit."},
+
+  "gr-1": {"category": "sentiment", "expected": "Negative (sarcasm)"},
+  "gr-2": {"category": "sentiment", "expected": "Neutral (factual reporting)"}
+}

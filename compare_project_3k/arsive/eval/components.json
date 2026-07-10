@@ -1,0 +1,31 @@
+[
+  {"task_id": "kk-1", "prompt": "On an island, knights always tell the truth and knaves always lie. Pia says 'Quin is a knave.' Quin says 'Pia and Rex are different types.' Rex says 'Quin is a knave.' Determine what each of Pia, Quin, and Rex is."},
+  {"task_id": "kk-2", "prompt": "Knights always tell the truth; knaves always lie. Ada says 'Ada and Bex are both knaves.' Bex says 'Ada is a knave.' What are Ada and Bex?"},
+  {"task_id": "kk-3", "prompt": "On the island of knights and knaves, Mira says 'At least one of Mira and Nils is a knave.' Nils says 'Mira is a knave.' What is each of them?"},
+  {"task_id": "kk-4", "prompt": "Knights tell the truth, knaves lie. Ozan says 'Pera is not a knight.' Pera says 'Ozan and Pera are the same type.' What are Ozan and Pera?"},
+
+  {"task_id": "zb-1", "prompt": "Four friends — Ella, Finn, Gus, and Hana — each own one pet (cat, dog, fish, bird) and live in different colored houses (red, blue, green, yellow). Ella owns the bird. The dog owner lives in the yellow house. Finn lives in the green house. Gus owns neither the cat nor the dog. Hana does not live in the red house. Who owns the dog, and what color is Finn's house?"},
+  {"task_id": "zb-2", "prompt": "Three friends — Ivo, Jan, and Kai — each own one pet (cat, dog, fish), live in different houses (red, blue, green), and drink different beverages (tea, coffee, milk). Kai owns the dog. The fish owner drinks tea. Jan lives in the red house. Kai drinks coffee. Jan drinks milk. Who drinks tea, and who owns the fish?"},
+
+  {"task_id": "pos-1", "prompt": "Five swimmers competed: Aylin, Bora, Ceren, Demir, and Efe. Bora finished second. Efe finished immediately behind Bora. Aylin finished exactly three places ahead of Demir. What is the finishing order?"},
+  {"task_id": "pos-2", "prompt": "Four runners raced: Omar, Pia, Rui, and Sena. Omar finished first. Pia finished immediately behind Omar. Rui finished ahead of Sena. Who finished last?"},
+  {"task_id": "pos-3", "prompt": "Four cyclists raced: Tara, Ugo, Vera, and Wim. Tara finished before Ugo. Ugo was not last. Vera finished after Wim. Wim finished before Tara. Who finished last?"},
+
+  {"task_id": "mr-1", "prompt": "This Python function is buggy: factorial(5) returns 24 instead of 120. Find the bug and provide corrected code:\n\ndef factorial(n):\n    out = 1\n    for i in range(1, n):\n        out *= i\n    return out"},
+  {"task_id": "mr-2", "prompt": "This function should return the larger of two numbers, but bigger(2, 9) returns 2 instead of 9. Fix the bug:\n\ndef bigger(a, b):\n    return a if a < b else b"},
+  {"task_id": "mr-3", "prompt": "This Python function should count word occurrences, but count_words('a b a') returns {'a': 1, 'b': 1} instead of {'a': 2, 'b': 1}. Explain the bug and fix the code:\n\ndef count_words(s):\n    counts = {}\n    for w in s.split():\n        counts[w] = 1\n    return counts"},
+
+  {"task_id": "sl-1", "prompt": "Write a Python function gcd(a, b) that returns the greatest common divisor of two positive integers. Example: gcd(12, 18) returns 6."},
+  {"task_id": "sl-2", "prompt": "Write a Python function count_vowels(s) that returns the number of vowels in s, case-insensitive. Example: count_vowels('Orange') returns 3."},
+  {"task_id": "sl-3", "prompt": "Write a Python function digit_sum(n) that returns the sum of the digits of n. Example: digit_sum(1234) returns 10."},
+  {"task_id": "sl-4", "prompt": "Write a Python function fib(n) for a Fibonacci variant where fib(1) = 0 and fib(2) = 1. Example: fib(6) returns 5."},
+
+  {"task_id": "dd-1", "prompt": "What is the chemical symbol for gold?"},
+  {"task_id": "dd-2", "prompt": "what is  the chemical symbol for GOLD?"},
+
+  {"task_id": "cp-1", "prompt": "Could you please kindly tell me what the capital city of Japan is? Thank you."},
+  {"task_id": "cp-2", "prompt": "Please summarize the following in one sentence: The library renovation, funded by a municipal bond approved last spring, added a children's wing, forty public computers, and a soundproof media lab. Attendance in the first month rose 31% compared with the same period last year. The head librarian credits extended evening hours and the new tutoring program, while some residents on the review board still question the project's final cost overrun of $1.2 million. A follow-up audit is scheduled for October. Thank you."},
+
+  {"task_id": "gr-1", "prompt": "What is the sentiment of this review? 'Oh wonderful, the package arrived two weeks late and the box was crushed. Exactly what I hoped for.'"},
+  {"task_id": "gr-2", "prompt": "Classify the sentiment of this sentence: 'The quarterly report was published on Tuesday and covers revenue from January through March.'"}
+]

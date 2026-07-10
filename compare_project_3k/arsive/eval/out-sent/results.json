@@ -1,0 +1,46 @@
+[
+  {
+    "task_id": "sh-1",
+    "answer": "Negative. The comment uses sarcasm to express extreme dissatisfaction with the service."
+  },
+  {
+    "task_id": "sh-2",
+    "answer": "Positive, The positive experience of the concert outweighs the negative aspects of the commute and parking."
+  },
+  {
+    "task_id": "sh-3",
+    "answer": "Negative. The sentence describes a devastating natural disaster and subsequent fires."
+  },
+  {
+    "task_id": "sent-1",
+    "answer": "Positive: The review expresses strong satisfaction with the phone's features."
+  },
+  {
+    "task_id": "sent-2",
+    "answer": "Negative. The comment expresses strong dissatisfaction with the service and food quality."
+  },
+  {
+    "task_id": "sent-3",
+    "answer": "Mixed. The review contains both positive aspects (room) and negative aspects (wifi, breakfast)."
+  },
+  {
+    "task_id": "sent-4",
+    "answer": "Neutral; The statement is a factual report of an event."
+  },
+  {
+    "task_id": "sent-5",
+    "answer": "Negative: The user expresses frustration and disappointment with the software update."
+  },
+  {
+    "task_id": "sent-6",
+    "answer": "Mixed. The review balances positive performance with a negative observation about weight."
+  },
+  {
+    "task_id": "sent-7",
+    "answer": "Negative. The author expresses disappointment and inability to engage with the book."
+  },
+  {
+    "task_id": "sent-8",
+    "answer": "Positive. The feeling of pride outweighs the physical discomfort."
+  }
+]

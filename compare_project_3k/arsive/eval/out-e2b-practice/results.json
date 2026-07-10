@@ -1,0 +1,34 @@
+[
+  {
+    "task_id": "practice-01",
+    "answer": "The capital of Australia is Canberra, and it is near the Murray River."
+  },
+  {
+    "task_id": "practice-02",
+    "answer": "222"
+  },
+  {
+    "task_id": "practice-03",
+    "answer": "Mixed. The review contains both positive feedback about the battery life and negative feedback about the screen durability."
+  },
+  {
+    "task_id": "practice-04",
+    "answer": "Please provide the paragraph you would like me to summarize."
+  },
+  {
+    "task_id": "practice-05",
+    "answer": "Maria Sanchez — person\nFireworks AI — organization\nBerlin — location\nlast March — date"
+  },
+  {
+    "task_id": "practice-06",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  },
+  {
+    "task_id": "practice-07",
+    "answer": "Sam owns the cat."
+  },
+  {
+    "task_id": "practice-08",
+    "answer": "```python\ndef add(a, b):\n    return a + b\n```"
+  }
+]

@@ -36,7 +36,7 @@ HEURISTICS = {
         r"\bcalculate\b", r"\bhow (much|many|long|far)\b.*\d", r"\d.*\bhow (much|many|long|far)\b",
         r"\d+\s*%", r"\bpercent",
         r"\bsum of\b", r"\bproduct of\b", r"\bproject(ed|ion)\b.*\d",
-        r"\d+\s*[\+\-\*/x]\s*\d+", r"\bwhat is \d", r"\baverage\b.*\d", r"\btotal\b.*\d",
+        r"\d+\s*(?:[\+\*/x]|\s-\s)\s*\d+", r"\bwhat is \d", r"\baverage\b.*\d", r"\btotal\b.*\d",
     ],
     "logical_puzzles": [
         r"\bpuzzle\b", r"\briddle\b", r"\bif .* then .* (who|what|which)\b",
@@ -69,41 +69,52 @@ def detect_task_type(user_prompt: str) -> str:
 
 # Optimized constraints for each domain to ensure maximum token savings 
 # without triggering a failure from the LLM-as-a-judge accuracy gate.
+_BASE = "Answer in English. Be concise and direct; no preamble, no restating the question."
+
 TOKEN_LIMITS = {
     "knowledge_qa": {
-        "suffix": "Provide a direct, concise answer without any preamble.",
-        "cap": 160,
+        "system": f"{_BASE} Give a correct, clear answer in under 120 words.",
+        "cap": 300,
+        "retry_cap": 1024,
     },
     "math_solving": {
-        "suffix": "Briefly show your steps, then conclude with: Answer: <result>.",
-        "cap": 600,
+        "system": f"{_BASE} Work through it in brief steps, then end with 'Answer: <value>' on its own line.",
+        "cap": 512,
+        "retry_cap": 1024,
     },
     "sentiment_analysis": {
-        "suffix": "Provide the exact sentiment label (positive, negative, neutral, mixed) followed by a single sentence of justification.",
-        "cap": 120,
+        "system": f"{_BASE} State the sentiment as positive, negative, or neutral, then one short reason.",
+        "cap": 150,
+        "retry_cap": 300,
     },
     "summarization": {
-        "suffix": "Provide only the summary, adhering strictly to the requested format or length.",
-        "cap": 200,
+        "system": f"{_BASE} Output only the summary and obey any length or format constraint stated in the task.",
+        "cap": 300,
+        "retry_cap": 600,
     },
     "entity_extraction": {
-        "suffix": 'Output valid JSON only: [{"entity":"...","type":"..."}]. Do not output conversational text.',
-        "cap": 200,
+        "system": f"{_BASE} Output valid JSON only: [{{\"entity\":\"...\",\"type\":\"...\"}}]. Do not output conversational text.",
+        "cap": 300,
+        "retry_cap": 600,
     },
     "bug_fixing": {
-        "suffix": "Identify the bug in one sentence, then provide the corrected code block. No extra text.",
-        "cap": 800,
+        "system": f"{_BASE} State the bug in one sentence, then give the corrected code in a single fenced block.",
+        "cap": 512,
+        "retry_cap": 1024,
     },
     "logical_puzzles": {
-        "suffix": "Provide brief step-by-step reasoning, then conclude with: Answer: <result>.",
-        "cap": 800,
+        "system": f"{_BASE} Reason in brief numbered steps, checking each constraint, then end with 'Answer: <value>' on its own line.",
+        "cap": 512,
+        "retry_cap": 1024,
     },
     "code_authoring": {
-        "suffix": "Write the requested code inside a single block. Be as concise as possible.",
-        "cap": 900,
+        "system": f"{_BASE} Output only the code in a single fenced block — correct, complete, and self-contained.",
+        "cap": 768,
+        "retry_cap": 1536,
     },
     "fallback": {
-        "suffix": "Answer the question directly and concisely.",
+        "system": f"{_BASE}",
         "cap": 400,
+        "retry_cap": 1024,
     },
 }

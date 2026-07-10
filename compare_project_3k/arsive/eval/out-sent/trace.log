@@ -1,0 +1,14 @@
+11:22:04.271844 loaded 11 tasks
+11:22:04.273453 using external local server at http://127.0.0.1:8080
+11:22:08.280586 task sh-3 cat=sentiment cls=regex layer=local consistent
+11:22:08.865547 task sh-1 cat=sentiment cls=regex layer=local consistent
+11:22:08.866591 task sent-1 cat=sentiment cls=regex layer=local consistent
+11:22:09.828960 task sh-2 cat=sentiment cls=regex layer=local consistent
+11:22:12.293709 task sent-2 cat=sentiment cls=regex layer=local consistent
+11:22:12.370761 task sent-4 cat=sentiment cls=regex layer=local consistent
+11:22:13.444638 task sent-5 cat=sentiment cls=regex layer=local consistent
+11:22:13.614749 task sent-3 cat=sentiment cls=regex layer=local consistent
+11:22:15.626684 task sent-7 cat=sentiment cls=regex layer=local consistent
+11:22:15.678523 task sent-6 cat=sentiment cls=regex layer=local-unproven
+11:22:15.962598 task sent-8 cat=sentiment cls=regex layer=local consistent
+11:22:15.963387 done: 11 tasks in 11.692s
