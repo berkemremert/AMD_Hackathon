@@ -16,9 +16,8 @@ DATA_PATH = Path(__file__).parent / "data" / "labeled_dataset.json"
 # Fallback to local dev env vars if ALLOWED_MODELS is not provided
 if "ALLOWED_MODELS" in os.environ:
     models = os.environ["ALLOWED_MODELS"].split(",")
-    # The user wants to use kimi-k2p6 (non-coding version) always
-    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[0])
-    MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[-1])
+    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1])
+    MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0])
 else:
     MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
     MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
@@ -83,6 +82,25 @@ def main():
         print(f"Detected Category (Heuristic): {task_type}")
         print(f"Prompt:\n{prompt}\n")
         
+        # NEW LOCAL SOLVERS FIRST
+        if task_type == "math_solving":
+            from local_solvers import solve_math_exact
+            math_ans = solve_math_exact(prompt)
+            if math_ans is not None:
+                print(f"[LOCAL SOLVER] Math solver answered: {math_ans}")
+                print("[TOKENS] 0 API tokens used.\n\n<EOT>")
+                print("="*80 + "\n")
+                continue
+                
+        if task_type == "logical_puzzles":
+            from local_solvers import solve_logic_puzzle
+            logic_ans = solve_logic_puzzle(prompt)
+            if logic_ans is not None:
+                print(f"[LOCAL SOLVER] Logic puzzle solver answered: {logic_ans}")
+                print("[TOKENS] 0 API tokens used.\n\n<EOT>")
+                print("="*80 + "\n")
+                continue
+
         if task_type == "entity_extraction":
             print("[ROUTER] Local task detected. Routing to local GLiNER (0 tokens).")
             raw_entities = solve_ner(prompt)
@@ -107,25 +125,36 @@ def main():
         print(f"[ROUTER] Finetuned prediction routed to: {model}")
         
         limits = TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"])
-        tight_prompt = f"{limits['suffix']}\n\n{prompt}"
+        system_prompt = limits["system"]
         
         print(f"[API CALL] Model: {model} | Cap: {limits['cap']} | Reasoning: Low")
         try:
-            answer = chat(model, tight_prompt, max_tokens=limits["cap"], extra_params={"reasoning_effort": "low", "reasoning_history": "disabled"})
-            call_tokens = answer["total_tokens"]
-            total_tokens += call_tokens
+            answer = chat(
+                model=model,
+                prompt=prompt,
+                max_tokens=limits["cap"],
+                system_prompt=system_prompt,
+                extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
+            )
+            total_tokens += answer["total_tokens"]
             
-            print(f"[RESPONSE] Tokens: {call_tokens} | Finish Reason: {answer.get('finish_reason')}")
+            print(f"[RESPONSE] Tokens: {answer['total_tokens']} | Finish Reason: {answer.get('finish_reason', 'none')}")
             print(f"[TEXT]\n{answer['text']}")
             
             # Validation
             ok, reason = validator.validate(task_type, prompt, answer["text"], answer.get("finish_reason"))
-            if not ok:
-                print(f"[VALIDATION FAILED] Reason: {reason}. Retrying with thinking OFF and generous cap ({limits.get('retry_cap', 800)})...")
-                retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800), extra_params={"reasoning_effort": "low", "reasoning_history": "disabled"})
-                retry_tokens = retry_answer["total_tokens"]
-                total_tokens += retry_tokens
-                print(f"[RETRY RESPONSE] Tokens: {retry_tokens} | Finish Reason: {retry_answer.get('finish_reason')}")
+            if not ok or not answer["text"].strip():
+                fallback_model = MODEL_EXPENSIVE if model == MODEL_CHEAP else MODEL_CHEAP
+                print(f"[VALIDATION FAILED] Reason: {reason}. Retrying with fallback model {fallback_model}...")
+                retry_answer = chat(
+                    model=fallback_model,
+                    prompt=prompt,
+                    max_tokens=limits.get("retry_cap", 800),
+                    system_prompt=system_prompt,
+                    extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
+                )
+                total_tokens += retry_answer["total_tokens"]
+                print(f"[RETRY RESPONSE] Tokens: {retry_answer['total_tokens']} | Finish Reason: {retry_answer.get('finish_reason', 'none')}")
                 print(f"[RETRY TEXT]\n{retry_answer['text']}")
             else:
                 print("[VALIDATION PASSED] Output looks good.")

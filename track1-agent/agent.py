@@ -26,9 +26,8 @@ OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
 # Fallback to local dev env vars if ALLOWED_MODELS is not provided
 if "ALLOWED_MODELS" in os.environ:
     models = os.environ["ALLOWED_MODELS"].split(",")
-    # The user wants to use kimi-k2p6 (non-coding version) always
-    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[0])
-    MODEL_EXPENSIVE = next((m for m in models if "kimi" in m.lower() and "code" not in m.lower()), models[-1])
+    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1])
+    MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0])
 else:
     MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
     MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
@@ -64,6 +63,20 @@ def main():
     for task in tasks:
         task_type = detect_task_type(task["prompt"])
         
+        if task_type == "math_solving":
+            from local_solvers import solve_math_exact
+            math_ans = solve_math_exact(task["prompt"])
+            if math_ans is not None:
+                results.append({"task_id": task["task_id"], "answer": math_ans})
+                continue
+                
+        if task_type == "logical_puzzles":
+            from local_solvers import solve_logic_puzzle
+            logic_ans = solve_logic_puzzle(task["prompt"])
+            if logic_ans is not None:
+                results.append({"task_id": task["task_id"], "answer": logic_ans})
+                continue
+                
         if task_type == "entity_extraction":
             # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
             from local_solvers import solve_ner
@@ -81,17 +94,31 @@ def main():
 
         model, routing_tokens = route(task["prompt"])
         
-        # Tighten the prompt using dynamic output optimization
-        limits = TOKEN_LIMITS[task_type]
-        tight_prompt = f"{limits['suffix']}\n\n{task['prompt']}"
+        limits = TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"])
+        system_prompt = limits["system"]
         
-        answer = chat(model, tight_prompt, max_tokens=limits["cap"], extra_params={"reasoning_effort": "low", "reasoning_history": "disabled"})
+        answer = chat(
+            model=model,
+            prompt=task["prompt"],
+            max_tokens=limits["cap"],
+            system_prompt=system_prompt,
+            extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
+        )
         total_tokens += routing_tokens + answer["total_tokens"]
         
         ok, reason = validator.validate(task_type, task["prompt"], answer["text"], answer.get("finish_reason"))
-        if not ok:
-            print(f"Validation failed for task {task['task_id']} ({reason}). Retrying with generous cap...", file=sys.stderr)
-            retry_answer = chat(model, tight_prompt, max_tokens=limits.get("retry_cap", 800), extra_params={"reasoning_effort": "low", "reasoning_history": "disabled"})
+        if not ok or not answer["text"].strip():
+            # Fallback to opposite tier model on failure or blank response
+            fallback_model = MODEL_EXPENSIVE if model == MODEL_CHEAP else MODEL_CHEAP
+            print(f"Validation failed for task {task['task_id']} ({reason}). Retrying with fallback model {fallback_model}...", file=sys.stderr)
+            
+            retry_answer = chat(
+                model=fallback_model,
+                prompt=task["prompt"],
+                max_tokens=limits.get("retry_cap", 800),
+                system_prompt=system_prompt,
+                extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
+            )
             total_tokens += retry_answer["total_tokens"]
             answer = retry_answer
             
