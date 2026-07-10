@@ -97,6 +97,40 @@ def main():
             results.append({"task_id": task["task_id"], "answer": sentiment_output})
             continue
 
+        if task_type == "summarization":
+            import os
+            from src.local_summarization.config import get_mode, get_failure_policy
+            from src.local_summarization.service import summarize as local_summarize
+            from src.local_summarization.compressor import compress_source
+            from src.local_summarization.parser import parse_summary_request
+            
+            mode = get_mode()
+            
+            if mode == "full":
+                try:
+                    res = local_summarize(task["prompt"])
+                    if not res.success and get_failure_policy() == "fireworks":
+                        print("Local summarization failed validation, falling back to Fireworks API.", file=sys.stderr)
+                        pass # Let it fall through to existing fireworks route
+                    else:
+                        results.append({"task_id": task["task_id"], "answer": res.answer})
+                        # Approximating local tokens for tracking, though they cost $0
+                        total_tokens += res.attempts[-1].output_tokens if res.attempts else 0
+                        continue
+                except Exception as e:
+                    if get_failure_policy() == "fireworks":
+                        print(f"Local summarization crashed: {e}, falling back to Fireworks API.", file=sys.stderr)
+                        pass # Fall through
+                    else:
+                        results.append({"task_id": task["task_id"], "answer": f"Error: {e}"})
+                        continue
+                        
+            elif mode == "compress_only":
+                req = parse_summary_request(task["prompt"])
+                compressed = compress_source(req.source_text, req.constraints)
+                task["prompt"] = f"{req.instruction}\n\n{compressed}"
+                # Let it fall through to existing fireworks route
+                
         model, routing_tokens = route(task["prompt"])
         
         limits = TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"])
