@@ -6,6 +6,7 @@ import json
 import warnings
 import re
 import sys
+import sys
 
 # Suppress HuggingFace/Torch warnings for cleaner output
 warnings.filterwarnings("ignore")
@@ -17,6 +18,7 @@ def extract_target_text(prompt: str) -> str:
     elif "Text:" in prompt:
         return prompt.split("Text:")[-1].split("\n\n")[0].strip()
     elif '"' in prompt:
+        import re
         match = re.search(r'"([^"]*)"', prompt)
         if match:
             return match.group(1).strip()
@@ -274,104 +276,21 @@ def solve_sentiment(prompt: str) -> str:
 import ast
 from itertools import permutations
 
-def _solve_percentage_word_problem(prompt: str) -> str | None:
-    if any(k in prompt.lower() for k in ["division a", "store a:", "store 1", "widget lines:", "stock a:", "type a stores", "general-fund", "three divisions", "three markets", "conglomerate", "four stores", "three production shifts", "three tax sources", "three store formats", "cafeteria", "donate", "two consecutive months"]):
-        return None
-        
-    has_dollar = "$" in prompt or "dollar" in prompt.lower() or "price" in prompt.lower() or "revenue" in prompt.lower() or "earnings" in prompt.lower() or "cost" in prompt.lower()
-    
-    base_match = re.search(r"(?:sold|had a revenue of|earned|revenue of|produces|currently sells|currently has|sells a \w+ for|cost of|costs|starts with|had revenue of|earns|monthly revenue of|initial balance of|starting balance of|revenue was|originally costs|jacket for|laptop for|shirt for) (?:\$)?([\d,]+(?:\.\d+)?)", prompt, re.I)
-    if not base_match:
-        base_match = re.search(r"\$([\d,]+(?:\.\d+)?)", prompt)
-    if not base_match:
-        base_match = re.search(r"\b([1-9]\d{2,6})\b.*?\b\d+(?:\.\d+)?%", prompt)
-        
-    if not base_match:
-        return None
-        
-    base = float(base_match.group(1).replace(",", ""))
-    
-    # Check for constant rate over N periods
-    m_period = re.search(r"(\d+(?:\.\d+)?)%\s*(?:annually|each year|each month|per year|per month).*?(\d+)\s*(?:years?|months?)", prompt, re.I)
-    if not m_period:
-        m_period = re.search(r"(?:for |after )(\d+)\s*(?:years?|months?|consecutive months?).*?(\d+(?:\.\d+)?)%\s*(?:each |per )", prompt, re.I)
-        if m_period:
-            rate = float(m_period.group(2)) / 100.0
-            periods = int(m_period.group(1))
-        else:
-            rate, periods = None, None
-    else:
-        rate = float(m_period.group(1)) / 100.0
-        periods = int(m_period.group(2))
-        
-    if rate is not None and periods is not None:
-        res = base * ((1 + rate) ** periods)
-        if has_dollar and ("$" in prompt or "dollar" in prompt.lower() or "revenue" in prompt.lower()):
-            if abs(res - round(res)) < 1e-4:
-                return f"${int(round(res)):,}" if "," in base_match.group(0) else f"${int(round(res))}"
-            return f"${res:,.2f}" if "," in base_match.group(0) else f"${res:.2f}"
-        else:
-            return str(int(round(res))) if abs(res - round(res)) < 1e-4 else f"{res:.2f}"
-            
-    # Check for sequential percentage changes
-    changes = []
-    clean_p = re.sub(r"\bdiscounted (?:price|amount|cost)\b", "price", prompt, flags=re.I)
-    for sm in re.finditer(r"(\d+(?:\.\d+)?)\s*%", clean_p):
-        val = float(sm.group(1))
-        if val == base:
-            continue
-        start = max(0, sm.start() - 35)
-        end = min(len(clean_p), sm.end() + 20)
-        window = clean_p[start:end].lower()
-        neg_words = ["discount", "off", "decrease", "reduce", "reduced", "lower", "loss"]
-        pos_words = ["increase", "increased", "growth", "grow", "grew", "grows", "tax", "added", "higher"]
-        
-        best_dist = 999
-        is_neg = False
-        for w in neg_words:
-            idx = window.find(w)
-            if idx != -1 and abs(idx - (sm.start() - start)) < best_dist:
-                best_dist = abs(idx - (sm.start() - start))
-                is_neg = True
-        for w in pos_words:
-            idx = window.find(w)
-            if idx != -1 and abs(idx - (sm.start() - start)) < best_dist:
-                best_dist = abs(idx - (sm.start() - start))
-                is_neg = False
-                
-        if is_neg:
-            changes.append(-val / 100.0)
-        else:
-            changes.append(val / 100.0)
-            
-    if len(changes) == 2 and "each month" not in prompt.lower() and "each year" not in prompt.lower():
-        res = base * (1 + changes[0]) * (1 + changes[1])
-        if has_dollar and ("$" in prompt or "dollar" in prompt.lower() or "revenue" in prompt.lower() or "price" in prompt.lower()):
-            if abs(res - round(res)) < 1e-4:
-                return f"${int(round(res)):,}" if "," in base_match.group(0) else f"${int(round(res))}"
-            return f"${res:,.2f}" if "," in base_match.group(0) else f"${res:.2f}"
-        else:
-            return str(int(round(res))) if abs(res - round(res)) < 1e-4 else f"{res:.2f}"
-            
-    return None
-
 def solve_math_exact(prompt: str) -> str | None:
-    # First check if it is a structured percentage/growth word problem
-    word_prob_res = _solve_percentage_word_problem(prompt)
-    if word_prob_res is not None:
-        return word_prob_res
-
-    # Otherwise, check if it is a pure arithmetic expression
+    # Remove common prefix phrases
     clean_prompt = re.sub(r"^(what's|what is|calculate|evaluate|solve|compute|how much is)\b[:,]?\s*", "", prompt, flags=re.IGNORECASE).strip()
     clean_prompt = clean_prompt.replace('$', '').replace(',', '').replace('x', '*').replace('×', '*').replace('÷', '/').rstrip('?.= ')
     
+    # Check if only contains safe math chars
     if not clean_prompt or not re.match(r"^[0-9+\-*/(). ]+$", clean_prompt) or len(clean_prompt) > 100:
         return None
     
+    # Must have an operator, otherwise it's just a number
     if not re.search(r"[+\-*/]", clean_prompt):
         return None
         
     try:
+        # Extra safety check using ast
         parsed = ast.parse(clean_prompt, mode='eval')
         if not isinstance(parsed, ast.Expression):
             return None
@@ -385,189 +304,15 @@ def solve_math_exact(prompt: str) -> str | None:
         if not isinstance(result, (int, float)) or isinstance(result, bool):
             return None
             
+        # Format output
         if abs(result - round(result)) < 1e-9 and abs(result) < 1e15:
             return str(int(round(result)))
         return f"{result:.6f}".rstrip("0").rstrip(".")
     except Exception:
         return None
 
-def _solve_permutation_ordering(prompt: str) -> str | None:
-    from itertools import permutations
-    import re
-
-    # Check for letter arrangement: Arrange the letters A, B, C, and D
-    if "letters A, B, C, and D" in prompt or ("letters A, B, C" in prompt and "and D" in prompt):
-        letters = ["A", "B", "C", "D"]
-        valid = []
-        for p in permutations(letters):
-            idx = {l: i for i, l in enumerate(p)}
-            ok = True
-            for line in prompt.splitlines():
-                line_l = line.lower()
-                if "not at either end" in line_l:
-                    for l in letters:
-                        if re.search(rf"\b{l.lower()}\b", line_l) and (idx[l] == 0 or idx[l] == 3): ok = False
-                if "immediately to the left of" in line_l:
-                    for x in letters:
-                        for y in letters:
-                            if x != y and re.search(rf"\b{x.lower()}\b.*\bimmediately to the left of\b.*\b{y.lower()}\b", line_l):
-                                if idx[x] != idx[y] - 1: ok = False
-                if "not next to" in line_l:
-                    for x in letters:
-                        for y in letters:
-                            if x != y and re.search(rf"\b{x.lower()}\b.*\bnot next to\b.*\b{y.lower()}\b", line_l):
-                                if abs(idx[x] - idx[y]) == 1: ok = False
-                if "somewhere to the left of" in line_l:
-                    for x in letters:
-                        for y in letters:
-                            if x != y and re.search(rf"\b{x.lower()}\b.*\bsomewhere to the left of\b.*\b{y.lower()}\b", line_l):
-                                if idx[x] >= idx[y]: ok = False
-            if ok: valid.append("".join(p))
-        if len(valid) == 1: return valid[0]
-
-    people = [n for n in ["Alice", "Bob", "Charlie", "Carol", "Dave", "Anna", "Ben", "Carla", "Chloe", "Cid", "Clara", "Dan", "Ana", "Cleo", "Chen"] if re.search(rf"\b{n}\b", prompt)]
-    if 3 <= len(people) <= 4 and any(w in prompt.lower() for w in ["line", "chairs", "position", "row", "left to right"]):
-        n = len(people)
-        valid = []
-        clues = re.split(r"[.?!]\s+|\n+", prompt)
-        for p in permutations(people):
-            idx = {person: i for i, person in enumerate(p)}
-            ok = True
-            for clue in clues:
-                clue_l = clue.lower().strip()
-                if not clue_l or any(k in clue_l for k in ["who is", "what is", "determine", "arrange", "provide", "answer with"]):
-                    continue
-                if "not in the middle" in clue_l:
-                    for person in people:
-                        if re.search(rf"\b{person.lower()}\b", clue_l) and (idx[person] == 0 or idx[person] == n-1):
-                            pass
-                        elif re.search(rf"\b{person.lower()}\b", clue_l) and idx[person] not in [0, n-1]:
-                            ok = False
-                elif "is in the middle" in clue_l:
-                    for person in people:
-                        if re.search(rf"\b{person.lower()}\b", clue_l) and (idx[person] == 0 or idx[person] == n-1):
-                            ok = False
-                if "not on the left" in clue_l or "not at the left" in clue_l or "not at the front" in clue_l:
-                    for person in people:
-                        if re.search(rf"\b{person.lower()}\b", clue_l) and idx[person] == 0:
-                            ok = False
-                if "not on the right" in clue_l or "not at the right" in clue_l or "not at the back" in clue_l:
-                    for person in people:
-                        if re.search(rf"\b{person.lower()}\b", clue_l) and idx[person] == n-1:
-                            ok = False
-                if "immediately to the right of" in clue_l or "directly to the right of" in clue_l:
-                    for x in people:
-                        for y in people:
-                            if x != y and re.search(rf"\b{x.lower()}\b.*\b(?:immediately|directly) to the right of\b.*\b{y.lower()}\b", clue_l):
-                                if idx[x] != idx[y] + 1: ok = False
-                if "immediately to the left of" in clue_l or "directly to the left of" in clue_l:
-                    for x in people:
-                        for y in people:
-                            if x != y and re.search(rf"\b{x.lower()}\b.*\b(?:immediately|directly) to the left of\b.*\b{y.lower()}\b", clue_l):
-                                if idx[x] != idx[y] - 1: ok = False
-                if "directly behind" in clue_l or "immediately after" in clue_l or "standing directly behind" in clue_l:
-                    for x in people:
-                        for y in people:
-                            if x != y and re.search(rf"\b{x.lower()}\b.*\b(?:directly behind|immediately after)\b.*\b{y.lower()}\b", clue_l):
-                                if idx[x] != idx[y] + 1: ok = False
-                if "directly in front of" in clue_l or "immediately in front of" in clue_l:
-                    for x in people:
-                        for y in people:
-                            if x != y and re.search(rf"\b{x.lower()}\b.*\b(?:directly|immediately) in front of\b.*\b{y.lower()}\b", clue_l):
-                                if idx[x] != idx[y] - 1: ok = False
-            if ok:
-                valid.append(p)
-        if len(valid) == 1:
-            p = valid[0]
-            if "Who is standing in the middle?" in prompt or "Who is in the middle?" in prompt:
-                if n == 3: return p[1]
-            if "exact order from front to back" in prompt and "separated by commas" in prompt:
-                return ", ".join(p)
-            if "Chair 1:" in prompt and "Chair 2:" in prompt:
-                return ", ".join(f"Chair {i+1}: {person}" for i, person in enumerate(p))
-            if "left to right" in prompt and "Provide only the name" in prompt and "middle" in prompt and n == 3:
-                return p[1]
-    return None
-
-def _solve_mapping_assignment(prompt: str) -> str | None:
-    from itertools import permutations
-    import re
-
-    people = [n for n in ["Alice", "Bob", "Charlie", "Carol", "Dave", "Anna", "Ben", "Carla", "Chloe", "Cid", "Clara", "Dan", "Ana", "Cleo", "Chen"] if re.search(rf"\b{n}\b", prompt)]
-    if not (3 <= len(people) <= 4): return None
-    
-    attrs = []
-    if "Monday, Tuesday, or Wednesday" in prompt or "Monday, Tuesday, and Wednesday" in prompt:
-        attrs = ["Monday", "Tuesday", "Wednesday"]
-    elif "Apple, Banana, or Cherry" in prompt or "apple, banana, or cherry" in prompt or "Apple, Banana, and Cherry" in prompt:
-        attrs = ["Apple", "Banana", "Cherry"] if "Apple" in prompt else ["apple", "banana", "cherry"]
-    elif "red, blue, or green" in prompt or "red, blue, and green" in prompt:
-        attrs = ["red", "blue", "green"]
-    elif "1, 2, and 3" in prompt or "1, 2, or 3" in prompt:
-        attrs = ["1", "2", "3"]
-        
-    if len(attrs) != len(people): return None
-    
-    valid_mappings = []
-    clues = re.split(r"[.?!]\s+|\n+", prompt)
-    for p_attrs in permutations(attrs):
-        mapping = dict(zip(people, p_attrs))
-        ok = True
-        for clue in clues:
-            clue_l = clue.lower().strip()
-            if not clue_l or any(k in clue_l for k in ["who likes", "on which day", "provide your answer", "determine"]):
-                continue
-            for person in people:
-                for attr in attrs:
-                    if re.search(rf"\b{person.lower()}\b.*\b(?:likes|favorite color is|owns|must meet on|chose|lives in house)\b.*\b{attr.lower()}\b", clue_l):
-                        if mapping[person].lower() != attr.lower(): ok = False
-                    if re.search(rf"\b{person.lower()}\b.*\b(?:does not like|did not like|cannot meet on|does not live in|is not|not like|not)\b.*\b{attr.lower()}\b", clue_l):
-                        if mapping[person].lower() == attr.lower(): ok = False
-            if "day before" in clue_l and attrs == ["Monday", "Tuesday", "Wednesday"]:
-                day_idx = {"monday": 0, "tuesday": 1, "wednesday": 2}
-                for x in people:
-                    for y in people:
-                        if x != y and re.search(rf"\b{x.lower()}\b.*\bday before\b.*\b{y.lower()}\b", clue_l):
-                            if day_idx[mapping[x].lower()] != day_idx[mapping[y].lower()] - 1: ok = False
-            if attrs == ["1", "2", "3"]:
-                for x in people:
-                    for y in people:
-                        if x != y and re.search(rf"\b{x.lower()}\b.*\bhigher number than\b.*\b{y.lower()}\b", clue_l):
-                            if int(mapping[x]) <= int(mapping[y]): ok = False
-                for x in people:
-                    if re.search(rf"\b{x.lower()}\b.*\beven number\b", clue_l):
-                        if int(mapping[x]) % 2 != 0: ok = False
-        if ok:
-            valid_mappings.append(mapping)
-            
-    if len(valid_mappings) == 1:
-        m = valid_mappings[0]
-        if "Alice: [Day], Bob: [Day], Carol: [Day]" in prompt or "Alice: [Day]" in prompt:
-            return f"Alice: {m.get('Alice', '')}, Bob: {m.get('Bob', '')}, Carol: {m.get('Carol', '')}."
-        if "Alice: [Fruit]" in prompt and "Bob: [Fruit]" in prompt:
-            return f"Alice: {m.get('Alice', '')}\nBob: {m.get('Bob', '')}\nCarol: {m.get('Carol', '')}"
-        if "Anna: [color], Ben: [color], Carla: [color]" in prompt:
-            return f"Anna: {m.get('Anna', '')}, Ben: {m.get('Ben', '')}, Carla: {m.get('Carla', '')}"
-        if "Anna: [number], Ben: [number], Cid: [number]" in prompt:
-            return f"Anna: {m.get('Anna', '')}, Ben: {m.get('Ben', '')}, Cid: {m.get('Cid', '')}"
-        if "What is Charlie's favorite color?" in prompt and "Charlie" in m:
-            return m["Charlie"]
-    return None
-
 def solve_logic_puzzle(prompt: str) -> str | None:
-    # First attempt permutation & ordering constraints
-    perm_ans = _solve_permutation_ordering(prompt)
-    if perm_ans is not None:
-        return perm_ans
-
-    # Second attempt attribute mapping assignments
-    map_ans = _solve_mapping_assignment(prompt)
-    if map_ans is not None:
-        return map_ans
-
-    # Fall back to heuristic ownership matching
     import re
-    from itertools import permutations
     
     # Extract domain (e.g. colon list, parens, or curly braces)
     domain_match = re.search(r":\s*([a-z]+(?:[ ,]+[a-z]+)+)\s*(?:[.?!]|$)", prompt, re.IGNORECASE)
@@ -585,6 +330,7 @@ def solve_logic_puzzle(prompt: str) -> str | None:
         return None
         
     item_set = set(items)
+    
     ignore_words = {"the", "a", "an", "who", "what", "which", "when", "where", "why", "how", "if", "each", "every", "no", "none", "one", "two", "three", "four", "five", "both", "neither", "either", "he", "she", "it", "they", "we", "you", "i", "and", "or", "but", "so", "then", "also", "here", "there", "this", "that", "these", "those", "their", "his", "her", "its", "there", "three", "friends"}
     
     names = []
@@ -669,3 +415,4 @@ def solve_logic_puzzle(prompt: str) -> str | None:
         return None
         
     return ", and ".join(valid_answers) + "."
+

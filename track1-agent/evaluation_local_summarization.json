@@ -1,0 +1,65 @@
+[
+  {
+    "task_id": "q348",
+    "status": "FAIL",
+    "latency_ms": 10228.309869766235,
+    "original_words": 188,
+    "compressed_words": 188,
+    "compression_applied": false,
+    "attempts": 2,
+    "errors": [
+      "Expected exactly 50 words, got 52",
+      "Expected exactly 3 sentences, got 2"
+    ],
+    "final_answer": "Google's 2019 claim of quantum supremacy was challenged by IBM scientists, who found that the classical simulation benchmark used by Google was not the most efficient algorithm. Independent Chinese physicists observed that photonic quantum processors could solve a distinct subset of sampling problems, but practical error correction remains a distant milestone."
+  },
+  {
+    "task_id": "q351",
+    "status": "FAIL",
+    "latency_ms": 5879.698038101196,
+    "original_words": 226,
+    "compressed_words": 226,
+    "compression_applied": false,
+    "attempts": 2,
+    "errors": [
+      "Expected exactly 20 words, got 40",
+      "Expected exactly 1 sentences, got 3"
+    ],
+    "final_answer": "The CRISPR-Cas9 system, while revolutionary for gene editing, faces significant challenges regarding specificity. Single-guide RNA (sgRNA) sequence mismatches can lead to off-target DNA cleavage at unintended genomic loci, creating potentially dangerous double-strand breaks. Recent studies further"
+  },
+  {
+    "task_id": "q354",
+    "status": "FAIL",
+    "latency_ms": 4875.691890716553,
+    "original_words": 292,
+    "compressed_words": 292,
+    "compression_applied": false,
+    "attempts": 1,
+    "errors": [],
+    "final_answer": "* The 2023 MIT study found that large language models can develop unexpected reasoning abilities.\n* The 2024 Oxford replication demonstrated that these emergent behaviors, including chain-of-thought reasoning and in-context learning, create significant ethical challenges.\n* The 2023 MIT study highlighted the need for parallel investment in interpretability research and value-sensitive design methodologies to address alignment problems in healthcare diagnostics."
+  },
+  {
+    "task_id": "q352",
+    "status": "FAIL",
+    "latency_ms": 8941.120147705078,
+    "original_words": 166,
+    "compressed_words": 166,
+    "compression_applied": false,
+    "attempts": 2,
+    "errors": [
+      "Expected exactly 55 words, got 98"
+    ],
+    "final_answer": "The multinational conglomerate Horizon Dynamics, led by CEO Dr. Elena Vostok, announced record-breaking quarterly earnings despite the catastrophic flooding in Shenzhen. Vostok attributed the financial success to the company's recent pivot toward cloud-based software solutions, which generated unexpected revenue streams. However, internal whistleblowers have suggested that the accounting practices used to report these earnings may not fully comply with international transparency standards. Environmental activists, meanwhile, criticized the firm for simultaneously lobbying against stricter wetland protection regulations in the very region devastated by the flooding. Consumer sentiment remains polarized: brand loyalty surveys indicate a negative shift"
+  },
+  {
+    "task_id": "q353",
+    "status": "FAIL",
+    "latency_ms": 3213.268041610718,
+    "original_words": 98,
+    "compressed_words": 98,
+    "compression_applied": false,
+    "attempts": 1,
+    "errors": [],
+    "final_answer": "- Vargas reports 2.4 gigatons of ice shelf loss.\n- Chen argues for a 15% increase in extraction permits.\n- Okafor claims thawing permafrost displaced 312 families in Kivalina."
+  }
+]
