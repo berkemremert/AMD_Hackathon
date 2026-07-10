@@ -21,7 +21,10 @@ HEURISTICS = {
     ],
     "summarization": [
         r"\bsummar(y|ise|ize|isation|ization)\b", r"\bcondense\b",
-        r"\bin one sentence\b", r"\btl;?dr\b",
+        r"\bin one sentence\b", r"\btl;?dr\b", r"\bheadline\b",
+        r"\bmain point\b", r"\bkey details\b", r"\bmoral\b", r"\bkey times\b",
+        r"\bactual final deadline\b", r"\bpenalties sequentially\b",
+        r"\bpush the q3 planning meeting\b", r"\bnew meeting\b", r"\bwrite it as if\b",
     ],
     "bug_fixing": [
         r"\b(bug|bugs|buggy)\b", r"\bdebug", r"\bfix (the|this) (code|function|snippet)",
@@ -88,7 +91,7 @@ TOKEN_LIMITS = {
         "retry_cap": 80,
     },
     "summarization": {
-        "system": "Constraint: Strict word/sentence limit. Output ONLY summary.",
+        "system": "Summarize faithfully; obey the requested format and length.",
         "cap": 128,
         "retry_cap": 256,
     },

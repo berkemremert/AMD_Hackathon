@@ -216,8 +216,17 @@ def solve_code_authoring(prompt: str) -> Optional[str]:
 
 def solve_ner(prompt: str) -> str:
     """
-    Extracts named entities using deterministic pipeline and formats them as requested.
+    Extracts named entities using GLiNER (urchade/gliner_small-v2.1).
+    Falls back to the deterministic heuristic pipeline if GLiNER is unavailable.
     """
+    try:
+        from src.local_ner.gliner_solver import solve_ner_gliner
+        result = solve_ner_gliner(prompt)
+        if result is not None:
+            return result
+    except Exception as e:
+        print(f"[WARN] GLiNER NER failed ({e}), falling back to heuristic.", file=sys.stderr)
+
     from src.local_ner.core import solve_ner_pipeline
     return solve_ner_pipeline(prompt)
 
@@ -310,6 +319,115 @@ def solve_math_exact(prompt: str) -> Optional[str]:
             return str(int(round(result)))
         return f"{result:.6f}".rstrip("0").rstrip(".")
     except Exception:
+        return None
+
+
+def solve_math_pal(prompt: str) -> Optional[str]:
+    """
+    PAL (Program-Aided Language) solver for math word problems.
+    Uses the already-loaded Qwen2.5-Coder-1.5B to generate a short Python
+    script that computes the answer, executes it in a sandboxed env,
+    and returns the numeric result.  Falls back to None on any failure.
+    """
+    try:
+        from src.local_coder.core import _load_model
+        import torch
+        import io
+        from contextlib import redirect_stdout
+
+        model, tokenizer = _load_model()
+        if model is None or tokenizer is None:
+            return None
+
+        system_prompt = (
+            "Write a short Python program that solves the given math problem. "
+            "Use only basic arithmetic. The very last line must be: print(answer) "
+            "where answer is the final numeric result. "
+            "Output only the code inside a single ```python block."
+        )
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt},
+        ]
+
+        text = tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+        inputs = tokenizer(text, return_tensors="pt").to(model.device)
+
+        with torch.no_grad():
+            outputs = model.generate(
+                **inputs,
+                max_new_tokens=256,
+                do_sample=False,
+                temperature=None,
+                top_p=None,
+                top_k=None,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+
+        generated_ids = outputs[0][inputs.input_ids.shape[1]:]
+        response = tokenizer.decode(generated_ids, skip_special_tokens=True).strip()
+
+        # ── Extract code ──
+        code_match = re.search(r"```(?:python)?\s*(.*?)\s*```", response, re.DOTALL)
+        code = code_match.group(1).strip() if code_match else response.strip()
+        if not code:
+            return None
+
+        # ── AST safety gate ──
+        try:
+            tree = ast.parse(code)
+        except SyntaxError:
+            return None
+
+        ALLOWED_CALLS = frozenset({
+            "print", "round", "int", "float", "abs", "max", "min",
+            "len", "sum", "pow", "range",
+        })
+
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Import, ast.ImportFrom)):
+                return None
+            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
+                if node.func.id not in ALLOWED_CALLS:
+                    return None
+
+        # ── Sandboxed execution ──
+        output_buf = io.StringIO()
+        safe_builtins = {
+            "print": print, "round": round, "int": int, "float": float,
+            "abs": abs, "max": max, "min": min, "len": len, "sum": sum,
+            "pow": pow, "range": range, "True": True, "False": False, "None": None,
+        }
+
+        with redirect_stdout(output_buf):
+            exec(compile(tree, "<math_pal>", "exec"), {"__builtins__": safe_builtins})
+
+        result_text = output_buf.getvalue().strip()
+        if not result_text:
+            return None
+
+        answer_line = result_text.split("\n")[-1].strip()
+
+        # ── Parse & format the numeric answer ──
+        clean = answer_line.replace(",", "").replace("$", "").replace("%", "").strip()
+        num = float(clean)
+
+        if abs(num - round(num)) < 1e-9 and abs(num) < 1e15:
+            formatted = str(int(round(num)))
+        else:
+            formatted = f"{num:.2f}".rstrip("0").rstrip(".")
+
+        # Re-attach currency symbol when the problem is about money
+        if re.search(r"\$\s*[\d,]", prompt):
+            formatted = f"${formatted}"
+
+        return formatted
+
+    except Exception as e:
+        print(f"[WARN] Math PAL solver failed: {e}", file=sys.stderr)
         return None
 
 def solve_logic_puzzle(prompt: str) -> Optional[str]:
@@ -416,4 +534,33 @@ def solve_logic_puzzle(prompt: str) -> Optional[str]:
         return None
         
     return ", and ".join(valid_answers) + "."
+
+
+def solve_summarization(prompt: str) -> Optional[str]:
+    """
+    Local summarization using Qwen2.5-0.5B-Instruct via src.local_summarization.
+    Returns the summary string on success, or None to fall back to the API.
+    """
+    try:
+        from src.local_summarization.service import summarize
+        result = summarize(prompt)
+
+        if result.success and result.answer and result.answer.strip():
+            print(f"[LOCAL SUMMARIZER] Model: {result.model_id} | "
+                  f"Compression: {result.compression_applied} | "
+                  f"Words: {result.validation.word_count} | "
+                  f"Latency: {result.total_latency_ms:.0f}ms",
+                  file=sys.stderr)
+            return result.answer.strip()
+
+        # Validation failed even after repair — still return best-effort if we have text
+        if result.answer and result.answer.strip():
+            print(f"[LOCAL SUMMARIZER] Validation failed ({result.validation.errors}), "
+                  f"returning best-effort output.", file=sys.stderr)
+            return result.answer.strip()
+
+        return None
+    except Exception as e:
+        print(f"[WARN] Local summarization failed: {e}", file=sys.stderr)
+        return None
 

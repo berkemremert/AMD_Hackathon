@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 evaluation_results.json
 .streamlit/
+compare_project/

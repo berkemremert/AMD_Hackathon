@@ -5,3 +5,4 @@ router/checkpoints/
 *.pt
 *.bin
 .DS_Store
+compare_project/
