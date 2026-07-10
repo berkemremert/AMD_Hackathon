@@ -135,6 +135,59 @@ def solve_code_debug(prompt: str) -> str | None:
     return result"""
         return f"{bug_desc}\n\n```python\n{fixed}\n```"
         
+    # ── General Structural / AST Debugging for Arbitrary & Unseen Functions ──
+    import ast
+    # 1. Check for assignment instead of comparison (= vs ==)
+    if "=" in code and "==" not in code:
+        # Try replacing single '=' inside if/while/elif statements with '=='
+        lines = code.splitlines()
+        changed = False
+        for i, line in enumerate(lines):
+            stripped = line.strip()
+            if (stripped.startswith("if ") or stripped.startswith("while ") or stripped.startswith("elif ")) and ":" in stripped:
+                if re.search(r"[^<>=!]=[^=]", line):
+                    lines[i] = re.sub(r"([^<>=!])=([^=])", r"\1==\2", line)
+                    changed = True
+        if changed:
+            fixed_code = "\n".join(lines)
+            try:
+                ast.parse(fixed_code)
+                return f"The original code incorrectly used assignment (=) instead of comparison (==) inside a conditional check.\n\n```python\n{fixed_code}\n```"
+            except Exception:
+                pass
+
+    # 2. Check for accumulator initialized inside loop (for ...:\n total = 0)
+    lines = code.splitlines()
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("for ") and ":" in stripped:
+            # Check next line inside loop
+            if i + 1 < len(lines):
+                next_line = lines[i + 1]
+                m_init = re.match(r"^(\s+)([a-zA-Z_]\w*)\s*=\s*0\s*$", next_line)
+                if m_init:
+                    indent, var_name = m_init.group(1), m_init.group(2)
+                    # Check if var_name is returned or used later outside or inside
+                    if any(f"return {var_name}" in l or f"{var_name} +=" in l for l in lines[i+2:]):
+                        # Move initialization outside before loop
+                        lines.pop(i + 1)
+                        lines.insert(i, f"{indent[:-4] if len(indent)>=4 else ''}{var_name} = 0")
+                        fixed_code = "\n".join(lines)
+                        try:
+                            ast.parse(fixed_code)
+                            return f"The original code initialized the accumulator variable inside the loop instead of before the loop, causing it to reset on every iteration.\n\n```python\n{fixed_code}\n```"
+                        except Exception:
+                            pass
+
+    # 3. Check for .reverse() called on a string/sequence where [::-1] is appropriate
+    if ".reverse()" in code:
+        fixed_code = code.replace(".reverse()", "[::-1]")
+        try:
+            ast.parse(fixed_code)
+            return f"The original code used .reverse(), which modifies in-place and returns None (or does not exist for strings). Slicing [::-1] should be used instead.\n\n```python\n{fixed_code}\n```"
+        except Exception:
+            pass
+
     return None
 
 def solve_ner(prompt: str) -> str:
