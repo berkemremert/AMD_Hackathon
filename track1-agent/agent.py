@@ -114,28 +114,17 @@ def main():
                 raw_entities = solve_ner(task["prompt"])
                 results.append({"task_id": task["task_id"], "answer": raw_entities})
                 continue
-                
-        if task_type == "logical_puzzles":
-            from local_solvers import solve_logic_puzzle
-            logic_ans = solve_logic_puzzle(task["prompt"])
-            if logic_ans is not None:
-                results.append({"task_id": task["task_id"], "answer": logic_ans})
+        except Exception as e:
+            print(f"[WARN] NER solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
+        try:
+            if task_type == "sentiment_analysis":
+                from local_solvers import solve_sentiment
+                sentiment_output = solve_sentiment(task["prompt"])
+                results.append({"task_id": task["task_id"], "answer": sentiment_output})
                 continue
-                
-        if task_type == "entity_extraction":
-            # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
-            # Using the deterministic pipeline that formats the output exactly as requested
-            from local_solvers import solve_ner
-            formatted_entities = solve_ner(task["prompt"])
-            
-            results.append({"task_id": task["task_id"], "answer": formatted_entities})
-            continue
-            
-        if task_type == "sentiment_analysis":
-            from local_solvers import solve_sentiment
-            sentiment_output = solve_sentiment(task["prompt"])
-            results.append({"task_id": task["task_id"], "answer": sentiment_output})
-            continue
+        except Exception as e:
+            print(f"[WARN] Sentiment solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
 
         if task_type == "summarization":
             import os
