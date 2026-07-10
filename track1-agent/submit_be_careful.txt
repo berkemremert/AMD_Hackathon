@@ -1,0 +1,4256 @@
+submission guideline:
+
+AMD Developer Hackathon: Participant
+Submission Guide
+This document covers everything you need to build and submit a competitive entry. Exact
+evaluation inputs are intentionally omitted: your agent must be genuinely capable, not
+hardcoded to specific answers.
+
+Track 1: General-Purpose AI Agent
+What you are building
+An AI agent that handles a wide variety of natural language tasks across multiple capability
+domains, using Fireworks AI models as efficiently as possible.
+Why this task exists:
+Enterprises want to control AI spend without sacrificing user experience: not every task needs a
+premium proprietary model. A common pattern is hosting a range of models in-house
+(open-source, fine-tuned, RAG-based) and only calling out to a premium API when genuinely
+necessary. Track 1 asks you to build that smart router: run as many local models as you need,
+they cost zero toward your score, and make as few external Fireworks API calls as possible
+while still clearing the accuracy gate.
+Capability categories
+Your agent will be evaluated across all eight categories. Build for all of them:
+# Category What it covers
+1 Factual knowledge Explaining concepts,
+definitions, and how things
+work
+
+2 Mathematical reasoning Multi-step arithmetic,
+percentages, word problems,
+projections
+
+3 Sentiment classification Labelling sentiment and
+justifying the classification
+
+JSON
+
+JSON
+# Category What it covers
+4 Text summarisation Condensing passages to a
+specific format or length
+constraint
+
+5 Named entity recognition Extracting and labelling
+entities (person, org, location,
+date)
+
+6 Code debugging Identifying bugs in code
+snippets and providing
+corrected implementations
+
+7 Logical / deductive
+reasoning
+
+Constraint-based puzzles
+where all conditions must be
+satisfied
+8 Code generation Writing correct,
+
+well-structured functions from
+a spec
+
+What to submit
+A Docker image pushed to a public registry (e.g. GitHub Container Registry, Docker Hub).
+Check out the Image Architecture requirement at the bottom of this document
+Your container must:
+1. Read tasks from /input/tasks.json on startup
+
+[
+{ "task_id": "t1", "prompt": "Summarise the following text in one sentence: ..."
+},
+{ "task_id": "t2", "prompt": "..." }
+]
+
+2. Write results to /output/results.json before exiting
+
+[
+{ "task_id": "t1", "answer": "..." },
+
+JSON
+
+Python
+{ "task_id": "t2", "answer": "..." }
+]
+
+Practice tasks (not the real evaluation set)
+These are illustrative examples only — not the real grading tasks (those stay hidden). Use them
+to validate your container's input/output handling locally before using a real submission slot.
+
+[
+{ "task_id": "practice-01", "prompt": "What is the capital of Australia, and
+what body of water is it near?" },
+{ "task_id": "practice-02", "prompt": "A store has 240 items. It sells 15% on
+Monday and 60 more on Tuesday. How many items remain?" },
+{ "task_id": "practice-03", "prompt": "Classify the sentiment of this review:
+The battery life is great, but the screen scratches too easily." },
+{ "task_id": "practice-04", "prompt": "Summarize the following in exactly one
+sentence: [your own sample paragraph here]." },
+{ "task_id": "practice-05", "prompt": "Extract all named entities and their
+types from: Maria Sanchez joined Fireworks AI in Berlin last March." },
+{ "task_id": "practice-06", "prompt": "This function should return the max of a
+list but has a bug: def get_max(nums): return nums[0]. Find and fix it." },
+{ "task_id": "practice-07", "prompt": "Three friends, Sam, Jo, and Lee, each own
+a different pet: cat, dog, bird. Sam does not own the bird. Jo owns the dog. Who
+owns the cat?" },
+{ "task_id": "practice-08", "prompt": "Write a Python function that returns the
+second-largest number in a list, handling duplicates correctly." }
+]
+
+Environment variables:
+The harness injects these at runtime. Read them from the environment: do not hardcode values
+or bundle a .env file in your image.
+
+import os
+
+api_key = os.environ["FIREWORKS_API_KEY"] # provided by harness — do not use
+your own
+base_url = os.environ["FIREWORKS_BASE_URL"] # route ALL Fireworks calls through
+this URL
+models = os.environ["ALLOWED_MODELS"].split(",") # exact model IDs published
+on launch day
+
+For local development you can use a .env file, but your submitted container must read these
+purely from the environment: the harness will inject the real values at evaluation time.
+Variable Description
+FIREWORKS_API_KEY Provided by the harness — use this key, not
+
+your own
+
+FIREWORKS_BASE_URL Base URL for all Fireworks API calls — must
+
+be used to configure your client
+
+ALLOWED_MODELS Comma-separated list of permitted Fireworks
+AI model IDs, published on launch day
+Important: All API calls must go through FIREWORKS_BASE_URL. Calls that
+bypass this URL will not be recorded and the submission will score zero tokens. Do
+not hardcode model IDs: read from ALLOWED_MODELS at runtime.
+Rules
+- Exit code 0 on success, non-zero on failure
+- Maximum runtime: 10 minutes
+- Only models in ALLOWED_MODELS are permitted, calls to other models invalidate the
+submission
+- /output/results.json must be valid JSON, malformed output scores zero
+- Local models and tokens used locally count as zero for the final score; all Fireworks
+API calls must go through FIREWORKS_BASE_URL; local model inference inside the
+container is permitted and counts toward accuracy, but not toward the token score.
+- Do not hardcode or cache answers; evaluation uses unseen prompt variants
+- Image compressed size must not exceed 10GB — larger images are rejected before
+pulling
+- Submissions are rate-limited to 10 per hour per team
+
+- Grading environment: 4 GB RAM, 2 vCPU. If bundling a local model, size it to fit within
+these limits (2B–3B 4-bit quantized models are safe; 7B 4-bit fills the full RAM budget,
+leaving no room for agent code).
+Scoring
+1. Accuracy gate: LLM-Judge evaluates each answer against the expected intent.
+Submissions below the accuracy threshold are excluded from the leaderboard.
+2. Token efficiency: submissions that pass the accuracy gate are ranked ascending by
+total tokens recorded by the judging proxy. Fewer tokens = higher rank.
+A note on token counting: The underlying task prompts are identical for every team, but your
+own system prompt (verbosity instructions, formatting requests, etc.) affects your input token
+count, and your model's response length affects output tokens. Don't over-optimize output
+length early, focus first on your routing logic and which local models you use. Output-length
+tuning is a good later-stage optimization once your router is solid.
+
+Troubleshooting: why did my submission fail?
+If your submission doesn't score as expected, here's what each status means and how to fix it.
+Most of these also apply to Track 2.
+Status What it means & how to fix it
+PULL_ERROR We couldn't pull your Docker image. Confirm
+it's public, and includes a linux/amd64
+manifest (Apple Silicon builds need docker
+buildx build --platform linux/amd64).
+RUNTIME_ERROR Your container ran but exited with a non-zero
+error code. Check your own container logs
+locally — something in your agent code
+crashed.
+
+TIMEOUT Your container didn't finish within the
+10-minute limit. Check for hangs, infinite
+loops, or excessive retries in your agent.
+OUTPUT_MISSING Your container exited cleanly but never wrote
+/output/results.json. Confirm your code writes
+this file before exiting.
+
+INVALID_RESULTS_SCHEMA /output/results.json isn't in the right format.
+Each entry must be a JSON object with both
+
+a task_id and an answer field.
+
+MODEL_VIOLATION You called a Fireworks model that isn't in the
+published ALLOWED_MODELS list. Only call
+models from that list, read it from the env var
+at runtime, don't hardcode it.
+
+IMAGE_TOO_LARGE Your image is over the 10 GB compressed
+
+size limit. Trim unnecessary
+layers/dependencies from your Docker
+image.
+
+ACCURACY_GATE_FAILED Your container ran fine, but your answers
+scored below the accuracy threshold. This is
+a quality issue with your agent's answers, not
+an infrastructure problem.
+
+Note: you may also see a flagged: ZERO_API_CALLS marker alongside your result; this is not
+a failure. It just means your submission made zero calls through the Fireworks proxy (e.g. a
+local-model-only agent), which is a valid strategy per the local models rule above.
+Track 2: Video Captioning Agent
+What you are building
+An AI agent that watches a video clip and generates a caption in a requested style. Build your
+pipeline to handle a wide variety of video content: different scenes, settings, subjects, and visual
+styles.
+Styles your agent must support
+Style Description
+formal Professional, objective, factual tone
+sarcastic Dry, ironic, lightly mocking
+humorous_tech Funny, with technology or programming
+
+references
+
+humorous_non_tech Funny, everyday humour with no technical
+
+jargon
+
+JSON
+
+JSON
+What to submit
+A Docker image pushed to a public registry.
+Your container must:
+1. Read tasks from /input/tasks.json on startup
+
+[
+{
+"task_id": "v1",
+"video_url": "https://storage.example.com/clips/clip1.mp4",
+"styles": ["formal", "sarcastic", "humorous_tech", "humorous_non_tech"]
+}
+]
+
+2. Write results to /output/results.json before exiting
+
+[
+{
+"task_id": "v1",
+"captions": {
+"formal": "...",
+"sarcastic": "...",
+"humorous_tech": "...",
+"humorous_non_tech": "..."
+}
+}
+]
+
+No inference log is required for Track 2.
+Check out the Image Architecture requirement at the bottom of this document
+Environment variables
+No API key or model restriction is injected. You may call any model, API, or framework: use your
+own credentials inside the container.
+
+Example clips
+Use these to develop and test your agent. Evaluation uses a hidden set your agent has never
+seen, ensure your pipeline generalises beyond these examples.
+Clip URL Content
+v1 https://storage.google
+apis.com/amd-hackathon
+-clips/1860079-uhd_256
+0_1440_25fps.mp4
+
+Urban autumn boulevard with
+golden trees and city traffic
+
+v2 https://storage.google
+apis.com/amd-hackathon
+-clips/13825391-uhd_38
+40_2160_30fps.mp4
+
+Orange kitten among green
+foliage in a garden
+
+v3 https://storage.google
+apis.com/amd-hackathon
+-clips/3044693-uhd_384
+0_2160_24fps.mp4
+
+Office worker at a desktop
+computer in a modern
+open-plan office
+
+Rules
+- Exit code 0 on success, non-zero on failure
+- Maximum runtime: 10 minutes
+- No model restriction: any model, framework, or API is permitted
+- Video clips in the hidden evaluation set are 30 seconds to 2 minutes in length
+- Output must include a caption for every requested style for every clip, missing styles
+score zero for that clip
+- /output/results.json must be valid JSON, malformed output scores zero
+- Image compressed size must not exceed 10GB — larger images are rejected before
+pulling
+- Submissions are rate-limited to 10 per hour per team
+Scoring
+Each caption is scored on two dimensions by an LLM-Judge:
+1. Caption accuracy (0–1): how faithfully the caption reflects the video content
+2. Style match (0–1): how well the caption matches the requested tone
+
+Final score = weighted average across all clips and all four styles. Evaluation uses a hidden set
+of ~12 clips spanning varied content (nature, urban, animals, people, sports, food, weather,
+technology). Agents that only work on the three example clips above will score poorly.
+
+Track 3: Unicorn (Open Innovation)
+What you are building
+An original AI application that uses AMD compute resources. There is no fixed task, we are
+looking for the most innovative, technically impressive, and practically useful projects.
+What to submit
+Item Required
+GitHub repository URL Yes
+Demo video Yes
+Slide deck Yes
+Live demo / hosted URL Optional but recommended
+Note: automated pre-screening only inspects the GitHub repository, slide deck (PDF), and live
+demo/hosted URL — it does not process the demo video.
+No Docker image is required for Track 3.
+Judging
+Submissions are pre-screened automatically for AMD resource usage and originality, then
+reviewed by human judges. AMD compute usage is a requirement: projects that do not
+demonstrate it will be disqualified.
+
+General rules (all tracks)
+- Your container must start and be ready within 60 seconds
+- Response time per request must be under 30 seconds
+- All responses must be in English
+- Do not hardcode or cache answers to specific inputs — evaluation uses unseen variants
+
+Shell
+- Container images must be publicly pullable at submission time
+Image architecture requirement
+The judging VM runs linux/amd64. Your image must include a linux/amd64 manifest or it
+will fail to pull and score zero.
+If you build on Apple Silicon (M1/M2/M3), add --platform linux/amd64 to your build
+command:
+
+docker buildx build --platform linux/amd64 --tag your-image:latest --push .
+
+Standard linux/amd64 builds (e.g. built on Intel/AMD or GitHub Actions) are fine without any
+changes.
+----
+FAQ:
+
+FAQS
+#
+Question
+Answer
+1
+What is the hackathon website?
+https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-ii
+2
+I did not get AMD GPU Cloud credits.
+You do not need them for the hackathon, you will get a Jupyter Notebook cloud instance made available to you after hackathon start with periods of cloud access.
+3
+How do I access hackathon compute?
+"https://notebooks.amd.com/hackathon"
+( not "https://notebooks.amd.com")
+You will be directed to Sign into AMD Developer Program and provided access to your team’s compute resource.  These are available on hackathon start.
+ 
+4
+Where can I save things for persistent storage for the duration of the hackathon
+/workspace
+4
+How much persistent storage does a team get?
+25 GB of persistent store. Please note that it takes a few minutes to flush your local store to persistent store when you request pod deletion.
+5
+How much compute time does my team get
+Each time will get a fixed number of hours over a 24-hour period. The time duration and reset interval (24 hours) will initially be longer but closer to hackathon termination, it will be shorter, to ensure everyone has access to the machines without a long wait.
+6
+How can one quota consumption  when not actually working?
+Turn off your session, Pod. Everything in your persistent storage will remain intact. Once a teammate restarts your session, your compute time will start getting consumed. When multiple teammates use a session concurrently, there is not extra compute change. It is no different from one or more persons using a single server machine.
+7
+I have not got my Fireworks Credits
+If you signed up after July 2, you will be allocated credits on July 8.
+8.
+When is the event submission deadline?
+CET 6 pm July 11, 2026
+ 
+9
+ 
+ 
+ 
+When will be results become available?
+Approximately a month for the Unicorn track. The other tracks have a leaderboard. All results will be announced together.
+10
+How do I join a team?
+On the LabLab.ai Discord under AMD Hackathon Act-2 there is a sub-channel to request teammates. https://discordapp.com/channels/877056448956346408/1488590902661222600
+11
+Which models may one use Fireworks AI?
+MiniMax and Kimi K
+ 
+MiniMax is a series of advanced AI models designed for multimodal understanding, coding, and agentic reasoning, with capabilities spanning text, audio, image, video, and music. MiniMax M3 - Coding & Agentic Frontier, 1M Context, Multimodal | MiniMax
+ 
+Kimi K series, from Moonshot AI, is a line of open-source large language models designed for agentic intelligence, coding, and multimodal tasks. The models use a Mixture-of-Experts (MoE) architecture, allowing efficient activation of a subset of experts per token, which enables large-scale reasoning without excessive computational cost
+12
+How much memory does the GPU on the  hackathon compute instance have?
+About 48 GB. Remember that things like KV-Cache need space too and other infrastructure, so your model needs to be smaller. Please experiment launching with any model you are interested in.
+ 13
+How do I launch a model serving instance with vllm?
+In an terminal window in your Jupyter pod launch:
+>  vllm serve Qwen/Qwen2-7B-Instruct --port 8000 --gpu-memory-utilization 0.3
+14
+How do I fine-tune a model that needs more training time than my compute window.
+Please use checkpointing to save your training state in persistent store. One or two checkpoints should suffice to allow you to pick up where you left off.
+ 
+Saving
+checkpoint = {
+	"epoch": epoch,
+	"global_step": step,
+	"model_state_dict": model.state_dict(),
+	"optimizer_state_dict": optimizer.state_dict(),
+	"loss": loss,
+}
+ 
+torch.save(checkpoint, "checkpoint.pt")
+ 
+Resuming:
+checkpoint = torch.load("checkpoint.pt")
+ 
+model.load_state_dict(checkpoint["model_state_dict"])
+optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+ 
+start_epoch = checkpoint["epoch"] + 1
+step = checkpoint["global_step"]
+ 
+ 15
+How do I access Track1 Leaderboard?
+https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-ii/live?track=1#amd-leaderboard 
+ 16
+How do I access Track 2 leaderboard?
+https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-ii/live?track=2#amd-leaderboard 
+17.
+Why did I get locked out of my AMD Developer Account while using the AMD AI Academy Jupyter Notebook? How do I get unlocked?
+The ai-academy environment is to run notebooks cell-by-cell. If users experiment with new commands, the detection routines block the user. For experiments, they can explore AMD Dev Cloud or our hackathon platform for lablab hackathon.
+Please send us a support request. Unlocking could take anywhere between 1-3 days, 3 if spanning a weekend.
+ 
+
+
+18
+What does N hours in 24 hours mean with respect to compute time?
+It means your compute instance will be given resources on our GPU cluster for a maximum of N hours in a 24 hour window. You can use those N hours in one stretch or in multiple steps. To use in steps you need to “stop/shutdown” your instance and “restart” it later. Anyone on your team can shutdown or restart an instance, it is a shared instance. When you restart, if you are using a virtual environment, you will need to use pip install to install any libraries you want in your kernel.
+Occasionally, under low load we may reset the window to something shorter so you can hop on sooner or even give more hours. Typically close to the end of the hackathon when lots of people are seeking resources this does not happen!
+19
+Do I need approval for my idea for the hackathon?
+No! Welcome! Mentors are a resource, not a gate.
+20
+How will I get my $50 Fireworks AI credits?
+You will receive an email with a code, one per team.
+21
+Do I need to maintain a live API endpoint for the judges for evaluation?
+Absolutely not, it will just be too expensive. If you want you could set up a HuggingFace deployment of your application, which uses a serverless setup to avoid usage credits when not actually in use. For the purposes of hackathon submission you only need to create a demo video of your application, a presentation deck (about 5 slides) and provide your GitHub url.
+22
+What is the motivation behind Track-1?
+Think of enterprises wanting to control their AI spend. Not all their tasks need top-of-the-line proprietary models at premium cost. But they also want a good user experience, not having each user determine which model to use and where. hey may host a bunch of models, typically open source, RAG, and may even be fine-tuned models for their in-house use and delegate to a premium model if necessary. That is where a smart router fits in. When we say tokens expended on local models count as ZERO, we basically are encouraging you to run as many local models as you need, including the smart router, so you need to make as few external API calls to the Fireworks AI endpoint. 
+
+
+
+----
+website:
+
+Revisit consent button
+AMD Developer Hackathon: ACT II AI Hackathon | lablab.ai
+lablab.ai logo - Community innovating and building with artificial intelligence
+
+Claim FREE $100AMDcredits
+AI Hackathons
+AI Apps
+AI Tech
+AI Tutorials
+AI Articles
+NativelyAI
+Sponsor
+
+
+User profile image
+Submission deadline
+Jul 11, 7:00 PM TST
+Live
+Results
+20727
+Online
+Monday, July 6 2026 - 7:00 PM Türkiye Standard Time
+AMD Developer Hackathon: ACT II
+Build AI agents and high-performance AI apps on AMD GPUs in the cloud I Prize Pool $20,000+
+
+To participate in the hackathon, simply click Sign up with AMD. If you are not already a member of the AMD AI Developer Program (ADP), you will need to create an account.
+ 
+ADP members can access AI tutorials, experts, and community support. In addition, new members can claim a free month of DeepLearning.ai pro, $100 in AMD GPU cloud credits, and $50 in Fireworks AI API credits.
+
+All hackathon participants will receive on hackathon launch additional compute and API credits for their projects.
+Ready to build what's next on AMD? Sign up with AMD below to secure your spot.
+Enrolled
+AMD Developer Hackathon: ACT II event thumbnail
+About
+Referral Program
+Challenge
+Technology & Access
+Technology Partners
+Prizes
+Community & Social Channels
+What to Submit?
+Judging Criteria
+Hackathon Details
+Speakers
+Event Schedule
+Submissions
+Teams
+Action required: Participants who have signed up on lablab.ai but have not yet created or joined a team MUST do so to receive access to an AMD GPU pod for development if they so desire. The AMD GPU pod is assigned one per registered team, which could be comprised of one or more people.
+→ Once your team is registered, please allow up to 24 hours for your resources to be allocated.
+→ GPU pod usage is set to 8 hours per 24 hours for all registered teams.
+→ Seeing a "team not registered" error on notebooks.amd.com/hackathon? It means you haven't created or joined a team on lablab.ai yet — even solo participants must register a team.
+🔒 HACKATHON REGISTRATIONS CLOSED
+Hackathon registrations are now closed
+
+Registration for the AMD Developer Hackathon: ACT II closed on July 6th at 8:00 PM CET. If you registered before that deadline, you are eligible to participate. You can still sign up for the AMD AI Developer Program to claim your credits.
+
+Registered before July 6th 8 PM CET
+You are eligible for the hackathon and all prizes. Check Discord for credit allocation details.
+Signing up after closing
+Not eligible for the hackathon, but you can still sign up for the AMD AI Developer Program and claim your credits.
+⚠ REGISTRATION AND CREDITS NOTICE
+Register by July 2nd to receive your hackathon credits on day one
+Registration stays open after July 2nd, but hackathon credits for late sign-ups will only be allocated from July 7th onward.
+
+Sign up by July 2nd
+Hackathon credits available from day one. Additional resource details will be shared on Discord once the event starts.
+Sign up after July 2nd
+You can still join, but hackathon credits will only be allocated from July 7th onward.
+ℹ
+Two types of credits — they are separate
+Hackathon credits — All participants will receive $50 in Fireworks AI API credits. Additional infrastructure access details will be shared on Discord once the event starts.
+
+New member credits — $100 AMD Developer Cloud and $50 Fireworks AI API credits for new AMD AI Developer Program sign-ups. These follow a separate 2 to 3 day manual approval process and are not affected by the hackathon cutoff date.
+About
+The AMD Developer Hackathon: ACT II is a hands-on event for developers, founders, engineers, and builders who want to push what's possible with AI on real infrastructure.
+
+At the center of it: AI Agents - a space to explore intelligent workflows, automation, and real AI applications. Whether you're just starting out or already building, you can jump in and start creating.
+
+You'll be working with AMD AI Developer Cloud, ROCm, and Fireworks AI API, all fully in the cloud, so you can focus on building instead of setup.
+What participants get
+AMD AI Developer Program members unlock cloud credits, training resources, expert access, and opportunities to get their work recognized.
+NEW SIGN-UPS ONLY
+☁️ $100 AMD Developer Cloud GPU Credits
+New AMD AI Developer Program members receive $100 in cloud credits redeemable on AMD Developer Cloud with powerful AMD GPUs to start building.
+NEW SIGN-UPS ONLY
+🔥 $50 Fireworks AI API Credits
+New AMD AI Developer Program members receive $50 in Fireworks AI API credits to access models hosted on AMD-hardware to start building right away.
+🎓 AMD AI Academy
+Access AMD AI Academy courses, technical resources, tutorials, documentation, and developer learning content.
+NEW SIGN-UPS ONLY
+📘 DeepLearning.AI Pro
+Get a 1-month complimentary DeepLearning.AI Pro membership.
+🧑‍💻 AMD Expert Access
+Connect with AMD engineers and technical experts through member community channels and office hours.
+💬 Private Community Access
+Get access to community channels, personalized updates, and early registration opportunities for AMD developer events.
+🏆 Project Recognition
+Get opportunities for project recognition, including potential showcase on AMD social channels or at AMD developer events.
+🚀 Fully Cloud-Based
+Everything runs fully in the cloud, so no local hardware setup is required to participate and build.
+AMD GPU Cloud Access and Credits
+On hackathon start, details for AMD GPU cloud access and credits will be provided. Benefits are provided through the AMD AI Developer Program and may be subject to AMD's terms, eligibility, and availability.
+COMMUNITY PARTNERS
+
+The Hype News
+REFERRAL PROGRAM
+Refer friends and earn points
+Invite other builders with your personal referral link. Once you're approved, you can generate your link from the event dashboard and start sharing.
+
+1
+Get approved
+Register for the hackathon and wait until your enrollment is approved.
+2
+Generate your link
+Open your dashboard and click "Generate referral link."
+3
+Share and track
+Share your link and track referral activity from your dashboard, live page, or profile.
+How points work
+Earn 200 points when someone joins through your link and submits a project. Referred participants can earn 100 points when they submit.
+⚠️
+Minimum threshold to qualify for the referral prizes
+You must refer at least 100 approved participants to be eligible for referral prizes — even if you finish in the top 3 on the leaderboard.
+Referral activity appears after invited participants enroll and get approved.
+Go to Event Dashboard
+View Live Leaderboard
+
+Challenge
+AMD DEVELOPER HACKATHON: ACT II
+Three tracks. Real AMD hardware. Pick your challenge.
+Whether you're shipping your first AI agent or building your next startup, ACT II has a track for you. Build on AMD Developer Cloud, ROCm, and Fireworks AI API credits.
+
+All submissions must be containerized.
+
+TRACK 1
+Hybrid Token-Efficient Routing Agent
+⭐ Beginner · AI Agent Track
+TRACK 2
+Video Captioning
+🎬 Beginner · Prompt and have fun
+TRACK 3
+Unicorn Track
+🦄 All levels · Build your startup
+📋 PARTICIPANT GUIDE — FULL TASK DETAILS
+Action required: Create or join a team to access your AMD GPU pod
+→ Participants who have signed up on lablab.ai but have not yet created or joined a team MUST do so to receive access to an AMD GPU pod. The pod is assigned one per registered team, which could be comprised of one or more people.
+→ Once your team is registered, please allow up to 24 hours for your resources to be allocated.
+→ GPU pod usage is set to 8 hours per 24 hours for all registered teams.
+→ Seeing a "team not registered" error on notebooks.amd.com/hackathon? It means you haven't created or joined a team on lablab.ai yet — even solo participants must register a team.
+TRACK 1
+⭐ Beginner Friendly · AI Agent Track
+Hybrid Token-Efficient Routing Agent
+Build an AI agent that gets the job done using the least tokens possible.
+Build an AI agent that completes a fixed set of tasks autonomously, deciding in real time which Fireworks AI model is the cheapest one that can still answer accurately. The goal: use the fewest tokens possible, without falling below the accuracy threshold.
+
+Every submission is scored on a standardized environment. You can develop and test on any hardware, but final scoring runs on this standardized environment only. Only inference routed through Fireworks AI counts toward your score, so routing intelligence — picking the cheapest sufficient Fireworks model for each task — wins, not raw compute power.
+
+💡
+Local models are a valid scoring strategy. Answers produced by local models inside the container count fully toward accuracy. Only tokens routed through FIREWORKS_BASE_URL count toward your token score — local inference uses zero Fireworks tokens, which is the best possible outcome for ranking.
+We recommend running a local eval step to check your output quality before submitting.
+
+Want to fine-tune your router? Go for it. Prompt-based and fine-tuned approaches are scored exactly the same way: token count and output accuracy.
+
+💡 BUILD IDEAS
+Model Router / Cost Optimizer
+A routing layer that reads each query and instantly picks the cheapest, best-suited model from the available endpoints.
+LEVEL
+Beginner
+JUDGING
+Token count and output accuracy
+COMPUTE
+Fireworks AI API + local models (zero Fireworks tokens)
+TRACK 2
+🎬 Beginner Friendly · Have Fun
+Video Captioning
+Four styles. Endless creativity. Let your humor bone shine.
+You'll work with a fixed set of short video clips and generate a caption or summary for each one in four distinct styles: formal, sarcastic, humorous-tech, and humorous-non-tech.
+
+💡
+Video clips are strictly 30 seconds to 2 minutes in length.
+Models are accessed via Fireworks AI API credits. Fine-tuning is explicitly permitted — you may also train your own captioner and use it alongside or instead of prompting. Use open datasets, build your own, or both.
+
+LEVEL
+Beginner
+JUDGING
+LLM-Judge for accuracy and tone
+COMPUTE
+Fireworks AI API
+TRACK 3
+🦄 All Levels
+Unicorn Track
+Your idea. AMD infrastructure. No benchmarks, no constraints — just build.
+Use any open-source models and frameworks alongside AMD GPUs and/or Fireworks AI API credits to build a product- or startup-oriented project.
+
+There is no fixed performance benchmark. Submissions are not scored on speed, token usage, or accuracy. Judges are looking for creativity, originality, completeness, use of AMD platforms, and product/market potential. Think startup pitch, not benchmark run.
+
+LEVEL
+All skill levels and any tech stack
+JUDGING
+Creativity, originality, completeness, use of AMD platforms, product/market potential
+COMPUTE
+AMD GPUs + Fireworks AI API
+Technology & Access
+Build using AMD Developer Cloud with AMD GPUs, ROCm, Fireworks AI API, and open-source AI frameworks.
+
+Everything runs fully in the cloud, so teams can focus on building, experimenting, benchmarking, and scaling AI workloads without managing infrastructure.
+AMD Developer Cloud
+On-demand access to AMD GPUs for training, fine-tuning, benchmarking, and deploying AI workloads.
+NEW AMD AI DEVELOPER PROGRAM (ADP) SIGN-UPS ONLY
+• $100 in AMD Developer Cloud credits
+• Access to AMD GPUs
+• Fully cloud-based development
+AMD AI Developer Program
+AMD Developer Cloud Overview
+Getting Started Guide
+ROCm
+ROCm is AMD's open-source GPU computing platform for AI, ML, and high-performance workloads on AMD GPUs.
+• Running PyTorch and TensorFlow on AMD GPUs
+• Porting CUDA workloads to AMD hardware
+• High-performance AI and ML workloads
+ROCm Documentation
+ROCm Installation Guide
+ROCm GitHub Repository
+Fireworks AI API
+Fast, scalable API access to AMD-hardware models for inference, fine-tuning, and building AI-powered pipelines.
+NEW AMD AI DEVELOPER PROGRAM (ADP) SIGN-UPS ONLY
+• $50 in Fireworks AI API credits
+• Access to AMD-hardware hosted models
+Fireworks AI Platform
+Fireworks AI Documentation
+
+AMD Training and Learning Resources
+Participants also get access to curated AI learning resources, tutorials, hands-on labs, and training materials to help them build faster.
+
+• Free access to AMD training resources
+• Hands-on labs with real GPU access
+• DeepLearning.AI resources for advanced content
+Full Training Catalog
+From Zero to AI Builder with AMD
+DeepLearning.AI
+PARTNER TOOLS
+Technology Partners
+The following technology partners are available to participants for this hackathon. Use them to build, prototype, and ship faster.
+
+GemmaGoogle DeepMind
+Gemma, Google DeepMind's family of lightweight open models, is joining AMD Developer Hackathon: ACT II. Use Gemma in your project for a chance to win the Best Use of Gemma Models challenge.
+
+Gemma is Google DeepMind's family of lightweight, open-weight models built from the same research as Gemini, available to participants through AMD Developer Cloud and Fireworks AI.
+
+Build with it:
+• Add Gemma to your routing, captioning, or agent workflows
+• Use Gemma's multimodal and reasoning capabilities within your track's requirements
+• Check your track's model restrictions before building, as access varies by track
+Access:
+ACCESS
+
+Via Fireworks AI credits
+
+COMPUTE
+
+AMD Developer Cloud
+
+LICENSE
+
+Apache 2.0
+
+SIGN-UP
+
+Through AMD AI Developer Program
+
+Gemma Documentation
+Gemma Website
+Fireworks AI
+💡
+Quick Note on Gemma Access
+For this hackathon, Gemma is accessed through Fireworks AI and AMD Developer Cloud. Usage can be drawn from your hackathon credits, or from the $50 Fireworks AI credits available to new AMD AI Developer Program members. No separate sign-up is required.
+🚀
+How to Get Started with Gemma
+Sign up for the AMD AI Developer Program to access AMD Developer Cloud and Fireworks AI credits.
+Use your Fireworks AI credits to call a Gemma model directly through the Fireworks API.
+Run your application on AMD Developer Cloud using your allocated GPU access.
+Check your track's requirements before choosing a model, as model restrictions vary by track.
+NativelyAI Native.Builder
+Start Building →
+Native.Builder is an AI-native environment for building software, workflows, and agents fast. For this hackathon, participants get free access to the Lablab Builder plan for one month via a promo code, which unlocks the ability to bring their own Fireworks AI API key and use their hackathon credits inside Builder.
+
+Build with it:
+• Create AI apps, workflows, and agents
+• Use Fireworks AI credits directly within Builder
+• Work with the models available in Builder
+• Prototype and iterate quickly in one build environment
+• Align your stack with your hackathon track requirements
+ONE-TIME SETUP
+🔑 Platform Access
+Use the promo code to get the free Lablab Builder plan for 1 month — unlocks Bring Your Own Key feature.
+
+AMDXBUILDER
+DURING THE HACKATHON
+⚡ Model Inference
+Add your Fireworks AI API key via Integrations to use your hackathon credits inside Builder for every build, test, and iteration.
+
+🚀
+How to Get Started with Native.Builder
+Sign up at Native.Builder.
+Click Manage Plan, then Change Plan, and enter promo code AMDXBUILDER to activate your free Lablab Builder plan for 1 month.
+Go to Integrations and set up your Fireworks AI API key to connect your hackathon credits.
+Select the model that best fits your workflow or app.
+Build and test your prototype inside Builder.
+Confirm your model and workflow choices match your hackathon track requirements.
+Native.Builder Website
+Documentation
+Getting Started Guide
+Prizes
+🏆 Total Prize Pool: $21,000
+TRACK 1 — HYBRID TOKEN-EFFICIENT ROUTING AGENT
+🥇 1st Place
+$2,500
+🥈 2nd Place
+$1,500
+🥉 3rd Place
+$1,000
+TRACK 2 — VIDEO CAPTIONING
+🥇 1st Place
+$2,500
+🥈 2nd Place
+$1,500
+🥉 3rd Place
+$1,000
+TRACK 3 — UNICORN TRACK
+🥇 1st Place
+$2,500
+🥈 2nd Place
+$1,500
+🥉 3rd Place
+$1,000
+PARTNER REWARD
+Google DeepMind Gemma Prizes
+An additional $6,000 in prizes for the best use of Gemma models, awarded across all three tracks.
+$6,000
+GEMMA PRIZE POOL
+TRACK 1
+Best Use of Gemma via Fireworks
+$1,000
+TRACK 2
+Best Use of Gemma in Video Captioning
+$3,000
+TRACK 3
+Best AMD-Hosted Gemma Project
+$2,000
+REFERRAL PROGRAM
+Earn up to $500 just for spreading the word
+$1,000
+REFERRAL POOL
+🥇
+Top referrer
+$250 cash
++
+$250 Natively credits
+$500
+TOTAL
+🥈
+2nd referrer
+$150 cash
++
+$150 Natively credits
+$300
+TOTAL
+🥉
+3rd referrer
+$100 cash
++
+$100 Natively credits
+$200
+TOTAL
+⚠️
+Minimum threshold: You must refer at least 100 approved participants to qualify for referral prizes, even if you finish in the top 3 on the leaderboard.
+Please note: Participation in lablab.ai hackathons is voluntary. Prizes and opportunities depend on eligibility, availability, and third-party sponsors, for whom lablab.ai is not responsible. Hackathon rules, prizes, and terms may change or be canceled at our discretion. Submissions must be original and MIT-compliant. Prize distribution may take up to 90 days.
+
+Full details: Voluntary Participation & Prize Terms
+Community and Social Channels
+Stay connected with the teams behind the hackathon and follow along for updates, highlights, and future opportunities.
+AMD
+X · LinkedIn
+NativelyAI
+X · LinkedIn · Website
+Gemma
+X · Website
+Google DeepMind
+X · LinkedIn
+lablab.ai
+X · LinkedIn · Facebook · Instagram · YouTube · Twitch · Website
+What to submit?
+Submit your project through the lablab.ai platform before the deadline. Make sure all fields below are completed.
+
+📋 Basic Information
+
+• Project Title
+• Short Description
+• Long Description
+• Technology and Category Tags
+📸 Cover Image and Presentation
+
+• Cover Image
+• Video Presentation
+• Slide Presentation
+💻 App Hosting and Code Repository
+
+• Public GitHub Repository
+• Demo Application Platform
+• Application URL
+Important Requirements
+• Your project must be submitted through the lablab.ai platform before the deadline.
+• All submissions must be containerized.
+• Your GitHub repository must be public and include a README with setup and usage instructions.
+• The application must be runnable using the provided instructions.
+⏰ Submission Deadline
+Check the Event Schedule tab — the deadline is always up to date and shown in your local timezone.
+For general lablab.ai submission guidance, please visit Submission Guidelines.
+
+lablab.ai — Hackathon Submissions Process
+
+Judging Criteria
+Scoring varies by track. Tracks 1 and 2 are ranked via leaderboard. Track 3 — Unicorn Track is evaluated by judges using the criteria below.
+
+Tracks 1 and 2
+Scored via leaderboard. Refer to the track details for scoring criteria.
+See track details
+Track 3 — Unicorn Track
+Judged on the criteria below.
+Creativity and Originality
+The uniqueness and creativity of the solution, highlighting novel approaches and new behaviors.
+Product/Market Potential
+The startup or product vision — how compelling and viable the idea is in a real market context.
+Completeness
+How fully realized and functional the submitted project is.
+Use of AMD Platforms
+How meaningfully AMD infrastructure is incorporated into the project.
+Hackathon Details
+Everything you need to know before you register and start building.
+
+🛠️ How to participate
+
+To access credits and be approved for the hackathon, participants must sign up for the AMD AI Developer Program.
+
+The hackathon takes place online on the lablab.ai platform. Click the Enroll button on this page to register.
+🦸 Who can join?
+
+Anyone with a passion for AI is welcome. To participate, simply sign up on lablab.ai and register for the AMD AI Developer Program.
+
+Hackathon Guidelines
+Getting Started Guide
+👥 What about teams?
+
+If you don't have a team yet, connect with other builders and find teammates on the lablab.ai Discord Server. Join the conversation and start building with others from day one.
+
+Join lablab.ai Discord
+💬 AMD Discord Server
+
+Join the AMD Discord for infrastructure questions, hardware, software, and AMD AI Academy tutorials and support throughout the hackathon.
+
+Join AMD Discord
+🧠 Get prepared
+
+To get ready for the hackathon, visit the lablab.ai AI Tech pages to read up on all available technologies, and check out the tutorials page for practical guides and inspiration. Get a head start on your project using the resources on lablab.ai.
+Note: To access hackathon credits and resources, make sure you have signed up for the AMD AI Developer Program before the hackathon starts.
+Action required: Create or join a team to access your AMD GPU pod
+→ Participants who have signed up on lablab.ai but have not yet created or joined a team MUST do so to receive access to an AMD GPU pod. The pod is assigned one per registered team, which could be comprised of one or more people.
+→ Once your team is registered, please allow up to 24 hours for your resources to be allocated.
+→ GPU pod usage is set to 8 hours per 24 hours for all registered teams.
+→ Seeing a "team not registered" error on notebooks.amd.com/hackathon? It means you haven't created or joined a team on lablab.ai yet — even solo participants must register a team.
+Speakers, Mentors & Judges
+Pawel Czech
+Pawel Czech
+CEO
+NativelyAI
+
+Adam V. Mlady
+Adam V. Mlady
+DevRel
+NativelyAI
+
+Andrei Kozlov
+Andrei Kozlov
+Principal Agentic Engineer
+ENDGAME
+
+Iliya Fayans
+Iliya Fayans
+Member of Technical Staff
+Zealot
+
+Shweta Chauhan
+Shweta Chauhan
+Software Development Engineer II
+Amazon
+
+Karsin Kamakotti
+Karsin Kamakotti
+Principal Member of Technical Staff
+Oracle
+
+Neeraj Kumar Singh Beshane
+Neeraj Kumar Singh Beshane
+Staff Security Infra Engineer
+
+
+Mallika Rao
+Mallika Rao
+Senior Engineering Manager
+Zocdoc
+
+Rakesh S Rai
+Rakesh S Rai
+Enterprise Architect
+
+
+Rahul Nambiar
+Rahul Nambiar
+Founder
+
+
+Andrea Marazzi
+Andrea Marazzi
+Founder & CCO
+NativelyAI
+
+Bhanu Pratap Singh
+Bhanu Pratap Singh
+Lead Technical Architect
+Ameren Service Company
+
+Suneeth Maraboina
+Suneeth Maraboina
+Technology Leader
+Apple
+
+Vasu Raj Jain
+Vasu Raj Jain
+Senior Software Engineer
+amazon
+
+Deniz Aleyna Akbasaran
+Deniz Aleyna Akbasaran
+Product & Data, AI Agent
+
+
+Valentin De Matos
+Valentin De Matos
+AI Engineer
+
+
+Matan Haim Guez
+Matan Haim Guez
+Member of Technical Staff
+
+
+Anton Kiselev
+Anton Kiselev
+Lead backend developer
+
+
+Antoine Balliet
+Antoine Balliet
+Context & AI Engineer
+
+
+Bhargavi Vepuri
+Bhargavi Vepuri
+Director, Technology Lead
+
+
+Ramine Rosen
+Ramine Rosen
+Corporate VP, AI
+AMD
+
+Rahul Gupta
+Rahul Gupta
+Head of AI Foundry
+Evergreen
+
+Amit Kumar Singh
+Amit Kumar Singh
+AVP – Lead Data Engineer
+DE Copilot
+
+Goutham Subramanian
+Goutham Subramanian
+Engineering Manager
+Amazon
+
+Haris Jalal
+Haris Jalal
+SWE AI
+oracle 
+
+Nag Lohith Chiluka
+Nag Lohith Chiluka
+Staff Data Scientist, Applied AI
+Carlisle
+
+Karan Shah
+Karan Shah
+Lead Product Manager
+
+
+Nirmal Kumar Jingar
+Nirmal Kumar Jingar
+Sr. Engineering Manager
+
+
+David Mazumdar
+David Mazumdar
+Staff Software Engineer and Solution Architect
+
+
+Ian Ballantyne
+Ian Ballantyne
+Developer Relations Engineer
+Google DeepMind
+
+Naman Rajpal
+Naman Rajpal
+Senior Software Engineer
+Amazon
+
+Sanem Avcil
+Sanem Avcil
+AI & Blockchain Advisor
+Kaisvault
+
+Sriharsha Makineni
+Sriharsha Makineni
+Business Engineer
+Meta
+
+Nir Gillies
+Nir Gillies
+Member of Technical Staff
+Zealot
+
+Rajat Shah
+Rajat Shah
+Staff Software Engineer - AI Platform
+Netflix
+
+Prakash Kumar Agarwal
+Prakash Kumar Agarwal
+Senior Principal Engineer
+
+
+Sohil Vinod Shah
+Sohil Vinod Shah
+Staff Software Engineer
+
+
+Artem Kuznetsov
+Artem Kuznetsov
+Software Engineer
+
+
+Event Schedule
+Jul 6 7:00 PM Türkiye Standard Time
+Hackathon Kick-off
+
+Jul 6 7:05 PM Türkiye Standard Time
+lablab.ai opening words
+Pawel Czech - NativelyAI CEO & lablab.ai Founder
+Jul 6 7:10 PM Türkiye Standard Time
+AMD opening words
+Ramine Rosen - AI Corporate VP
+Jul 6 7:15 PM Türkiye Standard Time
+NativelyAI opening words
+Adam V. Mlady - DevRel
+Jul 6 7:20 PM Türkiye Standard Time
+Google opening words
+Ian Ballantyne - Developer Relations Engineer
+Jul 6 7:25 PM Türkiye Standard Time
+Introduction to the Challenge
+
+Jul 6 7:35 PM Türkiye Standard Time
+Hackathon Guide
+
+Jul 6 8:00 PM Türkiye Standard Time
+Discord Q&A session
+
+Jul 11 7:00 PM Türkiye Standard Time
+End of Submissions!
+
+
+Submitted concepts, prototypes and pitches
+Submissions from the teams participating in the AMD Developer Hackathon: ACT II event and making it to the end 👊
+GetHired AI – Adaptive Multi-Agent Interview Coach
+GetHired AI – Adaptive Multi-Agent Interview Coach
+GetHired AI is an adaptive multi-agent interview coach that analyzes resumes, conducts personalized HR, technical, & hiring manager interviews, dynamically adjusts questions based on performance, and generates recruiter style feedback with insights.
+Grasshopper
+langflow
+rest api
+OpenAI
+
+Play
+PORTFORGE
+PORTFORGE
+PortForge is an AI-powered CUDA-to-HIP migration platform that automatically converts NVIDIA GPU code to AMD ROCm, compiles it on real AMD MI300X hardware, and delivers validated benchmark results — reducing weeks of manual migration work to minutes.
+JTC Systems
+AMD Developer Cloud
+
+Play
+CineScribe
+CineScribe
+Agentic pipeline to streamline visual verification and styling
+ShunyaNath
+application badge
+Antigravity
+Gemma
+
+Play
+Plainlode: The Signal, Mined Plain
+Plainlode: The Signal, Mined Plain
+Plainlode reads live market demand and supply for any product category and returns one plain-language decision on what to sell next, not a dashboard. Built on Fireworks AI and AMD Instinct.
+DataWisdom Labs
+AMD Developer Cloud
+rest api
+Claude Code
+
+Play
+Trismegistus v3.33 - AI Expert Partner
+Trismegistus v3.33 - AI Expert Partner
+Trismegistus v3.33 turns the same model route into an AI Expert Partner with Mirror Architecture / SSP, source-backed memory/RAG, benchmark receipts, and novel-output gates.
+Renaissance Field Lite
+AMD Developer Cloud
+AMD ROCm
+Gemma
+
+Play
+Kernel Olympics — CUDA→ROCm Migration Copilot
+Kernel Olympics — CUDA→ROCm Migration Copilot
+Kernel Olympics is a multi-agent AI pipeline that automatically ports NVIDIA CUDA kernels to AMD ROCm/HIP — transforming weeks of manual engineering into ~2 minutes per kernel with 3-stage validation gates and real GPU verification.
+Meteorite
+AMD ROCm
+Anthropic Claude
+AMD Developer Cloud
+
+Play
+Forever
+Forever
+An ai romantic assistant to help u plan dates and proposals
+i need money to marry her and invest in biz
+AMD ROCm
+
+Play
+Audisor-amd-track1
+Audisor-amd-track1
+Local-first AMD Track 1 agent that solves tasks with deterministic tools first and uses Fireworks AI rescue routing only when needed to preserve accuracy while minimizing tokens.
+The_One_Shot
+AMD Developer Cloud
+Codex
+AMD ROCm
+
+Play
+Neural Assembly Pattern Learning
+Neural Assembly Pattern Learning
+Pattern Recognition by Neural Assemblies is a user-interfaced Streamlit application which shows how neural assemblies learn and classify visual patterns via biologically-motivated rules of plasticity.
+Fastcoders
+application badge
+AI/ML API
+AMD ROCm
+
+Play
+FOUR TAKES — The AI Captioning Studio 
+FOUR TAKES — The AI Captioning Studio
+The only video captioning studio that QCs itself. Gemma locks the facts, then writes four calibrated voices — formal, sarcastic, tech & non-tech humor — each caption pre-judged for accuracy and tone before you see it. Gemma-first on Fireworks AI.
+TheMaker
+GPT-5
+OpenGPTs
+Gemini AI
+
+Play
+Event-Driven AI Video Captioning using MiniMax M3
+Event-Driven AI Video Captioning using MiniMax M3
+An event-driven AI video captioning system that combines CLIP semantic analysis, optical flow, and MiniMax M3 to detect meaningful events, reduce unnecessary VLM calls by over 90%, and generate coherent captions in four distinct styles.
+Autonomous AMD
+OpenAI
+
+Play
+A+ Medical Staff Allocation 
+A+ Medical Staff Allocation
+A+ Medical Staff Allocation System helps healthcare administrators efficiently assign medical staff to shifts and departments, track availability and qualifications, and generate reports to ensure assistance in staff allocation using AI
+Free Dev
+AMD Developer Cloud
+Claude Code
+ChatGPT
+
+Play
+swarmtrace
+swarmtrace
+swarmtrace is a ai agent monitring platform build for to give you complete control of your ai agents saas
+the agentic heart
+application badge
+AI Studio
+Anthropic Claude
+Generative Agents
+
+Play
+YOUSUN Axion
+YOUSUN Axion
+YOUSUN Axion turns messy AI workloads into AMD-ready deployments by scanning code, detecting CUDA/ROCm issues, suggesting fixes, benchmarking improvements, and creating a professional readiness report.
+Yousun Apexia
+application badge
+AI/ML API
+AMD Developer Cloud
+AMD ROCm
+
+Play
+TokenEdge — Hybrid AI Routing Agent
+TokenEdge — Hybrid AI Routing Agent
+TokenEdge is a verification-gated AI routing agent that solves tasks locally whenever possible and uses Fireworks AI only when necessary, minimizing scored tokens while maintaining accuracy.
+nexico
+application badge
+AMD Developer Cloud
+Gemma
+Qwen3
+
+Play
+🧠 Sovereign AI — Secure RAG for Medical Records
+🧠 Sovereign AI — Secure RAG for Medical Records
+🧠 Sovereign AI Brain — Secure RAG for Medical & Legal Records **One API key. One file. One answer someone can safely stake a life on.**
+Higher
+application badge
+AI/ML API
+
+Play
+EcoRoute: 3-Tier Agentic Router
+EcoRoute: 3-Tier Agentic Router
+EcoRoute is a hybrid AI routing engine that intercepts easy tasks using a zero-token local model, dynamically escalating complex queries to the cloud. It slashes API costs while ensuring enterprise-grade resilience.
+jhon jones
+Llama 3
+
+Play
+Cheapskate Router
+Cheapskate Router
+A containerized AI agent that routes tasks across 8 capability categories to the cheapest sufficient Fireworks AI model, using zero-token local classification and syntax validation to minimize token spend while clearing the accuracy gate.
+Crazybell
+AMD Developer Cloud
+Anthropic Claude
+Antigravity
+
+Play
+DSS BACKGROUND HANDSHAKES PROTOCOL
+DSS BACKGROUND HANDSHAKES PROTOCOL
+DSS Digital Signature Soveriengty. Background handshake Protocol
+NEOXZ CORE
+AMD Developer Cloud
+Gemini 3 Flash
+MongoDB
+
+Play
+Route First, Call Rarely
+Route First, Call Rarely
+A routing agent that answers 1 in 3 tasks with zero LLM tokens, then picks the cheapest adequate model for the rest — 99.5% accurate, ~50% fewer tokens.
+Los gringos
+OpenAI
+AMD Developer Cloud
+HuggingFace Spaces
+
+Play
+SMC Liquidity Hunter
+SMC Liquidity Hunter
+An MCP-native AI trading engine that turns institutional Smart Money Concepts into real-time signals — powered by Gemma 4 on AMD MI300X, with verified live paper-trade execution via Alpaca.
+Hole-in-Wall
+application badge
+Anthropic Claude
+Claude Code
+
+Play
+SpecTrace AI
+SpecTrace AI
+SpecTrace AI turns fragmented release evidence into traceable AI-powered investigations, generated engineering assets, and human approval decisions for safer software releases.
+Slash
+application badge
+AMD Developer Cloud
+Gemma
+Vercel
+
+Play
+First Aid AI
+First Aid AI
+AI-powered emergency first aid assistant that analyzes text, audio or video to assess emergencies, provides realtime first aid guidance in text or voice & automatically alerts emergency contacts, hospitals and ambulances with GPS location case summary.
+Git Push Heroes
+application badge
+AI/ML API
+AgentOps
+DeepSeek V3
+
+Play
+ZeroFire — Zero-Token Local-First Routing Agent
+ZeroFire — Zero-Token Local-First Routing Agent
+A Track 1 agent that answers all 8 task categories with an in-container Qwen2.5-3B plus deterministic verification: programs are executed, code is compiled and run, logic and facts are cross-checked. 0 Fireworks tokens; hybrid escalation as fallback.
+PizzaDiet&ColdWater Enterprise
+LLaMA
+Qwen3
+AMD Developer Cloud
+
+Play
+TERA: Hybrid Token-Efficient Routing Agent
+TERA: Hybrid Token-Efficient Routing Agent
+TERA is a hybrid routing agent optimized for AMD CPU environments. It achieves 95.1% accuracy while reducing remote API token usage by 46.3% through dynamic token budgeting, semantic caching, rule-based matching, and custom prompt compression.
+Kshipra
+AI/ML API
+
+Play
+Nexus: The Autonomous AMD FinOps Agent
+Nexus: The Autonomous AMD FinOps Agent
+AI agent that scans your CUDA infrastructure, maps it to ROCm using a verified ruleset, and generates a cost-grounded AMD migration plan — with a confidence score on every dependency, not a guess.
+AMDXX
+application badge
+AMD Developer Cloud
+AMD ROCm
+Gemma
+
+Play
+Token-Miser Router Agent v5
+Token-Miser Router Agent v5
+A hybrid routing agent that answers 8 task categories with near-zero Fireworks tokens: deterministic AST solvers, a local Gemma tier, and a token-squeezed API fallback — 9/9 correct on the sample set at 627 tokens.
+ritwika
+Gemma
+AMD Developer Cloud
+
+Play
+General-Purpose AI Agent 
+General-Purpose AI Agent
+General-Purpose AI Agent that effectively route to the correct agent
+Adik (pronounced adek)
+AI/ML API
+
+Play
+TokenOptimizer — Hybrid Routing System
+TokenOptimizer — Hybrid Routing System
+A token-efficient general-purpose AI agent: deterministic solvers answer provable tasks at 0 tokens, and the rest route to a reasoning model with thinking disabled plus a compact visible chain-of-thought
+Yashasvi Thakur
+Anthropic Claude
+
+Play
+CaptionAI Intelligent MultiStyle Video Captioning 
+CaptionAI Intelligent MultiStyle Video Captioning
+AI-powered video captioning platform analyzes videos and automatically generates accurate captions in four distinct styles. Built with React, FastAPI, Docker, and AMD Fireworks AI, it delivers fast, creative captions through an intuitive web interface.
+Fatima Ahsan
+application badge
+Gemini AI
+GPT-3
+OpenGPTs
+
+Play
+FrameTone
+FrameTone
+FrameTone turns any short video into four accurate, unmistakably different caption styles - formal, sarcastic, humorous-tech, and humorous-everyday!
+Drizzy
+AMD Developer Cloud
+AMD ROCm
+
+Play
+FourTone
+FourTone
+FourTone watches any video clip and captions it in four distinct voices — formal, sarcastic, humorous-tech, humorous-non-tech. Streams frames via ffmpeg, sees with minimax-m3, writes with glm-5p2. 0.939 LLM-judged score; never misses a caption.
+minimalist2
+Anthropic Claude
+Claude Code
+
+Play
+DeepSync: Captioning Agent
+DeepSync: Captioning Agent
+A containerized agent that watch video clips and writes captions in 4 distinct styles formal,sarcastic,humorous-tech and humour. It understands the scene first, then restyles it, so captions stay accurate and matches all 4 tones.
+DeepSync
+application badge
+Anthropic Claude
+Claude Code
+Qwen3-VL
+
+Play
+AuraRoute: Token-Efficient Hybrid AI Router
+AuraRoute: Token-Efficient Hybrid AI Router
+A hybrid token-efficient routing agent that optimizes operational costs by dynamically shifting low-compute tasks to a local Qwen-1.5B model while cascading complex tasks to enterprise remote models using an aggressive token starvation protocol.
+RXP
+Antigravity
+Qwen3-MT
+Qwen3-Coder
+
+Play
+Nomy Route
+Nomy Route
+A Dockerized Python agent for AMD Developer Hackathon Track 1 that routes tasks with zero-token rule-based classification, runs simple workloads on a bundled 3B Q4 local model, and escalates harder tasks to Fireworks frontier models.
+Team Nomy
+Claude Code
+Cursor
+
+Play
+Career Path Agent
+Career Path Agent
+An autonomous AI agent that analyzes your resume against a job, finds skill gaps, builds a personalized roadmap, self-checks its own work, and preps you for interviews
+SoloBuilder_Fatima
+application badge
+Generative Agents
+
+Play
+KNOX (Knowledge-driven Natural Execution System)
+KNOX (Knowledge-driven Natural Execution System)
+Knowledge-driven Natural Execution System (KNOX): A smart assistant system that uses AI-based knowledge and natural inputs like voice and gestures to understand user requests and execute actions automatically.
+ZEROONE
+Gemma
+AI/ML API
+LLaMA
+
+Play
+AMD Captivate AI
+AMD Captivate AI
+AMD Captivate AI is an intelligent video understanding system. It extracts unique keyframes, generates concise video summaries, and produces captions in 4 distinct styles (Formal, Sarcastic, Humorous-Tech, Humorous-NonTech) using Fireworks AI.
+Rishant kushwaha
+application badge
+Qwen3-VL
+Antigravity
+
+Play
+LessonForge — AI Video Lessons and short reels
+LessonForge — AI Video Lessons and short reels
+LessonForge turns any curriculum into studio-quality video lessons. Faculty record once; AMD-powered AI agents personalise the presenter, pacing, and script for every student — cutting weeks of production down to minutes.
+Fordworx
+AMD ROCm
+Anthropic Claude
+Cloudflare Workers AI
+
+Play
+AMD CODE REVIEW AGENT 
+AMD CODE REVIEW AGENT
+AMD Code Review Agent — AI-powered code review running on AMD GPUs via Fireworks AI. Paste any code and get instant, structured analysis — bugs, security, performance, and style issues with severity badges and line references.
+Nostory
+application badge
+HuggingFace Spaces
+AMD Developer Cloud
+
+Play
+FourVoices
+FourVoices
+FourVoices captions short videos in four distinct voices — formal, sarcastic, humorous-tech, and humorous-non-tech — using Gemma's multimodal vision. It grounds the visual facts once, then restyles four ways, keeping every caption accurate and on-tone.
+Groow
+application badge
+AMD ROCm
+Claude Code
+Streamlit
+
+Play
+token efficient agent
+token efficient agent
+A highly token-efficient, hybrid AI agent utilizing a local gemma:2b model via Ollama for zero-cost primary inference, intelligently routing complex tasks to Fireworks AI cloud models (Gemma 4 series) as a fallback to maximize accuracy and efficiency.
+team name
+Anthropic Claude
+Gemini AI
+Gemini 3 pro
+
+Play
+TokenRouter - prove or escalate agent
+TokenRouter - prove or escalate agent
+An agent that spends Fireworks tokens only when it has to: free plain-code solvers first, then a bundled local Gemma, then Fireworks only after a verified miss. Two-thirds of tasks cost zero tokens, and a wrong free answer is structurally impossible.
+Sprint Sprint Win
+Gemma
+
+Play
+MEIA-LAB (Multi-Agent Earnings Intelligence calls)
+MEIA-LAB (Multi-Agent Earnings Intelligence calls)
+MEIA-LAB is a multi-agent AI platform that auto-verifies earnings call claims against SEC filings in real-time. Whisper ASR, Vision OCR, and Filing agents cross-examine audio, slides, and 10-Qs powered by AMD GPUs cutting analyst research time by 90%.
+MEIA Labs
+application badge
+AMD ROCm
+Antigravity
+OpenAI
+
+Play
+OmniCore — Zero-Token-First Hybrid Routing Agent
+OmniCore — Zero-Token-First Hybrid Routing Agent
+OmniCore uses a 5-layer cost ladder to minimize Fireworks tokens: rule-based math solver, 60+factual lookups,and Gemma 2B local inference handle 12 of 20 tasks at zero API cost. Only code and logic hit Fireworks. Estimated2,100 tokens,87–90% accuracy
+OMINICORE
+AI/ML API
+AMD Developer Cloud
+AMD ROCm
+
+Play
+OncoGraph: Multi-Agent AI for Precision Oncology
+OncoGraph: Multi-Agent AI for Precision Oncology
+OncoGraph is a multi-agent AI system that analyzes patient genomic data and histopathology images to provide evidence-based, personalized cancer treatment recommendations in under a minute.
+Onco-Graph Researcher
+application badge
+AMD Developer Cloud
+
+Play
+ScubaaaaRouter
+ScubaaaaRouter
+A highly efficient LLM routing agent that intelligently directs queries between a local Qwen 4B model and remote frontier APIs. By utilizing early format validation and a fast GGUF pre-screener, it maximizes local processing and minimizes API costs.
+scubaaaaa
+AgentOps
+Antigravity
+Qwen3
+
+Play
+SAGE System for Academic Governance & Evaluation
+SAGE System for Academic Governance & Evaluation
+An AI-powered academic audit and governance platform designed to ensure learning outcomes alignment, syllabus consistency, and curriculum relevance across higher education faculties. Powered by AMD Fireworks AI inference and Brave Search tooling.
+Raffles Jakarta
+AI/ML API
+
+Play
+KAIROS — Company Organizational Memory OS
+KAIROS — Company Organizational Memory OS
+AI that reads Slack, Gmail, Drive, Notion, Zoom, GitHub, and Jira to extract every company decision and the reasoning behind it — then answers "why" in under 4 seconds, fully sourced, and shares that memory with any AI over MCP.
+AgentLab
+application badge
+AMD Developer Cloud
+Anthropic Claude
+Antigravity
+
+Play
+Jarvis Partner Assistant
+Jarvis Partner Assistant
+JARVIS Voice AI is a real-time, voice-first AI assistant that enables natural human conversations while intelligently orchestrating MCP servers and external tools to perform real-world tasks—all without requiring a keyboard or graphical interface.
+digital masters
+AI/ML API
+Assistants API
+Auto-GPT
+
+Play
+Hybrid AI Router
+Hybrid AI Router
+A hybrid AI inference router that analyzes prompt complexity and routes requests to either a local LLM or Fireworks AI. The system optimizes token usage, latency, and inference cost while maintaining accurate responses.
+Byte Build
+AMD Developer Cloud
+AMD ROCm
+Claude Code
+
+Play
+PrismLearning.AI: The Agentic Study Partner
+PrismLearning.AI: The Agentic Study Partner
+An agentic, source-grounded AI tutor that restructures PDFs, slide decks, and video into adaptive curricula — orchestrating Socratic instruction, confidence-calibrated assessment, and spaced-repetition retention across a multi-model architecture.
+localhost6767
+application badge
+AI Studio
+Codex
+Claude Code
+
+Play
+Tetrlense ai: Style-Conditioned Video Captioning
+Tetrlense ai: Style-Conditioned Video Captioning
+Tetrlense ai is a style-conditioned video captioning agent built for the AMD Developer Hackathon. Using Fireworks AI's Kimi K2 model, it generates high-fidelity, adaptive video descriptions across four distinct styled personas with extreme low latency.
+VectorForge AI
+application badge
+AMD Developer Cloud
+Antigravity
+Gemini AI
+
+Play
+UN DocFormat Agent
+UN DocFormat Agent
+An AI document-compliance agent that turns raw English drafts into fully formatted UN Secretariat reports enforcing real DGACM/UN Editorial Manual rules using MiniMax M3 on AMD Instinct (via Fireworks AI) for fixes that need editorial judgement compliance
+The Innovators
+AI/ML API
+AMD Developer Cloud
+Anthropic Claude
+
+Play
+UniKL - AMD Video Captioning Agent
+UniKL - AMD Video Captioning Agent
+AI powered video captioning in 4 styles: formal, sarcastic, tech-humour, and everyday humour
+UniKLers
+HuggingFace Hub
+DeepSeek V3
+
+Play
+IntelliRouter
+IntelliRouter
+router that uses tokens effectivwly and gives max accuracy
+zeyro
+AMD Developer Cloud
+
+Play
+Hacienda - Video Captioning AI Agent
+Hacienda - Video Captioning AI Agent
+Hacienda is an autonomous agent that watches video so you don't have to. It extracts frames and audio, processes them through minimax-m3 and Groq Whisper, and leverages a fine-tuned Gemma-4-e4b model to write captions in four highly creative styles.
+Hacienda
+Gemma
+Groq
+
+Play
+TextSink — Four Voices. One Truth.
+TextSink — Four Voices. One Truth.
+TextSink watches a video & speaks in 4 perfect tones. Gemma 4 grounds every clip in visual facts, then writes formal, sarcastic, humorous-tech and humorous-non-tech captions. Plus live styled closed captions and two AIs arguing about what they're watching
+Banksy Ai
+Gemma
+AMD Developer Cloud
+
+Play
+Wormhole
+Wormhole
+Wormhole routes each task to the cheapest capable model: a 2.5 GB on-device LLM answers most of 8 task categories at zero token cost; only hard reasoning tunnels out to Fireworks. Perfect scores on our 64-task eval suite for a few thousand tokens.
+teamRed
+Qwen3
+
+Play
+BlahTest
+BlahTest
+BlahTester1 is a Blahtester1 because without blahtester1 there is no blahtester1
+sadhaka
+AMD Developer Cloud
+
+Play
+Why Incoreperated
+Why Incoreperated
+Why Incorporated is a hybrid AI agent that classifies tasks across 8 capability domains and routes each to a local model or Fireworks AI, escalating only when local confidence is low to save tokens.
+why incorporated
+LLaMA
+Gemma
+
+Play
+Narrative Nexus
+Narrative Nexus
+A media-behavior measurement instrument, scraping news sources and verifying claims they make against each other to establish consensus reality.
+DreamTeam
+AMD Developer Cloud
+Claude Code
+Codex
+
+Play
+ROUgentX
+ROUgentX
+ROUgentX is an intelligent, cost-optimizing AI routing agent that drastically reduces API token spend by dynamically directing prompts between a zero-cost local model and specialized remote models based on task complexity.
+Code da Clouds
+Antigravity
+Anthropic Claude
+AgentOps
+
+Play
+BenchSieve
+BenchSieve
+BenchSieve is a format-aware AI task router that reduces Fireworks token usage by solving safe prompts locally and tightly budgeting remote model calls.
+MYSELF
+application badge
+GPT-5
+OpenAI
+Gemini AI
+
+Play
+bhalu gang 1
+bhalu gang 1
+Chameleon Caption Agent is a two-stage video captioning agent powered by Fireworks AI Using model Kimi K2.7 Code, it transcribes dialogue, analyzes keyframes, and generates captions in formal, sarcastic, and humorous styles.
+Bhalu & Gang
+AMD Developer Cloud
+
+Play
+TokenPilot: Adaptive Fireworks Model Router
+TokenPilot: Adaptive Fireworks Model Router
+TokenPilot intelligently routes each task to the most cost-effective Fireworks model while preserving answer quality through local checks, confidence scoring, caching, and controlled escalation.
+tokenpilot-router
+application badge
+LangChain
+AMD Developer Cloud
+Codex
+
+Play
+Naija Agri ai
+Naija Agri ai
+AI-powered farm assistant helping Nigerian farmers diagnose crop diseases, get fertilizer advice, and access financial inclusion tools via chat, photo diagnosis, or USSD for feature phones in English, Hausa, Yoruba, Igbo, and Pidgin.
+Builders hub01
+AMD Developer Cloud
+Anthropic Claude
+Claude Code
+
+Play
+Hybrid Token-Efficient Routing Agent
+Hybrid Token-Efficient Routing Agent
+Accuracy-first hybrid agent for AMD Track 1: free solvers + local Ollama self-consistency + at most 1 Fireworks call per task. Minimizes tokens while clearing the accuracy gate.
+csy
+rest api
+
+Play
+MultiVerse of Captions
+MultiVerse of Captions
+An AI-powered video captioning pipeline that analyzes video frames and audio to generate accurate captions in formal, sarcastic, humorous-tech, and humorous-non-tech styles using multimodal AI and LLM-based style generation.
+cow
+AI/ML API
+
+Play
+VaultEdge AI: Secure Hybrid Edge-to-Cloud Router
+VaultEdge AI: Secure Hybrid Edge-to-Cloud Router
+A secure edge-to-cloud AI agent for finance. VaultEdge intercepts enterprise data, scrubs PII locally on AMD hardware, and routes anonymized tasks to the Fireworks API. It guarantees privacy while slashing cloud API costs.
+KD
+application badge
+TinyLlama
+HuggingFace Hub
+Gemini 3 pro
+
+Play
+AstraRoute AI Agent #5
+AstraRoute AI Agent #5
+A Python CLI batch AI agent that classifies tasks, solves them locally when possible (zero tokens), and falls back to Fireworks AI for complex queries — ranked by accuracy and minimal token usage.
+choatic_team
+application badge
+Anthropic Claude
+
+Play
+AgeBand
+AgeBand
+AgeBand — privacy-first passive age assurance for chat. An LLM infers an age band from how you write; a deterministic shell decides band, confidence, and safety posture, so it can't be confidently wrong. On-prem on AMD MI300X/ROCm/vLLM.
+Kiano
+AMD Developer Cloud
+AMD ROCm
+Gemma
+
+Play
+AMD-Gemma Video Captioner: Hybrid Multimodal Agent
+AMD-Gemma Video Captioner: Hybrid Multimodal Agent
+A containerized video captioning pipeline using Kimi-2.6 VLM and DeepSeek-V4 Pro on Fireworks AMD GPU cluster. Features uniform keyframe sampling and single-call JSON styling to reduce API cost by 75% and latency by 4x.
+Epoch Eclipse
+AMD Developer Cloud
+AI/ML API
+DeepSeek V3
+
+Play
+AI Video Captioning Studio
+AI Video Captioning Studio
+Generate engaging video captions with AI. Upload a video or paste a URL, and the app analyzes visual content to create multiple caption styles including neutral, formal, sarcastic, humorous, and tech-focused for social media creators.
+Striff
+application badge
+Codex
+Qwen3
+Vercel
+
+Play
+ARIA - Automated Research Intelligence Agent
+ARIA - Automated Research Intelligence Agent
+ARIA is a multi-agent AI system that synthesizes biomedical literature from PubMed and audits it for citation fraud, methodology drift, overstated claims, cross-paper contradictions, and reproducibility gaps, built on Qwen2.5-72B via vLLM on AMD MI300X.
+Glitch Squad
+LangChain
+Anthropic Claude
+Mistral AI
+
+Play
+Routing Agent - I
+Routing Agent - I
+A routing agent built to route tasks based solely on the Heuristics of the incoming task.
+Vibe Tribe
+Anthropic Claude
+
+Play
+Local-First Batch Agent
+Local-First Batch Agent
+A batch AI agent that answers most tasks with a bundled on-CPU model at zero Fireworks tokens, escalating to the API only when a local answer fails verification.
+group
+application badge
+Claude Code
+
+Play
+Instinct Gate
+Instinct Gate
+An autonomous, containerized middleware routing engine designed to optimize enterprise LLM workloads dynamically between cost-effective local edge nodes and high-performance remote serverless cloud clusters.
+Instinct Gate
+application badge
+LangChain
+Streamlit
+Llama 3
+
+Play
+LedgerBuddy: Digitizing Emerging Markets with AI
+LedgerBuddy: Digitizing Emerging Markets with AI
+LedgerBuddy AI empowers small businesses with an intelligent smart ledger. It automates invoice data entry using AI document extraction and features a multilingual financial Copilot.
+Thriveit
+application badge
+Antigravity
+Gemini 3 pro
+Gemma 2
+
+Play
+GemmaGate
+GemmaGate
+GemmaGate is a validation-gated routing agent that solves tasks locally when it can verify the answer, then escalates to Fireworks models only when needed to minimize token usage.
+Area Larpers
+AI/ML API
+
+Play
+SyncFlow AI: Automated Spec Orchestrator
+SyncFlow AI: Automated Spec Orchestrator
+SyncFlow AI is an AI-powered orchestrator that interviews founders and chains prompts to instantly generate comprehensive PRDs, TRDs, Database Schemas, and App Flows, turning raw ideas into developer-ready specifications in minutes.
+Kzkf dev
+application badge
+Qwen3
+Vercel
+Antigravity
+
+Play
+TokenForge v10.0
+TokenForge v10.0
+TokenForge is an enterprise-grade AI Cost Governor and Hybrid Routing Engine. Built for Track 1, it completely eliminates token costs for structured/math workloads using zero-token local solvers and dynamically routes complex tasks to Google Gemma models.
+Neural Stack
+Antigravity
+Gemma
+LangChain
+
+Play
+Hybrid Local‑Fireworks Routing Agent
+Hybrid Local‑Fireworks Routing Agent
+A hybrid AI router that crushes token costs to 0 by running a local 1.5B Qwen model entirely inside the 4GB container for easy tasks, only escalating to the Fireworks API for complex logic.
+SANKALPA
+AMD Developer Cloud
+Qwen3
+
+Play
+Zero-Cost Multi-Agent Token Router
+Zero-Cost Multi-Agent Token Router
+A hybrid routing agent that minimizes API costs by classifying queries on the fly, leveraging fast local models for trivial tasks, and dynamically spinning up a local multi-agent debate committee for complex problems.
+The Goods
+Antigravity
+
+Play
+TokenRouter: Cost-Efficient Multi-Model AI Agent
+TokenRouter: Cost-Efficient Multi-Model AI Agent
+A general-purpose AI agent spanning 8 task categories (factual, math, sentiment, summarisation, NER, code debugging, logic, code generation) that minimizes Fireworks API tokens.
+Saving Money
+AgentOps
+AI/ML API
+Assistants API
+
+Play
+333 TokenTriage Agent
+333 TokenTriage Agent
+Router-first AI agent that solves simple tasks locally and uses Fireworks LLM only when needed, reducing remote token cost while preserving accuracy.
+Lyceum
+AMD Developer Cloud
+AI/ML API
+
+Play
+Token-Efficient Router
+Token-Efficient Router
+Routes tasks deterministically through a 549-entry knowledge base, math solver, sentiment analyzer, NER, 50 code templates, and debugger. Falls back to Gemma 3 1B (local, 0 tokens) then minimax-m3 cloud. CPU-only, 871 MB.
+ERRORxcd
+Gemma
+OpenAI
+
+Play
+VidTone Agent
+VidTone Agent
+Caption QA Copilot for short-video teams. Generates four caption styles, then a Judge Agent scores accuracy, tone match, and hallucination risk.
+PMC Labs
+AI/ML API
+AMD Developer Cloud
+HuggingFace Spaces
+
+Play
+ARouter
+ARouter
+A highly optimized, resource-aware routing engine designed to process complex AI queries under strict hardware constraints. It intelligently balances local compute and cloud APIs to maximize accuracy while preventing out-of-memory failures.
+TheWho
+LLaMA
+
+Play
+Mybanana ai agent 🍌
+Mybanana ai agent 🍌
+Classifies tasks into 8 categories (math, code, logic, NER, etc.), routes each to a tiered Fireworks AI model, and batches same-category tasks to cut token usage ~50% without hurting accuracy.
+MY Banana
+application badge
+Claude Code
+Gemma
+
+Play
+ZeroToken_Router_8_Hrs_Wait
+ZeroToken_Router_8_Hrs_Wait
+AI routing agent that minimizes API costs and being efficient.
+Team Shaheen
+AMD Developer Cloud
+
+Play
+ForgeMind AI–Intelligent Software Architecture
+ForgeMind AI–Intelligent Software Architecture
+ForgeMind AI is an AI-powered software architecture assistant that transforms project ideas into complete technical blueprints, including system architecture, security recommendations, development roadmaps, and implementation guidance and etc.
+Neo Dev
+AI Studio
+AI/ML API
+ChatGPT
+
+Play
+Agent-FPL
+Agent-FPL
+A specialized agentic AI framework built to automate data analysis and dominate the Fantasy Premier League (FPL).
+Team Arkantos
+AI/ML API
+HuggingFace Hub
+Qwen3
+
+Play
+SEV-Cap: Multi-Style Captioning
+SEV-Cap: Multi-Style Captioning
+SEV-Cap captions short videos in four styles—formal, sarcastic, humorous-tech, and humorous-non-tech. Keyframes + Whisper audio generate K extracts; semantic-entropy verification filters facts. Blind style lineup + self-refine; draft-first output.
+sakku
+application badge
+Gemma
+Cursor
+Streamlit
+
+Play
+Tokenless-8
+Tokenless-8
+A local-first routing agent for Track 1. It solves math, logic, and code locally with a small Gemma model and verified execution, and answers language tasks on the spot. The goal is min Fireworks tokens while staying above the accuracy gate.
+Tensen
+Gemma
+HuggingFace Hub
+AI/ML API
+
+Play
+Test submission
+Test submission
+Engineering Philosophy TACTIC is built around the idea that AI routing is an optimization problem, not a model selection problem. Rather than always selecting the most capable model. This is a baseline submission.
+Temp Equals 2
+OpenAI
+AMD Developer Cloud
+AI/ML API
+
+Play
+ProVision V2
+ProVision V2
+A video captioning agent that generates accurate captions across multiple requested styles.
+ProVision
+Gemini 3 Flash
+
+Play
+Brain Connect AI
+Brain Connect AI
+Brain Connect AI synthesizes patient history, radiology reports, and global medical literature on AMD GPUs to provide physicians consensus-driven differential diagnoses and personalized treatment plans in seconds.
+Poppenspel Advies AI
+AMD Developer Cloud
+
+Play
+ByteRoute
+ByteRoute
+ByteRoute is a smart AI routing agent that minimizes Fireworks API token usage by intercepting simple tasks locally using regex and heuristics, while routing complex tasks to GLM 5.2 with category-specific system prompts for maximum accuracy.
+ByteRoute
+AI/ML API
+Gemini 3 Flash
+AutoGen
+
+Play
+paperflow — private document reconciler
+paperflow — private document reconciler
+The document reconciler lets you point at confidential paperwork, because nothing has to leave your hardware. Cross-document reconciliation on tokenised text, for piles that legally cannot go to a cloud IDP.
+ShearesX
+AMD ROCm
+Gemma
+Anthropic Claude
+
+Play
+Router to Vibehalla
+Router to Vibehalla
+Task routing agent for the AMD ACT II Hackathon Track 1
+Raiders of Vibehalla
+AI/ML API
+AgentOps
+
+Play
+Capsum V2
+Capsum V2
+Capsum watches any video clip and generates captions in four distinct styles—formal, sarcastic, humorous-tech, and humorous-non-tech—by extracting scenes, sampling keyframes, and grounding each style in the same visual facts for accuracy and tone.
+coddweller
+application badge
+AI/ML API
+
+Play
+AdCollage: Website-to-Promo Video Agent
+AdCollage: Website-to-Promo Video Agent
+An AI agent that turns any business website into a ready-to-post short-form promo video — scraping brand assets, picking pacing and style, and generating a platform-ready video collage in seconds.
+DODGE
+Codex
+ChatGPT
+AMD Developer Cloud
+
+Play
+Hola Precision Agent
+Hola Precision Agent
+An ultra-efficient, fully Dockerized AI agent. It utilizes a custom prompt-routing engine to analyze task constraints and deliver highly concise, zero-waste outputs using Llama-3 on Fireworks AI.
+Hola
+AI/ML API
+rest api
+
+Play
+INDUSCONNECT
+INDUSCONNECT
+**IndusConnect** is your dedicated app designed to eliminate the frustration of searching for industrial attachments, internships, and work placements. It works by directly connecting students and job seekers with verified companies and training.
+BRIAN KIPLIMO
+application badge
+AMD Developer Cloud
+
+Play
+NoCoast AI
+NoCoast AI
+We built an efficient routing agent to effectively answer prompts in several categories as efficiently as possible.
+NoCoast
+AI/ML API
+Gemma
+
+Play
+SVAASA — Sacred Ayurvedic Fragrance Intelligence
+SVAASA — Sacred Ayurvedic Fragrance Intelligence
+SVAASA formulates personalized therapeutic Ayurvedic attars, scoring ingredients in parallel on AMD GPUs via WebGPU/WGSL compute shaders — with a zero-system-language concierge that triages every message for medical urgency in real time.
+Synapse Foundry Daredevil
+application badge
+AMD Developer Cloud
+AMD ROCm
+
+Play
+Agent optimization - AMD-HT-ACTII
+Agent optimization - AMD-HT-ACTII
+checking .............................................
+Khela Final
+application badge
+AMD Developer Cloud
+
+Play
+Replio Messaging CoPilot
+Replio Messaging CoPilot
+An AI-powered Messaging copilot that uses a stateful agentic workflow to generate context-aware, tone-appropriate replies and alternatives, with human review and approval before sending.
+Hiveminds
+Qwen3
+OpenAI
+
+Play
+OFF-Guard
+OFF-Guard
+OFF Guard is an AI-powered KYC (Know Your Customer) compliance screening assistant
+OFF-Guard
+AMD Developer Cloud
+Gemma
+HuggingFace Hub
+
+Play
+CaptionMan
+CaptionMan
+CaptionMan is an evidence-first video captioning system with a Caption Court moat: it analyzes video, repairs weak captions, supports Gemma-aware routing, and outputs polished Track 2 captions from a public Docker image.
+Boons
+Gemma
+Deepmind
+AMD Developer Cloud
+
+Play
+routerx-agent
+routerx-agent
+A smart-routing AI agent that handles 8 task categories using local models (zero cost) and Fireworks AI API (minimal tokens).
+rm -rf
+Antigravity
+Qwen3
+
+Play
+AutoPatch Forge: Autonomous Self-Healing CI/CD
+AutoPatch Forge: Autonomous Self-Healing CI/CD
+An autonomous multi-agent framework built for containerized environments to intercept pipeline crashes, execute dynamic regex trace-decoding, run AST syntax-safe local patching, and automate timestamped Git PR branches in 0.02 seconds.
+AutoPatch Forge
+application badge
+AMD Developer Cloud
+Gemma
+
+Play
+CreatorOS - An AI Operating System for Creators
+CreatorOS - An AI Operating System for Creators
+CreatorOS is an AI operating system that transforms conversations into structured creative understanding before generating production-ready artifacts. Powered by AMD Fireworks, it maintains context, reasoning, and lineage across the creative workflow.
+ZoN Labs
+AMD Developer Cloud
+AI/ML API
+
+Play
+Token Frontier Router
+Token Frontier Router
+A lightweight routing agent that cuts token usage by sending each task to the cheapest model that can still answer well.
+Paripakv
+Anthropic Claude
+AMD Developer Cloud
+AI/ML API
+
+Play
+RoxAI + RoxKV: AI-Powered Database Platform
+RoxAI + RoxKV: AI-Powered Database Platform
+RoxAI is an AI orchestration layer built on top of RoxKV, a custom in-memory database written from scratch.
+roxkv
+application badge
+Llama 3.2
+Toolhouse
+Codex
+
+Play
+Hybrid Token Efficient Routing Agent
+Hybrid Token Efficient Routing Agent
+A Dockerized AI routing agent that solves simple tasks locally and routes harder prompts to the cheapest suitable Fireworks model, reducing token usage while preserving answer quality.
+Dagger
+AI/ML API
+Assistants API
+AMD Developer Cloud
+
+Play
+dasch ai v1: Hybrid Token-Efficient Router
+dasch ai v1: Hybrid Token-Efficient Router
+dasch ai v1 is a hybrid token-efficient routing agent designed to maximize accuracy while minimizing API costs. It utilizes a zero-token keyword router, a local 1.5B CPU model for basic tasks, and an optimized Fireworks AI fallback layer.
+cpp_coders
+Qwen3
+
+Play
+Inbound Routing
+Inbound Routing
+The only router that catches a bad answer before it finishes being wrong — aborting failing generations mid-stream, racing local vs. remote in real time, and cutting token costs 69% without losing accuracy.
+Inbound Crew
+application badge
+ChatGPT
+Claude Code
+Cursor
+
+Play
+HopRouter: Smart Local/Remote AI Router
+HopRouter: Smart Local/Remote AI Router
+A token-efficient AI agent that routes tasks between a free local model and Fireworks AI across 8 task categories, minimizing token cost without sacrificing accuracy.
+HopRouter
+AMD Developer Cloud
+Qwen3
+HuggingFace Hub
+
+Play
+DRIFT — the early-warning court for AI quality
+DRIFT — the early-warning court for AI quality
+DRIFT watches your production AI, puts every suspicion of degradation on trial before a prosecutor, defense and judge, and hands you a countdown — hours of warning before quality crosses your floor.
+Effectonious
+AMD ROCm
+AMD Developer Cloud
+
+Play
+Token-Efficient Routing Agent
+Token-Efficient Routing Agent
+An AI agent that routes queries to a small or large model based on complexity, cutting inference costs while preserving answer quality — built on Fireworks AI.
+Ayesha Syed
+application badge
+AI/ML API
+Yi-LLMS
+
+Play
+Simple Solutions
+Simple Solutions
+Token-efficient AMD Track 1 routing agent that solves easy tasks locally, validates answers, and calls Fireworks only when needed to preserve accuracy while reducing token use.
+SimpleSolutions
+AMD Developer Cloud
+
+Play
+Hybrid Token Efficient Routing - V7
+Hybrid Token Efficient Routing - V7
+This is my teams second submission for the Hackathon Phase - 1.
+EpigenAI
+Codex
+Claude Code
+
+Play
+MeetingIQ — AI Meeting Prep Assistant
+MeetingIQ — AI Meeting Prep Assistant
+AI-powered meeting preparation assistant that combines real-time web research via Exa neural search, persistent memory via Mem0, and Gemini 2.0 Flash to generate 30-second meeting briefs for sales teams.
+StackSpark
+application badge
+Gemini AI
+Vercel
+AMD Developer Cloud
+
+Play
+Hybrid Token-Efficient Routing Agent
+Hybrid Token-Efficient Routing Agent
+An AI agent that classifies each task by difficulty and routes it to the cheapest Fireworks model that can still answer accurately. Easy tasks hit a lightweight model, hard tasks escalate — minimizing tokens without dropping accuracy.
+Agent Provocateur
+application badge
+AI/ML API
+
+Play
+ZMLC+ Local-First Token Router V16
+ZMLC+ Local-First Token Router V16
+ZMLC+ separates deterministic/verifiable tasks from lossy ones: rules, verifiers, normalization, and optional local inference answer the safe slice with zero counted Fireworks tokens, while risky tasks route to allowed Fireworks models.
+RTHack
+AMD Developer Cloud
+AMD ROCm
+Gemma
+
+Play
+Saboteur: Chaos Monkey for AI agents
+Saboteur: Chaos Monkey for AI agents
+Saboteur breaks your AI agent on purpose. It injects fake API errors, rate limits, bad tool data and lost context into a running agent, then scores how well it recovers. Chaos Monkey but for AI agents.
+SUNE
+application badge
+Llama 3.1
+Gemma
+AMD ROCm
+
+Play
+XO Screens
+XO Screens
+XO Screens is a desktop AI overlay that generates stylized video captions in four tones — formal, sarcastic, humorous tech, and humorous non-tech — using a two-pass vision pipeline powered by Fireworks AI.
+The Forge
+AMD Developer Cloud
+
+Play
+CaptionChameleon
+CaptionChameleon
+A high-performance batch video captioning system that generates multi-style captions using zero-shot learning with vision-language models. Process multiple videos in parallel and get captions in four distinct styles without any fine-tuning.
+Shadowmasters
+AI/ML API
+AMD Developer Cloud
+
+Play
+Track 1 - Smart Router
+Track 1 - Smart Router
+Cost-aware routing agent: deterministic solvers and a bundled 3B local LLM answer most tasks at zero token cost; only genuinely hard tasks escalate to Fireworks AI models, minimizing billed tokens while clearing the accuracy gate.
+Robot ROCm
+Qwen3
+
+Play
+Frame to Punchline
+Frame to Punchline
+A video captioning agent that samples frames from any clip, grounds a factual scene description with a vision model, then generates four distinct captions which are: formal, sarcastic, tech-humor, humor from that single description via Fireworks AI.
+lolidk
+AMD Developer Cloud
+
+Play
+SceneScribe
+SceneScribe
+An AI-powered video captioning tool that generates four distinct caption styles (Formal, Sarcastic, Tech Humor, and Everyday Humor) with confidence scores and intelligent scene detection.
+AMD (Aaloo Matar Developers)
+AMD Developer Cloud
+DeepSeek V3
+Generative AI Studio
+
+Play
+singleThreaded-agent16
+singleThreaded-agent16
+A hybrid token-efficient routing agent that solves mathematical tasks locally with zero API tokens, and intelligently routes all other tasks to the optimal Fireworks AI model based on task category.
+SingleThreaded
+Anthropic Claude
+OpenAI
+
+Play
+Video Captioning Agent
+Video Captioning Agent
+A containerized AI agent that watches short video clips and generates captions in four distinct styles — formal, sarcastic, humorous-tech, and humorous-non-tech — using Fireworks AI vision models.
+JakRif
+AMD Developer Cloud
+
+Play
+ToneLab
+ToneLab
+A pipeline that turns any 30s–2min video into four distinct captions formal, sarcastic, humorous-tech, and humorous-non-tech using Fireworks AI, scored by an LLM judge on accuracy and tone.
+ctrl break
+AMD Developer Cloud
+
+Play
+Triduum Router
+Triduum Router
+Triduum Router provides local hyperintelligence using a thinking harness and Gemma4.
+TRIDUUM
+AMD ROCm
+Gemma
+AMD Developer Cloud
+
+Play
+REPOMIND v3 - on-prem AI coding agent on AMD
+REPOMIND v3 - on-prem AI coding agent on AMD
+On-prem, air-gapped AI coding agent + LLM cost-router for enterprises barred from cloud AI - 100% AMD, open-weight, Ed25519 tamper-evident audit. $0/token on-prem; cuts existing token bills 40–70%. AMD ACT I 1st-place winner.
+REPOMIND v3
+AMD Developer Cloud
+AMD ROCm
+Gemma
+
+Play
+ClipTone : Multi-Style Video Captioning Agent
+ClipTone : Multi-Style Video Captioning Agent
+An AI agent that watches short video clips and generates captions in four styles; formal, sarcastic, humorous tech, and humorous-non-tech using a single structured LLM call with self-evaluation and automatic fallback.
+BlvK
+Qwen3
+Groq
+OpenAI
+
+Play
+Bastion: Accuracy-First Token Router V13 Fresh Tag
+Bastion: Accuracy-First Token Router V13 Fresh Tag
+A token-efficient general-purpose agent that answers easy tasks locally for zero tokens, routes the rest to the best-fit Fireworks model per category, and reasons step-by-step on hard problems to clear the accuracy gate.
+Night Lab
+Gemma
+AMD Developer Cloud
+
+Play
+Kaio-Ken Protocol
+Kaio-Ken Protocol
+A token-efficient AI agent that classifies tasks, evaluates local model confidence, and selectively escalates only complex queries to Fireworks models.
+Team Xbyles
+ChatGPT
+Claude Code
+Cursor
+
+Play
+Hybrid-Router
+Hybrid-Router
+An intelligent LLM router that selects the most token-efficient Fireworks AI model for each task, optimizing accuracy and inference cost.
+Code
+application badge
+AMD Developer Cloud
+AMD ROCm
+
+Play
+vinci-monsoon-J1
+vinci-monsoon-J1
+An ultra-efficient, containerized hybrid routing agent that utilizes a swift local Qwen-3B classifier to process tasks locally, triggering intelligent conditional escalation to Fireworks AI endpoints to smash the 80% accuracy gate while minimizing cost.
+the_vinci_coder
+AgentOps
+
+Play
+Raccoon Vision Translator
+Raccoon Vision Translator
+Watches a clip and writes four captions in four different voices: formal, sarcastic, tech humor, casual humor. All four come from the same fact-checked scene description, using Gemma 4 through Hugging Face.
+Ryzen from the Dumpsters
+application badge
+Whisper
+Gemma
+HuggingFace Hub
+
+Play
+SceneSense: Adaptive Video Intelligence Agent    
+SceneSense: Adaptive Video Intelligence Agent
+A highly concurrent video analytics agent that uses high-res VLM scene analysis, dynamic multi-frame sampling, and tone-specific LLM routing to extract rich, stylized insights from video.
+agentic_enginner
+Antigravity
+Claude Code
+AMD Developer Cloud
+
+Play
+GemmaScribe: 4 Style Video Captioning Agent
+GemmaScribe: 4 Style Video Captioning Agent
+AI agent that analyzes videos with vision models and uses Google Gemma to generate, judge, and quality-control four styled captions (formal, sarcastic, humorous_tech, humorous_non_tech).
+Moore and Mealy Machines
+Gemma
+Claude Code
+AI/ML API
+
+Play
+AIMRoyale
+AIMRoyale
+AIMRoyale is an AI-powered mathematical arena that generates highly personalized, real-time math challenges based on the user's school grade and difficulty level. Powered by AMD and Framework AI model.
+Sondare
+Antigravity
+Gemini 3 Flash
+Gemma
+
+Play
+Intelligent_Router
+Intelligent_Router
+A smart pipeline that routes tasks between a free 2.6B local model and premium cloud APIs — getting 70B accuracy at near-zero cost.
+Team Builders
+AMD Developer Cloud
+Gemma
+
+Play
+SentinelAI – AI Cybersecurity Threat Detector
+SentinelAI – AI Cybersecurity Threat Detector
+SentinelAI is an AI-powered platform that analyzes security logs, detects threats, maps them to MITRE ATT&CK, and generates incident reports through an interactive dashboard and AI chat assistant.
+Only One
+Claude Code
+Gemini 3 pro
+ChatGPT
+
+Play
+RepoREpo
+RepoREpo
+A Dockerized hybrid AI agent that routes benchmark tasks between a zero-token local Llama model and allowed Fireworks models, answering accurately while minimizing counted API tokens.
+Ryzen
+AI/ML API
+Llama 3.2
+Claude Code
+
+Play
+optimus-router
+optimus-router
+TESSSSSSSSSSSSSSSSSSSSSTTESSSSSSSSSSSSSSSSSSSSSTTESSSSSSSSSSSSSSSSSSSSSTTESSSSSSSSSSSSSSSSSSSSST
+Solvent Labs
+Gemma
+
+Play
+Routing-Agent-That-Works-I-Guess? V1.3
+Routing-Agent-That-Works-I-Guess? V1.3
+R-A-T-W-I-G, A deterministic-first Track 1 hybrid agent. Classifies 8 task types by risk, solves with code when possible, and uses Fireworks only for validate/fix or high-risk work. Writes validated JSON to /output/results.json with minimal tokens.
+Tokenizer
+AMD Developer Cloud
+
+Play
+Andon AI
+Andon AI
+AndonAI is an AI incident command board that detects operational risks, coordinates specialized AI agents, recommends response actions and generates audit ready reports for modern operations teams.
+Fovea
+application badge
+LangChain
+AMD Developer Cloud
+AMD ROCm
+
+Play
+Drupal AI Factchecker — Claim-Level Truth on AMD
+Drupal AI Factchecker — Claim-Level Truth on AMD
+Native Drupal module that fact-checks claims against a university's own corpus, scores AI-writing likelihood, and finds verbatim plagiarism — all inference running on local AMD hardware (ROCm).
+Drupal AI Router
+AMD Developer Cloud
+Anthropic Claude
+Claude Code
+
+Play
+Echo: Multi-Persona Video Captioning 
+Echo: Multi-Persona Video Captioning
+Echo is an automated video processing and captioning pipeline that generates contextual captions across four distinct style tracks, automatically evaluated by a local LLM-Judge for accuracy and tone.
+Sonar
+application badge
+Gemini 3 pro
+LLaMA
+
+Play
+Phoenix Router
+Phoenix Router
+Phoenix Router maximizes AI benchmark efficiency by solving most tasks locally with Qwen3.5-2B and using Fireworks only as a safety net, achieving high accuracy with minimal token consumption.
+Team Phoenix
+Anthropic Claude
+Gemma
+HuggingFace Hub
+
+Play
+ROCm Migration Copilot
+ROCm Migration Copilot
+AI-powered tool that analyzes CUDA and PyTorch workloads and generates instant ROCm migration plans, benchmark checklists, and exportable reports for AMD Developer Cloud.
+ByteForge_X
+Codex
+AMD Developer Cloud
+ChatGPT
+
+Play
+how deep is your love
+how deep is your love
+Smart AI agent router that classifies tasks into 8 categories, runs Gemma-2-2B locally for most tasks, and executes Python code for math/code problems to ensure accuracy.
+takitakirumba
+AI/ML API
+Gemma
+
+Play
+LeAgent
+LeAgent
+A Docker-containerized AI agent that classifies incoming tasks across 8 categories and routes each to the optimal Fireworks-hosted model, using zero-cost heuristics and a code-gen-then-execute path to maximize accuracy while minimizing token spend.
+leMinou
+AMD Developer Cloud
+
+Play
+Token-Slasher: Minimalist Hybrid Routing Agent
+Token-Slasher: Minimalist Hybrid Routing Agent
+A lean, containerized routing agent that maximizes token efficiency by automatically selecting small-footprint open models and stripping out conversational fluff.
+Solo leveler
+Llama 3
+
+Play
+Prime Discovery Engine
+Prime Discovery Engine
+We built an OpenCL prime discovery engine with wheel factorization & Montgomery multiplication, detecting record prime gaps & Cunningham chains. Live Ulam spirals & Chebyshev bias dashboards bring number theory to life on any GPU.
+MathematiciansonMoon
+DeepSeek V3
+
+Play
+Argonauts - Track 1 - Submission 6
+Argonauts - Track 1 - Submission 6
+Dockerized AI agent that processes structured tasks from a JSON input file, queries a language model through the Fireworks API, and generates accurate, concise responses in a standardized JSON output format.
+Argonauts
+application badge
+AI/ML API
+
+Play
+SmartRoute AI
+SmartRoute AI
+SmartRoute AI is an intelligent AI routing system that uses GenAI and Supabase to route user queries to the best model (OpenAI, Gemini, Ollama) based on context and cost
+kk
+AI/ML API
+Llama 3.2
+Gemini AI
+
+Play
+Aegis Semantic Router
+Aegis Semantic Router
+A zero-token local-first hybrid router utilizing in-process Gemma-2-2B and semantic kNN routing.
+CodeML
+AI71
+Antigravity
+HuggingFace Hub
+
+Play
+OptiRoute
+OptiRoute
+OptiRoute intelligently routes tasks to the cheapest capable model — local or cloud — using a capability matrix, deterministic shortcuts, and confidence-based escalation for accuracy at minimal cost.
+Slicon Spark
+AgentOps
+
+Play
+Perseus Vault — Encrypted Agent Memory for AMD
+Perseus Vault — Encrypted Agent Memory for AMD
+Encrypted agent memory that keeps 100% of MI300X HBM serving tokens — measured: $0.143/agent-hour, 11.7× cheaper than 2×H100.
+perseus
+AMD ROCm
+AMD Developer Cloud
+Gemma
+
+Play
+RouteZero: Hybrid Token-Efficient AI Agent
+RouteZero: Hybrid Token-Efficient AI Agent
+A hyper-optimized routing agent that guarantees high accuracy while crushing token costs. It uses strict deterministic verification and a local-first cascade to answer questions for zero tokens, only escalating to Fireworks when mathematically necessary.
+CUET Mongolchari
+Antigravity
+Anthropic Claude
+
+Play
+OpenRisk AI
+OpenRisk AI
+OpenRisk AI is an AI-powered smart contract security copilot that analyzes Solidity repositories from GitHub, performs automated static analysis, calculates security risk scores, and generates actionable audit reports using large language models.
+WhiteRabbit
+Qwen3
+
+Play
+Hybrid Token-Efficient Routing Agent
+Hybrid Token-Efficient Routing Agent
+An advanced dual-model orchestration pipeline combining a custom 30M Mini-BERT router, a local quantized INT8 Qwen-0.5B execution engine, and automated Fireworks API fallback escalation for token-efficient, zero-hallucination edge intelligence.
+Absolut Void Development
+AgentOps
+AI/ML API
+Gemini 3 Flash
+
+Play
+Droughter
+Droughter
+A highly optimized hybrid AI router that maximizes accuracy while minimizing API token spend. It solves standard tasks locally via a 0.5B Qwen model and deterministic solvers, dynamically routing only complex code tasks to the premium Fireworks API.
+LuaRouter
+AI/ML API
+HuggingFace Hub
+
+Play
+Axiom — Token-Efficient General-Purpose AI Agent
+Axiom — Token-Efficient General-Purpose AI Agent
+Token-efficient general-purpose AI agent for AMD ACT II Track 1. Routes 8 task categories through Fireworks with thinking disabled, tight per-category caps, prompt caching, and parallel execution. 100%accuracy on 19 benchmark tasks at ~1,550 total tokens.
+tony automations
+openclaw
+
+Play
+Tokenator 3000 v5
+Tokenator 3000 v5
+A local-first routing agent that answers eight task categories using a bundled Gemma 3 4B model plus deterministic tools, escalating to Fireworks only when needed, clearing the accuracy gate while driving Fireworks token usage toward zero.
+alanverse
+application badge
+Anthropic Claude
+AMD Developer Cloud
+
+Play
+router-track1
+router-track1
+baseline submission for track1baseline submission for track1
+EvolutionRouting
+AI/ML API
+
+Play
+~hawk
+~hawk
+A Dockerized agent that analyzes video clips and generates captions in four modes: formal, sarcastic, tech humor, and everyday humor.
+0x16
+AI/ML API
+Codex
+AMD ROCm
+
+Play
+CascadeSolo Router
+CascadeSolo Router
+A routing agent that solves math, sentiment, and entity extraction on its own for free, and only calls a Fireworks model when a task actually needs one. The goal is simple: pass the accuracy bar, then spend as few tokens as possible.
+CascadeSolo
+application badge
+Claude Code
+Codex
+
+Play
+BizTwin AI
+BizTwin AI
+BizTwin AI is your AI executive team. It creates a digital twin of your business, analyzes operational data, simulates strategic decisions, detects risks, and provides actionable recommendations through a collaborative multi-agent AI system.
+Fankarz
+application badge
+AMD Developer Cloud
+OpenAI
+Github Copilot
+
+Play
+apna_captioning_agent_v4
+apna_captioning_agent_v4
+A two-stage video captioning agent that samples keyframes, generates a faithful scene description with a vision-language model, then rewrites it into four distinct tones — formal, sarcastic, humorous-tech, and humorous-non-tech — via the Fireworks AI API.
+Koshish Karne waalon ki haar hoti hai
+AI/ML API
+
+Play
+Git it done v32 (i am coming)
+Git it done v32 (i am coming)
+A hybrid AI agent that solves tasks deterministically first (math/logic solvers, local model confidence gating) and only escalates to tiered Fireworks models when needed — maximizing accuracy while minimizing token cost across all 8 task categories.
+GitCommit_and_Pray
+AI/ML API
+Antigravity
+AMD Developer Cloud
+
+Play
+Remanon
+Remanon
+GPU-resident shared-memory runtime for multi-agent, multi-model AI. Master context materialized once per model, pinned in HBM — never evicted, never re-prefilled. Proven on AMD with a live AIOps RCA demo. One memory. Many minds. Zero evictions.
+Remanon
+AMD Developer Cloud
+Qwen3
+Llama 3
+
+Play
+Brocacho AI Agent 2
+Brocacho AI Agent 2
+A Dockerized Track 1 agent combining deterministic arithmetic with a bundled Qwen3.5-2B local model to handle eight task categories without Fireworks API calls.
+Team Brocacho
+AI/ML API
+Gemini 3 Flash
+
+Play
+Osher AI
+Osher AI
+Osher AI is an AI savings agent with an infrastructure layer that lets wallets, fintechs, and agents add AI-powered savings intelligence to any platform
+Osher Ai
+Codex
+Llama 3.2
+
+Play
+Video Captioning
+Video Captioning
+A video captioning pipeline that extracts frames, transcribes audio, &generates captions in 4 distinct tones formal, sarcastic, humorous-tech, and humorous-non-tech using Minimax M3 via Fireworks AI, with a built-in LLM self-judge & Streamlit demo UI.
+In Prompt We Trust
+application badge
+OpenAI
+Whisper
+Streamlit
+
+Play
+Frugal Token v4
+Frugal Token v4
+Hybrid routing that keeps token cost low: a free in-container model tries first, quick checks vet the answer, only failures escalate to Fireworks. Frugal by design.
+Frugal Token
+AMD Developer Cloud
+Anthropic Claude
+
+Play
+Trippy Troppy
+Trippy Troppy
+Token-minimal agent for the Fireworks AI track. Classify each task locally with regex, then make exactly one call per task with a terse category-specific prompt and the cheapest suitable allowed model.
+BlackChop
+application badge
+Anthropic Claude
+AMD Developer Cloud
+Qwen3-MT
+
+Play
+Hybrid Router
+Hybrid Router
+TEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TESTTEST TEST TEST TEST
+BKKBurnout
+AI/ML API
+
+Play
+AuditAgent: AI Smart-Contract Oracle
+AuditAgent: AI Smart-Contract Oracle
+Autonomous AI agent auditing Solidity smart contracts via LLM reasoning on AMD MI300X GPUs (Fireworks AI). Writes immutable risk verdicts on-chain via FETCH-REASON-SCORE-ATTEST loop.
+AuditAgent
+AMD Developer Cloud
+AMD ROCm
+
+Play
+TranscendiantRouter5
+TranscendiantRouter5
+TranscendiantRouter answers tasks with a free local model and pays for an expert model only when the local model cannot agree with itself on an answer.
+Transcendiant
+AMD Developer Cloud
+AMD ROCm
+Qwen3
+
+Play
+CinePrism AI
+CinePrism AI
+CinePrism AI is a state-of-the-art video captioning agent. It analyzes raw video bytes to generate highly accurate, contextual captions in four distinct tones (Formal, Sarcastic, Tech, and Non-Tech).
+SK8-infi
+AgentOps
+AI/ML API
+Antigravity
+
+Play
+Vela RemotePC Agent
+Vela RemotePC Agent
+VelaAI is an intent-driven, chat-first remote Linux control agent. Powered by Qwen's tool-calling capabilities, it translates natural language into real-time system actions like killing heavy apps, running diagnostics, and media management.
+Team Cat
+Qwen3
+AI Studio
+
+Play
+FrameWise — Multi-Style Video Captioning
+FrameWise — Multi-Style Video Captioning
+A self-contained agent that watches any video clip on-device and writes captions in four tones — formal, sarcastic, humorous-tech, and everyday-funny — each grounded in what's actually on screen, with a validated JSON output contract.
+Table 9
+Claude Code
+
+Play
+PayEvery
+PayEvery
+PayEvery is an AI-powered payment bridge enabling 95M+ mobile wallet users in Bangladesh to generate one-time virtual dollar cards for global tech purchases, protected by real-time scam detection powered by Google Gemma 4 and AMD compute.
+Tensor Logic
+Gemma
+
+Play
+TOKENMAN
+TOKENMAN
+A hybrid AI agent that routes each task to the lowest-cost reliable solver, using deterministic tools first and Fireworks only when needed.
+SapphireVIP
+Codex
+
+Play
+Hybrid Token-Efficient-one-two
+Hybrid Token-Efficient-one-two
+A token-efficient routing agent for Track 1. A zero-cost classifier sorts each task into eight categories, then routes it through deterministic solvers, a bundled local model, or the Fireworks API
+hasherrama
+application badge
+Alpaca
+
+Play
+TokenSentinel - V 0.01
+TokenSentinel - V 0.01
+A general-purpose agent built to get the right answer for the fewest tokens possible, clears the accuracy bar on every category, then wins on efficiency.
+One-Man Monolith
+LLaMA
+
+Play
+Video Captioning Agent
+Video Captioning Agent
+An AI agent that watches short video clips and writes captions in four tones (formal, sarcastic, humorous-tech, humorous-non-tech). A 3-phase pipeline separates factual scene understanding from style writing, built on AMD's Fireworks AI infrastructure.
+Ghouls
+AMD Developer Cloud
+
+Play
+Video Captioning Agent
+Video Captioning Agent
+An AI agent that watches short video clips and generates captions in four distinct tones — formal, sarcastic, humorous-tech, and humorous-non-tech — using a vision-language pipeline built on Fireworks AI.
+Trump
+Qwen3-VL
+
+Play
+Metis - v(lost count + 4)
+Metis - v(lost count + 4)
+A local-first hybrid AI agent that answers tasks with a free on-device model and escalates to paid cloud models only when a calibrated confidence gate says it must — maximum accuracy at minimum token cost.
+Kingdom of Science
+AMD Developer Cloud
+AMD ROCm
+Claude Code
+
+Play
+minima vx
+minima vx
+Routing agent that classifies each hidden task, selects the cheapest allowed model, and returns a benchmark ready JSON.
+Tech debt
+AI/ML API
+AgentOps
+
+Play
+Caption Pipe
+Caption Pipe
+A containerized multimodal video-caption pipeline that samples key frames, reasons over segmented visual evidence, builds a global factual summary, and generates grounded captions in multiple styles.
+Pinna
+OpenAI
+AMD Developer Cloud
+Gemma
+
+Play
+Lumina: Surgical AI UI Generator & Deployer
+Lumina: Surgical AI UI Generator & Deployer
+Lumina is an advanced AI-powered web canvas. It generates stunning dark-mode Tailwind interfaces from text or images using Fireworks AI. Featuring surgical "Magic Edit" DOM manipulation and instant one-click deployment to AMD Developer Cloud instances.
+Luminar
+application badge
+AMD Developer Cloud
+Antigravity
+Vercel
+
+Play
+RouterAI
+RouterAI
+Routing baseline testing attempt submission, validated across all eight task categories.
+UnrealGG
+Claude Code
+Gemma
+
+Play
+ai amigos amazing attempt
+ai amigos amazing attempt
+this is a test attempt to get things to work ...................................................................................................................................................................
+AI Amigos
+Antigravity
+
+Play
+Sentinel — AI Incident Response Copilot
+Sentinel — AI Incident Response Copilot
+Sentinel triages infrastructure logs instantly using a fine-tuned local Gemma model on AMD GPUs, escalating only uncertain cases to a remote model via Fireworks AI — cutting AI costs while keeping response times fast.
+Breeze
+application badge
+AMD Developer Cloud
+
+Play
+Neuroloom — Family Care Command Center
+Neuroloom — Family Care Command Center
+Neuroloom is a multi-agent family care command center. Nine Gemma-powered agents on AMD GPUs coordinate meds, handoffs, documents, check-ins, and emergencies — one live dashboard for 53M+ caregivers.
+Prompt Pirates 2
+application badge
+AgentOps
+AI/ML API
+AWS
+
+Play
+GenRisk
+GenRisk
+A multi-omic cardiometabolic risk reader that layers genomic, methylation, microbiome, and clinical evidence side by side — every number traceable to a published source, never fused into a single misleading score.
+EvoBio
+AMD ROCm
+Anthropic Claude
+AMD Developer Cloud
+
+Play
+NovaAI  General Purpose AI Assistant
+NovaAI General Purpose AI Assistant
+NovaAI is a modern AI assistant powered by Fireworks AI that solves diverse natural language tasks including reasoning, summarization, coding, mathematics through an intuitive interface.
+Khdamin btkhbya
+Gemma
+AI/ML API
+Assistants API
+
+Play
+LocalFirst-4
+LocalFirst-4
+A Track 1 routing agent that solves tasks for free on a local model whenever possible, and calls Fireworks only when local can't be trusted. Verified across all 8 categories, with real accuracy bugs found and fixed via stress testing.
+jae
+Gemma
+
+Play
+SignalSniper Multi Agent Forex Market Intelligence
+SignalSniper Multi Agent Forex Market Intelligence
+SignalSniper AI is currently demonstrated with Forex markets and designed as a scalable financial intelligence framework supporting future expansion into Equities, ETFs, cryptocurrencies BTCUSD , and commodities and Indexes Dow Jones , NASDAQ, S&P500, DAX
+primehack
+application badge
+Qwen3
+GPT-4
+Assistants API
+
+Play
+Motion Vision
+Motion Vision
+AI agent which can watch short videos and generate captions.
+newtaves
+application badge
+AI/ML API
+
+Play
+TokenForge Router
+TokenForge Router
+A Dockerized Track 1 routing agent that solves easy tasks locally for zero Fireworks tokens and routes only uncertain tasks to the cheapest sufficient Fireworks model from ALLOWED_MODELS.
+OG_Mode
+application badge
+Github Copilot
+ChatGPT
+Anthropic Claude
+
+Play
+Ensemble video-caption agent tuned for style-match
+Ensemble video-caption agent tuned for style-match
+A vision-model ENSEMBLE for video captioning: three frontier VLMs independently observe the frames, cross-verify, and one writer fuses them into four richly-detailed styled captions. 0.94 accuracy on the official clips.
+Mvconceptlab
+AMD Developer Cloud
+Gemma
+Qwen3-VL
+
+Play
+CrisisOps AI - Emergency Operator
+CrisisOps AI - Emergency Operator
+CrisisOps AI is an advanced disaster intelligence platform that streamlines crisis management. It unifies fragmented data—like weather APIs, IoT sensors, and field reports—into a single visual dashboard
+Just do it
+AI Studio
+Auto-GPT
+ChatGPT
+
+Play
+MOSIAC
+MOSIAC
+An AI pipeline that watches a video clip, extracts its core visual and audio elements, and generates accurate captions in four distinct styles: formal, sarcastic, humorous tech, and humorous non-tech.
+gfx1100_v1
+AgentOps
+AMD Developer Cloud
+AMD ROCm
+
+Play
+FounderOS
+FounderOS
+FounderOS is an AI-powered operating system for startup founders — multi-agent assistants that research markets, draft docs, and strategize growth, all accelerated on AMD ROCm GPUs via Fireworks AI.
+FounderOS
+application badge
+AMD Developer Cloud
+Gemma
+AMD ROCm
+
+Play
+CaptionCraft
+CaptionCraft
+CaptionCraft: a Docker video captioning agent for AMD Track 2. One MiniMax vision describe per clip, then four parallel DeepSeek style rewrites (formal, sarcastic, tech, non-tech). Prefetch downloads; ~270s for 12 clips under the 10-min cap.
+CaptionCraft
+application badge
+AI/ML API
+Cursor
+AMD Developer Cloud
+
+Play
+adv router21
+adv router21
+Zero-token heuristic router classifying tasks locally via regex. Routes code to kimi-k2p7-code and general tasks to gemma-4-31b-it with dynamic 404/403 fallback to minimax-m3.
+Nier_Classification
+Gemma
+AgentOps
+
+Play
+MediConnect: AI Emergency Response Platform
+MediConnect: AI Emergency Response Platform
+MediConnect is an AI-powered emergency response platform that intelligently routes medical queries between local and cloud AI models, delivering first-aid guidance, hospital recommendations, and disaster support with optimized token efficiency.
+Neural Nexus
+application badge
+AgentOps
+AI Studio
+AMD Developer Cloud
+
+Play
+Solwash DT
+Solwash DT
+A high-performance solar fleet intelligence and dispatch automation platform that calculates real-time soiling losses and automates technical field routing via WhatsApp, accelerated by an AMD ROCm pipeline and live Firebase architecture.
+Solwash DT
+AMD ROCm
+Gemini AI
+Gemini 3 Flash
+
+Play
+ABNU v1
+ABNU v1
+Abnu is a containerized Track 1 AI agent. It reads /input/tasks.json, routes each task through Fireworks AI via harness-provided env vars, and writes valid answers to /output/results.json, optimized for accuracy and token efficiency.
+JamesLabs
+AI/ML API
+AMD Developer Cloud
+
+Play
+Crucible — the autonomous AI underwriter
+Crucible — the autonomous AI underwriter
+The autonomous AI underwriter that puts loans on trial, works the conditions, and rebuilds denials — every claim cited to real guideline text, running on AMD Instinct MI300X.
+Ur Mortgage
+AMD Developer Cloud
+Anthropic Claude
+rest api
+
+Play
+Hybrid Token-Efficient Router
+Hybrid Token-Efficient Router
+An AI agent that answers 8 different task types by routing each one to a free local model when it can, and to Fireworks only when the task genuinely needs a stronger model, cutting token usage without hurting accuracy.
+Jahnvi Singh
+AMD Developer Cloud
+Llama 3.1
+HuggingFace Hub
+
+Play
+TokenForge — Hybrid Token-Efficient Routing Agent
+TokenForge — Hybrid Token-Efficient Routing Agent
+TokenForge is an intelligent routing agent that sends each query down the cheapest correct path — solving simple math and greetings locally for free, and escalating only complex reasoning to Fireworks AI to maximize accuracy while minimizing token spend.
+Multimodal TokenForge
+AgentOps
+Yi-LLMS
+
+Play
+Machine Yearning
+Machine Yearning
+An intelligent hybrid LLM routing agent that dynamically splits tasks between a local model for free, fast processing and a cloud-based API for complex reasoning, optimizing accuracy and token efficiency.
+VanishingPoint
+AMD Developer Cloud
+AgentOps
+AMD ROCm
+
+Play
+DebateGenius AI – Smart AI Communication Coach
+DebateGenius AI – Smart AI Communication Coach
+DebateGenius AI is an AI-powered communication coach that helps users practice debates, improve critical thinking, receive real-time AI feedback, and track their progress through interactive debate sessions.
+Amd debate
+GPT 4o
+AMD Developer Cloud
+OpenAI
+
+Play
+Hybrid Routing Agent — Local First, Tokens Last
+Hybrid Routing Agent — Local First, Tokens Last
+A local Gemma model answers everything it can prove correct for free; Fireworks AI is called only when trust runs out — starting with a 1-token judge. Fewer paid tokens, same accuracy.
+AgenticDeveloper
+Gemma
+LLaMA
+HuggingFace Spaces
+
+Play
+Video Captioning Agent — Multi-Style AI Captions
+Video Captioning Agent — Multi-Style AI Captions
+An AI agent that watches a video clip and generates four distinct caption styles — formal, sarcastic, and two flavors of humor — using a single unified Gemini 2.5 Flash API call for both visual understanding and caption generation.
+CodingKnights
+application badge
+AI/ML API
+AI Studio
+Antigravity
+
+Play
+TokenMiser Model 5
+TokenMiser Model 5
+A Dockerized Track 1 agent that solves easy tasks with deterministic local logic and only escalates to allowed Fireworks models when needed.
+Nidra
+AMD Developer Cloud
+AMD ROCm
+AI/ML API
+
+Play
+OmniSolve
+OmniSolve
+OmniSolve is a high-performance AI agent built for the AMD Hackathon. It leverages Fireworks AI to efficiently tackle tasks across 8 diverse domains—including math, coding, and logical reasoning—optimizing for both accuracy and token usage.
+Mjolnir
+Antigravity
+
+Play
+Nagi Research Ai
+Nagi Research Ai
+Nagi is a comprehensive AI academic research environment powered by Fireworks AI. It features a multi-agent architecture that powers an autonomous spatial canvas, literature reviewers, gap analyzers, and an AI writer to accelerate scientific discovery.
+Splashcode
+application badge
+Llama 3
+Gemma
+
+Play
+minimum viable effort
+minimum viable effort
+solo, first hackathon. a small track 1 agent built with gemma 4 on fireworks ai.
+minimum viable effort
+Gemma
+
+Play
+TEA04
+TEA04
+Answers the Track 1 tasks using the fewest Fireworks tokens.
+ND
+AgentOps
+
+Play
+OptiRouter
+OptiRouter
+Maximize accuracy and minimize API cost by dynamically routing queries to zero-token local inference with speculative remote correction.
+AgentSmiths
+Gemma 2
+Antigravity
+Claude Code
+
+Play
+HemaVision Triage Agent
+HemaVision Triage Agent
+An AI anemia screening tool that checks a photo of your eyelid and, just as importantly, tells you when it's not sure enough to trust its own answer.
+HemoTech AI
+AMD ROCm
+OpenAI
+HuggingFace Spaces
+
+Play
+yassai
+yassai
+yassai: Yet Another Super Simple AI Agent - A token efficient AI agent
+Solo Stack
+AMD ROCm
+BERT
+AMD Developer Cloud
+
+Play
+RLSym
+RLSym
+A Track 1 routing agent that completes all eight task categories while spending the fewest tokens possible, deciding per task, in real time, how little inference each answer actually needs. :)
+RLSym
+AMD Developer Cloud
+Anthropic Claude
+
+Play
+OlfactAI - AI Smell Intelligence Agent
+OlfactAI - AI Smell Intelligence Agent
+OlfactAI detects dangerous smells like LPG gas leaks, smoke, and spoiled food using AI — providing real-time bilingual emergency instructions in Bahasa Indonesia and English. Because your nose can't always protect you. Ours can.
+kisanax
+application badge
+AMD Developer Cloud
+Qwen3
+
+Play
+Agentic EWS Advisory system 
+Agentic EWS Advisory system
+the app will help Smallholder farmers in agricultural zonesget seasonal forecast and advisories to reduce planting-window errors, crop failure, and increase uptake of insurance cover owing to emergence of climatic regimes. advisory tools
+GEOAI Kenya
+application badge
+AMD Developer Cloud
+AgentOps
+AMD ROCm
+
+Play
+Route AI
+Route AI
+Route AI is an intelligent and highly efficient AI agent designed to dynamically route user queries across multiple models, balancing response accuracy with computational cost for enterprise-grade applications.
+Void Martial Clan
+Antigravity
+AMD Developer Cloud
+
+Play
+NetConfig AI
+NetConfig AI
+NetConfig AI turns plain English into production-ready Cisco IOS commands, analyzes network diagrams, and deploys configurations directly to real routers or GNS3 simulators in one click.
+ToAman
+application badge
+Claude Code
+AMD Developer Cloud
+
+Play
+AgentGuard
+AgentGuard
+Agent Guard verifies AI-generated clinical recommendations against patient context and configurable safety policies, producing PASS or FLAG decisions with transparent explanations and an auditable verification trail.
+Gradient Boosters
+Codex
+Gemini 3 pro
+
+Play
+ROCmPorter Agent — CUDA to ROCm
+ROCmPorter Agent — CUDA to ROCm
+Local-first AI agent that scans CUDA-heavy GitHub repos, pinpoints AMD ROCm migration blockers with file-level evidence, generates risk-scored patch artifacts using a local Ollama model, and exports verified, GitHub-ready review bundles. No cloud API.
+HACKER_IS_BACK
+application badge
+AI Studio
+AMD ROCm
+ChatGPT
+
+Play
+Clean food good router
+Clean food good router
+Clean food good router is a routing layer for multi-model AI apps.
+Clean Food Good Silicon
+AMD Developer Cloud
+AMD ROCm
+
+Play
+Yojana AI — Multilingual Government Scheme Finder
+Yojana AI — Multilingual Government Scheme Finder
+AI-powered tool that matches Indians with government schemes they qualify for — in 8 Indian languages, powered by AMD MI300X GPUs.
+Vectrasource
+application badge
+Anthropic Claude
+Claude Code
+Vercel
+
+Play
+VoxRouter — Hybrid Token-Efficient Routing Agent
+VoxRouter — Hybrid Token-Efficient Routing Agent
+An AI router that sends each task to the cheapest model that can handle it — free local models via Ollama for simple tasks, remote models only when complexity demands it, with confidence-based escalation and a built-in benchmark score.
+Alpha
+AMD ROCm
+Anthropic Claude
+Cloudflare Workers AI
+
+Play
+FusionNet — Secure Federated Fine-Tuning for LLMS
+FusionNet — Secure Federated Fine-Tuning for LLMS
+FusionNet is an AMD-optimized federated AI platform enabling edge devices to collaboratively fine-tune LLMs without sharing raw data using LoRA and differential privacy. We don't move data to the model. We move the model to the data.
+Code & Chaos
+AMD ROCm
+AMD Developer Cloud
+Antigravity
+
+Play
+StyleFrame Caption Agent
+StyleFrame Caption Agent
+A containerized video-captioning agent that samples video frames, creates a contact sheet, and uses Fireworks multimodal models to generate accurate formal, sarcastic, humorous-tech, and humorous-non-tech captions.
+DRAM 100
+application badge
+AI/ML API
+Anthropic Claude
+ChatGPT
+
+Play
+TokenPilot: Local AI Agent Intelligence
+TokenPilot: Local AI Agent Intelligence
+TokenPilot is a local-first MCP + CLI devtool that helps AI coding agents understand repos, compress context, plan tasks, route models, and save memory without forcing code into a SaaS.
+Waycode Labs
+AMD Developer Cloud
+AI/ML API
+Codex
+
+Play
+CUDA to ROCm Kernel Parity Check
+CUDA to ROCm Kernel Parity Check
+AMP proves a ported CUDA kernel produces matching output on real AMD Instinct MI300X hardware, turning ROCm migration from an open-ended guessing game into a same-day, evidence-backed decision.
+RALAFS
+AMD ROCm
+HuggingFace Spaces
+
+Play
+RalphiIA Hybrid Ops Copilot
+RalphiIA Hybrid Ops Copilot
+A hybrid Edge-to-Cloud multi-agent copilot that routes IT support and diagnostics between local AMD hardware and Fireworks cloud GPUs, featuring a real-time Gemma ROCm GPU code auditor.
+AMD InnerSpark Sovereign Mesh
+AMD Developer Cloud
+AMD ROCm
+CrewAI
+
+Play
+Nova — The Agent's Computer
+Nova — The Agent's Computer
+Nova is a full-stack computer agent that codes, researches, and creates — with a live "Agent's Computer" UI (terminal, editor, browser preview) and first-class AMD Instinct inference via Fireworks AI and vLLM-on-ROCm on AMD Developer Cloud.
+Alilabsx
+LangChain
+langflow
+AMD ROCm
+
+Play
+Axiom - Aether
+Axiom - Aether
+Axiom is a local-first Rust research runtime for online Test-Time Training (TTT), context compression, grounding checks, and self-healing execution loops.
+B Team
+AI/ML API
+AMD Developer Cloud
+AMD ROCm
+
+Play
+Efficient Model V5
+Efficient Model V5
+Agent to choose for the most efficient model Agent to choose for the most efficient model
+Flying lizard
+Gemini AI
+
+Play
+Token Sage Application 
+Token Sage Application
+TokenSage is a hybrid AI routing system that intelligently directs simple queries to a local AMD Ryzen AI NPU and complex queries to cloud LLMs, reducing token usage, lowering costs, improving response speed, and enhancing user privacy.
+AMD Amazer
+Anthropic Claude
+AI21 Labs
+AMD Developer Cloud
+
+Play
+FairPrice: AI Agents for Africa's Informal Economy
+FairPrice: AI Agents for Africa's Informal Economy
+An AI-powered escrow marketplace solving cash-on-delivery risk for Africa's informal sellers; autonomous agents (ZEMA 360) run fulfillment and pricing on Qwen 3.7 Plus, served on AMD Instinct GPUs via Fireworks AI, live in production today.
+Zema AI Labs
+application badge
+AgentOps
+AI/ML API
+AI Studio
+
+Play
+TokenAer
+TokenAer
+Using architecture and logic to minimize token usage.
+Anarchitekt
+AI/ML API
+
+Play
+SobatHitung
+SobatHitung
+SobatHitung is an AI-Powered Finance Company Assistant designed to help businesses automate financial operations, improve decision-making, and simplify accounting and taxation processes through intelligent AI Agents.
+AnTS Groups
+Antigravity
+DeepSeek R1
+Qwen3
+
+Play
+Four Voices, One Clip
+Four Voices, One Clip
+Four captions from one clip: formal, sarcastic, humorous-tech, and humorous-non-tech. A vision model on the Fireworks AI API watches the frames so every caption stays accurate, then re-voices them, with a built-in LLM judge scoring accuracy and tone.
+Nova-Pak
+application badge
+Claude Code
+rest api
+Github Copilot
+
+Play
+Pahfinder0
+Pahfinder0
+testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttes
+Pathfinder0
+AgentOps
+AI/ML API
+AI Studio
+
+Play
+Nova Captioner
+Nova Captioner
+Hallucination proof video captioning agent that produces four distinct styled summaries of the video, built for both factual accuracy and real style separation.
+Nova Cypher
+application badge
+Antigravity
+Claude Code
+
+Play
+Aegisflow Security dashboard 
+Aegisflow Security dashboard
+AegisFlow: real-time network security for banking SOC teams. Live packet capture, AI-driven threat triage, and tamper-proof forensic evidence — built by a student, engineered like production.
+AegisFlow Network Security Dashboard
+application badge
+AMD Developer Cloud
+AMD ROCm
+
+Play
+TokenRouter: cheapest model that gets it right
+TokenRouter: cheapest model that gets it right
+Routes every task to the smallest Fireworks model that can handle it. Classification runs locally with regex rules, so routing costs zero tokens. Hard per-category output caps keep answers short. Same accuracy, about 60% fewer tokens in our tests.
+Saberites
+Generative Agents
+
+Play
+Scaffold — Compound AI for Product Photography
+Scaffold — Compound AI for Product Photography
+Compound AI for product photography. Gemma 3 4B routes per-scene between compose (guaranteed preservation, 20× cheaper) and edit (FLUX Kontext); Kimi K2.6 verifies with self-healing retry. Live telemetry.
+Scaffold
+application badge
+Vercel
+AMD Developer Cloud
+Gemma
+
+Play
+CineForge: Multi-Style Captions
+CineForge: Multi-Style Captions
+CineForge analyzes short videos using Gemma 4 Vision to build a grounded scene memory and generates four distinct captions—formal, sarcastic, tech humor, and casual humor—while keeping every caption faithful to the actual video content.
+Chromastone
+application badge
+Gemma
+HuggingFace Hub
+Generative Agents
+
+Play
+Frugal Router, a Token-Efficient AI Agent
+Frugal Router, a Token-Efficient AI Agent
+A general-purpose AI agent that completes eight task categories using the fewest remote tokens. A free local model gauges its own confidence and shapes each Fireworks call to be as cheap as possible while staying above the accuracy gate.
+Skill Issue
+Gemma
+OpenAI
+
+Play
+ScholarshipHub
+ScholarshipHub
+AI-powered scholarship matching and application coaching for MENA students. Find fully-funded scholarships in minutes and get personalized AI feedback to strengthen your applications.
+TeamY
+Qwen3-Coder
+Qwen3
+ChatGPT
+
+Play
+StyleCap
+StyleCap
+An AI agent that watches any video clip and writes four captions in distinct tones: formal, sarcastic, tech humor, and everyday humor. One multimodal VLM call per video, done in seconds.
+SoloMan
+application badge
+rest api
+Claude Code
+
+Play
+DeliveryBoy AI 
+DeliveryBoy AI
+DeliveryBoy AI is an intelligent assistant for motorcycle couriers that optimizes routes, predicts demand, improves productivity, and increases road safety using AMD AI technologies and edge computing.
+DeliveryBoy
+application badge
+AMD ROCm
+Assistants API
+AI/ML API
+
+Play
+TokenMiser
+TokenMiser
+A routing agent answering 8 task categories at ~164 tokens each — built on discovering that all 5 allowed models bill hidden reasoning tokens by default, and the one universal switch that disables it. 100% eval accuracy in 18s runs.
+minimalist
+Claude Code
+Anthropic Claude
+
+Play
+Hybrid Token-Efficient Routing Agent. (Track 1)
+Hybrid Token-Efficient Routing Agent. (Track 1)
+An AI agent routing tasks across two tiers to minimize Fireworks API tokens. Simple tasks run locally for free via Ollama, while complex tasks (math, code, logic) are sent to Fireworks AI. AMD Developer Hackathon ACT II Track 1.
+The coders
+Gemma
+
+Play
+Tokomera: Adaptive Query Router
+Tokomera: Adaptive Query Router
+A local-first AI routing agent that uses a fine-tuned DistilBERT classifier to choose cheap or stronger Fireworks models, reducing routing token cost while preserving accuracy across eight task categories.
+Konglomera
+application badge
+AMD Developer Cloud
+AI/ML API
+HuggingFace Hub
+
+Play
+FireCascade Agent v.025
+FireCascade Agent v.025
+General-purpose AI agent for AMD Hackathon Track 1. Handles 8 NLP/coding task categories via a cost-optimal Fireworks model cascade-cheap models first, escalating only when needed to minimize token spend while passing the accuracy gate.
+Ascended
+AMD Developer Cloud
+Antigravity
+Anthropic Claude
+
+Play
+StryvoVision1
+StryvoVision1
+An AI-powered video captioning pipeline that analyzes short video clips and generates context-aware captions in four unique styles—formal, sarcastic, humorous-tech, and humorous-non-tech—using Fireworks AI.
+Stryvo
+application badge
+Gemma
+Gemini 3 pro
+HuggingFace Hub
+
+Play
+LLM-Router-Agent-cg-v2-2
+LLM-Router-Agent-cg-v2-2
+Lightweight Track 1 AI agent for the AMD ACT II Developer Hackathon, optimized for correct and token-efficient Fireworks API inference.
+Dolpinotik
+AMD Developer Cloud
+Gemma
+ChatGPT
+
+Play
+tokentaxi
+tokentaxi
+Its a general purpose AI workflow to optimize token consumption while preserving response accuracy.
+amd_ai
+application badge
+AMD Developer Cloud
+
+Play
+CaptionCaptain
+CaptionCaptain
+CaptionCaptain is a resilient, headless multimodal AI pipeline. It uses OpenCV and Qwen 3.7 Plus via Fireworks AI to process video URLs and automatically generate context-aware, multi-tonal captions for automated hackathon evaluation.
+Praxis
+application badge
+AI/ML API
+Gemini 3 pro
+Qwen3
+
+Play
+EcoFeast: Smart Grocery & Waste Tracker
+EcoFeast: Smart Grocery & Waste Tracker
+An AI-powered mobile application that tracks expiration dates, optimizes your meal plans based on existing pantry items, and helps households minimize food waste while saving money on weekly grocery trips.
+Patreon
+AMD Developer Cloud
+
+Play
+Vote First, Then Answer
+Vote First, Then Answer
+An AI agent where lightweight rules and semantic similarity vote together on how hard a question is — confident cases get answered directly, uncertain ones make the local model prove itself twice before trusting it.
+Proxgate
+AI/ML API
+Generative Agents
+OpenAI
+
+Play
+ScreenSage: Local Vision-Grounded LLM Agent
+ScreenSage: Local Vision-Grounded LLM Agent
+Local desktop AI agent that sees your screen with YOLOv10, reasons with a local LLM, and controls mouse/keyboard to complete tasks — all inference running on AMD GPUs via ROCm, with zero cloud API calls.
+Codehunters
+application badge
+AMD ROCm
+YOLOv8
+AMD Developer Cloud
+
+Play
+CascadeAgent: Token-Efficient Task Router
+CascadeAgent: Token-Efficient Task Router
+A general-purpose AI agent that routes tasks across 8 categories, solving simple ones locally at zero cost and calling Fireworks AI models only when real reasoning is needed.
+Pixel & Prompt
+application badge
+AMD Developer Cloud
+Gemma
+AMD ROCm
+
+Play
+Gemma-VLC
+Gemma-VLC
+Gemma-VLC captions any 30s–2min video in four styles—formal, sarcastic, humorous-tech, and humorous-non-tech—using Gemma 4 vision via a lightweight Docker agent built for AMD Hackathon Track 2.
+Aura AI
+AMD Developer Cloud
+Gemma
+
+Play
+Marrow: Where FinOps Meets SecOps
+Marrow: Where FinOps Meets SecOps
+An AI-powered command center correlating AWS Cost Explorer data with Security Hub findings. Powered by DeepSeek via Fireworks AI on AMD Instinct MI300X, Marrow optimizes cloud spend and reduces attack surfaces simultaneously.
+Rikora
+AMD Developer Cloud
+AWS
+rest api
+
+Play
+DonieleAgent
+DonieleAgent
+AI agent for AMD Developer Hackathon Track 1. Handles 8 natural language task categories with efficient routing and response generation.
+cracking-doniele
+AMD Developer Cloud
+AI/ML API
+
+Play
+Mallana: AI Runtime for Autonomous Development
+Mallana: AI Runtime for Autonomous Development
+An AI Systems Research Platform focused on maximizing Capability Density on commodity hardware.
+Mallama
+AMD ROCm
+ChatGPT
+Claude Code
+
+Play
+Project Sentinel
+Project Sentinel
+Real-time threat intelligence combining live global events, AI analytics, and automated workflows to proactively mitigate operational risks.
+Project Sentinel by CompliMetrics
+application badge
+Antigravity
+rest api
+
+Play
+TERA: Token-Efficient Routing Agent
+TERA: Token-Efficient Routing Agent
+TERA is an ultra-fast, token-efficient AI agent. It uses an 8-workers concurrent architecture, a comprehensive regex classifier, smart model tiering (cheap/strong/code), judge-aligned prompts, and 0-token math engine for maximum efficiency.
+Brute Force
+Antigravity
+AI/ML API
+Gemma
+
+Play
+AI Career Planner
+AI Career Planner
+An AI-powered Career Planner that analyzes student profiles to generate tailored vocational recommendations, interactive comparison metrics, and multi-phase execution roadmaps, complete with a premium corporate-grade multi-page PDF export engine.
+Lumina Labs
+ChatGPT
+Gemini AI
+Anthropic Claude
+
+Play
+hybrid-routing-agent
+hybrid-routing-agent
+A hybrid AI agent that routes every query to the cheapest capable model — free local inference first, Fireworks AI only when the task actually needs it — to maximize accuracy per token spent.
+Jetpack
+Claude Code
+
+Play
+VESTRA AI: Hybrid Router for outfit Assistants
+VESTRA AI: Hybrid Router for outfit Assistants
+VESTRA AI is a hybrid wardrobe assistant that intelligently routes each request across memory, local inference, and remote multimodal AI to optimize latency, token cost, and answer quality in real time.
+FranTal AI Labs
+AMD Developer Cloud
+AI/ML API
+rest api
+
+Play
+AfroAi - Cake Pricing Agent for Nigerian Bakers
+AfroAi - Cake Pricing Agent for Nigerian Bakers
+AI that calculates exact ingredient costs and profit for Lagos bakers. Input prices, get cost per cake + recommended selling price. No GPU needed.
+AfroAi
+AI/ML API
+AMD Developer Cloud
+
+Play
+Hybrid Token-Efficient Routing Agent
+Hybrid Token-Efficient Routing Agent
+An AI agent that dynamically routes each task to the cheapest Fireworks AI model that can still answer accurately — MiniMax M3 for general tasks, Kimi K2.7 Code for coding tasks — minimizing token cost while preserving output accuracy.
+Adam dev teams
+AMD Developer Cloud
+
+Play
+AIchemist-agent-v4
+AIchemist-agent-v4
+A token-efficient general-purpose AI agent that uses rule-based task routing across 8 capability categories — factual knowledge, math, sentiment, summarization, NER, code debugging, logical reasoning, and code generation — powered by Fireworks AI.
+AIchemists
+OpenAI
+GPT-5
+
+Play
+Bifrost 
+Bifrost
+Bifrost is a hybrid AI routing system that slashes LLM costs by answering easy prompts for free model and only calling a paid remote LLM when it's truly needed verified by a two-stage accuracy check so token savings never come at the cost of correctness.
+Pegasus
+Antigravity
+Anthropic Claude
+ChatGPT
+
+Play
+tinykitten_caption_generator
+tinykitten_caption_generator
+This is a test that can be as good as the test can get
+TinyKitten
+application badge
+AI/ML API
+AMD ROCm
+
+Play
+Verification-Driven Token-Efficient Routing Agent
+Verification-Driven Token-Efficient Routing Agent
+One container, two tracks: a verification-driven token-efficient router (local models answer free, code verifies, only proven failures escalate) and an all-local video captioner (SmolVLM eye + Gemma stylist) sharing the same prove-or-escalate harness.
+Momentum
+LLaMA
+Gemma
+Bright Data Web Scraper API
+
+Play
+Divine caption agent test v15
+Divine caption agent test v15
+The application follows a structured, linear lifecycle designed for maximum resource efficiency, clean environment separation, and fault tolerance.The agent processes the task list using a flat-loop architecture that detects nested array structures.
+Divine
+Claude Code
+
+Play
+Every Tongue: AI Scripture Study in Any Language
+Every Tongue: AI Scripture Study in Any Language
+Every Tongue turns a Scripture passage into reviewable study materials for low-resource languages. Powered by Gemma on AMD GPU with ScriptureFlow grounding, English back-translation, and native-speaker review flags.
+Bulletproof Automation
+AMD Developer Cloud
+AMD ROCm
+Gemma
+
+Play
+Kestrel - v0.70
+Kestrel - v0.70
+A containerized agent that solves eight categories of natural language tasks through Fireworks AI at a fraction of the usual token cost, without sacrificing accuracy.
+SoloPlayer
+AgentOps
+
+Play
+Adaptive Routing Agent
+Adaptive Routing Agent
+A token-efficient, general-purpose AI agent for AMD Hackathon Track 1. It classifies each task into one of eight categories with cheap regex routing, then answers with the smallest Fireworks model that clears the accuracy gate—minimizing total tokens.
+T_ying_yai
+AgentOps
+
+Play
+Armenian ASR: State-of-the-Art Speech Recognition
+Armenian ASR: State-of-the-Art Speech Recognition
+Building a state-of-the-art automatic speech recognition system for Armenian using one of the largest gated Armenian speech datasets with over 8,000 hours of audio. Our goal is to make high-quality speech AI accessible for a low-resource language.
+Armenian ASR
+application badge
+ChatGPT
+
+Play
+MAAT — the kill switch for runaway AI agents
+MAAT — the kill switch for runaway AI agents
+A drop-in gateway that catches runaway agent loops at runtime, kills or downgrades them per budget, and reroutes near-budget workflows to $0 Gemma on an AMD MI300X via ROCm. Every token metered, judged, weighed.
+Orange cat lover
+Anthropic Claude
+AMD ROCm
+AMD Developer Cloud
+
+Play
+Biopesticide-AI
+Biopesticide-AI
+Open-source pipeline that turns natural-language pest reports into ranked dsRNA biopesticide candidates — with efficacy scoring, cross-species safety screening, environmental fate prediction, and auto-generated regulatory memos.
+Healers
+Llama 3.2
+
+Play
+SplitLLM – Explainable Hybrid AI Routing
+SplitLLM – Explainable Hybrid AI Routing
+SplitLLM is an explainable hybrid AI routing platform that analyzes every prompt before execution, intelligently selecting the best local or cloud model to reduce cost, improve latency, and optimize AI inference with transparent reasoning.
+admin
+application badge
+Kraken cli
+Yi-LLMS
+rest api
+
+Play
+Apprentice: small models that earn the job
+Apprentice: small models that earn the job
+Apprentice turns a repeatable frontier-LLM task into a small model you own: verify real examples into a gold set, optimize the prompt, fine-tune, and let it take traffic only after it beats the frontier on your own held-out eval. Rollback is one env var.
+Sharks
+AMD ROCm
+Gemma
+HuggingFace Hub
+
+Play
+VIDEO CAPTIONING 
+VIDEO CAPTIONING
+Models are accessed via Fireworks AI API credits. Fine-tuning is explicitly permitted — you may also train your own captioner and use it alongside or instead of prompting. Use open datasets, build your own, or both. used will be revealed on launch day.
+team lablab winners
+AI Studio
+
+Play
+ApexFlow AI: Self-Healing Telemetry Gateway
+ApexFlow AI: Self-Healing Telemetry Gateway
+ApexFlow AI is a self-healing edge telemetry gateway that uses a hybrid quantum-classical VQC router to autonomously reconcile schema drift in real-time, preventing mission-critical IoT data blackouts on AMD Instinct GPUs.
+Tarek Clarke
+AMD ROCm
+Gemma
+NVIDIA
+
+Play
+NoirGen AI: The Autonomous Cinematic Art Director
+NoirGen AI: The Autonomous Cinematic Art Director
+An elite AI-powered pre-production suite for filmmakers that translates scene descriptions into structured cinematographic treatments, precise 3D lighting setups, and curated color palettes.
+Neon Noir Labs
+application badge
+AI Studio
+Gemini AI
+Vercel
+
+Play
+Meridian Hybrid Routing Agent
+Meridian Hybrid Routing Agent
+An agent that answers locally with a small Qwen model first and only calls out to Fireworks when it isn't confident, cutting token spend without giving up accuracy across all 8 task types.
+Meridian_Space
+application badge
+AgentOps
+AMD Developer Cloud
+AMD ROCm
+
+Play
+CrimeSpots: Live Crime Awareness for Cape Town
+CrimeSpots: Live Crime Awareness for Cape Town
+A live map of Cape Town that reads public crime reports with AI and grades each suburb red, amber or blue. Check it before you head out. Free, privacy-first, and built to work on cheap phones and bad signal.
+Cape Point Zero
+application badge
+Claude Code
+Vercel
+DeepSeek V3
+
+Play
+Video Captioning Agent
+Video Captioning Agent
+An AI agent that watches short video clips and captions them in four distinct voices - formal, sarcastic, tech humour, and everyday humour. Claude vision, per-style specialist prompts, best-of-two candidates, and frame-grounded selection.
+Himawari
+application badge
+Claude Code
+Codex
+Cursor
+
+Play
+ClipForger-AMD
+ClipForger-AMD
+ClipForger-AMD turns short videos into accurate burned-in captions plus four styled summaries: formal, sarcastic, humorous-tech, and humorous-non-tech, using Fireworks/Gemma-first routing with fallback reliability.
+VeroAI
+application badge
+AMD Developer Cloud
+Codex
+Groq
+
+Play
+trial4
+trial4
+loreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloreamloream
+StriX
+ChatGPT
+
+Play
+GymHub Women
+GymHub Women
+GymHub Women is an AI-powered women-only fitness capsule network for Dubai/MENA. Powered by AMD MI300X + Google Gemma 3 (gemma3-27b-it) via Fireworks AI, our smart coach adapts workouts to hormonal cycles, biometrics, and personal goals in real time.
+GymHub Women
+application badge
+AMD Developer Cloud
+AI/ML API
+AMD ROCm
+
+Play
+Legal Partner
+Legal Partner
+Legal Partner is an AI-powered legal practice OS connecting lawyers, clients, and courts. Features secure case management, direct PDF drafting, secure messaging, trial tracking, and a context-aware AI co-counsel. Dockerized for AMD cloud deployment.
+Hallucination
+Antigravity
+GPT 4o
+OpenAI
+
+Play
+FireRoute Agent
+FireRoute Agent
+FireRoute AI is a Dockerized Track 1 agent that reads hidden natural-language tasks, routes them by capability, calls Fireworks AI through the harness-provided environment and writes valid JSON answers with an accuracy-first, token-aware strategy.
+SilverCrane
+AMD Developer Cloud
+Generative Agents
+
+Play
+GemmaJudge: Gemma Attacks and Judges Itself
+GemmaJudge: Gemma Attacks and Judges Itself
+One open-weight Gemma family generates adversarial prompts and judges target responses, with case-level evidence, a CI regression gate, and committed self-hosted AMD MI300X proof via vLLM + ROCm.
+dream team
+application badge
+Gemma
+AMD ROCm
+AMD Developer Cloud
+
+Play
+Video Captioning AI
+Video Captioning AI
+Takes a video as an input, extracts frames which are sent to a vlm, a description is generated and fed to an llm to generate captions
+Dbledote
+application badge
+Gemini AI
+Github Copilot
+Qwen3-VL
+
+Play
+Cloud Architect Ai
+Cloud Architect Ai
+CloudArch AI is a multi-agent AI cloud architect that analyzes application requirements and recommends the best cloud provider, services, architecture, cost estimates, helping teams build scalable, secure, and cost-efficient applications.
+The Dev Devils
+application badge
+Antigravity
+ChatGPT
+Gemini AI
+
+Play
+Lazy Lives track 2 anemone
+Lazy Lives track 2 anemone
+A general-purpose AI agent that classifies each task locally with zero-token regex routing, then answers it in a single call to the cheapest capable Fireworks model — with reasoning suppressed and strict per-category output caps.
+Lazy Lives
+AgentOps
+
+Play
+ChronosCap: Multi-Modal Semantic Video Captioner
+ChronosCap: Multi-Modal Semantic Video Captioner
+A multi-modal video captioning agent that utilizes adaptive scene-change sampling, multimodal perception (VLM, Speech, OCR), and a unified semantic contract reasoning engine to generate four distinct, factually-accurate styled captions in a single pass.
+RED LEGS
+application badge
+LLaMA
+Groq
+Antigravity
+
+Play
+GlassRoute
+GlassRoute
+A hybrid token-efficient routing agent that solves easy tasks locally and uses Fireworks only when needed
+Zen_alpha
+application badge
+AMD Developer Cloud
+
+Play
+Hybrid Token-Efficient Routing Agent
+Hybrid Token-Efficient Routing Agent
+A FastAPI hybrid routing agent that optimizes token costs. It routes simple tasks to local Ollama, while seamlessly upgrading complex requests to Gemini 2.5 Flash for high-accuracy reasoning with automatic error failover.
+Team dev
+Gemini AI
+
+Play
+AMDA — Verify Before You Pay
+AMDA — Verify Before You Pay
+A hybrid agent that verifies its own answers locally — code execution, program-checked math, constraint-solved logic — before ever spending a paid token. Most tasks finish at zero cost.
+16Bit
+AI/ML API
+AgentOps
+AMD Developer Cloud
+
+Play
+Captionforge ai
+Captionforge ai
+Give it a clip and it writes four captions formal, sarcastic, humorous_tech, humorous_non_tech. All four come from the same real description of what happened, not four separate guesses, so they stay accurate while sounding nothing alike.
+Metox
+application badge
+Groq
+AI/ML API
+ChatGPT
+
+Play
+HybridRoute
+HybridRoute
+HybridRoute: a hybrid AI router that keeps easy work on local models and escalates hard tasks to remote models. It records token usage, stores chat history locally, and reduces the token cost without sacrificing response quality.
+LLM Learner
+AI/ML API
+ChatGPT
+Cursor
+
+Play
+ AMD-Track1-Agent
+AMD-Track1-Agent
+Token-efficient AI agent for AMD Hackathon Track 1: classifies each task locally (zero cost), then routes it to the cheapest Fireworks model (MiniMax/Kimi) empirically proven to pass the accuracy gate for that task type.
+yohanesfc
+Github Copilot
+AI/ML API
+Anthropic Claude
+
+Play
+Juggernaut Agent
+Juggernaut Agent
+Test submission for a hybrid token-efficient routing agent that validates Docker pull, runtime execution, Fireworks API calls, and output schema before final optimization.
+Juggernaut
+Codex
+
+Play
+Hybrid Token - Efficient Routing Agent #nexus-26
+Hybrid Token - Efficient Routing Agent #nexus-26
+Classifies each task into one of 8 categories and routes it to either a free local LLM or a specific Fireworks model, minimizing scored token spend while clearing the accuracy gate, with automatic escalation when local answers look degenerate.
+nexus-026
+Gemma
+OpenAI
+Claude Code
+
+Play
+RDNA AI Guard
+RDNA AI Guard
+Unified, 100% local real-time AI triage and parallel multi-agent cloud escalation bridging network edge intrusion and financial ledger fraud.
+RDNA Rebels
+AI/ML API
+AgentOps
+Cursor
+
+Play
+Vigilant-Agent
+Vigilant-Agent
+A cost-aware LLM task router that classifies prompts, answers locally when confident, and escalates to stronger remote models only when needed — under a strict time budget.
+Vigilant Labs
+Gemma
+
+Play
+Medical Copilot: The Invisible Clinical Assistant
+Medical Copilot: The Invisible Clinical Assistant
+An AI-powered multimodal web application that cures physician burnout by instantly translating natural audio dictation and uploaded lab PDFs into structured clinical insights, medications, and automated EHR database entries.
+The Witch Cult
+application badge
+AMD ROCm
+n8n
+Qwen3
+
+Play
+Kaizen AI
+Kaizen AI
+An Agentic AI-powered self-assessment platform that uses multiple intelligent agents to generate adaptive questions, evaluate knowledge, identify skill gaps, and provide personalized learning paths using Fireworks AI and AMD GPU acceleration.
+Error 404 Not found
+Antigravity
+
+Play
+Life Blind Box Runtime
+Life Blind Box Runtime
+A voice-first AI microdrama engine where users speak, choose, and live through short replayable story sessions with narrated turns and personalized ending cards.
+Always Playable Lab
+OpenAI
+ChatGPT
+
+Play
+Tokenizer
+Tokenizer
+An intelligent hybrid AI routing agent that analyzes prompt complexity and automatically selects the optimal local or cloud LLM, reducing inference cost and latency while maintaining high response quality through explainable, benchmark-driven routing.
+Innova8ors
+application badge
+Llama 3.2
+Streamlit
+AMD Developer Cloud
+
+Play
+kkk Kartik
+kkk Kartik
+AI video captioning agent that analyzes hidden video clips and generates accurate formal, sarcastic, tech-humor, and everyday-humor captions.
+Kartik Bhalala
+AMD Developer Cloud
+
+Play
+The Shield-17799: Prevent Before Harm
+The Shield-17799: Prevent Before Harm
+AI-powered child protection platform detecting online grooming and high-risk behavior before harm occurs through forensic AI analysis and early intervention intelligence.
+The shield-17799 ai
+AI Studio
+
+Play
+OmniEdge RouteIQ — Gemma-First Agent
+OmniEdge RouteIQ — Gemma-First Agent
+A Gemma-first, token-efficient AI agent that completes eight general-purpose task categories through Fireworks AI and a public Linux AMD64 Docker container.
+OmniEdge RouteIQ
+application badge
+AMD Developer Cloud
+Gemma
+Vercel
+
+Play
+YOLOAI_v6
+YOLOAI_v6
+Local-first AI agent that routes each task to the cheapest option that still answers correctly — free local inference first, metered Fireworks only when needed.
+YoloAI
+AI/ML API
+OpenAI
+Gemma
+
+Play
+AI-EfficiencyMaxxing
+AI-EfficiencyMaxxing
+An AI agent that routes every task to the cheapest capable engine: easy tasks run on a bundled local SLM at zero token cost, hard reasoning goes to Fireworks AI. Minimal token spend while still passing the accuracy gate.
+Hoshi Ebi
+Qwen3
+AI/ML API
+AMD ROCm
+
+Play
+Vision-Language Agent for Constrained Hardware
+Vision-Language Agent for Constrained Hardware
+A highly optimized, 100% offline video captioning agent leveraging a custom-tuned Gemma VLM model. Engineered for severe hardware constraints.
+VectorStack
+AMD ROCm
+AMD Developer Cloud
+Gemma
+
+Play
+SXR Routing Agent
+SXR Routing Agent
+A general-purpose AI agent for Track 1 that answers tasks across 8 categories through Fireworks AI, using per-category prompt tuning to minimize token usage while staying accurate.
+SXR
+AI/ML API
+AMD Developer Cloud
+Gemma
+
+Play
+Code Time Capsule/Project
+Code Time Capsule/Project
+Code Time Capsule transforms your repository’s commit history into an interactive timeline with AI-powered answers about any moment in your codebase’s past.
+The Heisenbugs
+AMD Developer Cloud
+AMD ROCm
+Fetch.ai
+
+Play
+V3 Zero Token Hybrid AI Router
+V3 Zero Token Hybrid AI Router
+A highly efficient, cost-optimized AI agent that maximizes local zero-token processing via spaCy and quantized Llama 3.2, exclusively reserving Fireworks API compute for complex reasoning tasks to ensure extreme token efficiency and precision.
+MMPC_solo
+HuggingFace Hub
+Llama 3.2
+
+Play
+Gulliver's Router
+Gulliver's Router
+A simple router that guesses whether to go big or stay small.
+Che
+Gemma
+
+Play
+Hackathon Agent using Fireworks AI
+Hackathon Agent using Fireworks AI
+An AI agent that reads JSON tasks, processes them using the Fireworks AI API, and generates structured JSON responses. The project is fully containerized with Docker for easy deployment.
+Pai 1
+LLaMA
+OpenAI
+AMD ROCm
+
+Play
+Token Saver v1
+Token Saver v1
+This is an ai agent which gives responses such that, it saves maximum possible tokens per answer or response it gives.
+Task Force 141
+AI/ML API
+AI Studio
+AMD Developer Cloud
+
+Play
+Eco Router AI
+Eco Router AI
+A Fireworks-powered task router that classifies prompts, selects an efficient allowed model, and returns validated JSON answers. optimized for token efficiency.
+Team Skem
+Github Copilot
+Gemini AI
+ChatGPT
+
+Play
+BizMind AI 
+BizMind AI
+BizMind AI is an intelligent business analytics platform that transforms raw business data into actionable AI-powered insights, recommendations, and forecasts — no data analyst required.
+DataLens AI
+application badge
+Anthropic Claude
+Antigravity
+AMD Developer Cloud
+
+Play
+DescribeX
+DescribeX
+AI-powered video captioning that transforms short videos into four distinct caption styles—Formal, Sarcastic, Humorous (Tech), and Humorous (Non-Tech)—with editable output, TXT export, and burned-in captions using AMD-powered inference.
+Ryzen Siblings
+application badge
+Antigravity
+ChatGPT
+Gemini AI
+
+Play
+KORA - Token-Efficient Routing Agent
+KORA - Token-Efficient Routing Agent
+KORA is a deterministic execution control layer for LLM routing. It decides, before any remote inference, whether a call should happen at all, escalating to a remote model only when nothing cheaper is confident.
+Krako Labs - KORA
+AMD ROCm
+
+Play
+GemmaClip
+GemmaClip
+GemmaClip is an evidence-first video captioning agent that samples key frames with AKS-lite, uses Gemma 4 to understand the scene, and generates accurate captions in formal, sarcastic, tech-humor, and non-tech humor styles.
+KMUTT Ma Laew
+Gemma
+
+Play
+FACTOR (Factual Agentic Content Orchestrator)
+FACTOR (Factual Agentic Content Orchestrator)
+Self-hosted AI agentic pipeline designed to autonomously produce high-quality, hallucination-free content. Built to prioritize factual integrity, FACTOR generates articles, reviews, tutorials, and opinion
+FACTOR
+application badge
+AI/ML API
+AMD Developer Cloud
+Generative Agents
+
+Play
+INGEK - Universal Fleet Control
+INGEK - Universal Fleet Control
+Using AMD GPU-powered Llama 3.1 via Fireworks AI, INGEK is an intelligent aircraft ground station that replicates flight telemetry in real-time. It can identify serious sensor anomalies and initiate emergency action protocols in less than three seconds.
+Cingkariak
+application badge
+AMD Developer Cloud
+Llama 3.1
+Streamlit
+
+Play
+VeloCap: High-Speed Video Agent
+VeloCap: High-Speed Video Agent
+Built for Track 2, this agent utilizes the native multimodality of the Minimax M3 model via Fireworks AI. It rapidly analyzes visual sequences to deliver perfect formal, sarcastic, and humorous captions with exceptional token efficiency and speed.
+Allnew
+AI/ML API
+
+Play
+Teams: AMD Developer Hackathon: ACT II
+Check out the roster and find teams to join
+Neural Nova
+Neural Nova
+From algorithms to impact—creating AI that matters.
+team member
+shreyyy_1
+neoLOOKING FOR MEMBERS
+neo
+will make a finance saas
+team member
+Mhassanshahzad
+itti
+Janmejai
+team member
+team member
+ASRA Labs
+ASRA Labs
+app to automate short form content for businesses
+team member
+GETCHA
+GETCHA
+Global Export Trade Compliance and Harmonization Assistant
+eendra
+ANIQA
+View all teams
+Footer navigation
+Community innovating and building with artificial intelligence
+Unlocking state-of-the-art artificial intelligence and building with the world's talent
+LinkedIn
+Twitter/X
+Instagram
+Discord
+YouTube
+Twitch
+Other group brands:
+https://nativelyai.com
+https://surge.lablab.ai/
+LINKS
+AI Tech
+AI Hackathons
+AI Tutorials
+AI Applications
+NativelyAI
+AI Articles
+Leaderboard
+Writers
+LABLAB
+About
+Brand
+Hackathon Guidelines
+Terms of Use
+Code of Conduct
+Privacy Policy
+GET IN TOUCH
+Discord
+Sponsor
+Cooperation
+Contribute
+community@lablab.ai
+© 2026 NativelyAI Inc. All rights reserved.
+3.36.4
+
+Help
+Approved
+20727
+Team Dashboard
+Update Project

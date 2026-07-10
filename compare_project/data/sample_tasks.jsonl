@@ -1,0 +1,4 @@
+{"id":"sample-001","input":"Answer with only the capital city: What is the capital of South Africa?","expected_format":"short_text"}
+{"id":"sample-002","input":"Classify sentiment as positive, neutral, or negative: The model is fast but the docs are confusing.","expected_format":"label"}
+{"id":"sample-003","input":"Summarize in 12 words or fewer: AMD Developer Cloud gives hackathon builders access to GPUs for AI workloads.","expected_format":"short_text"}
+

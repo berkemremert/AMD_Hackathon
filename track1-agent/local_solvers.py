@@ -2,11 +2,12 @@
 Local Solvers Module
 Handles specific tasks entirely on the local CPU to achieve a 0-token cost.
 """
+from __future__ import annotations
 import json
 import warnings
 import re
 import sys
-import sys
+from typing import Optional
 
 # Suppress HuggingFace/Torch warnings for cleaner output
 warnings.filterwarnings("ignore")
@@ -24,7 +25,7 @@ def extract_target_text(prompt: str) -> str:
             return match.group(1).strip()
     return prompt
 
-def solve_code_debug(prompt: str) -> str | None:
+def solve_code_debug(prompt: str) -> Optional[str]:
     """
     Deterministically solves common Python code debugging tasks locally at 0 API tokens.
     """
@@ -202,7 +203,7 @@ def solve_code_debug(prompt: str) -> str | None:
     # Tier 3: Return None to cleanly fall back to the API with our 160-token cap
     return None
 
-def solve_code_authoring(prompt: str) -> str | None:
+def solve_code_authoring(prompt: str) -> Optional[str]:
     """
     Tier 2 local code authoring using Qwen2.5-Coder-1.5B-Instruct.
     If unavailable or fails, returns None to fall back to Tier 3 API call with 320-token cap.
@@ -276,7 +277,7 @@ def solve_sentiment(prompt: str) -> str:
 import ast
 from itertools import permutations
 
-def solve_math_exact(prompt: str) -> str | None:
+def solve_math_exact(prompt: str) -> Optional[str]:
     # Remove common prefix phrases
     clean_prompt = re.sub(r"^(what's|what is|calculate|evaluate|solve|compute|how much is)\b[:,]?\s*", "", prompt, flags=re.IGNORECASE).strip()
     clean_prompt = clean_prompt.replace('$', '').replace(',', '').replace('x', '*').replace('×', '*').replace('÷', '/').rstrip('?.= ')
@@ -311,7 +312,7 @@ def solve_math_exact(prompt: str) -> str | None:
     except Exception:
         return None
 
-def solve_logic_puzzle(prompt: str) -> str | None:
+def solve_logic_puzzle(prompt: str) -> Optional[str]:
     import re
     
     # Extract domain (e.g. colon list, parens, or curly braces)

@@ -28,7 +28,7 @@ def _load_model():
             print(f"[LOCAL CODER] Loading local model '{_MODEL_ID}' onto memory (0 API tokens)...", file=sys.stderr)
             tokenizer = AutoTokenizer.from_pretrained(_MODEL_ID)
             device = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
-            dtype = torch.float16 if device in ["mps", "cuda"] else torch.float32
+            dtype = torch.float16 if device in ["mps", "cuda", "cpu"] else torch.float32
             model = AutoModelForCausalLM.from_pretrained(
                 _MODEL_ID,
                 dtype=dtype,
@@ -89,6 +89,13 @@ def solve_qwen_coder(prompt: str, task_type: str = "code_debugging") -> Optional
         generated_ids = outputs[0][inputs.input_ids.shape[1]:]
         response = tokenizer.decode(generated_ids, skip_special_tokens=True).strip()
         
+        if device.type == "cpu" or str(device) == "cpu":
+            global _MODEL, _TOKENIZER
+            _MODEL = None
+            _TOKENIZER = None
+            import gc
+            gc.collect()
+            
         # Verify AST correctness if code block is present
         blocks = re.findall(r"```python\s*(.*?)\s*```", response, re.DOTALL)
         if not blocks:

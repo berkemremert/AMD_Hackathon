@@ -1,0 +1,34 @@
+# Local-model variant of the Track 1 image: bundles a small CPU model so
+# easy categories are answered at zero Fireworks tokens.
+#
+# Built OFFLINE (no network) because Docker Desktop's build network on this
+# machine is unreliable: the package has no deps so it runs off PYTHONPATH,
+# and llama-cpp-python is installed from wheels vendored into ./wheels.
+# Populate ./wheels first (scripts/fetch_wheels.ps1), then:
+#   docker buildx build --platform linux/amd64 -f Dockerfile.local -t <registry>/bastion:local .
+#
+# Grading box is 2 vCPU / 4 GB RAM, so a 2-3B 4-bit model is the ceiling.
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV FRUGAL_ALLOW_REMOTE=1
+ENV LOCAL_MODEL_PATH=/app/models/model.gguf
+ENV FRUGAL_WORKERS=2
+ENV PYTHONPATH=/app
+
+WORKDIR /app
+
+# Expensive, rarely-changing layers first so code edits rebuild fast.
+# Install llama-cpp-python (+deps) from vendored wheels; no network needed.
+COPY wheels /wheels
+RUN python -m pip install --no-cache-dir --no-index --find-links=/wheels llama-cpp-python \
+ && rm -rf /wheels
+
+# Bundle the pre-downloaded model (build context must contain models/).
+COPY models/Qwen2.5-3B-Instruct-Q4_K_M.gguf /app/models/model.gguf
+
+COPY frugalrouter ./frugalrouter
+COPY config ./config
+
+CMD ["python", "-m", "frugalrouter.cli"]

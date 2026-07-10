@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "frugalrouter"
+version = "0.1.0"
+description = "Token-efficient hybrid routing agent for the AMD Developer Hackathon ACT II."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+local = ["llama-cpp-python>=0.3", "huggingface_hub>=0.20"]
+
+[tool.setuptools.packages.find]
+include = ["frugalrouter*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
