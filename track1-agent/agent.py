@@ -25,9 +25,12 @@ OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
 
 # Fallback to local dev env vars if ALLOWED_MODELS is not provided
 if "ALLOWED_MODELS" in os.environ:
-    models = os.environ["ALLOWED_MODELS"].split(",")
-    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1])
-    MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0])
+    models = [m.strip() for m in os.environ["ALLOWED_MODELS"].split(",") if m.strip()]
+    if not models:
+        models = ["accounts/fireworks/models/kimi-k2p6"] # absolute failsafe
+    # Assume the first model provided is the primary/expensive one, and the last is the fallback/cheap one
+    MODEL_EXPENSIVE = models[0]
+    MODEL_CHEAP = models[-1]
 else:
     MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
     MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
