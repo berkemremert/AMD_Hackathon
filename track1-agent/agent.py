@@ -68,8 +68,13 @@ def main():
             # 1. Massive token savings: extract NER perfectly locally for 0 API tokens
             raw_entities = solve_ner(task["prompt"])
             
-            # Use ONLY GLiNER for 0 API token cost as requested
-            results.append({"task_id": task["task_id"], "answer": raw_entities})
+            # 2. Refiner: use the cheap model to clean up the entities and apply task rules
+            format_prompt = f"The user requested this extraction task:\n{task['prompt']}\n\nOur local NER model extracted these preliminary entities: {raw_entities}\n\nYour job is to act as an intelligent refiner. Take these preliminary entities, format them exactly as requested in the task instructions, AND perfectly apply any specific inclusion/exclusion rules mentioned in the prompt (for example, stripping honorifics, ignoring relative dates, or merging nested entities). Output ONLY the final formatted result. Do not add any preamble."
+            
+            answer = chat(MODEL_CHEAP, format_prompt, max_tokens=800)
+            
+            results.append({"task_id": task["task_id"], "answer": answer["text"]})
+            total_tokens += answer["total_tokens"]
             continue
 
         model, routing_tokens = route(task["prompt"])
