@@ -54,11 +54,19 @@ def solve_code_authoring(prompt: str) -> Optional[str]:
 
 def solve_ner(prompt: str) -> str:
     """
-    Extracts named entities using the deterministic heuristic pipeline.
-    GLiNER is not used to save RAM.
+    Extracts named entities using GLiNER (urchade/gliner_small-v2.1).
+    Falls back to the deterministic heuristic pipeline if GLiNER is unavailable.
     """
+    try:
+        from src.local_ner.gliner_solver import solve_ner_gliner
+        result = solve_ner_gliner(prompt)
+        if result is not None:
+            return result
+    except Exception as e:
+        import sys
+        print(f"[WARN] GLiNER NER failed ({e}), falling back to heuristic.", file=sys.stderr)
+
     from src.local_ner.core import solve_ner_pipeline
-    return solve_ner_pipeline(prompt)
     return solve_ner_pipeline(prompt)
 
 import threading
