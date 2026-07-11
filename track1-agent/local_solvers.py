@@ -27,30 +27,17 @@ def extract_target_text(prompt: str) -> str:
 
 def solve_code_debug(prompt: str) -> Optional[str]:
     """
-    Deterministically solves common Python code debugging tasks locally at 0 API tokens.
+    Disabled local solver for code debugging to avoid 10-minute timeouts on 2 vCPU servers.
+    Returns None to cleanly fall back to the Fireworks API.
     """
-    # Tier 2: DeepSeek Coder Local
-    try:
-        from src.local_coder.core import solve_local_coder
-        ans = solve_local_coder(prompt, task_type="code_debugging")
-        if ans is not None:
-            return ans
-    except Exception:
-        pass
-
-    # Tier 3: Return None to cleanly fall back to the API with our 160-token cap
     return None
 
 def solve_code_authoring(prompt: str) -> Optional[str]:
     """
-    Tier 2 local code authoring using DeepSeek-Coder.
-    If unavailable or fails, returns None to fall back to Tier 3 API call.
+    Disabled local solver for code authoring to avoid 10-minute timeouts on 2 vCPU servers.
+    Returns None to cleanly fall back to the Fireworks API.
     """
-    try:
-        from src.local_coder.core import solve_local_coder
-        return solve_local_coder(prompt, task_type="code_authoring")
-    except Exception as e:
-        return None
+    return None
 
 def solve_ner(prompt: str) -> str:
     """
