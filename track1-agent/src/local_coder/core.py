@@ -1,5 +1,5 @@
 """
-Core Implementation for Local Neural Coder (`Qwen/Qwen2.5-Coder-1.5B-Instruct`).
+Core Implementation for Local Neural Coder (`deepseek-ai/deepseek-coder-1.3b-instruct`).
 Provides thread-safe, lazy-loaded local inference for code debugging and code generation tasks at 0 API tokens.
 If local model execution fails, returns None to smoothly trigger the Tier 3 API fallback.
 """
@@ -12,7 +12,7 @@ from typing import Optional
 _MODEL = None
 _TOKENIZER = None
 _LOCK = threading.Lock()
-_MODEL_ID = "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+_MODEL_ID = "deepseek-ai/deepseek-coder-1.3b-instruct"
 
 def _load_model():
     global _MODEL, _TOKENIZER
@@ -28,7 +28,7 @@ def _load_model():
             print(f"[LOCAL CODER] Loading local model '{_MODEL_ID}' onto memory (0 API tokens)...", file=sys.stderr)
             tokenizer = AutoTokenizer.from_pretrained(_MODEL_ID)
             device = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
-            dtype = torch.float16 if device in ["mps", "cuda", "cpu"] else torch.float32
+            dtype = torch.bfloat16 if device in ["mps", "cuda", "cpu"] else torch.float32
             model = AutoModelForCausalLM.from_pretrained(
                 _MODEL_ID,
                 dtype=dtype,
@@ -48,9 +48,9 @@ def _load_model():
             print(f"[LOCAL CODER] Failed to load local model '{_MODEL_ID}': {e}", file=sys.stderr)
             return None, None
 
-def solve_qwen_coder(prompt: str, task_type: str = "code_debugging") -> Optional[str]:
+def solve_local_coder(prompt: str, task_type: str = "code_debugging") -> Optional[str]:
     """
-    Runs Qwen2.5-Coder locally (Tier 2) for general code debugging or code authoring.
+    Runs DeepSeek-Coder locally (Tier 2) for general code debugging or code authoring.
     Returns the formatted string if valid, or None to fall back to the API (Tier 3).
     """
     model, tokenizer = _load_model()
@@ -108,7 +108,7 @@ def solve_qwen_coder(prompt: str, task_type: str = "code_debugging") -> Optional
                 ast.parse(code)
                 return response
             except SyntaxError as e:
-                print(f"[LOCAL CODER] Qwen generated invalid Python syntax ({e.msg}). Falling back to API...", file=sys.stderr)
+                print(f"[LOCAL CODER] DeepSeek generated invalid Python syntax ({e.msg}). Falling back to API...", file=sys.stderr)
                 return None
         elif task_type == "code_authoring":
             # If code authoring generated text without code block, wrap or check syntax
@@ -120,5 +120,5 @@ def solve_qwen_coder(prompt: str, task_type: str = "code_debugging") -> Optional
                 
         return response
     except Exception as e:
-        print(f"[LOCAL CODER] Execution error during Qwen inference ({e}). Falling back to API...", file=sys.stderr)
+        print(f"[LOCAL CODER] Execution error during DeepSeek inference ({e}). Falling back to API...", file=sys.stderr)
         return None

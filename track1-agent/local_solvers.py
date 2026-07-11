@@ -29,205 +29,36 @@ def solve_code_debug(prompt: str) -> Optional[str]:
     """
     Deterministically solves common Python code debugging tasks locally at 0 API tokens.
     """
-    import re
-    m_code = re.search(r"```python\s*(.*?)\s*```", prompt, re.DOTALL)
-    if not m_code: return None
-    code = m_code.group(1).strip()
-    
-    m_fn = re.search(r"def\s+(\w+)\s*\((.*?)\):", code)
-    if not m_fn: return None
-    fn_name = m_fn.group(1)
-    
-    if fn_name in ["find_max", "get_max", "get_maximum"]:
-        bug_desc = "The original code incorrectly initializes the maximum value to 0 or an arbitrary index, which fails for negative numbers or empty lists."
-        fixed = """def find_max(numbers):
-    if not numbers:
-        return None
-    max_val = numbers[0]
-    for num in numbers:
-        if num > max_val:
-            max_val = num
-    return max_val"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-        
-    if fn_name == "factorial":
-        bug_desc = "The original code either lacks the proper base case check, returns 0 on base case, or multiplies infinitely without decrementing n."
-        fixed = """def factorial(n):
-    if n < 0:
-        return None
-    if n == 0 or n == 1:
-        return 1
-    return n * factorial(n - 1)"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "is_even":
-        bug_desc = "The original code uses assignment (=) instead of comparison (==) or has incorrect modulo check."
-        fixed = """def is_even(n):
-    return n % 2 == 0"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "is_palindrome":
-        bug_desc = "Strings in Python do not have a reverse() method; slicing [::-1] should be used."
-        fixed = """def is_palindrome(s):
-    return s == s[::-1]"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "calculate_area":
-        bug_desc = "The original code adds the length and width (or misses multiplication) instead of multiplying them."
-        fixed = """def calculate_area(length, width):
-    return length * width"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name in ["sum_even", "sum_even_numbers"]:
-        bug_desc = "The original code incorrectly checks for odd numbers or returns early inside the loop."
-        fixed = """def sum_even(numbers):
-    total = 0
-    for num in numbers:
-        if num % 2 == 0:
-            total += num
-    return total"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "calculate_average":
-        bug_desc = "The original code misses checking for empty list."
-        fixed = """def calculate_average(numbers):
-    if not numbers:
-        return 0
-    return sum(numbers) / len(numbers)"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "count_vowels":
-        bug_desc = "The original code misses uppercase vowels or does not iterate through all characters correctly."
-        fixed = """def count_vowels(s):
-    vowels = set("aeiouAEIOU")
-    return sum(1 for char in s if char in vowels)"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name in ["calculate_sum", "sum_list"]:
-        bug_desc = "The original code initializes total incorrectly or returns inside the loop."
-        fixed = """def calculate_sum(numbers):
-    total = 0
-    for num in numbers:
-        total += num
-    return total"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "sum_positive_numbers":
-        bug_desc = "The original code does not filter for positive numbers correctly (> 0)."
-        fixed = """def sum_positive_numbers(numbers):
-    return sum(num for num in numbers if num > 0)"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "get_last_element":
-        bug_desc = "The original code raises IndexError on empty list or uses incorrect indexing."
-        fixed = """def get_last_element(lst):
-    if not lst:
-        return None
-    return lst[-1]"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-
-    if fn_name == "flatten":
-        bug_desc = "The original code does not recursively handle nested lists properly."
-        fixed = """def flatten(nested_list):
-    result = []
-    for element in nested_list:
-        if isinstance(element, list):
-            result.extend(flatten(element))
-        else:
-            result.append(element)
-    return result"""
-        return f"{bug_desc}\n\n```python\n{fixed}\n```"
-        
-    # ── General Structural / AST Debugging for Arbitrary & Unseen Functions ──
-    import ast
-    # 1. Check for assignment instead of comparison (= vs ==)
-    if "=" in code and "==" not in code:
-        # Try replacing single '=' inside if/while/elif statements with '=='
-        lines = code.splitlines()
-        changed = False
-        for i, line in enumerate(lines):
-            stripped = line.strip()
-            if (stripped.startswith("if ") or stripped.startswith("while ") or stripped.startswith("elif ")) and ":" in stripped:
-                if re.search(r"[^<>=!]=[^=]", line):
-                    lines[i] = re.sub(r"([^<>=!])=([^=])", r"\1==\2", line)
-                    changed = True
-        if changed:
-            fixed_code = "\n".join(lines)
-            try:
-                ast.parse(fixed_code)
-                return f"The original code incorrectly used assignment (=) instead of comparison (==) inside a conditional check.\n\n```python\n{fixed_code}\n```"
-            except Exception:
-                pass
-
-    # 2. Check for accumulator initialized inside loop (for ...:\n total = 0)
-    lines = code.splitlines()
-    for i, line in enumerate(lines):
-        stripped = line.strip()
-        if stripped.startswith("for ") and ":" in stripped:
-            # Check next line inside loop
-            if i + 1 < len(lines):
-                next_line = lines[i + 1]
-                m_init = re.match(r"^(\s+)([a-zA-Z_]\w*)\s*=\s*0\s*$", next_line)
-                if m_init:
-                    indent, var_name = m_init.group(1), m_init.group(2)
-                    # Check if var_name is returned or used later outside or inside
-                    if any(f"return {var_name}" in l or f"{var_name} +=" in l for l in lines[i+2:]):
-                        # Move initialization outside before loop
-                        lines.pop(i + 1)
-                        lines.insert(i, f"{indent[:-4] if len(indent)>=4 else ''}{var_name} = 0")
-                        fixed_code = "\n".join(lines)
-                        try:
-                            ast.parse(fixed_code)
-                            return f"The original code initialized the accumulator variable inside the loop instead of before the loop, causing it to reset on every iteration.\n\n```python\n{fixed_code}\n```"
-                        except Exception:
-                            pass
-
-    # 3. Check for .reverse() called on a string/sequence where [::-1] is appropriate
-    if ".reverse()" in code:
-        fixed_code = code.replace(".reverse()", "[::-1]")
-        try:
-            ast.parse(fixed_code)
-            return f"The original code used .reverse(), which modifies in-place and returns None (or does not exist for strings). Slicing [::-1] should be used instead.\n\n```python\n{fixed_code}\n```"
-        except Exception:
-            pass
-
-    # Tier 2: Local Neural Coder (Qwen2.5-Coder-1.5B-Instruct) at 0 API tokens
+    # Tier 2: DeepSeek Coder Local
     try:
-        from src.local_coder import solve_qwen_coder
-        qwen_ans = solve_qwen_coder(prompt, task_type="code_debugging")
-        if qwen_ans is not None:
-            return qwen_ans
-    except Exception as e:
-        print(f"[WARN] Tier 2 Qwen local coder check failed: {e}", file=sys.stderr)
+        from src.local_coder.core import solve_local_coder
+        ans = solve_local_coder(prompt, task_type="code_debugging")
+        if ans is not None:
+            return ans
+    except Exception:
+        pass
 
     # Tier 3: Return None to cleanly fall back to the API with our 160-token cap
     return None
 
 def solve_code_authoring(prompt: str) -> Optional[str]:
     """
-    Tier 2 local code authoring using Qwen2.5-Coder-1.5B-Instruct.
-    If unavailable or fails, returns None to fall back to Tier 3 API call with 320-token cap.
+    Tier 2 local code authoring using DeepSeek-Coder.
+    If unavailable or fails, returns None to fall back to Tier 3 API call.
     """
     try:
-        from src.local_coder import solve_qwen_coder
-        return solve_qwen_coder(prompt, task_type="code_authoring")
+        from src.local_coder.core import solve_local_coder
+        return solve_local_coder(prompt, task_type="code_authoring")
     except Exception as e:
         return None
 
 def solve_ner(prompt: str) -> str:
     """
-    Extracts named entities using GLiNER (urchade/gliner_small-v2.1).
-    Falls back to the deterministic heuristic pipeline if GLiNER is unavailable.
+    Extracts named entities using the deterministic heuristic pipeline.
+    GLiNER is not used to save RAM.
     """
-    try:
-        from src.local_ner.gliner_solver import solve_ner_gliner
-        result = solve_ner_gliner(prompt)
-        if result is not None:
-            return result
-    except Exception as e:
-        print(f"[WARN] GLiNER NER failed ({e}), falling back to heuristic.", file=sys.stderr)
-
     from src.local_ner.core import solve_ner_pipeline
+    return solve_ner_pipeline(prompt)
     return solve_ner_pipeline(prompt)
 
 import threading
@@ -238,50 +69,18 @@ _sentiment_lock = threading.Lock()
 
 def get_sentiment_pipeline():
     global _sentiment_pipeline
-    if _sentiment_pipeline is None:
-        from transformers import pipeline
-        model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-        print(f"Loading local sentiment solver ({model_name})...", file=sys.stderr)
-        _sentiment_pipeline = pipeline("sentiment-analysis", model=model_name)
-    return _sentiment_pipeline
+    return None
 
 # Predefined cue words for fake justifications
 POSITIVE_CUES = ["love", "fast", "incredibly", "easy", "delicious", "wonderful", "friendly", "great", "excellent", "good"]
 NEGATIVE_CUES = ["bad", "buggy", "frustrating", "terrible", "slow", "crashes", "worst", "awful", "hate", "poor"]
 
-def solve_sentiment(prompt: str) -> str:
+def solve_sentiment(prompt: str) -> Optional[str]:
     """
-    Extracts sentiment using a zero-shot/fine-tuned local model and generates a fake justification.
+    Disabled local solver. Always returns None to fallback to the cheap API
+    since the local cardiffnlp model cannot handle complex formatting and justifications.
     """
-    target_text = extract_target_text(prompt)
-    
-    with _sentiment_lock:
-        pipe = get_sentiment_pipeline()
-        result = pipe(target_text)[0]
-        
-    label = result["label"].capitalize() # "Positive", "Negative", "Neutral"
-    
-    # Generate justification based on cue words
-    text_lower = target_text.lower()
-    found_cues = []
-    
-    if label == "Positive":
-        found_cues = [word for word in POSITIVE_CUES if word in text_lower]
-        polarity = "positive"
-    elif label == "Negative":
-        found_cues = [word for word in NEGATIVE_CUES if word in text_lower]
-        polarity = "negative"
-    else:
-        polarity = "neutral"
-        
-    if found_cues:
-        # Use up to 2 cues
-        cues_str = " and ".join(f"'{c}'" for c in found_cues[:2])
-        justification = f"The text uses {polarity} cues such as {cues_str}."
-    else:
-        justification = f"The overall tone and language of the text leans {polarity}."
-        
-    return f"{label}. {justification}"
+    return None
 
 import ast
 from itertools import permutations
@@ -323,112 +122,7 @@ def solve_math_exact(prompt: str) -> Optional[str]:
 
 
 def solve_math_pal(prompt: str) -> Optional[str]:
-    """
-    PAL (Program-Aided Language) solver for math word problems.
-    Uses the already-loaded Qwen2.5-Coder-1.5B to generate a short Python
-    script that computes the answer, executes it in a sandboxed env,
-    and returns the numeric result.  Falls back to None on any failure.
-    """
-    try:
-        from src.local_coder.core import _load_model
-        import torch
-        import io
-        from contextlib import redirect_stdout
-
-        model, tokenizer = _load_model()
-        if model is None or tokenizer is None:
-            return None
-
-        system_prompt = (
-            "Write a short Python program that solves the given math problem. "
-            "Use only basic arithmetic. The very last line must be: print(answer) "
-            "where answer is the final numeric result. "
-            "Output only the code inside a single ```python block."
-        )
-
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": prompt},
-        ]
-
-        text = tokenizer.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
-        inputs = tokenizer(text, return_tensors="pt").to(model.device)
-
-        with torch.no_grad():
-            outputs = model.generate(
-                **inputs,
-                max_new_tokens=256,
-                do_sample=False,
-                temperature=None,
-                top_p=None,
-                top_k=None,
-                pad_token_id=tokenizer.eos_token_id,
-            )
-
-        generated_ids = outputs[0][inputs.input_ids.shape[1]:]
-        response = tokenizer.decode(generated_ids, skip_special_tokens=True).strip()
-
-        # ── Extract code ──
-        code_match = re.search(r"```(?:python)?\s*(.*?)\s*```", response, re.DOTALL)
-        code = code_match.group(1).strip() if code_match else response.strip()
-        if not code:
-            return None
-
-        # ── AST safety gate ──
-        try:
-            tree = ast.parse(code)
-        except SyntaxError:
-            return None
-
-        ALLOWED_CALLS = frozenset({
-            "print", "round", "int", "float", "abs", "max", "min",
-            "len", "sum", "pow", "range",
-        })
-
-        for node in ast.walk(tree):
-            if isinstance(node, (ast.Import, ast.ImportFrom)):
-                return None
-            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
-                if node.func.id not in ALLOWED_CALLS:
-                    return None
-
-        # ── Sandboxed execution ──
-        output_buf = io.StringIO()
-        safe_builtins = {
-            "print": print, "round": round, "int": int, "float": float,
-            "abs": abs, "max": max, "min": min, "len": len, "sum": sum,
-            "pow": pow, "range": range, "True": True, "False": False, "None": None,
-        }
-
-        with redirect_stdout(output_buf):
-            exec(compile(tree, "<math_pal>", "exec"), {"__builtins__": safe_builtins})
-
-        result_text = output_buf.getvalue().strip()
-        if not result_text:
-            return None
-
-        answer_line = result_text.split("\n")[-1].strip()
-
-        # ── Parse & format the numeric answer ──
-        clean = answer_line.replace(",", "").replace("$", "").replace("%", "").strip()
-        num = float(clean)
-
-        if abs(num - round(num)) < 1e-9 and abs(num) < 1e15:
-            formatted = str(int(round(num)))
-        else:
-            formatted = f"{num:.2f}".rstrip("0").rstrip(".")
-
-        # Re-attach currency symbol when the problem is about money
-        if re.search(r"\$\s*[\d,]", prompt):
-            formatted = f"${formatted}"
-
-        return formatted
-
-    except Exception as e:
-        print(f"[WARN] Math PAL solver failed: {e}", file=sys.stderr)
-        return None
+    return None  # Disabled to save RAM
 
 def solve_logic_puzzle(prompt: str) -> Optional[str]:
     import re
@@ -538,29 +232,7 @@ def solve_logic_puzzle(prompt: str) -> Optional[str]:
 
 def solve_summarization(prompt: str) -> Optional[str]:
     """
-    Local summarization using Qwen2.5-0.5B-Instruct via src.local_summarization.
-    Returns the summary string on success, or None to fall back to the API.
+    Disabled summarization solver to save RAM.
     """
-    try:
-        from src.local_summarization.service import summarize
-        result = summarize(prompt)
-
-        if result.success and result.answer and result.answer.strip():
-            print(f"[LOCAL SUMMARIZER] Model: {result.model_id} | "
-                  f"Compression: {result.compression_applied} | "
-                  f"Words: {result.validation.word_count} | "
-                  f"Latency: {result.total_latency_ms:.0f}ms",
-                  file=sys.stderr)
-            return result.answer.strip()
-
-        # Validation failed even after repair — still return best-effort if we have text
-        if result.answer and result.answer.strip():
-            print(f"[LOCAL SUMMARIZER] Validation failed ({result.validation.errors}), "
-                  f"returning best-effort output.", file=sys.stderr)
-            return result.answer.strip()
-
-        return None
-    except Exception as e:
-        print(f"[WARN] Local summarization failed: {e}", file=sys.stderr)
-        return None
+    return None
 
