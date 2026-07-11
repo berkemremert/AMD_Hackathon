@@ -21,15 +21,9 @@ COPY download_models.py local_solvers.py output_optimizer.py ./
 # Bake Hugging Face models into the Docker image so they don't download at runtime
 RUN python3 download_models.py
 
-# Download Local Summarization Model
-# Use ARG to allow switching models during build without changing Dockerfile
-ARG LOCAL_SUMMARY_MODEL="Qwen/Qwen2.5-0.5B-Instruct"
-ENV LOCAL_SUMMARY_MODEL=${LOCAL_SUMMARY_MODEL}
-
-RUN python -c "from transformers import AutoModelForCausalLM, AutoTokenizer; \
-    print(f'Downloading { \"$LOCAL_SUMMARY_MODEL\" }...'); \
-    AutoTokenizer.from_pretrained(\"$LOCAL_SUMMARY_MODEL\"); \
-    AutoModelForCausalLM.from_pretrained(\"$LOCAL_SUMMARY_MODEL\")"
+# Local Summarization Model is disabled to save RAM and build time.
+# ARG LOCAL_SUMMARY_MODEL="Qwen/Qwen2.5-0.5B-Instruct"
+# ENV LOCAL_SUMMARY_MODEL=${LOCAL_SUMMARY_MODEL}
 
 # Copy all python files, the router model directory, and test data
 COPY *.py ./

@@ -142,7 +142,6 @@ def solve_code_debug(prompt: str) -> Optional[str]:
     import ast
     # 1. Check for assignment instead of comparison (= vs ==)
     if "=" in code and "==" not in code:
-        # Try replacing single '=' inside if/while/elif statements with '=='
         lines = code.splitlines()
         changed = False
         for i, line in enumerate(lines):
@@ -164,15 +163,12 @@ def solve_code_debug(prompt: str) -> Optional[str]:
     for i, line in enumerate(lines):
         stripped = line.strip()
         if stripped.startswith("for ") and ":" in stripped:
-            # Check next line inside loop
             if i + 1 < len(lines):
                 next_line = lines[i + 1]
                 m_init = re.match(r"^(\s+)([a-zA-Z_]\w*)\s*=\s*0\s*$", next_line)
                 if m_init:
                     indent, var_name = m_init.group(1), m_init.group(2)
-                    # Check if var_name is returned or used later outside or inside
                     if any(f"return {var_name}" in l or f"{var_name} +=" in l for l in lines[i+2:]):
-                        # Move initialization outside before loop
                         lines.pop(i + 1)
                         lines.insert(i, f"{indent[:-4] if len(indent)>=4 else ''}{var_name} = 0")
                         fixed_code = "\n".join(lines)
@@ -182,35 +178,87 @@ def solve_code_debug(prompt: str) -> Optional[str]:
                         except Exception:
                             pass
 
-    # 3. Check for .reverse() called on a string/sequence where [::-1] is appropriate
+    # 3. Check for .reverse() instead of [::-1]
     if ".reverse()" in code:
         fixed_code = code.replace(".reverse()", "[::-1]")
         try:
             ast.parse(fixed_code)
-            return f"The original code used .reverse(), which modifies in-place and returns None (or does not exist for strings). Slicing [::-1] should be used instead.\n\n```python\n{fixed_code}\n```"
+            return f"The original code used .reverse(), which modifies in-place and returns None. Slicing [::-1] should be used instead.\n\n```python\n{fixed_code}\n```"
         except Exception:
             pass
 
-    # Tier 2: Local Neural Coder (Qwen2.5-Coder-1.5B-Instruct) at 0 API tokens
+    # 4. Mutable default arguments (def func(lst=[]):)
+    if re.search(r"def\s+\w+\(.*=\s*\[\].*\):", code):
+        fixed_code = re.sub(r"(def\s+\w+\(.*)(=\s*\[\])(.*\):)", r"\1=None\3", code)
+        lines = fixed_code.splitlines()
+        for i, line in enumerate(lines):
+            m = re.match(r"^def\s+\w+\(.*?(?:(?:,\s*)?(\w+)=None).*?\):", line)
+            if m:
+                var_name = m.group(1)
+                indent = "    "
+                if i + 1 < len(lines):
+                    indent_match = re.match(r"^(\s+)", lines[i+1])
+                    if indent_match: indent = indent_match.group(1)
+                lines.insert(i+1, f"{indent}if {var_name} is None:\n{indent}    {var_name} = []")
+                fixed_code = "\n".join(lines)
+                try:
+                    ast.parse(fixed_code)
+                    return f"The original code used a mutable default argument (`[]`), which persists across calls. It was fixed to use `None`.\n\n```python\n{fixed_code}\n```"
+                except Exception:
+                    pass
+
+    # 5. Modifying list while iterating (for x in lst: lst.remove(x))
     try:
-        from src.local_coder import solve_qwen_coder
-        qwen_ans = solve_qwen_coder(prompt, task_type="code_debugging")
-        if qwen_ans is not None:
-            return qwen_ans
-    except Exception as e:
-        print(f"[WARN] Tier 2 Qwen local coder check failed: {e}", file=sys.stderr)
+        tree = ast.parse(code)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.For) and isinstance(node.iter, ast.Name):
+                iter_name = node.iter.id
+                for child in ast.walk(node):
+                    if isinstance(child, ast.Call) and isinstance(child.func, ast.Attribute):
+                        if child.func.attr in ["remove", "pop", "clear"] and isinstance(child.func.value, ast.Name) and child.func.value.id == iter_name:
+                            fixed_code = code.replace(f"in {iter_name}:", f"in {iter_name}[:]:")
+                            return f"The original code modifies a list while iterating over it, skipping elements. It was fixed by iterating over a copy (`{iter_name}[:]`).\n\n```python\n{fixed_code}\n```"
+    except Exception:
+        pass
+
+    # 6. Use of `is` for value equality (x is 10)
+    if re.search(r"\s+is\s+(?:\"|'|\d+)", code):
+        fixed_code = re.sub(r"(\s+)is(\s+(?:\"|'|\d+))", r"\1==\2", code)
+        try:
+            ast.parse(fixed_code)
+            return f"The original code used `is` for value equality, which checks identity. It was fixed to use `==`.\n\n```python\n{fixed_code}\n```"
+        except Exception:
+            pass
+
+    # 7. Unintentional tuple creation (return x,)
+    if re.search(r"return\s+\w+,(\s*#|$|\n)", code):
+        fixed_code = re.sub(r"(return\s+\w+),(\s*#|$|\n)", r"\1\2", code)
+        try:
+            ast.parse(fixed_code)
+            return f"The original code unintentionally created a tuple by placing a comma after the return value. The comma was removed.\n\n```python\n{fixed_code}\n```"
+        except Exception:
+            pass
+
+    # Tier 2: DeepSeek Coder Local
+    try:
+        from src.local_coder.core import solve_local_coder
+        ans = solve_local_coder(prompt, task_type="code_debugging")
+        if ans is not None:
+            return ans
+    except Exception:
+        pass
 
     # Tier 3: Return None to cleanly fall back to the API with our 160-token cap
     return None
 
 def solve_code_authoring(prompt: str) -> Optional[str]:
     """
-    Tier 2 local code authoring using Qwen2.5-Coder-1.5B-Instruct.
-    If unavailable or fails, returns None to fall back to Tier 3 API call with 320-token cap.
+    Tier 2 local code authoring using DeepSeek-Coder.
+    If unavailable or fails, returns None to fall back to Tier 3 API call.
     """
     try:
-        from src.local_coder import solve_qwen_coder
-        return solve_qwen_coder(prompt, task_type="code_authoring")
+        from src.local_coder.core import solve_local_coder
+        return solve_local_coder(prompt, task_type="code_authoring")
     except Exception as e:
         return None
 
@@ -249,39 +297,12 @@ def get_sentiment_pipeline():
 POSITIVE_CUES = ["love", "fast", "incredibly", "easy", "delicious", "wonderful", "friendly", "great", "excellent", "good"]
 NEGATIVE_CUES = ["bad", "buggy", "frustrating", "terrible", "slow", "crashes", "worst", "awful", "hate", "poor"]
 
-def solve_sentiment(prompt: str) -> str:
+def solve_sentiment(prompt: str) -> Optional[str]:
     """
-    Extracts sentiment using a zero-shot/fine-tuned local model and generates a fake justification.
+    Disabled local solver. Always returns None to fallback to the cheap API
+    since the local cardiffnlp model cannot handle complex formatting and justifications.
     """
-    target_text = extract_target_text(prompt)
-    
-    with _sentiment_lock:
-        pipe = get_sentiment_pipeline()
-        result = pipe(target_text)[0]
-        
-    label = result["label"].capitalize() # "Positive", "Negative", "Neutral"
-    
-    # Generate justification based on cue words
-    text_lower = target_text.lower()
-    found_cues = []
-    
-    if label == "Positive":
-        found_cues = [word for word in POSITIVE_CUES if word in text_lower]
-        polarity = "positive"
-    elif label == "Negative":
-        found_cues = [word for word in NEGATIVE_CUES if word in text_lower]
-        polarity = "negative"
-    else:
-        polarity = "neutral"
-        
-    if found_cues:
-        # Use up to 2 cues
-        cues_str = " and ".join(f"'{c}'" for c in found_cues[:2])
-        justification = f"The text uses {polarity} cues such as {cues_str}."
-    else:
-        justification = f"The overall tone and language of the text leans {polarity}."
-        
-    return f"{label}. {justification}"
+    return None
 
 import ast
 from itertools import permutations
@@ -323,6 +344,7 @@ def solve_math_exact(prompt: str) -> Optional[str]:
 
 
 def solve_math_pal(prompt: str) -> Optional[str]:
+    return None  # Disabled to save RAM
     """
     PAL (Program-Aided Language) solver for math word problems.
     Uses the already-loaded Qwen2.5-Coder-1.5B to generate a short Python

@@ -1,0 +1,4 @@
+[
+  { "task_id": "code-debug-01", "prompt": "The following Python function is intended to find and return the maximum value from a list of numbers. However, it contains a bug: \n\ndef find_max(numbers):\n    max_num = 0\n    for num in numbers:\n        if num > max_num:\n            max_num = num\n    return max_num\n\nIdentify the bug and provide the corrected implementation." },
+  { "task_id": "code-gen-01", "prompt": "Write a Python function that returns the second-largest number in a list, handling duplicates correctly." }
+]

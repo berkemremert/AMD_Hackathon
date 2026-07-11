@@ -312,33 +312,34 @@ def main():
                 from local_solvers import solve_sentiment
                 print("[ROUTER] Local task detected. Routing to local CardiffNLP Sentiment (0 tokens).")
                 sentiment_output = solve_sentiment(prompt)
-                print(f"[RESULT] Local Sentiment output:\n{sentiment_output}")
-                print(f"[TOKENS] 0 API tokens used.")
-                success_count += 1
-                entry = {
-                    "task_id": task_id,
-                    "category_dataset": task.get("category", "unknown"),
-                    "category_detected": task_type,
-                    "prompt": prompt,
-                    "solver_type": "local",
-                    "model_or_solver": "local_solver (sentiment)",
-                    "tokens_used": 0,
-                    "output": sentiment_output,
-                    "validation_passed": True
-                }
-                jv = verify_with_glm(prompt, sentiment_output, task_type)
-                entry["judge_verdict"] = jv["verdict"]
-                entry["judge_reason"] = jv["reason"]
-                entry["judge_tokens"] = jv["tokens"]
-                judge_tokens += jv["tokens"]
-                judge_results[jv["verdict"]] += 1
-                if jv["verdict"] == "incorrect":
-                    print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
-                else:
-                    print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
-                results.append(entry)
-                print("\n<EOT>\n" + "=" * 80)
-                continue
+                if sentiment_output is not None:
+                    print(f"[RESULT] Local Sentiment output:\n{sentiment_output}")
+                    print(f"[TOKENS] 0 API tokens used.")
+                    success_count += 1
+                    entry = {
+                        "task_id": task_id,
+                        "category_dataset": task.get("category", "unknown"),
+                        "category_detected": task_type,
+                        "prompt": prompt,
+                        "solver_type": "local",
+                        "model_or_solver": "local_solver (sentiment)",
+                        "tokens_used": 0,
+                        "output": sentiment_output,
+                        "validation_passed": True
+                    }
+                    jv = verify_with_glm(prompt, sentiment_output, task_type)
+                    entry["judge_verdict"] = jv["verdict"]
+                    entry["judge_reason"] = jv["reason"]
+                    entry["judge_tokens"] = jv["tokens"]
+                    judge_tokens += jv["tokens"]
+                    judge_results[jv["verdict"]] += 1
+                    if jv["verdict"] == "incorrect":
+                        print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
+                    else:
+                        print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
+                    results.append(entry)
+                    print("\n<EOT>\n" + "=" * 80)
+                    continue
         except Exception as e:
             print(f"[WARN] Sentiment solver failed: {e}")
 

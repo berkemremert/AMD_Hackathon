@@ -34,7 +34,7 @@ def get_config() -> LocalGenerationConfig:
     )
 
 def get_mode() -> str:
-    return os.environ.get("LOCAL_SUMMARY_MODE", "full")
+    return os.environ.get("LOCAL_SUMMARY_MODE", "compress_only")
 
 def get_failure_policy() -> str:
     return os.environ.get("LOCAL_SUMMARY_FAILURE_POLICY", "return_best")
