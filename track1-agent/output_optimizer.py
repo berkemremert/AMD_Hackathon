@@ -77,7 +77,7 @@ _BASE = "Constraint: Strict adherence. English. NO preamble. NO restatement."
 TOKEN_LIMITS = {
     "knowledge_qa": {
         "system": "Constraint: Max 1 sentence. Direct answer ONLY.",
-        "cap": 64,
+        "cap": 96,
         "retry_cap": 128,
     },
     "math_solving": {
