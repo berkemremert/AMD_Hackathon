@@ -77,47 +77,47 @@ _BASE = "Constraint: Strict adherence. English. NO preamble. NO restatement."
 TOKEN_LIMITS = {
     "knowledge_qa": {
         "system": "Constraint: Max 1 sentence. Direct answer ONLY.",
-        "cap": 96,
-        "retry_cap": 128,
+        "cap": 128,
+        "retry_cap": 160,
     },
     "math_solving": {
         "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
-        "cap": 128,
-        "retry_cap": 256,
+        "cap": 160,
+        "retry_cap": 320,
     },
     "sentiment_analysis": {
         "system": "Constraint: Output Label. 1 sentence reason (if asked).",
-        "cap": 40,
-        "retry_cap": 80,
+        "cap": 60,
+        "retry_cap": 120,
     },
     "summarization": {
         "system": "Summarize faithfully; obey the requested format and length.",
-        "cap": 128,
-        "retry_cap": 256,
+        "cap": 160,
+        "retry_cap": 320,
     },
     "entity_extraction": {
         "system": "Constraint: Output ONLY exact requested format. NO prose.",
-        "cap": 200,
+        "cap": 240,
         "retry_cap": 400,
     },
     "bug_fixing": {
         "system": "Constraint: Output ONLY ```python fixed_code ```. NO prose. NO comments.",
-        "cap": 160,
-        "retry_cap": 320,
+        "cap": 200,
+        "retry_cap": 360,
     },
     "logical_puzzles": {
         "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
-        "cap": 128,
-        "retry_cap": 256,
+        "cap": 160,
+        "retry_cap": 320,
     },
     "code_authoring": {
         "system": "Constraint: Output ONLY ```python code ```. Minified, NO comments.",
-        "cap": 320,
+        "cap": 360,
         "retry_cap": 640,
     },
     "fallback": {
         "system": "Answer concisely.",
-        "cap": 256,
+        "cap": 320,
         "retry_cap": 512,
     },
 }

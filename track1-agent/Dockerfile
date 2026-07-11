@@ -21,6 +21,9 @@ COPY download_models.py local_solvers.py output_optimizer.py ./
 # Bake Hugging Face models into the Docker image so they don't download at runtime
 RUN python3 download_models.py
 
+# Prevent Hugging Face from checking the internet for model updates at runtime
+ENV HF_HUB_OFFLINE=1
+
 # Local Summarization Model is disabled to save RAM and build time.
 # ARG LOCAL_SUMMARY_MODEL="Qwen/Qwen2.5-0.5B-Instruct"
 # ENV LOCAL_SUMMARY_MODEL=${LOCAL_SUMMARY_MODEL}
