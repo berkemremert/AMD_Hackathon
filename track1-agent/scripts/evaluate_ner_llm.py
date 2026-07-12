@@ -1,8 +1,8 @@
 import json
 import os
 import time
-from local_solvers import solve_ner
-from fireworks_client import chat
+from src.local_solvers import solve_ner
+from src.fireworks_client import chat
 
 import concurrent.futures
 

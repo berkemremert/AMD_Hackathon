@@ -19,7 +19,7 @@ from pathlib import Path
 
 from router.train_router import stratified_split
 from router.infer_router import predict as finetuned_predict
-from baseline_router import classify as baseline_classify
+from src.baseline_router import classify as baseline_classify
 
 DATA_PATH = Path(__file__).parent / "data" / "labeled_dataset.json"
 

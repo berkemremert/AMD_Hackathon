@@ -43,7 +43,7 @@ def evaluate():
 
         # Use the old evaluation system (Fireworks GLM-5p2 Judge)
         import data.label_dataset as data_labels
-        from fireworks_client import chat
+        from src.fireworks_client import chat
         judge_model = os.environ.get("MODEL_JUDGE", "accounts/fireworks/models/glm-5p2")
         
         judge_prompt = data_labels.JUDGE_PROMPT.format(

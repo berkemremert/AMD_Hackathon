@@ -1,5 +1,5 @@
 import json
-from local_solvers import solve_ner
+from src.local_solvers import solve_ner
 
 # Load your hackathon dataset
 data = json.load(open('data/labeled_dataset.json'))

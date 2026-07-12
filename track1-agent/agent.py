@@ -18,7 +18,7 @@ import os
 import sys
 from pathlib import Path
 
-from fireworks_client import chat
+from src.fireworks_client import chat
 
 INPUT_PATH = Path(os.environ.get("TASK_INPUT_PATH", "/input/tasks.json"))
 OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
@@ -41,7 +41,7 @@ def route(prompt: str) -> tuple[str, int]:
     if ROUTER_MODE == "always-expensive":
         return MODEL_EXPENSIVE, 0
     if ROUTER_MODE == "baseline":
-        from baseline_router import classify
+        from src.baseline_router import classify
         result = classify(prompt)
         model = MODEL_EXPENSIVE if result["label"] == "hard" else MODEL_CHEAP
         return model, result["tokens"]
@@ -56,9 +56,9 @@ def main():
     tasks = json.loads(INPUT_PATH.read_text())
     results = []
     total_tokens = 0
-    from output_optimizer import detect_task_type, get_dynamic_limits
-    from local_solvers import solve_ner
-    import validator
+    from src.output_optimizer import detect_task_type, get_dynamic_limits
+    from src.local_solvers import solve_ner
+    from src import validator
 
     for task in tasks:
         task_type = detect_task_type(task["prompt"])
@@ -66,7 +66,7 @@ def main():
         # ── Local solvers (0 API tokens) with graceful fallback ──
         try:
             if task_type == "math_solving":
-                from local_solvers import solve_math_exact
+                from src.local_solvers import solve_math_exact
                 math_ans = solve_math_exact(task["prompt"])
                 if math_ans is not None:
                     results.append({"task_id": task["task_id"], "answer": str(math_ans)})
@@ -79,7 +79,7 @@ def main():
                         task.get("category") == "logical_reasoning" or 
                         any(w in task["prompt"].lower() for w in ["arrange", "constraints:", "clues to determine", "standing in a line", "chairs numbered", "favorite color:", "each have a different", "logic puzzle", "in a row"]))
             if is_logic:
-                from local_solvers import solve_logic_puzzle
+                from src.local_solvers import solve_logic_puzzle
                 logic_ans = solve_logic_puzzle(task["prompt"])
                 if logic_ans is not None:
                     results.append({"task_id": task["task_id"], "answer": str(logic_ans)})
@@ -90,7 +90,7 @@ def main():
         try:
             is_debug = (task_type == "bug_fixing" or task.get("category") == "code_debugging" or "identify the bug" in task["prompt"].lower())
             if is_debug:
-                from local_solvers import solve_code_debug
+                from src.local_solvers import solve_code_debug
                 debug_ans = solve_code_debug(task["prompt"])
                 if debug_ans is not None:
                     results.append({"task_id": task["task_id"], "answer": str(debug_ans)})
@@ -100,7 +100,7 @@ def main():
 
         try:
             if task_type == "code_authoring" or task.get("category") == "code_generation":
-                from local_solvers import solve_code_authoring
+                from src.local_solvers import solve_code_authoring
                 code_ans = solve_code_authoring(task["prompt"])
                 if code_ans is not None:
                     results.append({"task_id": task["task_id"], "answer": str(code_ans)})
@@ -110,7 +110,7 @@ def main():
 
         try:
             if task_type == "entity_extraction":
-                from local_solvers import solve_ner
+                from src.local_solvers import solve_ner
                 raw_entities = solve_ner(task["prompt"])
                 if raw_entities is not None:
                     results.append({"task_id": task["task_id"], "answer": str(raw_entities)})
@@ -120,7 +120,7 @@ def main():
 
         try:
             if task_type == "sentiment_analysis":
-                from local_solvers import solve_sentiment
+                from src.local_solvers import solve_sentiment
                 sentiment_output = solve_sentiment(task["prompt"])
                 if sentiment_output is not None:
                     results.append({"task_id": task["task_id"], "answer": str(sentiment_output)})
@@ -157,7 +157,7 @@ def main():
                         continue
                         
             elif mode == "compress_only":
-                from local_compressor import compress_summarization_prompt
+                from src.local_compressor import compress_summarization_prompt
                 task["prompt"] = compress_summarization_prompt(task["prompt"])
                 
         try:
@@ -165,7 +165,7 @@ def main():
             limits = get_dynamic_limits(task_type, task["prompt"])
             system_prompt = limits["system"]
             
-            from local_compressor import optimize_prompt_for_api
+            from src.local_compressor import optimize_prompt_for_api
             final_prompt = optimize_prompt_for_api(task["prompt"], task_type, limits.get("suffix", ""))
             
             answer = chat(
