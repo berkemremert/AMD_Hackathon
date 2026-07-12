@@ -637,7 +637,9 @@ def main():
                 category_breakdown[cat]["retries"] += 1
                 total_retries += 1
 
-    out_path = Path(__file__).parent / "results" / "eval_results.json"
+    from datetime import datetime
+    timestamp_str = datetime.now().strftime("%d%m%Y%H%M")
+    out_path = Path(__file__).parent / "results" / f"eval_{timestamp_str}.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     total_judged = judge_results["correct"] + judge_results["incorrect"]
     overall_accuracy = judge_results["correct"] / total_judged * 100 if total_judged > 0 else 0.0
