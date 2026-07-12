@@ -15,8 +15,9 @@ ENV HF_XET_HIGH_PERFORMANCE=1
 ENV HF_HOME=/models/huggingface
 RUN mkdir -p $HF_HOME
 
-# Copy Python files required for model downloading
-COPY download_models.py local_solvers.py output_optimizer.py ./
+# Create src directory and copy files required for model downloading
+COPY download_models.py ./
+COPY src/ ./src/
 
 # Bake Hugging Face models into the Docker image so they don't download at runtime
 RUN python3 download_models.py

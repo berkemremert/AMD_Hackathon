@@ -1,6 +1,6 @@
 import os
 from sentence_transformers import SentenceTransformer
-from local_solvers import get_sentiment_pipeline
+from src.local_solvers import get_sentiment_pipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 def download_models():

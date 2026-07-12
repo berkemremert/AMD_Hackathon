@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from output_optimizer import detect_task_type
+from src.output_optimizer import detect_task_type
 
 DATA_PATH = Path("data/labeled_dataset.json")
 

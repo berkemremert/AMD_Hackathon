@@ -5,12 +5,12 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-from output_optimizer import detect_task_type, TOKEN_LIMITS, get_dynamic_limits
-from local_compressor import optimize_prompt_for_api
-from local_solvers import solve_ner
-import validator
+from src.output_optimizer import detect_task_type, TOKEN_LIMITS, get_dynamic_limits
+from src.local_compressor import optimize_prompt_for_api
+from src.local_solvers import solve_ner
+from src import validator
 from router.infer_router import predict
-from fireworks_client import chat
+from src.fireworks_client import chat
 
 DATA_PATH = Path(__file__).parent / "data" / "labeled_dataset.json"
 
@@ -128,7 +128,7 @@ def main():
         # ── Local solvers (0 API tokens) with graceful fallback ──
         try:
             if task_type == "math_solving" or task.get("category") == "math_reasoning":
-                from local_solvers import solve_math_exact, solve_math_pal
+                from src.local_solvers import solve_math_exact, solve_math_pal
                 math_ans = solve_math_exact(prompt)
                 if math_ans is None:
                     math_ans = solve_math_pal(prompt)
@@ -169,7 +169,7 @@ def main():
                         task.get("category") == "logical_reasoning" or 
                         any(w in prompt.lower() for w in ["arrange", "constraints:", "clues to determine", "standing in a line", "chairs numbered", "favorite color:", "each have a different", "logic puzzle", "in a row"]))
             if is_logic:
-                from local_solvers import solve_logic_puzzle
+                from src.local_solvers import solve_logic_puzzle
                 logic_ans = solve_logic_puzzle(prompt)
                 if logic_ans is not None:
                     print(f"[LOCAL SOLVER] Logic puzzle solver answered: {logic_ans}")
@@ -205,7 +205,7 @@ def main():
         try:
             is_debug = (task_type == "bug_fixing" or task.get("category") == "code_debugging" or "identify the bug" in prompt.lower())
             if is_debug:
-                from local_solvers import solve_code_debug
+                from src.local_solvers import solve_code_debug
                 debug_ans = solve_code_debug(prompt)
                 if debug_ans is not None:
                     print(f"[LOCAL SOLVER] Code debug solver answered:\n{debug_ans}")
@@ -240,7 +240,7 @@ def main():
 
         try:
             if task_type == "code_authoring" or task.get("category") == "code_generation":
-                from local_solvers import solve_code_authoring
+                from src.local_solvers import solve_code_authoring
                 code_ans = solve_code_authoring(prompt)
                 if code_ans is not None:
                     print(f"[LOCAL SOLVER] Code authoring solver answered:\n{code_ans}")
@@ -309,7 +309,7 @@ def main():
             
         try:
             if task_type == "sentiment_analysis" or task.get("category") == "sentiment_classification":
-                from local_solvers import solve_sentiment
+                from src.local_solvers import solve_sentiment
                 print("[ROUTER] Local task detected. Routing to local CardiffNLP Sentiment (0 tokens).")
                 sentiment_output = solve_sentiment(prompt)
                 if sentiment_output is not None:
@@ -348,7 +348,7 @@ def main():
 
         try:
             if task_type == "code_authoring" or task.get("category") == "code_generation":
-                from local_solvers import solve_code_authoring
+                from src.local_solvers import solve_code_authoring
                 code_ans = solve_code_authoring(prompt)
                 if code_ans is not None:
                     print(f"[LOCAL SOLVER] Code authoring solver answered:\n{code_ans}")
@@ -383,7 +383,7 @@ def main():
 
         try:
             if task_type == "bug_fixing" or task.get("category") == "code_debugging":
-                from local_solvers import solve_code_debugging
+                from src.local_solvers import solve_code_debugging
                 debug_ans = solve_code_debugging(prompt)
                 if debug_ans is not None:
                     print(f"[LOCAL SOLVER] Code debugging solver answered:\n{debug_ans}")
@@ -418,7 +418,7 @@ def main():
 
         try:
             if task_type == "knowledge_qa" or task.get("category") == "factual_knowledge":
-                from local_solvers import solve_factual_qa
+                from src.local_solvers import solve_factual_qa
                 qa_ans = solve_factual_qa(prompt)
                 if qa_ans is not None:
                     print(f"[LOCAL SOLVER] Factual QA solver answered:\n{qa_ans}")

@@ -2,7 +2,7 @@ import argparse
 import json
 from pathlib import Path
 
-from output_optimizer import detect_task_type
+from src.output_optimizer import detect_task_type
 
 # Map dataset prefixes/categories to the internal categories used by the router
 CATEGORY_MAP = {

@@ -7,8 +7,8 @@ from pathlib import Path
 # Add parent directory to path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from local_compressor import compress_summarization_prompt
-from output_optimizer import detect_task_type
+from src.local_compressor import compress_summarization_prompt
+from src.output_optimizer import detect_task_type
 
 def run_benchmark():
     input_path = Path("data/labeled_dataset.json")

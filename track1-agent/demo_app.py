@@ -16,9 +16,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from fireworks_client import chat
+from src.fireworks_client import chat
 from router.infer_router import predict as finetuned_predict
-from baseline_router import classify as baseline_classify
+from src.baseline_router import classify as baseline_classify
 
 MODEL_CHEAP = os.environ["MODEL_CHEAP"]
 MODEL_EXPENSIVE = os.environ["MODEL_EXPENSIVE"]

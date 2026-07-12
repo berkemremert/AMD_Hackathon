@@ -1,7 +1,7 @@
 import json
 import os
-from fireworks_client import chat
-from local_solvers import solve_ner
+from src.fireworks_client import chat
+from src.local_solvers import solve_ner
 
 data = json.load(open('data/labeled_dataset.json'))
 task = [t for t in data if t['category'] == 'named_entity_recognition'][1] # Task 2

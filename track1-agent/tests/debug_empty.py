@@ -1,7 +1,7 @@
 import json, os
-from local_compressor import optimize_prompt_for_api
-from fireworks_client import chat
-from output_optimizer import TOKEN_LIMITS
+from src.local_compressor import optimize_prompt_for_api
+from src.fireworks_client import chat
+from src.output_optimizer import TOKEN_LIMITS
 
 data = json.load(open('data/labeled_dataset.json'))
 t = [x for x in data if x['category'] == 'text_summarization'][0]
