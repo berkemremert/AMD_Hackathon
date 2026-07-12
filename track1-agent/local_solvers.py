@@ -188,6 +188,10 @@ def solve_sentiment(prompt: str) -> Optional[str]:
         return "Negative — the reviewer expresses clear dissatisfaction and criticizes the subject."
         
     if -0.1 <= overall_score <= 0.1:
+        # Protect against VADER missing tech support complaints
+        for neg_cue in ["crash", "flicker", "drain", "replied", "loose", "scratched", "confusing"]:
+            if neg_cue in lower_text:
+                return None
         return "Neutral — the statement provides objective, factual information without expressing approval or dissatisfaction."
 
     return None
