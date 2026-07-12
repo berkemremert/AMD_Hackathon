@@ -12,7 +12,7 @@ import validator
 from router.infer_router import predict
 from fireworks_client import chat
 
-DATA_PATH = Path(__file__).parent / "data" / "labeled_dataset.json"
+DATA_PATH = Path(__file__).parent / "data" / "public_style_80_questions.json"
 
 # ── GLM-5.2 Judge ──
 MODEL_JUDGE = "accounts/fireworks/models/glm-5p2"
@@ -104,8 +104,8 @@ def main():
     # Filter to only use 'easy' difficulty pool as requested
     records = [r for r in records if r.get("difficulty_pool") == "easy"]
         
-    # Sample exactly 40 entries, including all categories
-    tasks = sample_tasks(records, 40)
+    # Sample exactly 80 entries, including all categories
+    tasks = sample_tasks(records, 80)
     print(f"Sampled {len(tasks)} tasks across {len(set(t.get('category', 'unknown') for t in tasks))} categories.")
     print("=" * 80)
     
