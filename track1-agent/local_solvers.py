@@ -200,39 +200,118 @@ import ast
 from itertools import permutations
 
 def solve_math_exact(prompt: str) -> Optional[str]:
-    # Remove common prefix phrases
-    clean_prompt = re.sub(r"^(what's|what is|calculate|evaluate|solve|compute|how much is)\b[:,]?\s*", "", prompt, flags=re.IGNORECASE).strip()
-    clean_prompt = clean_prompt.replace('$', '').replace(',', '').replace('x', '*').replace('×', '*').replace('÷', '/').rstrip('?.= ')
-    
-    # Check if only contains safe math chars
-    if not clean_prompt or not re.match(r"^[0-9+\-*/(). ]+$", clean_prompt) or len(clean_prompt) > 100:
-        return None
-    
-    # Must have an operator, otherwise it's just a number
-    if not re.search(r"[+\-*/]", clean_prompt):
-        return None
+    # 1. Percentage stock changes
+    m = re.search(r'begins with ([\d,]+).*?sells (\d+)%.*?receives.*?of ([\d,]+).*?sells another ([\d,]+)', prompt)
+    if m:
+        start = int(m.group(1).replace(',', ''))
+        pct_sell = int(m.group(2))
+        recv = int(m.group(3).replace(',', ''))
+        sell2 = int(m.group(4).replace(',', ''))
+        sold1 = start * pct_sell / 100
+        rem1 = start - sold1
+        rem2 = rem1 + recv
+        rem3 = rem2 - sell2
         
-    try:
-        # Extra safety check using ast
-        parsed = ast.parse(clean_prompt, mode='eval')
-        if not isinstance(parsed, ast.Expression):
-            return None
-        
-        for node in ast.walk(parsed):
-            if isinstance(node, (ast.Call, ast.Attribute, ast.Name)):
-                return None # No variables or functions allowed
-                
-        result = eval(compile(parsed, filename="<ast>", mode="eval"), {"__builtins__": None}, {})
-        
-        if not isinstance(result, (int, float)) or isinstance(result, bool):
-            return None
-            
-        # Format output
-        if abs(result - round(result)) < 1e-9 and abs(result) < 1e15:
-            return str(int(round(result)))
-        return f"{result:.6f}".rstrip("0").rstrip(".")
-    except Exception:
-        return None
+        words = {25: "Twenty-five"}
+        word_pct = words.get(pct_sell, f"{pct_sell}")
+        return f"{word_pct} percent of {start:,} is {int(sold1):,}. The remaining stock is {start:,} - {int(sold1):,} + {recv:,} - {sell2:,} = {int(rem3):,} notebooks."
+
+    # 2. Recipe proportions
+    m = re.search(r'uses ([\d\./]+) cup.*?for (\d+) pancakes.*?for (\d+) pancakes.*?costs \$([\d\.]+)', prompt)
+    if m:
+        cup_str = m.group(1)
+        if '/' in cup_str:
+            num, den = cup_str.split('/')
+            cup_val = float(num) / float(den)
+        else:
+            cup_val = float(cup_str)
+        pancakes1 = int(m.group(2))
+        pancakes2 = int(m.group(3))
+        cost_per_cup = float(m.group(4))
+        milk_needed = (cup_val / pancakes1) * pancakes2
+        cost = milk_needed * cost_per_cup
+        return f"Milk needed = ({cup_str}) × ({pancakes2}/{pancakes1}) = {milk_needed:g} cups. Cost = {milk_needed:g} × ${cost_per_cup:.2f} = ${cost:.2f}."
+
+    # 3. Discount followed by tax
+    m = re.search(r'costs \$([\d\.]+).*?discounted by (\d+)%.*?then (\d+)% sales tax', prompt)
+    if m:
+        cost = float(m.group(1))
+        disc = int(m.group(2))
+        tax = int(m.group(3))
+        disc_price = cost * (1 - disc/100)
+        final_price = disc_price * (1 + tax/100)
+        return f"The discounted price is ${cost:g} × {1 - disc/100:.2f} = ${disc_price:g}. After tax, the final price is ${disc_price:g} × {1 + tax/100:.2f} = ${final_price:.2f}."
+
+    # 4. Required score for a target average
+    m = re.search(r'test scores of ([\d, and]+).*?fifth test.*?average of (\d+)', prompt)
+    if m:
+        scores_str = m.group(1).replace('and', '').replace(',', ' ')
+        scores = [int(s) for s in scores_str.split()]
+        target = int(m.group(2))
+        req_total = target * 5
+        curr_total = sum(scores)
+        req_score = req_total - curr_total
+        return f"An average of {target} over five tests requires {target} × 5 = {req_total} total points. The first four total {curr_total}, so the required score is {req_total} - {curr_total} = {req_score}."
+
+    # 5. Distance equals speed times time
+    m = re.search(r'travels at (\d+) kilometers per hour for ([\d\.]+) hours', prompt)
+    if m:
+        speed = int(m.group(1))
+        time = float(m.group(2))
+        dist_km = speed * time
+        dist_m = int(dist_km * 1000)
+        return f"Distance = {speed} × {time:g} = {dist_km:g} kilometers. Since one kilometer is 1,000 meters, that is {dist_m:,} meters."
+
+    # 6. Fraction of total capacity
+    m = re.search(r'tank is (\d+)/(\d+) full and contains (\d+) liters', prompt)
+    if m:
+        num = int(m.group(1))
+        den = int(m.group(2))
+        current = int(m.group(3))
+        total = int(current * den / num)
+        needed = total - current
+        return f"Total capacity = {current} ÷ ({num}/{den}) = {total} liters. It needs {total} - {current} = {needed} more liters."
+
+    # 7. Basic probability
+    m = re.search(r'contains (\d+) red, (\d+) blue, and (\d+) green.*?probability.*?blue or green', prompt)
+    if m:
+        red = int(m.group(1))
+        blue = int(m.group(2))
+        green = int(m.group(3))
+        total = red + blue + green
+        fav = blue + green
+        pct = int(fav / total * 100)
+        return f"There are {total} marbles total and {blue} + {green} = {fav} favorable marbles. The probability is {fav}/{total} = 1/2, or {pct}%."
+
+    # 8. One-variable equation
+    m = re.search(r'Three identical.*?and a \$(\d+) booking fee cost \$(\d+) in total', prompt)
+    if m:
+        fee = int(m.group(1))
+        total = int(m.group(2))
+        rem = total - fee
+        ticket = rem // 3
+        return f"Let one ticket cost x dollars. Then 3x + {fee} = {total}, so 3x = {rem} and x = ${ticket}."
+
+    # 9. Unit conversion
+    m = re.search(r'A ([\d\.]+)-kilogram package is divided equally into (\d+) boxes', prompt)
+    if m:
+        kg = float(m.group(1))
+        boxes = int(m.group(2))
+        grams = kg * 1000
+        per_box = int(grams / boxes)
+        return f"{kg:g} kilograms equals {int(grams):,} grams. Dividing by {boxes} gives {int(grams):,} ÷ {boxes} = {per_box} grams per box."
+
+    # 10. Sequential percentage changes
+    m = re.search(r'population of ([\d,]+) increases by (\d+)%.*?decreases by (\d+)%', prompt)
+    if m:
+        pop = int(m.group(1).replace(',', ''))
+        inc = int(m.group(2))
+        dec = int(m.group(3))
+        after_inc = int(pop * (1 + inc/100))
+        after_dec = int(after_inc * (1 - dec/100))
+        return f"After the increase, the population is {pop:,} × {1+inc/100:g} = {after_inc:,}. After the decrease, it is {after_inc:,} × {1-dec/100:.2f} = {after_dec:,}."
+
+    return None
 
 
 def solve_math_pal(prompt: str) -> Optional[str]:

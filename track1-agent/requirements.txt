@@ -4,3 +4,4 @@ torch>=2.3
 transformers>=4.42
 sentence-transformers>=2.2.0
 gliner>=0.1.10
+vaderSentiment>=3.3.2
