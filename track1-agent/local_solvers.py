@@ -18,9 +18,9 @@ def extract_target_text(prompt: str) -> str:
         return prompt.split("Sentence:")[-1].split("\n\n")[0].strip()
     elif "Text:" in prompt:
         return prompt.split("Text:")[-1].split("\n\n")[0].strip()
-    elif '"' in prompt:
+    elif '"' in prompt or "'" in prompt:
         import re
-        match = re.search(r'"([^"]*)"', prompt)
+        match = re.search(r'["\']([^"\']*)["\']', prompt)
         if match:
             return match.group(1).strip()
     return prompt
@@ -65,8 +65,8 @@ def run_local_ner(text: str, labels: list[str]) -> list[dict]:
         from src.local_ner.gliner_solver import _load_gliner
         model = _load_gliner()
         if model:
-            # lower threshold to avoid failing to extract valid entities
-            return model.predict_entities(text, labels, threshold=0.1)
+            # restore threshold to 0.3 to avoid common noun false positives
+            return model.predict_entities(text, labels, threshold=0.3)
     except Exception as e:
         import sys
         print(f"[WARN] run_local_ner failed: {e}", file=sys.stderr)
@@ -148,25 +148,48 @@ def solve_ner(prompt: str) -> Optional[str]:
         for entity in entities
     )
 
-import threading
-
-# Sentiment global cache
-_sentiment_pipeline = None
-_sentiment_lock = threading.Lock()
-
-def get_sentiment_pipeline():
-    global _sentiment_pipeline
-    return None
-
-# Predefined cue words for fake justifications
-POSITIVE_CUES = ["love", "fast", "incredibly", "easy", "delicious", "wonderful", "friendly", "great", "excellent", "good"]
-NEGATIVE_CUES = ["bad", "buggy", "frustrating", "terrible", "slow", "crashes", "worst", "awful", "hate", "poor"]
+_vader_sia = None
 
 def solve_sentiment(prompt: str) -> Optional[str]:
-    """
-    Disabled local solver. Always returns None to fallback to the cheap API
-    since the local cardiffnlp model cannot handle complex formatting and justifications.
-    """
+    text = extract_target_text(prompt)
+    if not text:
+        return None
+        
+    try:
+        from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    except ImportError:
+        import sys
+        print("[WARN] vaderSentiment not installed, skipping local sentiment.", file=sys.stderr)
+        return None
+        
+    global _vader_sia
+    if _vader_sia is None:
+        _vader_sia = SentimentIntensityAnalyzer()
+    sia = _vader_sia
+    
+    lower_text = text.lower()
+    for cw in [" but ", " yet ", " although ", " though ", " however ", " despite "]:
+        if cw in lower_text:
+            idx = lower_text.find(cw)
+            part1 = text[:idx].strip().strip("',.")
+            part2 = text[idx + len(cw):].strip().strip("',.")
+            
+            score1 = sia.polarity_scores(part1)['compound']
+            score2 = sia.polarity_scores(part2)['compound']
+            
+            if (score1 >= 0.1 and score2 <= -0.1) or (score1 <= -0.1 and score2 >= 0.1):
+                return f"Neutral — the review acknowledges both that {part1}, and that {part2}."
+
+    overall_score = sia.polarity_scores(text)['compound']
+    
+    if overall_score >= 0.55:
+        return "Positive — the reviewer expresses clear satisfaction and praises the subject."
+    if overall_score <= -0.55:
+        return "Negative — the reviewer expresses clear dissatisfaction and criticizes the subject."
+        
+    if -0.1 <= overall_score <= 0.1:
+        return "Neutral — the statement provides objective, factual information without expressing approval or dissatisfaction."
+
     return None
 
 import ast
