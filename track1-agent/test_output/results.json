@@ -1,0 +1,10 @@
+[
+  {
+    "task_id": "code-debug-01",
+    "answer": "Unable to process task."
+  },
+  {
+    "task_id": "code-gen-01",
+    "answer": "Here is a Python function that does that:\n\n```python\ndef second_largest(nums):\n    if len(nums) < 2:\n        return None\n    max_num = second_max = float('-inf')\n    for num in nums:\n        if num > max_num:\n            second_max = max_num\n            max_num = num\n        elif num > second_max and num < max_num:\n            second_max = num\n    if second_max == float('-inf'):\n        return None\n    return second_max\n```\n\nThis function works by initializing two variables, `max_num` and `second_max`, to negative infinity. It then iterates over the list of numbers, updating `max_num` and `second_max` as necessary. If a number is greater than `max_num`, it becomes the new `max_num`. If a number is greater than `second_max` but less than `max_num`, it becomes the new `second_max`. If the list is empty or contains only one number, the function returns `None`."
+  }
+]

@@ -1,0 +1,11 @@
+id,category,difficulty_pool,label_gt,handled_locally,sentiment_label,confidence,margin,answer_tokens,judge_tokens,correct,reason
+q194,sentiment_classification,easy,easy,True,Positive,0.987,0.979,0,382,True,
+q197,sentiment_classification,easy,easy,True,Positive,0.9752,0.9553,0,414,True,
+q198,sentiment_classification,easy,easy,True,Positive,0.9879,0.9802,0,358,True,
+q199,sentiment_classification,easy,easy,True,Positive,0.987,0.9766,0,391,True,
+q201,sentiment_classification,easy,easy,False,escalated,0.0,0.0,91,410,True,fallback_required
+q202,sentiment_classification,easy,easy,False,escalated,0.0,0.0,106,439,True,fallback_required
+q203,sentiment_classification,easy,easy,True,Positive,0.991,0.9854,0,393,True,
+q205,sentiment_classification,easy,easy,True,Positive,0.9891,0.9814,0,436,True,
+q200,sentiment_classification,easy,hard,True,Positive,0.9873,0.9794,0,463,True,
+q208,sentiment_classification,easy,easy,True,Negative,0.9505,0.9075,0,378,True,

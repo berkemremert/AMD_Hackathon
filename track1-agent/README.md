@@ -1,58 +1,42 @@
-# Track 1: Token-Efficient General-Purpose Agent
+# Track 1: Hybrid Token-Efficient Routing Agent
 
-This is the AMD Developer Hackathon Track 1 submission. The container reads
-`/input/tasks.json`, handles safe task classes locally, sends every unresolved
-task to an allowed Kimi model, and writes `/output/results.json`.
+This repository contains our submission for the **AMD Developer Hackathon: ACT II (Track 1)**. 
 
-## Architecture
+Our agent is a highly optimized hybrid router designed to absolutely minimize Fireworks API token usage. It achieves this through zero-token local deterministic solvers for math/logic, aggressive token starvation (disabling reasoning tokens & stripping tags), and a strict cross-tier fallback mechanism.
 
-```text
-agent.py
-  └── src/track1_agent/pipeline.py
-        ├── output_optimizer.py   task detection and output limits
-        ├── local_solvers.py      math, NER, sentiment, small logic puzzles
-        ├── local_compressor.py   API prompt compression
-        └── fireworks_client.py   Fireworks HTTP client
-```
+## Prerequisites
 
-The production pipeline has three rules:
+- Docker installed
+- A valid Fireworks AI API Key
 
-1. A supported local solver returns the answer with zero API tokens.
-2. Otherwise exactly one answer-generation request is sent to Kimi.
-3. The response is returned as-is; there is no validation-triggered retry.
+## Setup & Usage Instructions
 
-`eval_agent.py` reuses the same `TaskProcessor`, so evaluation and submission
-cannot silently diverge.
+This project is fully containerized. To run the evaluation agent and see the routing logic in action, follow these steps:
 
-## Required environment variables
+### 1. Build the Docker Image
 
-- `FIREWORKS_API_KEY`
-- `FIREWORKS_BASE_URL`
-- `ALLOWED_MODELS` — must contain a Kimi model ID
-
-Optional local settings:
-
-- `TASK_INPUT_PATH` and `TASK_OUTPUT_PATH`
-- `MODEL_API` to select one of multiple allowlisted Kimi models
-- `MODEL_JUDGE` for the development evaluator only
-
-## Build and run
+Run the following command in the root directory to build the Docker image:
 
 ```bash
-docker build --platform linux/amd64 -t track1-agent .
-docker run --rm \
-  --env-file .env \
-  -v "$PWD/test_files/fixtures:/input:ro" \
-  -v "$PWD/test_files/output:/output" \
-  track1-agent
+docker build -t track1-agent .
 ```
 
-## Development checks
+### 2. Configure Environment Variables
+
+Create a `.env` file in the root directory and add your Fireworks API key:
+
+```env
+FIREWORKS_API_KEY=your_api_key_here
+```
+
+*(Optional: You can also specify the allowed models by adding `ALLOWED_MODELS` to your `.env` file.)*
+
+### 3. Run the Container
+
+Run the container using the `.env` file you just created:
 
 ```bash
-python3 -m unittest discover -s test_files -v
-python3 eval_agent.py
+docker run --env-file .env track1-agent
 ```
 
-The evaluator makes additional judge calls for development metrics. Those
-calls are not part of the submitted container path.
+The container will automatically execute `eval_agent.py`, which will process the sample dataset, demonstrate the zero-token local solvers, and output the total Fireworks API tokens saved!

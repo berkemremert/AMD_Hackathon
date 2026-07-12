@@ -1,0 +1,14 @@
+[
+  {
+    "task_id": "t1",
+    "answer": "19"
+  },
+  {
+    "task_id": "t2",
+    "answer": "The city council approved a new bike lane network covering 12 miles of downtown streets yesterday."
+  },
+  {
+    "task_id": "t3",
+    "answer": "```python\ndef is_palindrome(s):\n    # Normalize the string by removing spaces and converting to lowercase\n    normalized_s = ''.join(char.lower() for char in s if char.isalnum())\n    \n    # Check if the normalized string is equal to its reverse\n    return normalized_s == normalized_s[::-1]\n```"
+  }
+]
