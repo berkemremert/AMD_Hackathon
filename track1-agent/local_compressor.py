@@ -8,7 +8,6 @@ import threading
 import sys
 from dataclasses import dataclass, field
 from typing import Optional, Any
-import torch
 
 @dataclass
 class SummaryConstraints:
@@ -207,6 +206,8 @@ def repair_cohesion(selected_indices: list[int], sentences: list[SentenceMeta], 
     return sorted(list(final_indices))
 
 def select_sentences_mmr(sentences: list[SentenceMeta], config: CompressionConfig, budget: int) -> list[int]:
+    import torch
+
     try:
         model, device = _load_embedding_model()
     except Exception as e:
@@ -350,6 +351,8 @@ def compress_knowledge_qa(user_prompt: str) -> str:
         return user_prompt
         
     try:
+        import torch
+
         with torch.inference_mode():
             q_emb = model.encode([question_text], convert_to_tensor=True, device=device, normalize_embeddings=True)
             s_embs = model.encode([s.text for s in sentences], convert_to_tensor=True, device=device, normalize_embeddings=True)
@@ -372,7 +375,7 @@ def compress_knowledge_qa(user_prompt: str) -> str:
         return user_prompt
 
 
-def optimize_prompt_for_api(user_prompt: str, task_type: str, suffix: str = "") -> str:
+def optimize_prompt_for_api(user_prompt: str, task_type: str) -> str:
     """Universal Compression Dispatcher."""
     compressed = user_prompt
     
@@ -391,7 +394,4 @@ def optimize_prompt_for_api(user_prompt: str, task_type: str, suffix: str = "") 
         compressed = re.sub(r"(?i)Explain\s+your\s+reasoning\.?", "", compressed)
         compressed = re.sub(r"(?i)Show\s+your\s+work\.?", "", compressed)
         
-    # The suffix contains output instructions required by the API, so append it safely
-    if suffix:
-        return f"{suffix}\n\n{compressed}"
     return compressed

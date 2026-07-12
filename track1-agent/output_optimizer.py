@@ -78,58 +78,45 @@ def detect_task_type(user_prompt: str) -> str:
                 return domain
     return "fallback"
 
-# Optimized constraints for each domain to ensure maximum token savings 
-# without triggering a failure from the LLM-as-a-judge accuracy gate.
-_BASE = "Constraint: Strict adherence. English. NO preamble. NO restatement."
-
 TOKEN_LIMITS = {
     "knowledge_qa": {
         "system": "Constraint: Max 1 sentence. Direct answer ONLY.",
         "cap": 128,
-        "retry_cap": 160,
     },
     "math_solving": {
         "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
         "cap": 160,
-        "retry_cap": 320,
     },
     "sentiment_analysis": {
         "system": "Constraint: Output Label. 1 sentence reason (if asked).",
         "cap": 60,
-        "retry_cap": 120,
     },
     "summarization": {
         "system": "Summarize faithfully; obey the requested format and length.",
         "cap": 160,
-        "retry_cap": 320,
     },
     "entity_extraction": {
         "system": "Constraint: Extract every PERSON, ORGANIZATION, LOCATION, and DATE. Output one entity per line as: entity — LABEL. No commentary.",
         "cap": 240,
-        "retry_cap": 400,
     },
     "bug_fixing": {
         "system": "Constraint: Output ONLY ```python fixed_code ```. NO prose. NO comments.",
         "cap": 200,
-        "retry_cap": 360,
     },
     "logical_puzzles": {
         "system": "Constraint: NO reasoning. Last line MUST be: 'Answer: <value>'.",
         "cap": 160,
-        "retry_cap": 320,
     },
     "code_authoring": {
         "system": "Constraint: Output ONLY ```python code ```. Minified, NO comments.",
         "cap": 360,
-        "retry_cap": 640,
     },
     "fallback": {
         "system": "Answer concisely.",
         "cap": 320,
-        "retry_cap": 512,
     },
 }
 
-def get_dynamic_limits(task_type: str, prompt: str) -> dict:
+def get_dynamic_limits(task_type: str, _prompt: str) -> dict:
     """Returns calculated token limits based on the task."""
     return TOKEN_LIMITS.get(task_type, TOKEN_LIMITS["fallback"]).copy()

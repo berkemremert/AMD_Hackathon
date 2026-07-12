@@ -1,8 +1,12 @@
 .env
+.venv/
+venv/
 __pycache__/
 *.pyc
-router/checkpoints/
 *.pt
 *.bin
 .DS_Store
 compare_project/
+eval_results.json
+*_results.txt
+evaluation_results*.csv

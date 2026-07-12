@@ -1,1 +1,0 @@
-# GitHub contribution test
