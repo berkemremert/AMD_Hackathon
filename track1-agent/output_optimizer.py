@@ -96,7 +96,7 @@ TOKEN_LIMITS = {
         "retry_cap": 320,
     },
     "entity_extraction": {
-        "system": "Constraint: Output ONLY exact requested format. NO prose.",
+        "system": "Constraint: Extract every PERSON, ORGANIZATION, LOCATION, and DATE. Output one entity per line as: entity — LABEL. No commentary.",
         "cap": 240,
         "retry_cap": 400,
     },

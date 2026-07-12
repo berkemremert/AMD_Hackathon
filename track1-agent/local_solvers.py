@@ -39,22 +39,114 @@ def solve_code_authoring(prompt: str) -> Optional[str]:
     """
     return None
 
-def solve_ner(prompt: str) -> str:
-    """
-    Extracts named entities using GLiNER (urchade/gliner_small-v2.1).
-    Falls back to the deterministic heuristic pipeline if GLiNER is unavailable.
-    """
+LABEL_MAP = {
+    "PER": "PERSON",
+    "PERSON": "PERSON",
+    "ORG": "ORGANIZATION",
+    "ORGANIZATION": "ORGANIZATION",
+    "LOC": "LOCATION",
+    "GPE": "LOCATION",
+    "LOCATION": "LOCATION",
+    "DATE": "DATE",
+}
+
+MONTHS = (
+    r"January|February|March|April|May|June|July|August|"
+    r"September|October|November|December"
+)
+
+DATE_PATTERN = re.compile(
+    rf"\b(?:{MONTHS})\s+\d{{1,2}}(?:,?\s+\d{{4}})?\b",
+    re.IGNORECASE,
+)
+
+def run_local_ner(text: str, labels: list[str]) -> list[dict]:
     try:
-        from src.local_ner.gliner_solver import solve_ner_gliner
-        result = solve_ner_gliner(prompt)
-        if result is not None:
-            return result
+        from src.local_ner.gliner_solver import _load_gliner
+        model = _load_gliner()
+        if model:
+            # lower threshold to avoid failing to extract valid entities
+            return model.predict_entities(text, labels, threshold=0.1)
     except Exception as e:
         import sys
-        print(f"[WARN] GLiNER NER failed ({e}), falling back to heuristic.", file=sys.stderr)
+        print(f"[WARN] run_local_ner failed: {e}", file=sys.stderr)
+    return []
 
-    from src.local_ner.core import solve_ner_pipeline
-    return solve_ner_pipeline(prompt)
+def normalize_model_entities(model_entities: list[dict]) -> list[dict]:
+    entities = []
+    for ent in model_entities:
+        lbl = str(ent.get("label", "")).upper()
+        norm_label = LABEL_MAP.get(lbl, lbl)
+        entities.append({
+            "text": ent["text"],
+            "label": norm_label,
+            "start": ent["start"],
+            "end": ent["end"],
+        })
+    return entities
+
+def deduplicate_exact_entities(entities: list[dict]) -> list[dict]:
+    seen = set()
+    result = []
+    for ent in entities:
+        key = (ent["text"], ent["label"], ent["start"], ent["end"])
+        if key not in seen:
+            seen.add(key)
+            result.append(ent)
+    return result
+
+def validate_ner_result(text: str, entities: list[dict]) -> bool:
+    allowed = {"PERSON", "ORGANIZATION", "LOCATION", "DATE"}
+
+    if not entities:
+        return False
+
+    for entity in entities:
+        if entity["label"] not in allowed:
+            return False
+        if entity["text"] not in text:
+            return False
+
+    expected_dates = {m.group(0) for m in DATE_PATTERN.finditer(text)}
+    returned_dates = {
+        entity["text"]
+        for entity in entities
+        if entity["label"] == "DATE"
+    }
+
+    if expected_dates - returned_dates:
+        return False
+
+    return True
+
+def solve_ner(prompt: str) -> Optional[str]:
+    text = extract_target_text(prompt)
+
+    model_entities = run_local_ner(
+        text,
+        labels=["person", "organization", "location"],
+    )
+
+    entities = normalize_model_entities(model_entities)
+
+    for match in DATE_PATTERN.finditer(text):
+        entities.append({
+            "text": match.group(0),
+            "label": "DATE",
+            "start": match.start(),
+            "end": match.end(),
+        })
+
+    entities = deduplicate_exact_entities(entities)
+    entities.sort(key=lambda item: item["start"])
+
+    if not validate_ner_result(text, entities):
+        return None
+
+    return "\n".join(
+        f'{entity["text"]} — {entity["label"]}'
+        for entity in entities
+    )
 
 import threading
 

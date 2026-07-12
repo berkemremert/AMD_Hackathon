@@ -277,33 +277,36 @@ def main():
             if task_type == "entity_extraction":
                 print("[ROUTER] Local task detected. Routing to heuristic NER (0 tokens).")
                 raw_entities = solve_ner(prompt)
-                print(f"[RESULT] Local NER output:\n{raw_entities}")
-                print(f"[TOKENS] 0 API tokens used.")
-                success_count += 1
-                entry = {
-                    "task_id": task_id,
-                    "category_dataset": task.get("category", "unknown"),
-                    "category_detected": task_type,
-                    "prompt": prompt,
-                    "solver_type": "local",
-                    "model_or_solver": "local_solver (ner)",
-                    "tokens_used": 0,
-                    "output": raw_entities,
-                    "validation_passed": True
-                }
-                jv = verify_with_glm(prompt, raw_entities, task_type)
-                entry["judge_verdict"] = jv["verdict"]
-                entry["judge_reason"] = jv["reason"]
-                entry["judge_tokens"] = jv["tokens"]
-                judge_tokens += jv["tokens"]
-                judge_results[jv["verdict"]] += 1
-                if jv["verdict"] == "incorrect":
-                    print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
+                if raw_entities is not None:
+                    print(f"[RESULT] Local NER output:\n{raw_entities}")
+                    print(f"[TOKENS] 0 API tokens used.")
+                    success_count += 1
+                    entry = {
+                        "task_id": task_id,
+                        "category_dataset": task.get("category", "unknown"),
+                        "category_detected": task_type,
+                        "prompt": prompt,
+                        "solver_type": "local",
+                        "model_or_solver": "local_solver (ner)",
+                        "tokens_used": 0,
+                        "output": raw_entities,
+                        "validation_passed": True
+                    }
+                    jv = verify_with_glm(prompt, raw_entities, task_type)
+                    entry["judge_verdict"] = jv["verdict"]
+                    entry["judge_reason"] = jv["reason"]
+                    entry["judge_tokens"] = jv["tokens"]
+                    judge_tokens += jv["tokens"]
+                    judge_results[jv["verdict"]] += 1
+                    if jv["verdict"] == "incorrect":
+                        print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
+                    else:
+                        print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
+                    results.append(entry)
+                    print("\n<EOT>\n" + "=" * 80)
+                    continue
                 else:
-                    print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
-                results.append(entry)
-                print("\n<EOT>\n" + "=" * 80)
-                continue
+                    print(f"[WARN] Local NER validation failed. Falling back to API.")
         except Exception as e:
             print(f"[WARN] NER solver failed: {e}")
             
