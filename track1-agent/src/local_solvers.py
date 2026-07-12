@@ -52,15 +52,6 @@ def solve_code_authoring(prompt: str) -> Optional[str]:
     except Exception as e:
         return None
 
-def solve_ner(prompt: str) -> str:
-    """
-    Extracts named entities using the deterministic heuristic pipeline.
-    GLiNER is not used to save RAM.
-    """
-    from src.local_ner.core import solve_ner_pipeline
-    return solve_ner_pipeline(prompt)
-    return solve_ner_pipeline(prompt)
-
 import threading
 
 # Sentiment global cache

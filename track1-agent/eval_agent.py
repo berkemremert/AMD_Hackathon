@@ -7,7 +7,6 @@ from pathlib import Path
 
 from src.output_optimizer import detect_task_type, TOKEN_LIMITS, get_dynamic_limits
 from src.local_compressor import optimize_prompt_for_api
-from src.local_solvers import solve_ner
 from src import validator
 from router.infer_router import predict
 from src.fireworks_client import chat
@@ -273,40 +272,7 @@ def main():
         except Exception as e:
             print(f"[WARN] Code authoring solver failed: {e}")
 
-        try:
-            if task_type == "entity_extraction":
-                print("[ROUTER] Local task detected. Routing to heuristic NER (0 tokens).")
-                raw_entities = solve_ner(prompt)
-                print(f"[RESULT] Local NER output:\n{raw_entities}")
-                print(f"[TOKENS] 0 API tokens used.")
-                success_count += 1
-                entry = {
-                    "task_id": task_id,
-                    "category_dataset": task.get("category", "unknown"),
-                    "category_detected": task_type,
-                    "prompt": prompt,
-                    "solver_type": "local",
-                    "model_or_solver": "local_solver (ner)",
-                    "tokens_used": 0,
-                    "output": raw_entities,
-                    "validation_passed": True
-                }
-                jv = verify_with_glm(prompt, raw_entities, task_type)
-                entry["judge_verdict"] = jv["verdict"]
-                entry["judge_reason"] = jv["reason"]
-                entry["judge_tokens"] = jv["tokens"]
-                judge_tokens += jv["tokens"]
-                judge_results[jv["verdict"]] += 1
-                if jv["verdict"] == "incorrect":
-                    print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
-                else:
-                    print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
-                results.append(entry)
-                print("\n<EOT>\n" + "=" * 80)
-                continue
-        except Exception as e:
-            print(f"[WARN] NER solver failed: {e}")
-            
+
         try:
             if task_type == "sentiment_analysis" or task.get("category") == "sentiment_classification":
                 from src.local_solvers import solve_sentiment
@@ -457,6 +423,11 @@ def main():
         # Override for summarization
         if task_type == "summarization" or task.get("category") == "text_summarization":
             model = MODEL_SUMMARIZATION
+            
+        # Route NER queries to kimi
+        if task_type == "entity_extraction" or task.get("category") == "entity_extraction":
+            model = MODEL_CHEAP
+            print(f"[ROUTER] NER task detected. Forcing route to {MODEL_CHEAP}")
             
         print(f"[ROUTER] Finetuned prediction routed to: {model}")
         

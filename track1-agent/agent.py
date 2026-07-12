@@ -57,7 +57,6 @@ def main():
     results = []
     total_tokens = 0
     from src.output_optimizer import detect_task_type, get_dynamic_limits
-    from src.local_solvers import solve_ner
     from src import validator
 
     for task in tasks:
@@ -108,15 +107,7 @@ def main():
         except Exception as e:
             print(f"[WARN] Code authoring solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
 
-        try:
-            if task_type == "entity_extraction":
-                from src.local_solvers import solve_ner
-                raw_entities = solve_ner(task["prompt"])
-                if raw_entities is not None:
-                    results.append({"task_id": task["task_id"], "answer": str(raw_entities)})
-                    continue
-        except Exception as e:
-            print(f"[WARN] NER solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
 
         try:
             if task_type == "sentiment_analysis":
@@ -161,7 +152,11 @@ def main():
                 task["prompt"] = compress_summarization_prompt(task["prompt"])
                 
         try:
-            model, routing_tokens = route(task["prompt"])
+            if task_type == "entity_extraction" or task.get("category") == "entity_extraction":
+                model, routing_tokens = MODEL_CHEAP, 0
+            else:
+                model, routing_tokens = route(task["prompt"])
+                
             limits = get_dynamic_limits(task_type, task["prompt"])
             system_prompt = limits["system"]
             
