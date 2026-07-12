@@ -14,7 +14,7 @@ from src.track1_agent.config import load_settings
 from src.track1_agent.pipeline import ProcessResult, TaskProcessor
 
 
-DATA_PATH = Path(__file__).parent / "data" / "public_style_80_questions.json"
+DATA_PATH = Path(__file__).parent / "data" / "input" / "public_style_80_questions.json"
 JUDGE_MODEL = os.environ.get("MODEL_JUDGE", "accounts/fireworks/models/glm-5p2")
 
 

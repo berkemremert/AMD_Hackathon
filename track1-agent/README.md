@@ -42,15 +42,15 @@ Optional local settings:
 docker build --platform linux/amd64 -t track1-agent .
 docker run --rm \
   --env-file .env \
-  -v "$PWD/test_input:/input:ro" \
-  -v "$PWD/test_output:/output" \
+  -v "$PWD/test_files/fixtures:/input:ro" \
+  -v "$PWD/test_files/output:/output" \
   track1-agent
 ```
 
 ## Development checks
 
 ```bash
-python3 -m unittest -v test_pipeline.py
+python3 -m unittest discover -s test_files -v
 python3 eval_agent.py
 ```
 

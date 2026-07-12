@@ -11,5 +11,6 @@ input/
 output/
 scripts/
 test_*
+test_files/
 *_results.*
 *.txt
