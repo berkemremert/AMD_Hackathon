@@ -8,8 +8,8 @@ from pathlib import Path
 from output_optimizer import detect_task_type, TOKEN_LIMITS, get_dynamic_limits
 from local_compressor import optimize_prompt_for_api
 from local_solvers import solve_ner
-import validator
 from router.infer_router import predict
+from router.model_selection import resolve_model_roles
 from fireworks_client import chat
 
 DATA_PATH = Path(__file__).parent / "data" / "public_style_80_questions.json"
@@ -46,21 +46,12 @@ def verify_with_glm(prompt: str, answer: str, task_type: str) -> dict:
         print(f"[JUDGE ERROR] GLM-5.2 verification failed: {e}")
         return {"verdict": "error", "reason": str(e), "tokens": 0}
 
-# Fallback to local dev env vars if ALLOWED_MODELS is not provided
-if "ALLOWED_MODELS" in os.environ:
-    models = os.environ["ALLOWED_MODELS"].split(",")
-    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1])
-    MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0])
-    _summ_cands = [m for m in models if "minimax" in m.lower() or "2p6" in m.lower() or "2.6" in m.lower() or "kimi" in m.lower()]
-    MODEL_SUMMARIZATION = _summ_cands[0] if _summ_cands else models[0]
-else:
-    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
-    MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
-    MODEL_SUMMARIZATION = os.environ.get("MODEL_SUMMARIZATION", os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6"))
+MODEL_CHEAP, MODEL_EXPENSIVE = resolve_model_roles()
+MODEL_SUMMARIZATION = MODEL_CHEAP
 
 
 def route_finetuned(prompt: str) -> str:
-    """Uses the local DistilBERT model to predict difficulty and route."""
+    """Uses the local zero-token router (legacy function name)."""
     try:
         label = predict(prompt)
     except Exception as e:
@@ -490,75 +481,27 @@ def main():
                 if len(ans) >= 2 and ans[0] == ans[-1] and ans[0] in {"'", '"'}:
                     answer["text"] = ans[1:-1].strip()
             
-            # Validation
-            ok, reason = validator.validate(task_type, prompt, answer["text"], answer.get("finish_reason"))
-            if not ok or not answer["text"].strip():
-                fallback_model = MODEL_EXPENSIVE if model == MODEL_CHEAP else MODEL_CHEAP
-                print(f"[VALIDATION FAILED] Reason: {reason}. Retrying with fallback model {fallback_model}...")
-                retry_answer = chat(
-                    model=fallback_model,
-                    prompt=optimized_prompt,
-                    max_tokens=limits.get("retry_cap", 800),
-                    system_prompt=system_prompt,
-                    extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
-                )
-                total_tokens += retry_answer["total_tokens"]
-                print(f"[RETRY RESPONSE] Tokens: {retry_answer['total_tokens']} | Finish Reason: {retry_answer.get('finish_reason', 'none')}")
-                print(f"[RETRY TEXT]\n{retry_answer['text']}")
-                
-                # Clean summarization outputs for retry
-                if task_type == "summarization" or task.get("category") == "text_summarization":
-                    ans = retry_answer["text"].strip()
-                    if len(ans) >= 2 and ans[0] == ans[-1] and ans[0] in {"'", '"'}:
-                        retry_answer["text"] = ans[1:-1].strip()
-                        
-                entry = {
-                    "task_id": task_id,
-                    "category_dataset": task.get("category", "unknown"),
-                    "category_detected": task_type,
-                    "prompt": prompt,
-                    "solver_type": "api_retry",
-                    "model_or_solver": f"{model} -> {fallback_model}",
-                    "tokens_used": answer["total_tokens"] + retry_answer["total_tokens"],
-                    "output": retry_answer["text"],
-                    "validation_passed": True,
-                    "retry_reason": reason
-                }
-                jv = verify_with_glm(prompt, retry_answer["text"], task_type)
-                entry["judge_verdict"] = jv["verdict"]
-                entry["judge_reason"] = jv["reason"]
-                entry["judge_tokens"] = jv["tokens"]
-                judge_tokens += jv["tokens"]
-                judge_results[jv["verdict"]] += 1
-                if jv["verdict"] == "incorrect":
-                    print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
-                else:
-                    print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
-                results.append(entry)
+            entry = {
+                "task_id": task_id,
+                "category_dataset": task.get("category", "unknown"),
+                "category_detected": task_type,
+                "prompt": prompt,
+                "solver_type": "api",
+                "model_or_solver": model,
+                "tokens_used": answer["total_tokens"],
+                "output": answer["text"],
+            }
+            jv = verify_with_glm(prompt, answer["text"], task_type)
+            entry["judge_verdict"] = jv["verdict"]
+            entry["judge_reason"] = jv["reason"]
+            entry["judge_tokens"] = jv["tokens"]
+            judge_tokens += jv["tokens"]
+            judge_results[jv["verdict"]] += 1
+            if jv["verdict"] == "incorrect":
+                print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
             else:
-                print("[VALIDATION PASSED] Output looks good.")
-                entry = {
-                    "task_id": task_id,
-                    "category_dataset": task.get("category", "unknown"),
-                    "category_detected": task_type,
-                    "prompt": prompt,
-                    "solver_type": "api",
-                    "model_or_solver": model,
-                    "tokens_used": answer["total_tokens"],
-                    "output": answer["text"],
-                    "validation_passed": True
-                }
-                jv = verify_with_glm(prompt, answer["text"], task_type)
-                entry["judge_verdict"] = jv["verdict"]
-                entry["judge_reason"] = jv["reason"]
-                entry["judge_tokens"] = jv["tokens"]
-                judge_tokens += jv["tokens"]
-                judge_results[jv["verdict"]] += 1
-                if jv["verdict"] == "incorrect":
-                    print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
-                else:
-                    print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
-                results.append(entry)
+                print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
+            results.append(entry)
                 
             success_count += 1
                 
@@ -604,9 +547,6 @@ def main():
             total_local += 1
         else:
             category_breakdown[cat]["api_count"] += 1
-            if r.get("solver_type") == "api_retry":
-                category_breakdown[cat]["retries"] += 1
-                total_retries += 1
 
     out_path = Path("eval_results.json")
     total_judged = judge_results["correct"] + judge_results["incorrect"]

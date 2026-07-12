@@ -29,6 +29,7 @@ HEURISTICS = {
     "bug_fixing": [
         r"\b(bug|bugs|buggy)\b", r"\bdebug", r"\bfix (the|this) (code|function|snippet)",
         r"\bwhat('s| is) wrong with (the|this) (code|function)", r"\berror in (the|this) code\b",
+        r"\b(analy[sz]e|review)\b.*\b(race condition|deadlock|memory leak|edge-case failure)",
     ],
     "code_authoring": [
         r"\bwrite (a|the) (python |javascript |java |c\+\+ )?(function|method|class|script|program)\b",
@@ -40,6 +41,8 @@ HEURISTICS = {
         r"\d+\s*%", r"\bpercent",
         r"\bsum of\b", r"\bproduct of\b", r"\bproject(ed|ion)\b.*\d",
         r"\d+\s*(?:[\+\*/x]|\s-\s)\s*\d+", r"\bwhat is \d", r"\baverage\b.*\d", r"\btotal\b.*\d",
+        r"\bprobability\b", r"\bprice of (?:one|each|a single)\b",
+        r"\bidentical\b.*\b(?:cost|total)\b.*\$?\d+",
     ],
     "logical_puzzles": [
         r"\bpuzzle\b", r"\briddle\b", r"\bif .* then .* (who|what|which)\b",
@@ -49,6 +52,11 @@ HEURISTICS = {
         r"\beach (own|owns|has|have|is|are)\b.*\b(who|what|which)\b",
         r"\bwho (owns|has|is|sits|finished|won)\b",
         r"\b(does not|doesn't|not) (own|have|sit|like)\b.*\b(who|what|which)\b",
+        r"\bdetermine\b.*\b(order|schedule|seating|arrangement|assignment|department|weight|color|pet|day)\b",
+        r"\b(?:arranged|scheduled|seated)\b.*\b(?:before|after|left|right|first|last)\b",
+        r"\bimmediately (?:before|after|to the left|to the right)\b",
+        r"\bexactly one (?:statement|claim) is true\b",
+        r"\bfinish(?:es)?\b.*\bno ties\b",
     ],
     "knowledge_qa": [
         r"\bwhat (is|are|was|were)\b", r"\bexplain\b", r"\bdefine\b", r"\bdefinition\b",

@@ -8,7 +8,7 @@ Matches the judging harness contract exactly:
     from ALLOWED_MODELS - the router itself runs locally and costs zero tokens
 
 ROUTER_MODE selects how each prompt is routed (env var, default "finetuned"):
-  finetuned        - local DistilBERT classifier (this tutorial's router)
+  finetuned        - local dependency-free router (legacy mode name)
   baseline         - prompt-based classification via an extra Fireworks call
   always-cheap     - skip routing, always use MODEL_CHEAP
   always-expensive - skip routing, always use MODEL_EXPENSIVE
@@ -19,18 +19,12 @@ import sys
 from pathlib import Path
 
 from fireworks_client import chat
+from router.model_selection import resolve_model_roles
 
 INPUT_PATH = Path(os.environ.get("TASK_INPUT_PATH", "/input/tasks.json"))
 OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
 
-# Fallback to local dev env vars if ALLOWED_MODELS is not provided
-if "ALLOWED_MODELS" in os.environ:
-    models = [m.strip() for m in os.environ["ALLOWED_MODELS"].split(",") if m.strip()]
-    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1] if models else "accounts/fireworks/models/kimi-k2p6")
-    MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0] if models else "accounts/fireworks/models/kimi-k2p6")
-else:
-    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
-    MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
+MODEL_CHEAP, MODEL_EXPENSIVE = resolve_model_roles()
 ROUTER_MODE = os.environ.get("ROUTER_MODE", "finetuned")
 
 
@@ -45,9 +39,15 @@ def route(prompt: str) -> tuple[str, int]:
         result = classify(prompt)
         model = MODEL_EXPENSIVE if result["label"] == "hard" else MODEL_CHEAP
         return model, result["tokens"]
-    # finetuned (default)
-    from router.infer_router import predict
-    label = predict(prompt)
+    # Local zero-token router (legacy mode name: finetuned)
+    try:
+        from router.infer_router import predict
+        label = predict(prompt)
+    except Exception as exc:
+        # Routing must never prevent an answer. The efficient allowed model is
+        # the safest fallback under both the token score and runtime limit.
+        print(f"[WARN] Local router failed ({exc}); using efficient model.", file=sys.stderr)
+        label = "easy"
     model = MODEL_EXPENSIVE if label == "hard" else MODEL_CHEAP
     return model, 0
 
@@ -58,7 +58,6 @@ def main():
     total_tokens = 0
     from output_optimizer import detect_task_type, get_dynamic_limits
     from local_solvers import solve_ner
-    import validator
 
     for task in tasks:
         task_type = detect_task_type(task["prompt"])
@@ -176,22 +175,6 @@ def main():
                 extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
             )
             total_tokens += routing_tokens + answer.get("total_tokens", 0)
-            
-            ok, reason = validator.validate(task_type, task["prompt"], answer.get("text", ""), answer.get("finish_reason"))
-            if not ok or not answer.get("text", "").strip():
-                fallback_model = MODEL_EXPENSIVE if model == MODEL_CHEAP else MODEL_CHEAP
-                print(f"Validation failed for task {task['task_id']} ({reason}). Retrying with fallback model {fallback_model}...", file=sys.stderr)
-                
-                retry_answer = chat(
-                    model=fallback_model,
-                    prompt=final_prompt,
-                    max_tokens=limits.get("retry_cap", 800),
-                    system_prompt=system_prompt,
-                    extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
-                )
-                total_tokens += retry_answer.get("total_tokens", 0)
-                answer = retry_answer
-                
             results.append({"task_id": task["task_id"], "answer": str(answer.get("text", ""))})
         except Exception as e:
             print(f"[ERROR] API handling failed for task {task['task_id']}: {e}", file=sys.stderr)
