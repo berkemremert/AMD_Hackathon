@@ -113,6 +113,7 @@ def main():
     judge_results = {"correct": 0, "incorrect": 0, "error": 0}
     success_count = 0
     results = []
+    factual_tasks = []
     
     for i, task in enumerate(tasks, 1):
         task_id = task.get("id", f"task_{i}")
@@ -124,6 +125,11 @@ def main():
         print(f"Detected Category (Heuristic): {task_type}")
         print(f"Prompt:\n{prompt}\n")
         
+        if task_type == "knowledge_qa" or task.get("category") == "factual_knowledge":
+            factual_tasks.append({"task": task, "task_type": task_type, "task_id": task_id, "prompt": prompt})
+            print(f"[BUNDLER] Queued for bundled execution.")
+            continue
+            
         # ── Local solvers (0 API tokens) with graceful fallback ──
         try:
             if task_type == "math_solving" or task.get("category") == "math_reasoning":
@@ -382,40 +388,7 @@ def main():
         except Exception as e:
             print(f"[WARN] Code debugging solver failed: {e}")
 
-        try:
-            if task_type == "knowledge_qa" or task.get("category") == "factual_knowledge":
-                from src.local_solvers import solve_factual_qa
-                qa_ans = solve_factual_qa(prompt)
-                if qa_ans is not None:
-                    print(f"[LOCAL SOLVER] Factual QA solver answered:\n{qa_ans}")
-                    print("[TOKENS] 0 API tokens used.\n\n<EOT>")
-                    print("="*80 + "\n")
-                    success_count += 1
-                    entry = {
-                        "task_id": task_id,
-                        "category_dataset": task.get("category", "unknown"),
-                        "category_detected": task_type,
-                        "prompt": prompt,
-                        "solver_type": "local",
-                        "model_or_solver": "local_solver (knowledge_qa)",
-                        "tokens_used": 0,
-                        "output": qa_ans,
-                        "validation_passed": True
-                    }
-                    jv = verify_with_glm(prompt, qa_ans, task_type)
-                    entry["judge_verdict"] = jv["verdict"]
-                    entry["judge_reason"] = jv["reason"]
-                    entry["judge_tokens"] = jv["tokens"]
-                    judge_tokens += jv["tokens"]
-                    judge_results[jv["verdict"]] += 1
-                    if jv["verdict"] == "incorrect":
-                        print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
-                    else:
-                        print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
-                    results.append(entry)
-                    continue
-        except Exception as e:
-            print(f"[WARN] Factual QA solver failed: {e}")
+
 
         # Route via finetuned model
         model = route_finetuned(prompt)
@@ -546,6 +519,94 @@ def main():
             
         print("\n<EOT>\n" + "=" * 80)
         
+    if factual_tasks:
+        print(f"\n--- PROCESSING {len(factual_tasks)} BUNDLED FACTUAL TASKS ---")
+        bundled_prompt = "Please answer the following factual knowledge questions briefly. Separate each answer with exactly the string '|||' (three pipes).\n\n"
+        for idx, item in enumerate(factual_tasks, 1):
+            bundled_prompt += f"Question {idx}: {item['prompt']}\n"
+            
+        model = MODEL_CHEAP
+        print(f"[API CALL BUNDLED] Model: {model} | Reasoning: None")
+        try:
+            answer = chat(
+                model=model,
+                prompt=bundled_prompt,
+                max_tokens=2000,
+                system_prompt="You are a precise and helpful assistant. Answer each question briefly and directly. You MUST separate each answer with exactly '|||'. Do not include 'Question x:' in your response.",
+                extra_params={"reasoning_effort": "none", "reasoning_history": "disabled"}
+            )
+            total_tokens += answer["total_tokens"]
+            
+            print(f"[RESPONSE BUNDLED] Tokens: {answer['total_tokens']}")
+            print(f"[TEXT BUNDLED]\n{answer['text']}")
+            
+            answers = [a.strip() for a in answer["text"].split("|||")]
+            
+            tokens_per_task = answer["total_tokens"] // len(factual_tasks)
+            remainder = answer["total_tokens"] % len(factual_tasks)
+            
+            if len(answers) != len(factual_tasks):
+                print(f"[WARN] Expected {len(factual_tasks)} answers, got {len(answers)}. Will process what we can.")
+                
+            for idx, item in enumerate(factual_tasks):
+                t_id = item["task_id"]
+                t_prompt = item["prompt"]
+                t_type = item["task_type"]
+                cat = item["task"].get("category", "unknown")
+                
+                ans_text = answers[idx] if idx < len(answers) else "Failed to parse bundled answer."
+                
+                t_tokens = tokens_per_task + (1 if idx < remainder else 0)
+                
+                # Check validation (e.g. for empty or invalid)
+                ok, reason = validator.validate(t_type, t_prompt, ans_text, "stop")
+                if not ok or not ans_text:
+                    ans_text = f"Validation failed: {reason}"
+                    
+                entry = {
+                    "task_id": t_id,
+                    "category_dataset": cat,
+                    "category_detected": t_type,
+                    "prompt": t_prompt,
+                    "solver_type": "api_bundled",
+                    "model_or_solver": f"{model} (bundled)",
+                    "tokens_used": t_tokens,
+                    "output": ans_text,
+                    "validation_passed": ok
+                }
+                
+                jv = verify_with_glm(t_prompt, ans_text, t_type)
+                entry["judge_verdict"] = jv["verdict"]
+                entry["judge_reason"] = jv["reason"]
+                entry["judge_tokens"] = jv["tokens"]
+                judge_tokens += jv["tokens"]
+                judge_results[jv["verdict"]] += 1
+                
+                if jv["verdict"] == "incorrect":
+                    print(f"[JUDGE ⚠] {t_id} incorrect: {jv['reason']}")
+                else:
+                    print(f"[JUDGE ✓] {t_id} verified: {jv['reason']}")
+                    
+                results.append(entry)
+                success_count += 1
+                
+        except Exception as e:
+            print(f"[ERROR] Bundled API Call failed: {e}")
+            for item in factual_tasks:
+                results.append({
+                    "task_id": item["task_id"],
+                    "category_dataset": item["task"].get("category", "unknown"),
+                    "category_detected": item["task_type"],
+                    "prompt": item["prompt"],
+                    "solver_type": "error",
+                    "model_or_solver": model,
+                    "tokens_used": 0,
+                    "output": str(e),
+                    "validation_passed": False
+                })
+        print("\n<EOT>\n" + "=" * 80)
+
+        
     category_breakdown = {}
     total_local = 0
     total_retries = 0
@@ -576,7 +637,8 @@ def main():
                 category_breakdown[cat]["retries"] += 1
                 total_retries += 1
 
-    out_path = Path("eval_results.json")
+    out_path = Path(__file__).parent / "results" / "eval_results.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     total_judged = judge_results["correct"] + judge_results["incorrect"]
     overall_accuracy = judge_results["correct"] / total_judged * 100 if total_judged > 0 else 0.0
 
