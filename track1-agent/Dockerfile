@@ -1,40 +1,46 @@
-FROM python:3.11-slim
+FROM python:3.11-slim AS builder
+
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PATH=/opt/venv/bin:$PATH
+
+WORKDIR /build
+COPY requirements.txt download_models.py ./
+RUN python3 -m venv /opt/venv && \
+    pip install --index-url https://download.pytorch.org/whl/cpu torch==2.3.1 && \
+    pip install -r requirements.txt
+
+# This is the only model downloaded from Hugging Face. Save a standalone copy
+# rather than relying on a mutable hub cache at judging time.
+ENV LOCAL_EMBEDDING_MODEL=/models/all-MiniLM-L6-v2
+RUN python3 download_models.py
+
+
+FROM python:3.11-slim AS runtime
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    HF_HOME=/models/huggingface \
+    HF_HUB_OFFLINE=1 \
+    HF_DATASETS_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1 \
+    PATH=/opt/venv/bin:$PATH \
+    LOCAL_EMBEDDING_MODEL=/models/all-MiniLM-L6-v2 \
+    LOCAL_EMBEDDING_DEVICE=cpu \
+    LOCAL_SUMMARY_MODE=compress_only \
+    ROUTER_MODE=finetuned
 
 WORKDIR /app
 
-ARG HF_TOKEN
-ENV HF_TOKEN=${HF_TOKEN}
+COPY --from=builder /opt/venv /opt/venv
+COPY --from=builder /models /models
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu -r requirements.txt hf-transfer
-
-# Enable blazing fast downloads (silences the HF_HUB_ENABLE_HF_TRANSFER warning)
-ENV HF_XET_HIGH_PERFORMANCE=1
-
-# Create HF cache directory
-ENV HF_HOME=/models/huggingface
-RUN mkdir -p $HF_HOME
-
-# Copy Python files required for model downloading
-COPY download_models.py local_solvers.py output_optimizer.py ./
-
-# Bake Hugging Face models into the Docker image so they don't download at runtime
-RUN python3 download_models.py
-
-# Prevent Hugging Face from checking the internet for model updates at runtime
-ENV HF_HUB_OFFLINE=1
-
-# Local Summarization Model is disabled to save RAM and build time.
-# ARG LOCAL_SUMMARY_MODEL="Qwen/Qwen2.5-0.5B-Instruct"
-# ENV LOCAL_SUMMARY_MODEL=${LOCAL_SUMMARY_MODEL}
-
-# Copy all python files, the router model directory, and test data
-COPY *.py ./
-COPY router/ ./router/
-COPY data/ ./data/
+# Copy only files reachable from the judging entrypoint. Training, evaluation,
+# demo code, datasets, and build-time downloader code stay out of the image.
+COPY agent.py fireworks_client.py baseline_router.py local_solvers.py ./
+COPY local_compressor.py output_optimizer.py validator.py ./
+COPY router/infer_router.py ./router/infer_router.py
+COPY router/checkpoints/router-distilbert/ ./router/checkpoints/router-distilbert/
 COPY src/ ./src/
 
-ENV ROUTER_MODE=finetuned
-
-# Run the evaluation script by default to demonstrate the agent
 CMD ["python3", "agent.py"]

@@ -11,7 +11,7 @@ Our agent is a highly optimized hybrid router designed to absolutely minimize Fi
 
 ## Setup & Usage Instructions
 
-This project is fully containerized. To run the evaluation agent and see the routing logic in action, follow these steps:
+This project is fully containerized. To run the agent and see the routing logic in action, follow these steps:
 
 ### 1. Build the Docker Image
 
@@ -36,7 +36,13 @@ FIREWORKS_API_KEY=your_api_key_here
 Run the container using the `.env` file you just created:
 
 ```bash
-docker run --env-file .env track1-agent
+mkdir -p output
+docker run --env-file .env \
+  --mount type=bind,src="$PWD/input",dst=/input,readonly \
+  --mount type=bind,src="$PWD/output",dst=/output \
+  track1-agent
 ```
 
-The container will automatically execute `eval_agent.py`, which will process the sample dataset, demonstrate the zero-token local solvers, and output the total Fireworks API tokens saved!
+The container executes `agent.py`, reads `input/tasks.json`, and writes `output/results.json`.
+
+The original hackathon requirements are preserved in [`docs/submission-guide.txt`](docs/submission-guide.txt).

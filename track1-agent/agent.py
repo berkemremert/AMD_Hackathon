@@ -23,14 +23,19 @@ from fireworks_client import chat
 INPUT_PATH = Path(os.environ.get("TASK_INPUT_PATH", "/input/tasks.json"))
 OUTPUT_PATH = Path(os.environ.get("TASK_OUTPUT_PATH", "/output/results.json"))
 
-# Fallback to local dev env vars if ALLOWED_MODELS is not provided
-if "ALLOWED_MODELS" in os.environ:
-    models = [m.strip() for m in os.environ["ALLOWED_MODELS"].split(",") if m.strip()]
-    MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1] if models else "accounts/fireworks/models/kimi-k2p6")
-    MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0] if models else "accounts/fireworks/models/kimi-k2p6")
-else:
-    MODEL_CHEAP = os.environ.get("MODEL_CHEAP", "accounts/fireworks/models/kimi-k2p6")
-    MODEL_EXPENSIVE = os.environ.get("MODEL_EXPENSIVE", "accounts/fireworks/models/kimi-k2p6")
+# The judging harness supplies the only model IDs that may be called. Refuse to
+# start without them rather than falling back to a model that could invalidate
+# the submission.
+models = [
+    model.strip()
+    for model in os.environ.get("ALLOWED_MODELS", "").split(",")
+    if model.strip()
+]
+if not models:
+    raise RuntimeError("ALLOWED_MODELS must contain at least one model ID.")
+
+MODEL_CHEAP = next((m for m in models if "kimi" in m.lower()), models[-1])
+MODEL_EXPENSIVE = next((m for m in models if "minimax" in m.lower()), models[0])
 ROUTER_MODE = os.environ.get("ROUTER_MODE", "finetuned")
 
 
@@ -57,7 +62,6 @@ def main():
     results = []
     total_tokens = 0
     from output_optimizer import detect_task_type, get_dynamic_limits
-    from local_solvers import solve_ner
     import validator
 
     for task in tasks:
@@ -108,15 +112,7 @@ def main():
         except Exception as e:
             print(f"[WARN] Code authoring solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
 
-        try:
-            if task_type == "entity_extraction":
-                from local_solvers import solve_ner
-                raw_entities = solve_ner(task["prompt"])
-                if raw_entities is not None:
-                    results.append({"task_id": task["task_id"], "answer": str(raw_entities)})
-                    continue
-        except Exception as e:
-            print(f"[WARN] NER solver failed for {task['task_id']}: {e}. Falling back to API.", file=sys.stderr)
+
 
         try:
             if task_type == "sentiment_analysis":

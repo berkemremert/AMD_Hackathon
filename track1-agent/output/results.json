@@ -1,14 +1,162 @@
 [
   {
-    "task_id": "t1",
-    "answer": "19"
+    "task_id": "q286",
+    "answer": "Positive \u2014 the reviewer expresses clear satisfaction and praises the subject."
   },
   {
-    "task_id": "t2",
-    "answer": "The city council approved a new bike lane network covering 12 miles of downtown streets yesterday."
+    "task_id": "q401",
+    "answer": "Apple Inc. \u2014 ORG\nTim Cook \u2014 PER\nMarch 10, 2024 \u2014 DATE\nAustin, Texas \u2014 LOC"
   },
   {
-    "task_id": "t3",
-    "answer": "```python\ndef is_palindrome(s):\n    # Normalize the string by removing spaces and converting to lowercase\n    normalized_s = ''.join(char.lower() for char in s if char.isalnum())\n    \n    # Check if the normalized string is equal to its reverse\n    return normalized_s == normalized_s[::-1]\n```"
+    "task_id": "q553",
+    "answer": "```python fixed_code\n#include <atomic>\n#include <vector>\n#include <memory>\n#include <type_traits>\n#include <new>\n\ntemplate<typename T>\nclass MPMCQueue {\n    // Align to cache line to prevent false sharing between head and tail\n    static constexpr size_t CACHE_LINE_SIZE = 64;\n\n    struct Cell {\n        std::atomic<size_t> seq;\n        // Use aligned storage for non-default-constructible types\n        alignas(alignof(T)) unsigned char data_[sizeof(T)];\n    };\n\n    // Pad to ensure each cell is at least cache-line aligned to reduce false sharing\n    struct alignas(CACHE_LINE_SIZE) AlignedCell : Cell {};\n\n    std::vector<AlignedCell> buffer_;\n    size_t mask_;\n\n    // Separate cache lines for head and tail to prevent false sharing\n    alignas(CACHE_LINE_SIZE) std::atomic<size_t> head_{0};\n    alignas(CACHE_LINE_SIZE) std::atomic<size_t> tail_{0};\n\n    static_assert(std::is_nothrow_destructible_v<T>, \"T must be nothrow destructible\");\n\npublic:\n    explicit MPMCQueue(size_t cap) {\n        // Minimum capacity of 1, round up to power of 2\n        size_t c = 1;\n        while (c < cap) c <<= 1;\n        mask_ = c - 1;\n        buffer_.resize(c);\n        for (size_t i = 0; i < c; ++i) {\n            buffer_[i].seq.store(i, std::memory_order_relaxed);\n        }\n    }\n\n    ~MPMCQueue() {\n        // Destroy any unconsumed items\n        size_t h = head_.load(std::memory_order_relaxed);\n        size_t"
+  },
+  {
+    "task_id": "q014",
+    "answer": "A solar eclipse occurs when the Moon passes between Earth and the Sun, temporarily blocking the Sun's light; this requires the Moon to be in its new moon phase while crossing the ecliptic plane (at a node) during its orbit, with Earth, Moon, and Sun aligned in near-perfect syzygy."
+  },
+  {
+    "task_id": "q682",
+    "answer": "I need to find a 5-digit code satisfying all conditions.\n\nFrom condition 1: d1 \u2208 {1, 4, 9} (perfect squares from 1-9)\n\nFrom condition 3: d3 = (d1 + d2) mod 10. Since digits are 1-9 and distinct, and d1 > d2, we have d1 + d2 \u2264 17, so d3 = d1 + d2 or d3 = d1 + d2 - 10.\n\nFrom condition 5: d5 = (d2 * d4) mod 10. Since digits are 1-9, d5 = (d2 * d4) mod 10, and if d2*d4 \u2265 10, we need the last digit.\n\nFrom condition 4: d4 \u2208 {2, 3, 5, 7} (primes)\n\nFrom condition 6: exactly two digits are even. Even digits available: {2, 4, 6, 8}\n\nLet me try d1 = 4 (even). Then we need exactly one more even digit among d2, d3, d4, d5.\n\nFrom condition 2: d2 < 4, so d2 \u2208 {1, 2, 3}\n\nCase: d2 = 1 (odd). Then d3 = (4+1) mod 10 = 5 (odd). So far: 4,1,5. We have one even (4). Need exactly one"
+  },
+  {
+    "task_id": "q154",
+    "answer": "I need to calculate revenues, costs, net profits, and reinvestment for 2024-2026.\n\n## 2023 Base Revenues\n- North: $4.2M\n- South: $3.8M\n- East: $5.0M\n- **Total 2023: $13.0M**\n\n## Revenue Projections\n\n**North (12% fixed growth):**\n- 2024: $4.2M \u00d7 1.12 = $4.704M\n- 2025: $4.704M \u00d7 1.12 = $5.26848M\n- 2026: $5.26848M \u00d7 1.12 = $5.9006976M\n\n**South (growth rates: 8%, 7%, 6% - floor not hit):**\n- 2024: $3.8M \u00d7 1.08 = $4.104M\n- 2025: $4.104M \u00d7 1.07 = $4.39128M\n- 2026: $4.39128M \u00d7 1.06 = $4.6547568M\n\n**East:**\n- 2024: $5.0M \u00d7 0.85 = $4.25M\n- 2025: $4.25M \u00d7 1.20 = $5.1M\n- 2026: $5.1M \u00d7 1.25 = $6.375M\n\n## Year-by-Year Calculations"
+  },
+  {
+    "task_id": "q480",
+    "answer": "```json\n{\n  \"person\": [\n    \"Dr. Sarah Johnson-Chiang\",\n    \"Prof. Kim Jr.\",\n    \"Minister da Concei\u00e7\u00e3o\"\n  ],\n  \"organization\": [\n    \"UNHCR\",\n    \"Georgetown Institute\",\n    \"State Department\"\n  ],\n  \"location\": [\n    \"3700 O St NW, Washington\",\n    \"Washington\",\n    \"S\u00e3o Tom\u00e9 and Pr\u00edncipe\",\n    \"Charles de Gaulle\",\n    \"Washington\"\n  ],\n  \"date\": [\n    \"2024-03-03\",\n    \"2024-02-14\",\n    \"2024-03-02\",\n    \"2024-03-02\"\n  ]\n}\n```"
+  },
+  {
+    "task_id": "q372",
+    "answer": "Dr. Elena Vargas discovered that glacial meltwater with ancient methane accelerated permafrost thawing. Her colleague Raj Patel had modeled this theoretical feedback loop, which raised regional temperatures three degrees in ten years. The 2024 Treaty on Cryospheric Stability resulted, though critics noted weak enforcement for Sami communities and tipping points."
+  },
+  {
+    "task_id": "q770",
+    "answer": "```python\ndef max_profit_with_gap(jobs, min_gap):\n    if not jobs:\n        return 0\n    jobs = sorted(jobs, key=lambda x: x[1])\n    n = len(jobs)\n    dp = [0] * n\n    dp[0] = jobs[0][2]\n    for i in range(1, n):\n        incl = jobs[i][2]\n        lo, hi = 0, i - 1\n        idx = -1\n        while lo <= hi:\n            mid = (lo + hi) // 2\n            if jobs[mid][1] + min_gap <= jobs[i][0]:\n                idx = mid\n                lo = mid + 1\n            else:\n                hi = mid - 1\n        if idx != -1:\n            incl += dp[idx]\n        dp[i] = max(incl, dp[i - 1])\n    return dp[-1]\n```"
+  },
+  {
+    "task_id": "q090",
+    "answer": "Public Key Infrastructure (PKI) establishes trust through a hierarchical chain of digitally signed certificates. A Certificate Authority (CA) is an entity that issues and signs certificates binding public keys to identities. A root certificate is a self-signed certificate belonging to a trusted CA, stored in browsers' local root stores as a trust anchor\u2014a pre-installed point of ultimate trust. An intermediate certificate is a CA certificate signed by another CA, creating delegation chains. An end-entity certificate is the server-specific certificate presented during TLS handshake. A certificate chain is the ordered sequence from end-entity through intermediates to a root.\n\nFor validation, the browser: (1) receives the server's end-entity certificate and any intermediate certificates; (2) verifies the end-entity certificate's signature using the intermediate's public key; ("
+  },
+  {
+    "task_id": "q748",
+    "answer": "```python\ndef max_profit_job_scheduling(start_time, end_time, profit):\n    n = len(start_time)\n    if n == 0:\n        return 0\n    jobs = sorted(zip(start_time, end_time, profit), key=lambda x: x[1])\n    dp = [0] * n\n    dp[0] = jobs[0][2]\n    for i in range(1, n):\n        lo, hi = 0, i - 1\n        idx = -1\n        while lo <= hi:\n            mid = (lo + hi) // 2\n            if jobs[mid][1] <= jobs[i][0]:\n                idx = mid\n                lo = mid + 1\n            else:\n                hi = mid - 1\n        incl = jobs[i][2] + (dp[idx] if idx != -1 else 0)\n        dp[i] = max(incl, dp[i - 1])\n    return dp[-1]\n```"
+  },
+  {
+    "task_id": "q060",
+    "answer": "In philosophy of biology, \"function\" is analyzed through two competing frameworks. **Etiological theories** (Wright, Millikan) define function by evolutionary history: a trait's function is what it was *selected for*. **Dispositional/systemic theories** (Cummins, Craver) define function by current causal contribution to a system's capacity, regardless of origins.\n\nThe **logical asymmetry**: etiological theories make function *historically necessary* (no selection history, no function), while dispositional theories make function *historically independent* (current utility suffices). Etiological accounts are *normative* (distinguishing proper function from accidental effect); dispositional accounts are *descriptive* (identifying any causally relevant role).\n\n**Edge case struggles**: Etiological theories struggle with **vestigial organs**\u2014the appendix lacks current selective maintenance, yet calling it \"non-functional\" seems wrong if it retains minor immune roles. Dispositional theories struggle with **exaptation**\u2014feathers initially selected for thermoregulation currently function in flight; their systemic role (flight) misidentifies their *proper* function, conflating current use with evolutionary explanation.\n\nA precise, univocal definition appears impossible. \"Function\" is **context-dependent**: etiological accounts suit evolutionary explanation, while dispositional accounts suit mechanistic explanation. Neither framework alone captures scientific practice, which shifts between historical and causal-analytical contexts.\n\n*One-sentence summary: Biologists and philosophers disagree about whether a body part's \"real job\" depends on what it currently does or what"
+  },
+  {
+    "task_id": "q629",
+    "answer": "I need to find Anna's favorite color.\n\nGiven information:\n- Anna does not like red\n- Ben's favorite color is not green\n- Chloe likes blue\n\nSince Chloe likes blue, blue is taken.\n\nAnna cannot have red, and blue is taken by Chloe, so Anna must have green.\n\nThis leaves red for Ben, which is consistent since Ben's favorite color is not green.\n\nAnswer: green"
+  },
+  {
+    "task_id": "q226",
+    "answer": "**Label:** Positive\n\n**Reason:** The sentence contains two favorable elements\u2014friendly customer service and a delivery that exceeded expectations by arriving early\u2014both expressing satisfaction with the experience."
+  },
+  {
+    "task_id": "q797",
+    "answer": "```python\nimport threading\nimport time\nfrom collections import OrderedDict\nfrom typing import Any, Optional\n\nclass ConcurrentTTLCache:\n    def __init__(self, capacity: int, ttl: float):\n        self.capacity = capacity\n        self.ttl = ttl\n        self.cache = OrderedDict()\n        self.lock = threading.Lock()\n        self.cond = threading.Condition(self.lock)\n        self.running = True\n        self.cleaner = threading.Thread(target=self._cleanup_loop, daemon=True)\n        self.cleaner.start()\n    \n    def get(self, key: Any) -> Optional[Any]:\n        with self.lock:\n            if key not in self.cache:\n                return None\n            node = self.cache[key]\n            if time.time() - node['time'] > self.ttl:\n                del self.cache[key]\n                return None\n            self.cache.move_to_end(key)\n            return node['value']\n    \n    def set(self, key: Any, value: Any):\n        with self.lock:\n            if key in self.cache:\n                del self.cache[key]\n            elif len(self.cache) >= self.capacity:\n                self._evict()\n            self.cache[key] = {'value': value, 'time': time.time()}\n            self.cond.notify()\n    \n    def _evict(self):\n        now = time.time()\n        expired = [k for k, v in self.cache.items() if now - v['time'] > self.ttl]\n        for k in expired:\n            del self.cache[k]\n        if len(self.cache) >= self.capacity:\n            self.cache.popitem(last=False)\n    \n    def _cleanup_loop(self):\n        while True:\n            with self.lock:\n                if not self.running:\n                    break\n                self.cond.wait(timeout=1.0)"
+  },
+  {
+    "task_id": "q564",
+    "answer": "```python\nimport time\nimport threading\nfrom collections import OrderedDict\n\nclass DistributedRateLimiter:\n    def __init__(self, global_rate, global_burst, per_user_rate, per_user_burst, inactive_timeout=300):\n        self.global_rate = float(global_rate)\n        self.global_burst = float(global_burst)\n        self.per_user_rate = float(per_user_rate)\n        self.per_user_burst = float(per_user_burst)\n        self.inactive_timeout = float(inactive_timeout)\n        self.lock = threading.Lock()\n        self.global_bucket = {'tokens': float(global_burst), 'last_update': time.monotonic()}\n        self.user_buckets = OrderedDict()\n        self.last_cleanup = 0.0\n    \n    def _refill(self, bucket, rate, burst, now):\n        elapsed = now - bucket['last_update']\n        if elapsed > 0:\n            bucket['tokens'] = min(burst, bucket['tokens'] + elapsed * rate)\n            bucket['last_update'] = now\n    \n    def _cleanup(self, now):\n        cutoff = now - self.inactive_timeout\n        expired = []\n        for uid, b in self.user_buckets.items():\n            if b['last_update'] < cutoff:\n                expired.append(uid)\n            else:\n                break\n        for uid in expired:\n            del self.user_buckets[uid]\n        self.last_cleanup = now\n    \n    def allow_request(self, user_id, cost=1):\n        if cost < 0:\n            raise ValueError(\"cost must be non-negative\")\n        cost = float(cost)\n        now = time.monotonic()\n        \n        with self.lock:\n            if now - self.last_cleanup > self.inactive_timeout:\n                self._cleanup(now)\n            \n            self._refill(self.global_bucket, self.global_rate,"
+  },
+  {
+    "task_id": "q097",
+    "answer": "A history is serializable if it is equivalent to some serial history in which the operations of each transaction appear contiguously and in their original order, where equivalence means the two histories produce the same reads and writes for every transaction. A history is linearizable if it is equivalent to a sequential history in which every operation appears to take effect instantaneously at some point between its invocation and response, and this sequential order respects the real-time ordering of non-overlapping operations. The critical distinction is that serializability only requires preserving the internal ordering of operations within each transaction and maintaining read-write consistency across transactions, while linearizability additionally demands that if operation A completes before operation B begins in real time, then A must appear before B in the equivalent sequential history.\n\nConsider a history with transactions T1 and T2 operating on objects x and y, with timestamps in milliseconds: T1 writes x=1 (invokes at t=0, responds at t=10), T2 writes y=2 (invokes at t=5, responds at t=15), T1 reads y (invokes at t=20, responds at t=25, returning 2), and T2 reads x (invokes at t=30, responds at t=35, returning 1). This history is serializable because it is equivalent to the serial order T1 then T2: T1 writes x=1 and reads y=2 (reading T2's write would be impossible in this order, so we adjust\u2014actually, the equivalent serial order T2 then T1 gives T2 writing"
+  },
+  {
+    "task_id": "q158",
+    "answer": "I need to calculate the remaining balance at the start of Month 3 step by step.\n\n## Month 1 Calculations\n\n**Daily interest rate:** 2.5% / 30 = 0.025/30 = 0.000833333...\n\n**Day 1:** Draw $20,000. Balance = $20,000. Interest for Day 1 = $20,000 \u00d7 0.000833333 = $16.6667\n\n**Days 1-9 (9 days):** Balance = $20,000. Interest = $20,000 \u00d7 0.000833333 \u00d7 9 = $150.00\n\n**Day 10:** Draw $15,000. Balance = $35,000. Interest for Day 10 = $35,000 \u00d7 0.000833333 = $29.1667\n\n**Days 10-19 (10 days):** Balance = $35,000. Interest = $35,000 \u00d7 0.000833333 \u00d7 10 = $291.6667\n\n**Day 20:** Repay $8,000. Balance = $27,000. Interest for Day 20 = $27,000 \u00d7 0.000833333 = $22.50\n\n**Days 20-30 (11 days):** Balance = $27,000. Interest = $27,000 \u00d7 0.000833333 \u00d7 11 = $247.50\n\n**Total interest for Month 1:**\n- Days 1-9: $150.00"
+  },
+  {
+    "task_id": "q184",
+    "answer": "I need to find the minimum additional consultants for 2024 and the percentage increase from 2023 to 2024 revenue.\n\n## 2022 Data\n- Consultants: 250\n- Hours per consultant: 1,800\n- Rate: $60/hour\n- **2022 Revenue**: 250 \u00d7 1,800 \u00d7 $60 = $27,000,000\n\n## 2023 Data\n- Consultants after 20% layoff: 250 \u00d7 0.8 = 200\n- Standard hours: 1,800 per consultant\n- Overtime rate: $60 \u00d7 1.2 = $72/hour\n- 2023 Revenue = 88% of 2022 = 0.88 \u00d7 $27,000,000 = $23,760,000\n\nLet me find overtime hours per consultant in 2023.\n- Standard revenue from 200 consultants: 200 \u00d7 1,800 \u00d7 $60 = $21,600,000\n- Overtime revenue needed: $23,760,000 - $21,600,000 = $2,160,000\n- Overtime hours total: $2,160,000 \u00f7 $72 = 30,000 hours\n- Overtime hours per consultant: 30,000 \u00f7 200 = 150 hours\n\n**2023 total billable hours**: 200 \u00d7 (1,800 + 150) = 200 \u00d7 1,950 = **390,000 hours**\n\n## 2024 Data"
+  },
+  {
+    "task_id": "q710",
+    "answer": "```python\ndef count_vowels(s):\n    return sum(1 for c in s.lower() if c in 'aeiou')\n```"
+  },
+  {
+    "task_id": "q360",
+    "answer": "\u2022 In 2023, the Supreme Court of Arcadia overturned the EPA's 2019 decision about the Meridian Chemical Plant, which had been releasing benzene slightly above the Clean Air Act's 1.3 ppm limit.\n\u2022 Justice Marcus Thorne dissented, arguing the majority conflated theoretical risk with empirical harm and that the minor exceedance was statistically insignificant given 40 years of peer-reviewed data."
+  },
+  {
+    "task_id": "q362",
+    "answer": "The IPCC's 2021 report found global temperatures had risen 1.1\u00b0C since pre-industrial times. To cap warming at 1.5\u00b0C, emissions must peak before 2025 and drop 43% by 2030 from 2019 levels. Carbon capture remains unscalable, while adaptation for vulnerable nations like Tuvalu and the Marshall Islands needs $340 billion yearly by 2030."
+  },
+  {
+    "task_id": "q799",
+    "answer": "```python\nimport asyncio\nimport time\nfrom typing import Dict, Set, Optional\nfrom contextlib import asynccontextmanager\n\n\nclass Connection:\n    def __init__(self, host: str):\n        self.host = host\n        self.created_at = time.time()\n        self.last_used = time.time()\n        self._open = True\n    \n    def is_stale(self, max_age=60):\n        return time.time() - self.created_at > max_age\n    \n    async def execute(self, query: str):\n        if not self._open:\n            raise ConnectionError(\"Connection closed\")\n        self.last_used = time.time()\n        await asyncio.sleep(0.001)\n        return f\"Result of {query}\"\n    \n    def close(self):\n        self._open = False\n\n\nclass Pool:\n    def __init__(self, host: str, min_size=2, max_size=10, max_age=60):\n        self.host = host\n        self.min_size = min_size\n        self.max_size = max_size\n        self.max_age = max_age\n        \n        self._available = asyncio.Queue()\n        self._in_use: Set[Connection] = set()\n        self._lock = asyncio.Lock()\n        self._closed = False\n        self._closing = False\n        self._total = 0\n        self._acquire_waiters: Set[asyncio.Future] = set()\n        self._close_event = asyncio.Event()\n        self._close_event.set()\n        self._prune_task: Optional[asyncio.Task] = None\n    \n    async def _create_connection(self) -> Connection:\n        conn = Connection(self.host)\n        return conn\n    \n    async def _ensure_min_size(self):\n        async with self._lock:\n            if self._closing"
+  },
+  {
+    "task_id": "q475",
+    "answer": "```json\n{\n  \"person\": [\n    {\n      \"canonical\": \"Tim Cook\",\n      \"aliases\": [\"CEO\", \"the CEO\"],\n      \"context\": \"CEO Tim Cook met with the White House on 12 May 2024 to discuss the project.\",\n      \"normalized\": null\n    },\n    {\n      \"canonical\": \"Kirk Watson\",\n      \"aliases\": [\"Mayor Kirk Watson\"],\n      \"context\": \"Mayor Kirk Watson of Austin announced that Oxford University will co-design the facility.\",\n      \"normalized\": null\n    }\n  ],\n  \"org\": [\n    {\n      \"canonical\": \"Apple Inc.\",\n      \"aliases\": [\"Apple\", \"The Cupertino firm\"],\n      \"context\": \"Apple Inc. is seeking to expand its Austin campus.\",\n      \"normalized\": null\n    },\n    {\n      \"canonical\": \"White House\",\n      \"aliases\": [],\n      \"context\": \"CEO Tim Cook met with the White House on 12 May 2024 to discuss the project.\",\n      \"normalized\": null\n    },\n    {\n      \"canonical\": \"Oxford University\",\n      \"aliases\": [\"Oxford\"],\n      \"context\": \"Mayor Kirk Watson of Austin announced that Oxford University will co-design the facility.\",\n      \"normalized\": null\n    }\n  ],\n  \"location\": [\n    {\n      \"canonical\": \"Austin\",\n      \"aliases\": [],\n      \"context\": \"Apple Inc. is seeking to expand its Austin campus.\",\n      \"normalized\": null\n    },\n    {\n      \"canonical\": \"Cupertino\",\n      \"aliases\": [],\n      \"context\": \"The Cupertino firm hopes to break ground next Tuesday.\",\n      \"normalized\": null\n    }\n  ],\n  \"date\": [\n    {\n      \"canonical\": \"12 May 2024\",\n      \"aliases\": [],\n      \"context\": \"CEO Tim Cook met with the White House on 12 May 2024 to discuss the project.\",\n      \""
+  },
+  {
+    "task_id": "q528",
+    "answer": "```python\ndef sum_even_numbers(numbers):\n    total = 0\n    for num in numbers:\n        if num % 2 == 0:\n            total += num\n    return total\n```"
+  },
+  {
+    "task_id": "q759",
+    "answer": "```python\ndef min_window(s, t):\n    from collections import Counter\n    need = Counter(t)\n    missing = len(t)\n    i = start = end = 0\n    for j, c in enumerate(s, 1):\n        if need[c] > 0:\n            missing -= 1\n        need[c] -= 1\n        if missing == 0:\n            while i < j and need[s[i]] < 0:\n                need[s[i]] += 1\n                i += 1\n            if end == 0 or j - i < end - start:\n                start, end = i, j\n            need[s[i]] += 1\n            missing += 1\n            i += 1\n    return s[start:end]\n```"
+  },
+  {
+    "task_id": "q234",
+    "answer": "Positive \u2014 the reviewer expresses clear satisfaction and praises the subject."
+  },
+  {
+    "task_id": "q715",
+    "answer": "```python\ndef count_vowels(s):\n    return sum(1 for c in s.lower() if c in 'aeiou')\n```"
+  },
+  {
+    "task_id": "q704",
+    "answer": "I need to solve the alphametic puzzle: THREE + FOUR = SEVEN\n\nFirst, let me analyze the structure. THREE is 5 digits, FOUR is 4 digits, SEVEN is 5 digits.\n\nLet me write this with place values:\n- THREE: 10000T + 1000H + 100R + 10E + E = 10000T + 1000H + 100R + 11E\n- FOUR: 1000F + 100O + 10U + R\n- SEVEN: 10000S + 1000E + 100V + 10E + N = 10000S + 1010E + 100V + N\n\nSo: 10000T + 1000H + 100R + 11E + 1000F + 100O + 10U + R = 10000S + 1010E + 100V + N\n\nSimplifying: 10000T + 1000H + 101R + 11E + 1000F + 100O + 10U = 10000S + 1010E + 100V + N\n\nLooking at the rightmost column: E + R = N or E + R = N + 10 (with carry)\nNext: E + U + carry1 = E + 10\u00d7carry2, so U + carry1 = 10\u00d7carry2, meaning U + carry1 ="
+  },
+  {
+    "task_id": "q657",
+    "answer": "I need to work through these constraints systematically.\n\nFrom constraint 4: HR is on floor 4.\nFrom constraint 8: IT is not on floor 4, so IT is on floor 1, 2, or 3.\nFrom constraint 6: Gold badge floor = 2 \u00d7 IT floor. Since floors are 1-4, IT must be on floor 1 or 2 (giving Gold on floor 2 or 4).\n\nFrom constraint 2: Finance is immediately above Red badge floor. So Finance-Red = 1, meaning possible pairs: (Finance,Red) = (2,1), (3,2), (4,3).\n\nFrom constraint 9: Ops is strictly below Finance.\n\nLet me try IT on floor 1, so Gold is on floor 2.\n\nFrom constraint 2: If Finance is on 2, Red is on 1. If Finance is on 3, Red is on 2. If Finance is on 4, Red is on 3.\n\nFrom constraint 9: Ops < Finance. From constraint 4: HR is on 4.\n\nCase: Finance on floor 2, Red on floor 1.\nThen Ops must be on floor 1 (below 2). But IT is on floor 1. Contradiction.\n\nCase: Finance on floor 3, Red on floor 2.\nOps must be on floor 1 or 2. IT is on floor 1. So Ops is on floor 2.\nDepartments: floor 1=IT, floor 2=Ops, floor 3=Finance, floor 4=HR. \u2713\n\nGold is on floor 2 (from IT on floor 1). But Red is on floor 2. Contradiction.\n\nCase: Finance on floor 4, Red on floor 3.\nBut HR is on floor 4. Contradiction.\n\nSo IT is not on floor 1. Try IT on floor 2, so Gold is on floor 4.\n\nFrom constraint 2: Finance on 2\u2192Red on 1, Finance on 3\u2192Red on 2, Finance on 4\u2192Red on 3.\n\nFrom constraint 8: IT doesn't have Gold. IT is on floor 2, Gold is on floor 4. \u2713\n\nCase: Finance on 2, Red on 1.\nBut IT is on floor 2. So Finance=IT? No, departments are distinct. Contradiction"
+  },
+  {
+    "task_id": "q544",
+    "answer": "```python\ndef calculate_sum(numbers):\n    total = 0\n    for num in numbers:\n        total += num\n    return total\n```"
+  },
+  {
+    "task_id": "q607",
+    "answer": "I need to work through this step by step.\n\n**Given facts:**\n- Ben ate the banana.\n- Anna did not eat the apple or the date.\n- Clara ate a fruit that comes before 'cherry' alphabetically.\n\n**Step 1: Determine Anna's fruit**\nAnna didn't eat apple or date. Since Ben ate banana, Anna must have eaten **cherry**.\n\n**Step 2: Determine Clara's fruit**\nFruits before 'cherry' alphabetically: apple, banana, date.\nSince Ben ate banana and Anna ate cherry, Clara ate either apple or date.\n\n**Step 3: Determine remaining fruits**\nRemaining fruits for Clara and Dan: apple and date.\n\nSince Clara ate something before 'cherry' alphabetically, and both apple and date come before cherry, I need to check which works.\n\nIf Clara ate date, that leaves apple for Dan. \u2713\nIf Clara ate apple, that leaves date for Dan. \u2713\n\nWait - let me re-read. \"Clara ate a fruit that comes before 'cherry' alphabetically\" - both apple and date qualify. But I need to check if there's additional constraint.\n\nActually, re-checking: Anna didn't eat apple or date, so Anna ate cherry (since banana is taken). That leaves apple and date for Clara and Dan.\n\nBoth apple and date come before cherry alphabetically, so Clara could have either. But the puzzle should have a unique solution...\n\nLet me re-verify: apple, banana, cherry, date. Alphabetically: apple, banana, cherry, date. Yes, both apple and date come before cherry.\n\nHmm, but \"different fruit\" - all ate different fruits. Let me re-check if there's an issue.\n\nActually, re-reading: If Clara ate date, Dan ate apple. If Clara ate apple, Dan ate date.\n\nWait - I need to check: does \"date\" come before \"cherry\"? d-a-t-e vs c-h-e-r-r-y. 'd' comes after 'c', so **date does NOT come before cherry alphabetically**.\n\nSo Clara ate **apple**, leaving **date** for **Dan**.\n\n**Dan ate the date.**"
+  },
+  {
+    "task_id": "q678",
+    "answer": "Alice-Lecture-Friday, Bob-Play-Monday, Carol-Game-Thursday, Dave-Fair-Tuesday, Eve-Concert-Wednesday\n\nAnswer: Alice-Lecture-Friday, Bob-Play-Monday, Carol-Game-Thursday, Dave-Fair-Tuesday, Eve-Concert-Wednesday"
+  },
+  {
+    "task_id": "q247",
+    "answer": "Positive \u2014 the reviewer expresses clear satisfaction and praises the subject."
+  },
+  {
+    "task_id": "q296",
+    "answer": "Honeybees pollinate flowers, produce honey through nectar processing, and have served humans as sweetener and medicine for millennia."
+  },
+  {
+    "task_id": "q153",
+    "answer": "I need to calculate the net operating revenue for 2024 step by step.\n\n**2023 Baseline:**\n- Small stores: 160, revenue each: $200,000\n- Large stores: 40, revenue each: $500,000\n\n**2024 Changes:**\n\nSmall stores closed: 15% of 160 = 24\nSmall stores remaining: 160 - 24 = 136\n\nNew large stores opened: 20\nTotal large stores: 40 + 20 = 60\n\nConversions: For every 2 large stores opened, 1 small store converts to medium\nConversions: 20 / 2 = 10 small stores become medium stores\n\nFinal store counts:\n- Small stores: 136 - 10 = 126\n- Medium stores: 10\n- Large stores: 60\n\n**2024 Revenue per store:**\n- Small: $200,000 \u00d7 (1 - 0.08) = $200,000 \u00d7 0.92 = $184,000\n- Medium: $320,000\n- Large: $500,000 \u00d7 (1 + 0.05) = $500,000 \u00d7 1.05 = $525,000\n\n**2024 Gross Revenue:**\n- Small: 126 \u00d7 $184,000 = $23,184,000\n- Medium: 10 \u00d7 $320,000 = $3,200,000\n- Large: 60 \u00d7 $525,000 = $31,500,000\n\nTotal gross revenue: $23,184,"
+  },
+  {
+    "task_id": "q570",
+    "answer": "```java\nimport java.util.*;\nimport java.util.concurrent.*;\nimport java.util.concurrent.locks.*;\n\npublic class ConcurrentTTLCache<K, V> {\n    private final int capacity;\n    private final long ttlMillis;\n    private final ConcurrentHashMap<K, Node> map;\n    private final ReadWriteLock lock = new ReentrantReadWriteLock();\n    private final Lock readLock = lock.readLock();\n    private final Lock writeLock = lock.writeLock();\n    \n    // Doubly-linked list for LRU (manual implementation for O(1) operations with consistency)\n    private final Node head; // sentinel (most recently used)\n    private final Node tail; // sentinel (least recently used)\n    private int size;\n    \n    private static class Node {\n        Object key; // use Object to avoid generic array issues, cast on use\n        Object value;\n        long timestamp;\n        Node prev;\n        Node next;\n        \n        Node(Object key, Object value) {\n            this.key = key;\n            this.value = value;\n            this.timestamp = System.currentTimeMillis();\n        }\n        \n        // Sentinel constructor\n        Node() {\n        }\n    }\n    \n    @SuppressWarnings(\"unchecked\")\n    public ConcurrentTTLCache(int capacity, long ttlMillis) {\n        if (capacity <= 0) {\n            throw new IllegalArgumentException(\"capacity must be positive\");\n        }\n        if (ttlMillis <= 0) {\n            throw new IllegalArgumentException(\"ttlMillis must be positive\");\n        }\n        this.capacity = capacity;\n        this.ttlMillis = ttlMillis;\n        this.map = new ConcurrentHashMap<>();\n        this.head = new Node();\n        this.tail = new Node();\n        this.head.next = this.tail;\n        this.tail.prev = this.head;\n        this.size = 0;"
+  },
+  {
+    "task_id": "q713",
+    "answer": "```python\ndef reverse_words(text):\n    if not text or text.strip() == '':\n        return ''\n    return ' '.join(text.split()[::-1])\n```"
+  },
+  {
+    "task_id": "q115",
+    "answer": "I need to find the final daily production after two successive increases.\n\nStarting amount: 400 loaves\n\nFirst month increase (25%):\n400 \u00d7 1.25 = 500 loaves\n\nSecond month increase (20% on the new amount):\n500 \u00d7 1.20 = 600 loaves\n\nAnswer: 600"
+  },
+  {
+    "task_id": "q325",
+    "answer": "Positive \u2014 the reviewer expresses clear satisfaction and praises the subject."
   }
 ]

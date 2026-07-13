@@ -1,0 +1,162 @@
+[
+  {
+    "task_id": "fact-06",
+    "prompt": "Explain briefly how a microwave oven heats food, specifically mentioning the role of water molecules."
+  },
+  {
+    "task_id": "fact-07",
+    "prompt": "What is the primary difference between nuclear fission and nuclear fusion?"
+  },
+  {
+    "task_id": "fact-08",
+    "prompt": "Who wrote the novel '1984', and what is the primary political concept it warns against?"
+  },
+  {
+    "task_id": "fact-09",
+    "prompt": "Explain what a black hole is and what the term 'event horizon' signifies."
+  },
+  {
+    "task_id": "fact-10",
+    "prompt": "What is the primary function of ribosomes within an animal cell?"
+  },
+  {
+    "task_id": "math-06",
+    "prompt": "A company's revenue was $120,000 in Q1. In Q2, it increased by 15%. In Q3, it decreased by 10% from Q2. What was the exact Q3 revenue?"
+  },
+  {
+    "task_id": "math-07",
+    "prompt": "A train leaves Station A at 8:00 AM traveling at 60 mph. Another train leaves Station A at 9:00 AM on a parallel track traveling at 80 mph. What time will the second train catch up to the first?"
+  },
+  {
+    "task_id": "math-08",
+    "prompt": "If a rectangle has a perimeter of 40 inches and its length is 4 inches more than its width, what is its area in square inches?"
+  },
+  {
+    "task_id": "math-09",
+    "prompt": "A baker makes 200 loaves of bread. He sells 40% in the morning, and 50% of the remainder in the afternoon. How many loaves are left unsold?"
+  },
+  {
+    "task_id": "math-10",
+    "prompt": "An electronics store marks up a laptop by 25% to reach a final selling price of $1,500. What was the original cost of the laptop before the markup?"
+  },
+  {
+    "task_id": "sent-06",
+    "prompt": "Classify the sentiment of this review and justify your choice: 'The concert was visually stunning, but the sound mixing was so awful I couldn't hear the vocals at all.'"
+  },
+  {
+    "task_id": "sent-07",
+    "prompt": "Classify the sentiment of this comment and justify your choice: 'I am absolutely thrilled with this new lens! The autofocus is lightning fast and the image quality is incredibly crisp.'"
+  },
+  {
+    "task_id": "sent-08",
+    "prompt": "Classify the sentiment of this feedback and justify your choice: 'The package arrived three days later than promised and the box was completely crushed. Unacceptable.'"
+  },
+  {
+    "task_id": "sent-09",
+    "prompt": "Classify the sentiment of this movie review and justify your choice: 'It was okay. It passed the time on a rainy Sunday, but I probably won't remember the plot next week.'"
+  },
+  {
+    "task_id": "sent-10",
+    "prompt": "Classify the sentiment of this post and justify your choice: 'Despite the rainy weather and the long lines, our tour guide made the trip around Rome completely magical and unforgettable.'"
+  },
+  {
+    "task_id": "summ-06",
+    "prompt": "Summarize the following in exactly one sentence: The human immune system is a complex network of cells and proteins that defends the body against infection. It keeps a record of every germ it has ever defeated so it can recognize and destroy the microbe quickly if it enters the body again."
+  },
+  {
+    "task_id": "summ-07",
+    "prompt": "Condense this passage into exactly 10 words: The rapid advancement of quantum computing threatens to break current encryption standards, forcing cybersecurity experts to develop new, post-quantum cryptographic algorithms."
+  },
+  {
+    "task_id": "summ-08",
+    "prompt": "Provide a one-sentence summary of this text: Deep sea hydrothermal vents host unique ecosystems. Unlike most life on Earth which relies on sunlight for photosynthesis, the bacteria here use chemosynthesis, converting toxic minerals from the vents into usable energy."
+  },
+  {
+    "task_id": "summ-09",
+    "prompt": "Summarize the main point of this text in under 15 words: Excessive screen time before bed disrupts the production of melatonin, a hormone critical for sleep regulation, leading to insomnia and daytime fatigue."
+  },
+  {
+    "task_id": "summ-10",
+    "prompt": "Provide a two-sentence summary: The Mars rover Perseverance was designed to seek signs of ancient life and collect samples of rock and regolith. Its companion, the Ingenuity helicopter, successfully demonstrated that powered, controlled flight is possible in the thin Martian atmosphere."
+  },
+  {
+    "task_id": "ner-06",
+    "prompt": "Extract all named entities and their types from: Tim Cook announced that Apple will open a new campus in Austin, Texas next September."
+  },
+  {
+    "task_id": "ner-07",
+    "prompt": "Extract all named entities and their types from: On July 20, 1969, Neil Armstrong and Buzz Aldrin landed the Apollo 11 module on the Moon."
+  },
+  {
+    "task_id": "ner-08",
+    "prompt": "Extract all named entities and their types from: The World Health Organization, headquartered in Geneva, declared the outbreak a pandemic on Wednesday."
+  },
+  {
+    "task_id": "ner-09",
+    "prompt": "Extract all named entities and their types from: Jeff Bezos stepped down as CEO of Amazon in 2021 to focus his efforts on Blue Origin."
+  },
+  {
+    "task_id": "ner-10",
+    "prompt": "Extract all named entities and their types from: The Magna Carta was famously signed by King John at Runnymede in the year 1215."
+  },
+  {
+    "task_id": "debug-06",
+    "prompt": "This Python code throws an IndexError when passed an empty list: `def get_last_element(lst): return lst[-1]`. Fix it so it safely returns None if the list is empty."
+  },
+  {
+    "task_id": "debug-07",
+    "prompt": "This JavaScript function is supposed to check if a number is even, but it evaluates incorrectly due to a logic error: `function isEven(n) { return n % 2 === 0 || 1; }`. Find and fix the bug."
+  },
+  {
+    "task_id": "debug-08",
+    "prompt": "This Python code fails because it tries to assign a key to a string instead of a dictionary: `def add_score(score): data = '{\"name\": \"Alice\"}'; data[\"score\"] = score; return data`. Fix it so it correctly parses, updates, and returns a dict."
+  },
+  {
+    "task_id": "debug-09",
+    "prompt": "This Python loop misses some items because it modifies a list while iterating over it: `def remove_negatives(nums): for n in nums: if n < 0: nums.remove(n); return nums`. Provide a corrected implementation."
+  },
+  {
+    "task_id": "debug-10",
+    "prompt": "This SQL query throws a syntax error near the sorting clause. Find and fix it: `SELECT name, age FROM users WHERE age > 18 ORDER AGE DESC;`"
+  },
+  {
+    "task_id": "logic-06",
+    "prompt": "Five numbered boxes (1, 2, 3, 4, 5) contain different fruits: Apple, Banana, Cherry, Date, Fig. Banana is not in box 1 or 5. Cherry is in a box whose number is exactly 2 higher than Apple's box. Fig is in box 4. What box is the Date in?"
+  },
+  {
+    "task_id": "logic-07",
+    "prompt": "A man is looking at a photograph. Someone asks him, 'Whose picture are you looking at?' He replies: 'I have no brothers or sisters, but that man's father is my father's son.' Who is the person in the photograph?"
+  },
+  {
+    "task_id": "logic-08",
+    "prompt": "Three travelers, X, Y, and Z, are going to London, Paris, and Rome (each to a different city). X is not going to Paris. Y is going to Rome. Where is Z going?"
+  },
+  {
+    "task_id": "logic-09",
+    "prompt": "Four people ran a race. Mark beat John but didn't win. Sarah came in last. Rachel beat Mark. What was the exact finishing order from first to last?"
+  },
+  {
+    "task_id": "logic-10",
+    "prompt": "A farmer has 17 sheep. A storm hits and all but 9 die. How many sheep are left alive?"
+  },
+  {
+    "task_id": "codegen-06",
+    "prompt": "Write a Python function `is_anagram(str1, str2)` that returns True if the two strings are anagrams of each other, ignoring spaces and case, and False otherwise."
+  },
+  {
+    "task_id": "codegen-07",
+    "prompt": "Write a JavaScript function `generateFibonacci(n)` that takes a positive integer `n` and returns an array containing the first `n` numbers of the Fibonacci sequence."
+  },
+  {
+    "task_id": "codegen-08",
+    "prompt": "Write a Python function `find_missing_number(nums)` that takes a list of distinct integers from 0 to n (where one number is missing) and efficiently returns the missing number."
+  },
+  {
+    "task_id": "codegen-09",
+    "prompt": "Write a Python function `merge_intervals(intervals)` that takes a list of potentially overlapping intervals (e.g., `[[1,3], [2,6], [8,10]]`) and returns a new list of merged intervals."
+  },
+  {
+    "task_id": "codegen-10",
+    "prompt": "Write a Python function `is_balanced(s)` that takes a string of brackets (containing only `(`, `)`, `{`, `}`, `[`, `]`) and returns True if they are perfectly balanced and nested correctly, and False otherwise."
+  }
+]

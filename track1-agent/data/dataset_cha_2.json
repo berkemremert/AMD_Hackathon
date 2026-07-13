@@ -1,0 +1,162 @@
+[
+  {
+    "task_id": "factual_knowledge_v2_001",
+    "prompt": "Explain the difference between a computer's RAM and long-term storage. Why can adding RAM improve multitasking without increasing how many files the computer can permanently store?"
+  },
+  {
+    "task_id": "factual_knowledge_v2_002",
+    "prompt": "How does a household refrigerator move heat from its cold interior into a warmer room, and why does the back or underside of the refrigerator feel warm?"
+  },
+  {
+    "task_id": "factual_knowledge_v2_003",
+    "prompt": "Why does the Moon have a stronger effect on Earth's ocean tides than the Sun even though the Sun's gravitational pull on Earth is greater overall?"
+  },
+  {
+    "task_id": "factual_knowledge_v2_004",
+    "prompt": "What is the difference between an HTTP 301 response and an HTTP 404 response, and how should a web browser or search engine generally interpret each one?"
+  },
+  {
+    "task_id": "factual_knowledge_v2_005",
+    "prompt": "Explain how vaccination creates immune memory without requiring a person to experience the full disease, and why booster doses may sometimes be needed."
+  },
+  {
+    "task_id": "mathematical_reasoning_v2_001",
+    "prompt": "A bakery begins the day with 480 loaves. It sells 35% of them, donates 48 of the remaining loaves, and later receives 72 additional loaves from another branch. How many loaves does it have at the end of the day?"
+  },
+  {
+    "task_id": "mathematical_reasoning_v2_002",
+    "prompt": "A service normally costs $48 per month. A customer receives a 20% discount for six months, and 5% tax is applied to each discounted monthly charge. A one-time $30 setup fee is added after tax. What is the total paid over the six months?"
+  },
+  {
+    "task_id": "mathematical_reasoning_v2_003",
+    "prompt": "A printer produces 240 pages at 30 pages per minute, pauses for 4 minutes, and then produces 180 pages at 45 pages per minute. What is its average number of pages produced per minute over the entire period, including the pause?"
+  },
+  {
+    "task_id": "mathematical_reasoning_v2_004",
+    "prompt": "A club has 25 members, with adults and teenagers in a ratio of 3:2. Four adults leave and three teenagers join. What is the new ratio of adults to teenagers in simplest form?"
+  },
+  {
+    "task_id": "mathematical_reasoning_v2_005",
+    "prompt": "A project budget is $18,000. Equipment uses 35% of the budget, software uses 20% of the amount remaining after equipment, and training costs $2,100. How much of the original budget remains unspent?"
+  },
+  {
+    "task_id": "sentiment_classification_v2_001",
+    "prompt": "Classify the sentiment as positive, negative, mixed, or neutral, and justify the label in one sentence: \"The setup instructions were clear, the device connected immediately, and every feature has worked reliably so far.\""
+  },
+  {
+    "task_id": "sentiment_classification_v2_002",
+    "prompt": "Classify the sentiment as positive, negative, mixed, or neutral, and justify the label in one sentence: \"The subscription became more expensive, support stopped answering, and the latest update deleted my saved preferences.\""
+  },
+  {
+    "task_id": "sentiment_classification_v2_003",
+    "prompt": "Classify the sentiment as positive, negative, mixed, or neutral, and justify the label in one sentence: \"The train departed at 08:15, stopped at four stations, and arrived in Bristol at 10:05.\""
+  },
+  {
+    "task_id": "sentiment_classification_v2_004",
+    "prompt": "Classify the sentiment as positive, negative, mixed, or neutral, and justify the label in one sentence: \"The hotel room was spotless and quiet, but the air conditioner failed during the hottest night of our stay.\""
+  },
+  {
+    "task_id": "sentiment_classification_v2_005",
+    "prompt": "Classify the sentiment as positive, negative, mixed, or neutral, and justify the label in one sentence: \"The course explains difficult ideas well, although several exercises contain confusing instructions and outdated screenshots.\""
+  },
+  {
+    "task_id": "text_summarisation_v2_001",
+    "prompt": "Summarize the following passage in exactly 18 words: A coastal town installed sensors that warn residents when floodwater rises rapidly. During the first major storm, the system sent alerts twenty minutes before several roads became unsafe, allowing schools to dismiss early and emergency crews to close vulnerable bridges."
+  },
+  {
+    "task_id": "text_summarisation_v2_002",
+    "prompt": "Summarize the following passage in exactly two bullet points, using no more than 10 words per bullet: A grocery chain began donating unsold bread and produce to local food banks instead of discarding them. Waste disposal costs fell, food donations increased, and employees now sort usable items before stores close."
+  },
+  {
+    "task_id": "text_summarisation_v2_003",
+    "prompt": "Summarize the following passage in one sentence of no more than 24 words: A university replaced printed course packets with digital materials. Students spent less on textbooks and instructors could update readings quickly, but some students reported eye strain and unreliable internet access."
+  },
+  {
+    "task_id": "text_summarisation_v2_004",
+    "prompt": "Write a headline followed by a two-sentence summary of the passage: Engineers inspected a century-old railway tunnel after small cracks appeared near its eastern entrance. They found no immediate danger, but imposed a temporary speed limit and scheduled overnight reinforcement work for the next three weeks."
+  },
+  {
+    "task_id": "text_summarisation_v2_005",
+    "prompt": "Summarize the incident in exactly three lines labeled Problem, Response, and Outcome: A faulty software rule marked legitimate international purchases as fraud, blocking thousands of transactions for forty minutes. The bank disabled the rule, reprocessed declined payments, and added country-specific testing. Approval rates then returned to normal."
+  },
+  {
+    "task_id": "named_entity_recognition_v2_001",
+    "prompt": "Extract every named entity and label it as PERSON, ORGANIZATION, LOCATION, or DATE. Return only a JSON array with \"text\" and \"type\" fields. Sentence: \"Ravi Mehta met the European Space Agency in Madrid on 12 October 2025.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v2_002",
+    "prompt": "Identify all named entities in the text and classify each as PERSON, ORGANIZATION, LOCATION, or DATE. Return only JSON. Text: \"On 21 August 2026, Laila Haddad will represent Cedar Analytics at the University of Edinburgh in Scotland.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v2_003",
+    "prompt": "Find and label all PERSON, ORGANIZATION, LOCATION, and DATE entities. Output only a JSON array of objects containing \"text\" and \"type\". \"Kenji Mori transferred from Sony to DeepMind in London in January 2024.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v2_004",
+    "prompt": "Extract the named entities and assign one of these types: PERSON, ORGANIZATION, LOCATION, DATE. Return only JSON. Passage: \"UNESCO appointed Amara Okafor to lead its education conference in Accra on 3 March 2026.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v2_005",
+    "prompt": "List every named entity as JSON using the labels PERSON, ORGANIZATION, LOCATION, or DATE. Text: \"Clara Jensen left Copenhagen for Boston in June 2025 to join Atlas Biotech.\""
+  },
+  {
+    "task_id": "code_debugging_v2_001",
+    "prompt": "This function should create a matrix whose cells can be changed independently, but editing one row changes every row. Identify the cause and provide a corrected implementation:\n\ndef make_grid(rows, cols):\n    return [[0] * cols] * rows"
+  },
+  {
+    "task_id": "code_debugging_v2_002",
+    "prompt": "The function should return a sorted copy without modifying the input, but it always returns None. Explain the bug and fix it:\n\ndef sorted_copy(items):\n    result = items[:]\n    return result.sort()"
+  },
+  {
+    "task_id": "code_debugging_v2_003",
+    "prompt": "The function should sum every even number in the iterable, but it stops after examining the first item. Identify the indentation error and provide corrected code:\n\ndef sum_evens(values):\n    total = 0\n    for value in values:\n        if value % 2 == 0:\n            total += value\n        return total"
+  },
+  {
+    "task_id": "code_debugging_v2_004",
+    "prompt": "This function should return the number of pages needed for a list, but it reports one extra page whenever the item count is exactly divisible by the page size. It must also reject non-positive page sizes. Find and fix the bug:\n\ndef page_count(item_count, page_size):\n    return item_count // page_size + 1"
+  },
+  {
+    "task_id": "code_debugging_v2_005",
+    "prompt": "The returned function should remember and increment its own count, but calling it raises UnboundLocalError. Explain why and provide a corrected implementation:\n\ndef make_counter():\n    count = 0\n    def increment():\n        count += 1\n        return count\n    return increment"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v2_001",
+    "prompt": "Iris, Jonah, Kira, and Luis each play a different instrument: drums, guitar, piano, or violin. Jonah plays piano. Kira plays neither violin nor drums. Iris does not play guitar. Luis does not play drums. Determine each person's instrument."
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v2_002",
+    "prompt": "Five jobs—A, B, C, D, and E—are processed one at a time. C is immediately after A. E is before A but is not first. B is neither first nor last. D is immediately before B. What is the only possible processing order?"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v2_003",
+    "prompt": "Mina, Noah, Oren, and Pia each present on a different day from Tuesday through Friday. Noah presents on Friday. Pia presents immediately after Mina. Mina presents before Oren, and Oren does not present on Friday. Determine the presentation schedule."
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v2_004",
+    "prompt": "Four teams—Falcons, Owls, Bears, and Lynx—finish first through fourth. Falcons finish before Owls. Lynx finish immediately after Bears. Owls are not fourth, and Bears are not first. What is the finishing order?"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v2_005",
+    "prompt": "Exactly one of Aria, Blake, and Chen is responsible for an error, and exactly two of these statements are true. Aria says, \"Aria is responsible.\" Blake says, \"Blake is responsible.\" Chen says, \"Aria is not responsible.\" Who is responsible?"
+  },
+  {
+    "task_id": "code_generation_v2_001",
+    "prompt": "Write a Python function `compress_ranges(numbers)` that accepts an iterable of integers, removes duplicates, sorts them, and returns consecutive runs as strings. For example, `[8, 1, 2, 3, 8, 10]` should return `[\"1-3\", \"8\", \"10\"]`. Return an empty list for empty input."
+  },
+  {
+    "task_id": "code_generation_v2_002",
+    "prompt": "Write a Python function `rotate_clockwise(matrix)` that returns a new matrix rotated 90 degrees clockwise. Support rectangular matrices, return `[]` for an empty matrix, reject ragged rows with `ValueError`, and do not modify the input."
+  },
+  {
+    "task_id": "code_generation_v2_003",
+    "prompt": "Write a Python function `deep_get(mapping, keys, default=None)` that follows a sequence of keys through nested dictionaries. Return `default` if any key is missing or an intermediate value is not a dictionary. An empty key sequence should return the original mapping."
+  },
+  {
+    "task_id": "code_generation_v2_004",
+    "prompt": "Write a Python function `stable_partition(items, predicate)` that returns a tuple of two lists: items for which `predicate` is true and items for which it is false. Preserve the original order in both lists and call the predicate exactly once per item."
+  },
+  {
+    "task_id": "code_generation_v2_005",
+    "prompt": "Write a Python function `sliding_maximum(numbers, window)` that returns the maximum value in every consecutive window. Raise `ValueError` when `window <= 0` or exceeds the input length, and implement it in O(n) time."
+  }
+]

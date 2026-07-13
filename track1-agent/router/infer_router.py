@@ -21,8 +21,12 @@ def _load():
     if _model is not None:
         return
     _device = torch.device("cpu")
-    _tokenizer = DistilBertTokenizerFast.from_pretrained(CHECKPOINT_DIR)
-    _model = DistilBertForSequenceClassification.from_pretrained(CHECKPOINT_DIR).to(_device)
+    _tokenizer = DistilBertTokenizerFast.from_pretrained(
+        CHECKPOINT_DIR, local_files_only=True
+    )
+    _model = DistilBertForSequenceClassification.from_pretrained(
+        CHECKPOINT_DIR, local_files_only=True
+    ).to(_device)
     _model.eval()
 
 

@@ -1,0 +1,162 @@
+[
+  {
+    "task_id": "fact-01",
+    "prompt": "Explain the primary difference between a comet and an asteroid, and state where they are typically found in our solar system."
+  },
+  {
+    "task_id": "fact-02",
+    "prompt": "What are the three main types of rock, and how is each one formed?"
+  },
+  {
+    "task_id": "fact-03",
+    "prompt": "Identify the scientist who proposed the theory of general relativity and explain what the theory fundamentally describes in one sentence."
+  },
+  {
+    "task_id": "fact-04",
+    "prompt": "What is photosynthesis, and what are the primary inputs and outputs of this biological process?"
+  },
+  {
+    "task_id": "fact-05",
+    "prompt": "Name the longest river in South America and the mountain range where it originates."
+  },
+  {
+    "task_id": "math-01",
+    "prompt": "A car travels at 60 mph for 2.5 hours, then speeds up to 75 mph for another 1.5 hours. What is the total distance traveled?"
+  },
+  {
+    "task_id": "math-02",
+    "prompt": "If a jacket costs $80 and is discounted by 25%, and then a 10% sales tax is applied to the discounted price, what is the final cost?"
+  },
+  {
+    "task_id": "math-03",
+    "prompt": "A recipe calls for 2.5 cups of flour to make 12 cookies. How many cups of flour are needed to make 30 cookies?"
+  },
+  {
+    "task_id": "math-04",
+    "prompt": "An investment of $5,000 grows by 6% annually via compound interest. How much is the investment worth at the end of 2 years? (Round to the nearest whole dollar)."
+  },
+  {
+    "task_id": "math-05",
+    "prompt": "A tank holds 500 liters of water. Pipe A can fill it in 5 hours, and Pipe B can empty it in 10 hours. If both pipes are open, how long will it take to fill the tank completely?"
+  },
+  {
+    "task_id": "sent-01",
+    "prompt": "Classify the sentiment of this message and justify it: 'The food was delivered late and cold, but the customer service representative was extremely polite and refunded my order immediately.'"
+  },
+  {
+    "task_id": "sent-02",
+    "prompt": "Classify the sentiment of this review and justify it: 'I've been using this software for a week, and it's completely unintuitive. Total waste of money.'"
+  },
+  {
+    "task_id": "sent-03",
+    "prompt": "Classify the sentiment of this tweet and justify it: 'Just got the new update! The interface is gorgeous, though it takes a bit of getting used to.'"
+  },
+  {
+    "task_id": "sent-04",
+    "prompt": "Classify the sentiment of this feedback and justify it: 'The hotel room was adequate for the price, neither spectacular nor terrible. Just average.'"
+  },
+  {
+    "task_id": "sent-05",
+    "prompt": "Classify the sentiment of this comment and justify it: 'Wow, this new album exceeded all my expectations! Every track is a masterpiece.'"
+  },
+  {
+    "task_id": "summ-01",
+    "prompt": "Summarize the following in exactly one sentence: The industrial revolution marked a major turning point in history; almost every aspect of daily life was influenced in some way. In particular, average income and population began to exhibit unprecedented sustained growth."
+  },
+  {
+    "task_id": "summ-02",
+    "prompt": "Provide a two-sentence summary of this text: Artificial Intelligence aims to create systems capable of performing tasks that typically require human intelligence. These tasks include learning, reasoning, problem-solving, perception, and language understanding, leading to rapid advancements in various industries like healthcare and finance."
+  },
+  {
+    "task_id": "summ-03",
+    "prompt": "Condense this paragraph into a maximum of 15 words: Sleep is vital for human health, allowing the brain and body to rest, repair tissues, consolidate memories, and regulate essential hormones that control growth and appetite."
+  },
+  {
+    "task_id": "summ-04",
+    "prompt": "Summarize the core argument here in a single sentence: While remote work offers employees greater flexibility and eliminates commute times, many managers argue it stifles spontaneous collaboration and makes it difficult to maintain a unified company culture over time."
+  },
+  {
+    "task_id": "summ-05",
+    "prompt": "Provide a brief, one-sentence summary: Renewable energy sources like solar and wind power are becoming increasingly cost-competitive with fossil fuels, driving a global transition toward more sustainable power grids and reducing carbon emissions."
+  },
+  {
+    "task_id": "ner-01",
+    "prompt": "Extract all named entities and their types from: Dr. Eleanor Vance presented her findings on quantum computing at the IEEE conference in Tokyo on Friday."
+  },
+  {
+    "task_id": "ner-02",
+    "prompt": "Extract all named entities and their types from: Microsoft acquired GitHub for $7.5 billion in 2018 to expand its developer ecosystem."
+  },
+  {
+    "task_id": "ner-03",
+    "prompt": "Extract all named entities and their types from: The Louvre Museum, located in Paris, houses the famous Mona Lisa painted by Leonardo da Vinci."
+  },
+  {
+    "task_id": "ner-04",
+    "prompt": "Extract all named entities and their types from: In October, Elon Musk announced a new Tesla manufacturing plant would be built in Monterrey, Mexico."
+  },
+  {
+    "task_id": "ner-05",
+    "prompt": "Extract all named entities and their types from: Sarah and John traveled through the Canadian Rockies via the Rocky Mountaineer train last August."
+  },
+  {
+    "task_id": "debug-01",
+    "prompt": "This Python function should return True if a string is a palindrome, but fails on mixed-case words: `def is_palindrome(s): return s == s[::-1]`. Find and fix the bug."
+  },
+  {
+    "task_id": "debug-02",
+    "prompt": "This JavaScript loop is meant to sum an array of numbers but throws an error or returns NaN. Find and fix the bug: `function sum(arr) { let total = 0; for(let i=0; i<=arr.length; i++) { total += arr[i]; } return total; }`"
+  },
+  {
+    "task_id": "debug-03",
+    "prompt": "This Python code throws a KeyError if the key doesn't exist. Rewrite it to safely return 'Not Found' instead: `def get_value(my_dict, key): return my_dict[key]`"
+  },
+  {
+    "task_id": "debug-04",
+    "prompt": "This function should append an item to a list, but it's mutating a shared default argument. Find and fix it: `def add_item(item, lst=[]): lst.append(item); return lst`"
+  },
+  {
+    "task_id": "debug-05",
+    "prompt": "This Python function meant to filter even numbers contains a syntax error. Find and fix it: `def get_evens(nums): return [n for n in nums if n % 2 = 0]`"
+  },
+  {
+    "task_id": "logic-01",
+    "prompt": "Four cars (Red, Blue, Green, Yellow) are parked in a row. The Red car is next to the Blue car. The Green car is not on either end. The Yellow car is parked first. What is the order of the cars from first to last?"
+  },
+  {
+    "task_id": "logic-02",
+    "prompt": "Alice, Bob, and Charlie ordered a pizza, a burger, and a salad. Alice didn't order the salad. Bob is allergic to tomatoes, which are in the pizza and salad. Who ordered the pizza?"
+  },
+  {
+    "task_id": "logic-03",
+    "prompt": "If all Zorgs are Bloops, and some Bloops are Flarps, is it absolutely certain that some Zorgs are Flarps? Yes or no, and briefly explain."
+  },
+  {
+    "task_id": "logic-04",
+    "prompt": "A code lock has 3 digits. 682: one digit is right and in its place. 614: one digit is right but in the wrong place. 206: two digits are right but both are in the wrong place. 738: all digits are wrong. 380: one digit is right but in the wrong place. What is the code?"
+  },
+  {
+    "task_id": "logic-05",
+    "prompt": "Five runners finished a race. Dan finished before Emma but after Claire. Bob finished before Claire. Alice finished after Emma. Who came in third?"
+  },
+  {
+    "task_id": "codegen-01",
+    "prompt": "Write a Python function `reverse_words(sentence)` that takes a string of words and returns the sentence with the words in reverse order."
+  },
+  {
+    "task_id": "codegen-02",
+    "prompt": "Write a JavaScript function that takes an array of integers and returns a new array containing only the unique values, maintaining their original sequence."
+  },
+  {
+    "task_id": "codegen-03",
+    "prompt": "Write a Python function `count_vowels(text)` that returns the total number of vowels (a, e, i, o, u) in a given string, ignoring case."
+  },
+  {
+    "task_id": "codegen-04",
+    "prompt": "Write a Python function `flatten_list(nested_list)` that takes a list of lists and returns a single flat list containing all the elements."
+  },
+  {
+    "task_id": "codegen-05",
+    "prompt": "Write a Python function that takes a string and returns a dictionary with the frequency count of each character in the string."
+  }
+]

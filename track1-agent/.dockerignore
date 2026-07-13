@@ -1,4 +1,5 @@
 __pycache__/
+**/__pycache__/
 .env
 .pytest_cache/
 .DS_Store
@@ -6,3 +7,11 @@ __pycache__/
 evaluation_results.json
 .streamlit/
 compare_project/
+venv/
+.venv/
+.git/
+output/
+test_output/
+docs/
+scripts/
+*.csv

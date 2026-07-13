@@ -34,8 +34,10 @@ class QwenSummaryGenerator(LocalSummaryGenerator):
             dtype_map = {"auto": "auto", "fp16": torch.float16, "bf16": torch.bfloat16, "fp32": torch.float32}
             torch_dtype = dtype_map.get(self.config.dtype, "auto")
             
-            # Lazy load
-            tokenizer = AutoTokenizer.from_pretrained(self.config.model_id, local_files_only=False) # Fallback to download if missing, Docker handles offline
+            # Runtime is intentionally offline: a configured local model must already exist.
+            tokenizer = AutoTokenizer.from_pretrained(
+                self.config.model_id, local_files_only=True
+            )
             
             # Use accelerate if needed or standard
             device_map = self.config.device if self.config.device != "cpu" else None
@@ -44,7 +46,7 @@ class QwenSummaryGenerator(LocalSummaryGenerator):
                 self.config.model_id, 
                 torch_dtype=torch_dtype,
                 device_map=device_map,
-                local_files_only=False
+                local_files_only=True
             )
             model.eval()
             

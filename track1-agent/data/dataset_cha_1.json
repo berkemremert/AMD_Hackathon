@@ -1,0 +1,162 @@
+[
+  {
+    "task_id": "factual_knowledge_001",
+    "prompt": "Explain why metal feels colder than wood when both have been in the same room for several hours. Mention thermal conductivity and the direction of heat transfer."
+  },
+  {
+    "task_id": "factual_knowledge_002",
+    "prompt": "What is the difference between weather and climate, and why can one unusually cold week not by itself disprove long-term global warming?"
+  },
+  {
+    "task_id": "factual_knowledge_003",
+    "prompt": "Explain how a bill becomes a federal law in the United States, including the roles of both chambers of Congress and the president."
+  },
+  {
+    "task_id": "factual_knowledge_004",
+    "prompt": "Why do antibiotics treat bacterial infections but not viral infections? Briefly describe what antibiotics target and how viruses reproduce."
+  },
+  {
+    "task_id": "factual_knowledge_005",
+    "prompt": "Describe how public-key encryption allows someone to send a confidential message without first sharing a secret key. Distinguish the public key from the private key."
+  },
+  {
+    "task_id": "mathematical_reasoning_001",
+    "prompt": "A jacket is marked down by 25% from $160, and then an 8% sales tax is applied to the discounted price. What is the final price?"
+  },
+  {
+    "task_id": "mathematical_reasoning_002",
+    "prompt": "A tank is 3/5 full. After 120 liters are added, it is 9/10 full. What is the tank's total capacity in liters?"
+  },
+  {
+    "task_id": "mathematical_reasoning_003",
+    "prompt": "A delivery van travels 180 km at 60 km/h, stops for 30 minutes, and then travels 150 km at 75 km/h. What is its average speed for the entire trip, including the stop?"
+  },
+  {
+    "task_id": "mathematical_reasoning_004",
+    "prompt": "An investment of $5,000 grows by 6% in the first year, loses 4% in the second year, and grows by 10% in the third year. What is its value after three years?"
+  },
+  {
+    "task_id": "mathematical_reasoning_005",
+    "prompt": "A school has 480 students. The ratio of students taking French to Spanish is 3:5. If 40 students taking Spanish switch to French, what is the new ratio of French students to Spanish students?"
+  },
+  {
+    "task_id": "sentiment_classification_001",
+    "prompt": "Classify the sentiment of this review as positive, negative, mixed, or neutral, and justify your choice in one sentence: \"The camera takes beautiful photos, but the battery rarely lasts until evening.\""
+  },
+  {
+    "task_id": "sentiment_classification_002",
+    "prompt": "Classify the sentiment of this customer comment as positive, negative, mixed, or neutral, and briefly explain: \"Shipping was two days late, yet the support team apologized and replaced the damaged item immediately.\""
+  },
+  {
+    "task_id": "sentiment_classification_003",
+    "prompt": "Classify the sentiment as positive, negative, mixed, or neutral, and identify the main clue: \"The update installed successfully. The menus are now arranged differently, and the version number is 4.2.\""
+  },
+  {
+    "task_id": "sentiment_classification_004",
+    "prompt": "Classify the sentiment of this employee feedback as positive, negative, mixed, or neutral, and justify it: \"My manager gives useful feedback and the work is interesting, although deadlines are often unrealistic.\""
+  },
+  {
+    "task_id": "sentiment_classification_005",
+    "prompt": "Classify the sentiment as positive, negative, mixed, or neutral, and briefly explain: \"I expected very little from this inexpensive speaker, but its clear sound and sturdy build surprised me.\""
+  },
+  {
+    "task_id": "text_summarisation_001",
+    "prompt": "Summarize the following passage in exactly one sentence: A city introduced dedicated bus lanes on three crowded roads. During the first month, average bus travel times fell by 18%, while car journeys became about 4% longer. Officials plan to monitor traffic for six more months before deciding whether to expand the program."
+  },
+  {
+    "task_id": "text_summarisation_002",
+    "prompt": "Summarize the following passage in no more than 25 words: The library will extend weekday opening hours during exam season. It will remain open until midnight, add quiet study rooms, and provide free coffee after 8 p.m. Weekend hours will remain unchanged."
+  },
+  {
+    "task_id": "text_summarisation_003",
+    "prompt": "Summarize the following passage as three bullet points covering the problem, the action taken, and the result: A software company discovered that new users were abandoning its registration form because it required twelve fields. The design team reduced the form to five required fields and moved the remaining questions to an optional profile page. Completed registrations increased by 32% over the next four weeks."
+  },
+  {
+    "task_id": "text_summarisation_004",
+    "prompt": "Summarize the following passage in exactly 20 words: Researchers tested a new water filter in five rural communities. The filter removed most harmful bacteria, required no electricity, and could be maintained using locally available materials. However, it did not remove dissolved salt."
+  },
+  {
+    "task_id": "text_summarisation_005",
+    "prompt": "Write a two-sentence summary of the following passage, with the first sentence describing the change and the second describing its impact: A manufacturer replaced disposable plastic packaging with reusable shipping containers. The change increased initial logistics costs, but packaging waste fell by 70% and the containers paid for themselves within fourteen months."
+  },
+  {
+    "task_id": "named_entity_recognition_001",
+    "prompt": "Extract all named entities from the sentence and label each as PERSON, ORGANIZATION, LOCATION, or DATE: \"On 14 February 2025, Elena Rossi presented NovaGrid's battery project in Milan.\""
+  },
+  {
+    "task_id": "named_entity_recognition_002",
+    "prompt": "Extract all named entities and label their types as PERSON, ORGANIZATION, LOCATION, or DATE: \"Professor Daniel Kim joined the University of Toronto after leaving Samsung Research in June 2023.\""
+  },
+  {
+    "task_id": "named_entity_recognition_003",
+    "prompt": "Identify every named entity and classify it as PERSON, ORGANIZATION, LOCATION, or DATE: \"The World Health Organization met officials from Kenya in Geneva on Monday, 8 September.\""
+  },
+  {
+    "task_id": "named_entity_recognition_004",
+    "prompt": "Extract and label all named entities as PERSON, ORGANIZATION, LOCATION, or DATE: \"Maya Patel will represent Blue Horizon Capital at the Singapore FinTech Festival in November 2026.\""
+  },
+  {
+    "task_id": "named_entity_recognition_005",
+    "prompt": "Find all named entities and label each as PERSON, ORGANIZATION, LOCATION, or DATE: \"After visiting Kyoto in April, Lucas Bernard submitted his report to UNESCO headquarters in Paris.\""
+  },
+  {
+    "task_id": "code_debugging_001",
+    "prompt": "The Python function should return the average of all numbers, but it produces the wrong result for generators and crashes on empty input. Identify the problems and provide a corrected implementation:\n\ndef average(values):\n    return sum(values) / len(values)"
+  },
+  {
+    "task_id": "code_debugging_002",
+    "prompt": "This Python function is intended to remove duplicate values while preserving their original order, but it returns too early. Explain the bug and fix the function:\n\ndef unique_in_order(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n        return result"
+  },
+  {
+    "task_id": "code_debugging_003",
+    "prompt": "The following binary search sometimes misses values that are present. Identify the boundary error and provide a corrected implementation:\n\ndef binary_search(nums, target):\n    low, high = 0, len(nums) - 1\n    while low < high:\n        mid = (low + high) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1"
+  },
+  {
+    "task_id": "code_debugging_004",
+    "prompt": "This Python function should count words independently on every call, but previous results leak into later calls. Identify the cause and fix it:\n\ndef count_words(text, counts={}):\n    for word in text.lower().split():\n        counts[word] = counts.get(word, 0) + 1\n    return counts"
+  },
+  {
+    "task_id": "code_debugging_005",
+    "prompt": "The function should read a text file and return its non-empty lines without newline characters, but it fails after leaving the with block. Explain why and provide corrected code:\n\ndef read_nonempty(path):\n    with open(path, \"r\", encoding=\"utf-8\") as file:\n        lines = file\n    return [line.strip() for line in lines if line.strip()]"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_001",
+    "prompt": "Four speakers—Ava, Ben, Carla, and Dev—present one at a time. Ava presents before Ben. Carla presents immediately after Dev. Ben is not last. What is the only possible presentation order?"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_002",
+    "prompt": "Lina, Omar, and Priya each choose a different drink: coffee, tea, or juice. The coffee drinker is not Lina. Omar does not choose juice. Priya does not choose tea. Lina does not choose coffee. Determine each person's drink."
+  },
+  {
+    "task_id": "logical_deductive_reasoning_003",
+    "prompt": "Five books—J, K, L, M, and N—are arranged left to right. K is immediately to the right of J. L is somewhere left of J. M is at the far right. N is not next to M. What is the arrangement?"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_004",
+    "prompt": "A museum opens on exactly three days from Monday through Friday. It is open on Monday. It is closed on the day immediately after every open day except Friday. It is also open on Thursday. On which three days is it open?"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_005",
+    "prompt": "Three boxes are labeled Apples, Oranges, and Mixed, but every label is wrong. You may take one fruit from one box without looking inside. From which labeled box should you draw, and how can you then label all three boxes correctly?"
+  },
+  {
+    "task_id": "code_generation_001",
+    "prompt": "Write a Python function `merge_intervals(intervals)` that merges all overlapping closed intervals. The input is a list of `[start, end]` pairs in arbitrary order, and the output must be sorted by start value. Do not modify the input list."
+  },
+  {
+    "task_id": "code_generation_002",
+    "prompt": "Write a Python function `top_k_frequent(words, k)` that returns the `k` most frequent strings. Sort primarily by descending frequency and break ties alphabetically. Return all words if `k` exceeds the number of distinct words."
+  },
+  {
+    "task_id": "code_generation_003",
+    "prompt": "Write a Python function `is_balanced(text)` that returns `True` when every `()`, `[]`, and `{}` bracket is correctly matched and nested. Ignore all non-bracket characters."
+  },
+  {
+    "task_id": "code_generation_004",
+    "prompt": "Write a Python function `group_anagrams(words)` that groups strings containing the same letters, ignoring letter case. Preserve the original spelling of each word and preserve the order in which groups first appear."
+  },
+  {
+    "task_id": "code_generation_005",
+    "prompt": "Write a Python function `longest_streak(values)` that returns the length of the longest run of consecutive integers present in an unsorted iterable. Duplicate values must not extend a streak, and the function should run in expected O(n) time."
+  }
+]

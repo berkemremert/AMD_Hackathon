@@ -1,8 +1,22 @@
 .env
+.venv/
+venv/
 __pycache__/
 *.pyc
+.pytest_cache/
+.coverage
 router/checkpoints/
 *.pt
 *.bin
 .DS_Store
 compare_project/
+
+# Reproducible evaluation and runtime outputs
+eval_results*.json
+eval_ner_results.json
+evaluation_results*.json
+evaluation_results*.csv
+scripts/benchmark_results.json
+output/
+test_output/
+*_results.txt

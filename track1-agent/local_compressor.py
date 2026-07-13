@@ -6,6 +6,7 @@ Uses all-MiniLM-L6-v2 for semantic extraction and Regex for code minification.
 import re
 import threading
 import sys
+import os
 from dataclasses import dataclass, field
 from typing import Optional, Any
 import torch
@@ -53,7 +54,7 @@ class CompressionResult:
 
 _model_cache: dict = {}
 _model_lock = threading.Lock()
-_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+_MODEL_NAME = os.environ.get("LOCAL_EMBEDDING_MODEL", "/models/all-MiniLM-L6-v2")
 
 def _load_embedding_model() -> tuple[Any, str]:
     if "loaded" in _model_cache:
@@ -63,12 +64,15 @@ def _load_embedding_model() -> tuple[Any, str]:
         if "loaded" in _model_cache:
             return _model_cache["loaded"]
 
-        import os
         from sentence_transformers import SentenceTransformer
 
         device = os.environ.get("LOCAL_EMBEDDING_DEVICE", "cpu")
         try:
-            model = SentenceTransformer(_MODEL_NAME, device=device)
+            model = SentenceTransformer(
+                _MODEL_NAME,
+                device=device,
+                local_files_only=True,
+            )
             _model_cache["loaded"] = (model, device)
         except Exception as e:
             raise RuntimeError(f"Failed to load {_MODEL_NAME}: {e}")

@@ -1,0 +1,49 @@
+[
+  { "task_id": "fact-01", "prompt": "What is the capital of Canada, and on which river is it located?" },
+  { "task_id": "fact-02", "prompt": "Explain what photosynthesis is and why it is important for most life on Earth." },
+  { "task_id": "fact-03", "prompt": "What causes the Earth to experience seasons?" },
+  { "task_id": "fact-04", "prompt": "Define what an API is and give one example of what it's used for." },
+  { "task_id": "fact-05", "prompt": "What is the difference between a virus and a bacterium?" },
+
+  { "task_id": "math-01", "prompt": "A warehouse has 480 boxes. It ships out 25% on Monday and 40 more on Tuesday. How many boxes remain?" },
+  { "task_id": "math-02", "prompt": "A recipe serves 4 people and uses 300g of flour. How much flour is needed to serve 10 people?" },
+  { "task_id": "math-03", "prompt": "An investment of $2,000 grows at 5% simple interest per year. What is its value after 3 years?" },
+  { "task_id": "math-04", "prompt": "A train travels 60 km in 45 minutes. At the same speed, how long will it take to travel 100 km?" },
+  { "task_id": "math-05", "prompt": "A shirt originally costs $80. It is discounted by 20%, then an additional 10% off the discounted price. What is the final price?" },
+
+  { "task_id": "sent-01", "prompt": "Classify the sentiment of this review: The delivery was fast, but the packaging was crushed and the item arrived damaged." },
+  { "task_id": "sent-02", "prompt": "Classify the sentiment of this review: Absolutely loved the customer service, they went above and beyond to help me." },
+  { "task_id": "sent-03", "prompt": "Classify the sentiment of this review: The app crashes constantly and support never responds to my tickets." },
+  { "task_id": "sent-04", "prompt": "Classify the sentiment of this review: It's an okay product, does what it says but nothing special." },
+  { "task_id": "sent-05", "prompt": "Classify the sentiment of this review: The hotel room was spacious and clean, though the Wi-Fi kept dropping out." },
+
+  { "task_id": "sum-01", "prompt": "Summarize the following in exactly one sentence: The city council voted to approve a new bike lane network spanning 15 miles, aiming to reduce traffic congestion and encourage cycling, with construction expected to begin next spring and finish within eighteen months." },
+  { "task_id": "sum-02", "prompt": "Summarize the following in no more than 20 words: Researchers discovered a new species of frog in a remote rainforest region, notable for its bright blue coloring and unusual mating call, which scientists believe evolved as a defense mechanism against predators." },
+  { "task_id": "sum-03", "prompt": "Summarize the following in exactly two sentences: The company reported quarterly revenue of $4.2 million, up 12% from the previous year, driven mainly by strong sales in its subscription service. However, operating costs also rose due to increased hiring and marketing spend, leading to a slight decline in net profit margin." },
+  { "task_id": "sum-04", "prompt": "Summarize the following in one sentence: After months of negotiation, the two companies finalized a merger agreement that will combine their logistics networks, aiming to cut shipping costs and expand delivery coverage into three new regions by next year." },
+  { "task_id": "sum-05", "prompt": "Summarize the following in exactly one sentence: The marathon saw a record number of participants this year, with over 30,000 runners registering, prompting organizers to add extra water stations and medical staff along the route to ensure everyone's safety." },
+
+  { "task_id": "ner-01", "prompt": "Extract all named entities and their types from: Dr. Elena Kim presented her research at Stanford University in California last October." },
+  { "task_id": "ner-02", "prompt": "Extract all named entities and their types from: Toyota announced a new factory opening in Austin, Texas, scheduled for early 2027." },
+  { "task_id": "ner-03", "prompt": "Extract all named entities and their types from: Ahmed Hassan met with representatives from the United Nations in Geneva on March 3rd." },
+  { "task_id": "ner-04", "prompt": "Extract all named entities and their types from: Samsung Electronics reported record profits after launching its new headquarters in Seoul." },
+  { "task_id": "ner-05", "prompt": "Extract all named entities and their types from: Sofia Alvarez joined Google as a product manager in Dublin last September." },
+
+  { "task_id": "debug-01", "prompt": "This function should return the sum of a list but has a bug: def get_sum(nums): total = 0\\n for n in nums: total = n\\n return total. Find and fix it." },
+  { "task_id": "debug-02", "prompt": "This function should check if a string is a palindrome but has a bug: def is_palindrome(s): return s == s[1:-1]. Find and fix it." },
+  { "task_id": "debug-03", "prompt": "This function should count vowels in a string but has a bug: def count_vowels(s): count = 0\\n for c in s: if c in 'aeiou': count = 1\\n return count. Find and fix it." },
+  { "task_id": "debug-04", "prompt": "This function should return the average of a list but has a bug: def get_average(nums): return sum(nums) / len(nums) + 1. Find and fix it." },
+  { "task_id": "debug-05", "prompt": "This function should merge two dictionaries but has a bug: def merge_dicts(a, b): a.update(a)\\n return a. Find and fix it." },
+
+  { "task_id": "logic-01", "prompt": "Four coworkers, Ana, Ben, Cara, and Dev, sit in a row of four seats numbered 1 to 4. Ana sits next to Ben. Cara sits in seat 1. Dev does not sit in seat 4. Who sits in seat 4?" },
+  { "task_id": "logic-02", "prompt": "Three siblings, Max, Nina, and Omar, each have a different favorite color: red, blue, or green. Max's favorite is not red. Nina's favorite is not blue or green. What is Max's favorite color?" },
+  { "task_id": "logic-03", "prompt": "Five runners finished a race: Priya, Quinn, Riley, Sam, and Tara. Priya finished before Quinn but after Riley. Sam finished last. Tara finished second. What is the finishing order?" },
+  { "task_id": "logic-04", "prompt": "Two boxes are labeled 'Apples' and 'Oranges', but both labels are known to be wrong. You may pick one fruit from one box to determine the contents of all boxes. Which box should you pick from, and why?" },
+  { "task_id": "logic-05", "prompt": "In a small office, exactly one of three employees, Kim, Lee, or Park, broke the printer. Kim says 'I didn't do it.' Lee says 'Park did it.' Park says 'Lee is lying.' If only one statement is true, who broke the printer?" },
+
+  { "task_id": "gen-01", "prompt": "Write a Python function that returns the number of vowels in a given string, case-insensitively." },
+  { "task_id": "gen-02", "prompt": "Write a Python function that checks whether a given number is prime." },
+  { "task_id": "gen-03", "prompt": "Write a Python function that reverses the order of words in a sentence while keeping each word spelled normally (e.g., 'hello world' becomes 'world hello')." },
+  { "task_id": "gen-04", "prompt": "Write a Python function that removes duplicate elements from a list while preserving the original order." },
+  { "task_id": "gen-05", "prompt": "Write a Python function that takes a list of numbers and returns a new list containing only the even numbers, sorted in ascending order." }
+]

@@ -7,13 +7,17 @@ from pathlib import Path
 
 from output_optimizer import detect_task_type, TOKEN_LIMITS, get_dynamic_limits
 from local_compressor import optimize_prompt_for_api
-from local_solvers import solve_ner
 import validator
 from router.infer_router import predict
 from fireworks_client import chat
 
-DATA_PATH = Path(__file__).parent / "data" / "public_style_80_questions.json"
+import argparse
 
+parser = argparse.ArgumentParser(description="Evaluate the agent on a dataset.")
+parser.add_argument("--dataset", type=str, default="data/public_style_80_questions.json", help="Path to the dataset JSON file.")
+args = parser.parse_args()
+
+DATA_PATH = Path(__file__).parent / args.dataset
 # ── GLM-5.2 Judge ──
 MODEL_JUDGE = "accounts/fireworks/models/glm-5p2"
 
@@ -74,8 +78,11 @@ def sample_tasks(records, total_to_sample=40):
     by_category = defaultdict(list)
     for r in records:
         by_category[r.get("category", "general")].append(r)
-    
+
     categories = list(by_category.keys())
+    if not categories:
+        return []
+
     per_cat = max(1, total_to_sample // len(categories))
     
     sampled = []
@@ -101,8 +108,10 @@ def main():
     with open(DATA_PATH, "r") as f:
         records = json.load(f)
         
-    # Filter to only use 'easy' difficulty pool as requested
-    records = [r for r in records if r.get("difficulty_pool") == "easy"]
+    # Filter to only use 'easy' difficulty pool if available
+    easy_records = [r for r in records if r.get("difficulty_pool") == "easy"]
+    if easy_records:
+        records = easy_records
         
     # Sample exactly 80 entries, including all categories
     tasks = sample_tasks(records, 80)
@@ -116,10 +125,18 @@ def main():
     results = []
     
     for i, task in enumerate(tasks, 1):
-        task_id = task.get("id", f"task_{i}")
+        task_id = task.get("task_id", task.get("id", f"task_{i}"))
+        
+        # Infer category from task_id (e.g. 'factual_knowledge_001' -> 'factual_knowledge')
+        dataset_category = task.get("category")
+        if not dataset_category:
+            inferred = "_".join(task_id.split("_")[:-1]) if "_" in task_id else "unknown"
+            dataset_category = inferred if inferred and inferred != "task" else "unknown"
+        task["category"] = dataset_category
+        
         prompt = task["prompt"]
         print(f"\n--- TASK {i}/{len(tasks)} [{task_id}] ---")
-        print(f"Category (Dataset): {task.get('category', 'unknown')}")
+        print(f"Category (Dataset): {dataset_category}")
         
         task_type = detect_task_type(prompt)
         print(f"Detected Category (Heuristic): {task_type}")
@@ -273,43 +290,7 @@ def main():
         except Exception as e:
             print(f"[WARN] Code authoring solver failed: {e}")
 
-        try:
-            if task_type == "entity_extraction":
-                print("[ROUTER] Local task detected. Routing to heuristic NER (0 tokens).")
-                raw_entities = solve_ner(prompt)
-                if raw_entities is not None:
-                    print(f"[RESULT] Local NER output:\n{raw_entities}")
-                    print(f"[TOKENS] 0 API tokens used.")
-                    success_count += 1
-                    entry = {
-                        "task_id": task_id,
-                        "category_dataset": task.get("category", "unknown"),
-                        "category_detected": task_type,
-                        "prompt": prompt,
-                        "solver_type": "local",
-                        "model_or_solver": "local_solver (ner)",
-                        "tokens_used": 0,
-                        "output": raw_entities,
-                        "validation_passed": True
-                    }
-                    jv = verify_with_glm(prompt, raw_entities, task_type)
-                    entry["judge_verdict"] = jv["verdict"]
-                    entry["judge_reason"] = jv["reason"]
-                    entry["judge_tokens"] = jv["tokens"]
-                    judge_tokens += jv["tokens"]
-                    judge_results[jv["verdict"]] += 1
-                    if jv["verdict"] == "incorrect":
-                        print(f"[JUDGE ⚠] GLM-5.2 disagrees: {jv['reason']}")
-                    else:
-                        print(f"[JUDGE ✓] GLM-5.2 verified: {jv['reason']}")
-                    results.append(entry)
-                    print("\n<EOT>\n" + "=" * 80)
-                    continue
-                else:
-                    print(f"[WARN] Local NER validation failed. Falling back to API.")
-        except Exception as e:
-            print(f"[WARN] NER solver failed: {e}")
-            
+
         try:
             if task_type == "sentiment_analysis" or task.get("category") == "sentiment_classification":
                 from local_solvers import solve_sentiment

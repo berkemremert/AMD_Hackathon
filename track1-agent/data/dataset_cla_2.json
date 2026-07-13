@@ -1,0 +1,49 @@
+[
+  { "task_id": "fact-06", "prompt": "What is the capital of New Zealand, and on which island is it located?" },
+  { "task_id": "fact-07", "prompt": "Explain what the greenhouse effect is and why it matters for the Earth's climate." },
+  { "task_id": "fact-08", "prompt": "What causes ocean tides?" },
+  { "task_id": "fact-09", "prompt": "Define what encryption is and give one example of where it's commonly used." },
+  { "task_id": "fact-10", "prompt": "What is the difference between weather and climate?" },
+
+  { "task_id": "math-06", "prompt": "A library has 720 books. It lends out 30% during the first week and 50 more during the second week. How many books remain?" },
+  { "task_id": "math-07", "prompt": "A recipe serves 6 people and uses 450g of rice. How much rice is needed to serve 15 people?" },
+  { "task_id": "math-08", "prompt": "An investment of $3,500 grows at 4% simple interest per year. What is its value after 5 years?" },
+  { "task_id": "math-09", "prompt": "A cyclist rides 40 km in 90 minutes. At the same speed, how long will it take to ride 100 km?" },
+  { "task_id": "math-10", "prompt": "A laptop originally costs $1,200. It is discounted by 15%, then an additional 5% off the discounted price. What is the final price?" },
+
+  { "task_id": "sent-06", "prompt": "Classify the sentiment of this review: The food arrived cold, and the waiter never came back to check on us." },
+  { "task_id": "sent-07", "prompt": "Classify the sentiment of this review: This is hands down the best pair of running shoes I've ever owned." },
+  { "task_id": "sent-08", "prompt": "Classify the sentiment of this review: The software has a steep learning curve, but the support team was patient and helpful." },
+  { "task_id": "sent-09", "prompt": "Classify the sentiment of this review: It's a decent laptop for the price, though the battery drains faster than expected." },
+  { "task_id": "sent-10", "prompt": "Classify the sentiment of this review: The concert was completely disorganized and started nearly two hours late." },
+
+  { "task_id": "sum-06", "prompt": "Summarize the following in exactly one sentence: The airport announced a $2 billion expansion project that will add a new terminal and two additional runways, intended to accommodate rising passenger traffic over the next decade, with completion targeted for 2031." },
+  { "task_id": "sum-07", "prompt": "Summarize the following in no more than 20 words: A team of astronomers detected a previously unknown exoplanet orbiting a distant star, notable for being roughly the size of Earth and situated within the star's habitable zone, raising questions about its potential to support liquid water." },
+  { "task_id": "sum-08", "prompt": "Summarize the following in exactly two sentences: The nonprofit organization distributed over 10,000 meals to families affected by the recent flooding, relying on donations from local businesses and volunteer labor. Despite the relief effort, officials warn that rebuilding efforts could take several months due to widespread infrastructure damage." },
+  { "task_id": "sum-09", "prompt": "Summarize the following in one sentence: The university unveiled a new scholarship program aimed at first-generation college students, covering full tuition and providing a stipend for housing, with the goal of increasing enrollment from underrepresented communities starting next fall." },
+  { "task_id": "sum-10", "prompt": "Summarize the following in exactly one sentence: The city's public transit authority introduced a fleet of electric buses this month, replacing older diesel models as part of a broader initiative to cut emissions and improve air quality across downtown routes." },
+
+  { "task_id": "ner-06", "prompt": "Extract all named entities and their types from: Professor Liam O'Connor gave a lecture at the University of Melbourne in Australia this past January." },
+  { "task_id": "ner-07", "prompt": "Extract all named entities and their types from: Siemens announced a new manufacturing plant in Monterrey, Mexico, opening in late 2027." },
+  { "task_id": "ner-08", "prompt": "Extract all named entities and their types from: Fatima Al-Rashid attended a summit hosted by the World Health Organization in Geneva on June 12th." },
+  { "task_id": "ner-09", "prompt": "Extract all named entities and their types from: Sony Interactive Entertainment posted strong earnings after relocating its studio to Tokyo." },
+  { "task_id": "ner-10", "prompt": "Extract all named entities and their types from: Noah Peterson started as a data scientist at Microsoft in Amsterdam last November." },
+
+  { "task_id": "debug-06", "prompt": "This function should return the product of a list but has a bug: def get_product(nums): total = 0\\n for n in nums: total *= n\\n return total. Find and fix it." },
+  { "task_id": "debug-07", "prompt": "This function should reverse a string but has a bug: def reverse_string(s): return s[0:-1]. Find and fix it." },
+  { "task_id": "debug-08", "prompt": "This function should find the minimum value in a list but has a bug: def get_min(nums): return nums[-1]. Find and fix it." },
+  { "task_id": "debug-09", "prompt": "This function should check if two strings are anagrams but has a bug: def is_anagram(a, b): return a == b. Find and fix it." },
+  { "task_id": "debug-10", "prompt": "This function should remove all spaces from a string but has a bug: def remove_spaces(s): return s.strip(). Find and fix it." },
+
+  { "task_id": "logic-06", "prompt": "Four students, Ella, Finn, Gia, and Hugo, sit in a row of four desks numbered 1 to 4. Ella sits next to Finn. Gia sits in seat 4. Hugo does not sit in seat 1. Who sits in seat 1?" },
+  { "task_id": "logic-07", "prompt": "Three friends, Ivy, Jack, and Kira, each prefer a different drink: tea, coffee, or juice. Ivy's favorite is not coffee. Jack's favorite is not tea or juice. What is Ivy's favorite drink?" },
+  { "task_id": "logic-08", "prompt": "Five cyclists finished a race: Leo, Mia, Nate, Owen, and Piper. Leo finished before Mia but after Nate. Owen finished last. Piper finished second. What is the finishing order?" },
+  { "task_id": "logic-09", "prompt": "You have two ropes, each of which takes exactly 60 minutes to burn completely, but they burn unevenly. How can you measure exactly 45 minutes using only these two ropes and a lighter?" },
+  { "task_id": "logic-10", "prompt": "In a small team, exactly one of three developers, Reed, Sana, or Tomas, deployed a broken build. Reed says 'I didn't do it.' Sana says 'Tomas did it.' Tomas says 'Sana is lying.' If only one statement is true, who deployed the broken build?" },
+
+  { "task_id": "gen-06", "prompt": "Write a Python function that returns the number of consonants in a given string, case-insensitively." },
+  { "task_id": "gen-07", "prompt": "Write a Python function that checks whether a given string is a valid palindrome, ignoring spaces and capitalization." },
+  { "task_id": "gen-08", "prompt": "Write a Python function that capitalizes the first letter of every word in a sentence." },
+  { "task_id": "gen-09", "prompt": "Write a Python function that flattens a nested list of arbitrary depth into a single flat list." },
+  { "task_id": "gen-10", "prompt": "Write a Python function that takes a list of numbers and returns a new list containing only the odd numbers, sorted in descending order." }
+]

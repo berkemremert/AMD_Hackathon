@@ -1,0 +1,162 @@
+[
+  {
+    "task_id": "factual_knowledge_v3_001",
+    "prompt": "Why do long bridges include expansion joints or gaps between sections? Explain what could happen during hot and cold weather if the bridge were built as one rigid, continuous structure."
+  },
+  {
+    "task_id": "factual_knowledge_v3_002",
+    "prompt": "Explain how a vaccine can prepare the immune system to fight a pathogen without causing the full disease, and describe the role of immune memory in later protection."
+  },
+  {
+    "task_id": "factual_knowledge_v3_003",
+    "prompt": "Earth is slightly closer to the Sun during Northern Hemisphere winter than during its summer. Explain why Earth's axial tilt, rather than its distance from the Sun, causes the seasons."
+  },
+  {
+    "task_id": "factual_knowledge_v3_004",
+    "prompt": "What is a database index, and why can adding an index make searches faster while making inserts and updates somewhat slower?"
+  },
+  {
+    "task_id": "factual_knowledge_v3_005",
+    "prompt": "A metal spoon and a wooden spoon have been in the same room overnight, yet the metal spoon feels colder. Explain why they feel different even though they are at approximately the same temperature."
+  },
+  {
+    "task_id": "mathematical_reasoning_v3_001",
+    "prompt": "A theater sold 320 tickets. Adult tickets cost $18 and student tickets cost $12. If total ticket revenue was $4,920, how many adult tickets and how many student tickets were sold?"
+  },
+  {
+    "task_id": "mathematical_reasoning_v3_002",
+    "prompt": "A jacket is marked at $160. It is discounted by 25%, then the discounted price is reduced by another 10%. An 8% sales tax is applied afterward. What is the final price, rounded to the nearest cent?"
+  },
+  {
+    "task_id": "mathematical_reasoning_v3_003",
+    "prompt": "A factory produced 8,000 units in January. Production increased by 12% in February, then decreased by 5% in March relative to February. If 3% of March's units were defective, how many non-defective units were produced in March?"
+  },
+  {
+    "task_id": "mathematical_reasoning_v3_004",
+    "prompt": "A 30-liter solution is 40% salt. How many liters of pure water must be added to make the solution 25% salt? Assume the amount of salt does not change."
+  },
+  {
+    "task_id": "mathematical_reasoning_v3_005",
+    "prompt": "A delivery van travels 150 km at 75 km/h, stops for 30 minutes, and then travels another 120 km at 60 km/h. What is its average speed for the entire trip, including the stop?"
+  },
+  {
+    "task_id": "sentiment_classification_v3_001",
+    "prompt": "Classify the sentiment as positive, negative, neutral, or mixed, and briefly justify your answer: \"The camera takes beautiful photos in daylight, but its slow autofocus and weak battery make it frustrating to use on trips.\""
+  },
+  {
+    "task_id": "sentiment_classification_v3_002",
+    "prompt": "Classify the sentiment as positive, negative, neutral, or mixed, and briefly justify your answer: \"Customer support replaced the damaged part immediately, and the machine has worked perfectly ever since.\""
+  },
+  {
+    "task_id": "sentiment_classification_v3_003",
+    "prompt": "Classify the sentiment as positive, negative, neutral, or mixed, and briefly justify your answer: \"The report was delivered on Tuesday and contains twelve pages of sales figures and regional comparisons.\""
+  },
+  {
+    "task_id": "sentiment_classification_v3_004",
+    "prompt": "Classify the sentiment as positive, negative, neutral, or mixed, and briefly justify your answer: \"The restaurant looked inviting, yet the food arrived cold and the staff ignored us for nearly half an hour.\""
+  },
+  {
+    "task_id": "sentiment_classification_v3_005",
+    "prompt": "Classify the sentiment as positive, negative, neutral, or mixed, and briefly justify your answer: \"I expected the update to be unnecessary, but the cleaner layout and faster search have genuinely improved my workflow.\""
+  },
+  {
+    "task_id": "text_summarisation_v3_001",
+    "prompt": "Summarize the following passage in exactly two sentences: A coastal town replaced many concrete drainage channels with wetlands and planted areas. During heavy rain, these spaces temporarily store water, reduce pressure on storm drains, and filter pollutants before the water reaches the sea. The project also created walking paths and habitats for birds, although it required the town to purchase several flood-prone properties."
+  },
+  {
+    "task_id": "text_summarisation_v3_002",
+    "prompt": "Summarize the following passage in no more than 35 words: A software company tested a four-day workweek for six months while keeping salaries unchanged. Teams reported lower burnout and completed roughly the same amount of work, but customer-support coverage became harder on Fridays. The company decided to continue the policy while rotating support staff."
+  },
+  {
+    "task_id": "text_summarisation_v3_003",
+    "prompt": "Summarize the following passage as three concise bullet points covering the problem, the intervention, and the result: A university library found that many first-year students struggled to evaluate online sources. Librarians embedded short research workshops into required writing courses and gave students practice comparing evidence, authorship, and publication quality. By the end of the semester, citation errors fell and students performed better on source-evaluation assignments."
+  },
+  {
+    "task_id": "text_summarisation_v3_004",
+    "prompt": "Summarize the following passage in one sentence without adding information: A grocery chain installed electronic shelf labels that can be updated centrally. Price changes now take minutes instead of requiring employees to replace paper tags throughout each store. The system reduced labeling mistakes, although managers had to train staff and create procedures for handling failed displays."
+  },
+  {
+    "task_id": "text_summarisation_v3_005",
+    "prompt": "Write a 25- to 30-word summary of the following passage: Researchers tracked urban trees during repeated summer heat waves. Trees with larger soil beds and regular access to rainwater stayed cooler and lost fewer leaves than trees surrounded by pavement, suggesting that planting design strongly affects survival."
+  },
+  {
+    "task_id": "named_entity_recognition_v3_001",
+    "prompt": "Extract all named entities and label each as PERSON, ORGANIZATION, LOCATION, or DATE: \"On 14 February 2025, Elena Rossi presented Aurora Labs' new battery design at a conference in Milan.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v3_002",
+    "prompt": "Extract all named entities and label each as PERSON, ORGANIZATION, LOCATION, or DATE: \"The World Health Organization appointed Dr. Samuel Okoro to lead its Nairobi office in September 2024.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v3_003",
+    "prompt": "Extract all named entities and label each as PERSON, ORGANIZATION, LOCATION, or DATE: \"Priya Nair left Horizon Bank in Singapore and joined Northstar Analytics on 3 January 2026.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v3_004",
+    "prompt": "Extract all named entities and label each as PERSON, ORGANIZATION, LOCATION, or DATE: \"During the 2023 Venice Film Festival, director Mateo Silva announced a partnership with Silver Frame Studios.\""
+  },
+  {
+    "task_id": "named_entity_recognition_v3_005",
+    "prompt": "Extract all named entities and label each as PERSON, ORGANIZATION, LOCATION, or DATE: \"Keiko Tanaka will meet representatives of the Pacific Climate Council in Wellington next Monday, 20 July 2026.\""
+  },
+  {
+    "task_id": "code_debugging_v3_001",
+    "prompt": "This Python function should return the average of all numbers, including zeros, but it produces the wrong result when the list contains 0. Identify the bug and provide a corrected implementation.\n\n```python\ndef average(nums):\n    total = 0\n    count = 0\n    for n in nums:\n        if n:\n            total += n\n            count += 1\n    return total / count\n```"
+  },
+  {
+    "task_id": "code_debugging_v3_002",
+    "prompt": "This Python function should split a list into consecutive chunks of the requested size, but it skips elements. Identify the bug and provide a corrected implementation that also rejects non-positive chunk sizes.\n\n```python\ndef chunk(items, size):\n    result = []\n    for i in range(0, len(items), size + 1):\n        result.append(items[i:i + size])\n    return result\n```"
+  },
+  {
+    "task_id": "code_debugging_v3_003",
+    "prompt": "This Python function should return the first index of `target` in a sorted list or -1 if absent, but it can miss a match at the final remaining position. Identify the bug and provide a corrected implementation.\n\n```python\ndef binary_search(values, target):\n    left, right = 0, len(values) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if values[mid] == target:\n            return mid\n        if values[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n```"
+  },
+  {
+    "task_id": "code_debugging_v3_004",
+    "prompt": "This Python function should remove every negative number from a list in place, but consecutive negative values may remain. Identify the bug and provide a corrected implementation.\n\n```python\ndef remove_negatives(values):\n    for value in values:\n        if value < 0:\n            values.remove(value)\n    return values\n```"
+  },
+  {
+    "task_id": "code_debugging_v3_005",
+    "prompt": "This Python function should build independent counters, but every returned counter shares the same state. Identify the bug and provide a corrected implementation.\n\n```python\ndef make_counters(n):\n    counters = []\n    state = {'value': 0}\n    for _ in range(n):\n        def increment():\n            state['value'] += 1\n            return state['value']\n        counters.append(increment)\n    return counters\n```"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v3_001",
+    "prompt": "Four talks—Design, Ethics, Robotics, and Security—are scheduled one per time slot from 1 to 4. Robotics is immediately after Design. Ethics is earlier than Design. Security is immediately after Ethics. Determine the complete schedule."
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v3_002",
+    "prompt": "Lina, Omar, Priya, and Theo each chose a different drink: coffee, tea, juice, or water. Lina did not choose coffee or water. Omar chose neither tea nor juice. Priya chose juice. Theo did not choose water. Which drink did each person choose?"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v3_003",
+    "prompt": "Five books—J, K, L, M, and N—are arranged from left to right on a shelf. L is immediately to the right of J. K is at the far left. N is at the far right. M is not next to N. Determine the order of the books."
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v3_004",
+    "prompt": "Ava, Ben, Cara, and Diego each arrive on a different day from Monday through Thursday. Ava arrives before Ben. Cara arrives on Thursday. Diego arrives immediately after Ava. On which day does each person arrive?"
+  },
+  {
+    "task_id": "logical_deductive_reasoning_v3_005",
+    "prompt": "Three boxes—red, blue, and green—contain one item each: a key, a coin, and a ring. The key is not in the red box. The coin is in neither the blue nor the green box. The ring is not in the green box. Which item is in each box?"
+  },
+  {
+    "task_id": "code_generation_v3_001",
+    "prompt": "Write a Python function `group_anagrams(words)` that groups words containing the same letters, ignoring letter case. Preserve the original spelling of each word and preserve group order according to the first appearance of each anagram signature."
+  },
+  {
+    "task_id": "code_generation_v3_002",
+    "prompt": "Write a Python function `merge_intervals(intervals)` that merges overlapping or touching integer intervals. Each interval is a two-element sequence `[start, end]`; return a new list sorted by start, and do not modify the input."
+  },
+  {
+    "task_id": "code_generation_v3_003",
+    "prompt": "Write a Python function `longest_run(values)` that returns a tuple `(value, length)` for the longest consecutive run of equal values. If several runs tie, return the earliest one. Return `(None, 0)` for an empty input."
+  },
+  {
+    "task_id": "code_generation_v3_004",
+    "prompt": "Write a Python function `safe_get(data, path, default=None)` that follows a dot-separated path through nested dictionaries. Return `default` when a key is missing or when an intermediate value is not a dictionary; an empty path should return `data`."
+  },
+  {
+    "task_id": "code_generation_v3_005",
+    "prompt": "Write a Python function `moving_average(values, window)` that returns the average of every consecutive window as floats. Raise `ValueError` when `window` is not positive, and return an empty list when the window is larger than the input."
+  }
+]

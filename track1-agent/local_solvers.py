@@ -3,7 +3,6 @@ Local Solvers Module
 Handles specific tasks entirely on the local CPU to achieve a 0-token cost.
 """
 from __future__ import annotations
-import json
 import warnings
 import re
 import sys
@@ -38,115 +37,6 @@ def solve_code_authoring(prompt: str) -> Optional[str]:
     Returns None to cleanly fall back to the Fireworks API.
     """
     return None
-
-LABEL_MAP = {
-    "PER": "PERSON",
-    "PERSON": "PERSON",
-    "ORG": "ORGANIZATION",
-    "ORGANIZATION": "ORGANIZATION",
-    "LOC": "LOCATION",
-    "GPE": "LOCATION",
-    "LOCATION": "LOCATION",
-    "DATE": "DATE",
-}
-
-MONTHS = (
-    r"January|February|March|April|May|June|July|August|"
-    r"September|October|November|December"
-)
-
-DATE_PATTERN = re.compile(
-    rf"\b(?:{MONTHS})\s+\d{{1,2}}(?:,?\s+\d{{4}})?\b",
-    re.IGNORECASE,
-)
-
-def run_local_ner(text: str, labels: list[str]) -> list[dict]:
-    try:
-        from src.local_ner.gliner_solver import _load_gliner
-        model = _load_gliner()
-        if model:
-            # restore threshold to 0.3 to avoid common noun false positives
-            return model.predict_entities(text, labels, threshold=0.3)
-    except Exception as e:
-        import sys
-        print(f"[WARN] run_local_ner failed: {e}", file=sys.stderr)
-    return []
-
-def normalize_model_entities(model_entities: list[dict]) -> list[dict]:
-    entities = []
-    for ent in model_entities:
-        lbl = str(ent.get("label", "")).upper()
-        norm_label = LABEL_MAP.get(lbl, lbl)
-        entities.append({
-            "text": ent["text"],
-            "label": norm_label,
-            "start": ent["start"],
-            "end": ent["end"],
-        })
-    return entities
-
-def deduplicate_exact_entities(entities: list[dict]) -> list[dict]:
-    seen = set()
-    result = []
-    for ent in entities:
-        key = (ent["text"], ent["label"], ent["start"], ent["end"])
-        if key not in seen:
-            seen.add(key)
-            result.append(ent)
-    return result
-
-def validate_ner_result(text: str, entities: list[dict]) -> bool:
-    allowed = {"PERSON", "ORGANIZATION", "LOCATION", "DATE"}
-
-    if not entities:
-        return False
-
-    for entity in entities:
-        if entity["label"] not in allowed:
-            return False
-        if entity["text"] not in text:
-            return False
-
-    expected_dates = {m.group(0) for m in DATE_PATTERN.finditer(text)}
-    returned_dates = {
-        entity["text"]
-        for entity in entities
-        if entity["label"] == "DATE"
-    }
-
-    if expected_dates - returned_dates:
-        return False
-
-    return True
-
-def solve_ner(prompt: str) -> Optional[str]:
-    text = extract_target_text(prompt)
-
-    model_entities = run_local_ner(
-        text,
-        labels=["person", "organization", "location"],
-    )
-
-    entities = normalize_model_entities(model_entities)
-
-    for match in DATE_PATTERN.finditer(text):
-        entities.append({
-            "text": match.group(0),
-            "label": "DATE",
-            "start": match.start(),
-            "end": match.end(),
-        })
-
-    entities = deduplicate_exact_entities(entities)
-    entities.sort(key=lambda item: item["start"])
-
-    if not validate_ner_result(text, entities):
-        return None
-
-    return "\n".join(
-        f'{entity["text"]} — {entity["label"]}'
-        for entity in entities
-    )
 
 _vader_sia = None
 
@@ -428,4 +318,3 @@ def solve_summarization(prompt: str) -> Optional[str]:
     Disabled summarization solver to save RAM.
     """
     return None
-
